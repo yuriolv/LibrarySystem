@@ -1,11 +1,11 @@
 package Controllers;
 
 import javafx.application.Application;
-/* import javafx.fxml.FXML;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane; */
+import javafx.scene.layout.AnchorPane; 
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -21,13 +21,12 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
-        /* Parent loginFxml = FXMLLoader.load(getClass().getResource("../Views/"));
-        pageLogin = new Scene(loginFxml);     */
+        Parent loginFxml = FXMLLoader.load(getClass().getResource("../Views/TelaInicial.fxml"));
+        pageLogin = new Scene(loginFxml);    
 
         stage = primaryStage;
         stage.setTitle("SISTEMA BIBLIOTECA");
-        /* stage.setScene(); AQUI IRÁ O FXML DA PÁGINA INICIAL*/
+        stage.setScene(pageLogin); 
         stage.show();
     }
 
