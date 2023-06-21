@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.TelaInicialController">
+   <top>
+      <AnchorPane prefHeight="77.0" prefWidth="600.0" style="-fx-background-color: #5F9EA0;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="230.0" layoutY="14.0" text="Biblioteca">
+               <font>
+                  <Font name="Cambria" size="33.0" />
+               </font>
+            </Label>
+            <Label layoutX="181.0" layoutY="56.0" text="Selecione uma das opções abaixo">
+               <font>
+                  <Font name="Cambria" size="17.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
+   <bottom>
+      <AnchorPane prefHeight="39.0" prefWidth="600.0" style="-fx-background-color: #008B45;" BorderPane.alignment="CENTER" />
+   </bottom>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #5F9EA0;" styleClass="classe" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane cache="true" layoutX="24.0" layoutY="41.0" onMouseClicked="#redirecionarTelaUsers" prefHeight="103.0" prefWidth="166.0" AnchorPane.leftAnchor="24.0">
+               <children>
+                  <ImageView fitHeight="56.0" fitWidth="87.0" layoutX="55.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Assets/usuarios.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="18.0" layoutY="70.0" text="Discente e professor">
+                     <font>
+                        <Font name="Cambria" size="15.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </AnchorPane>
+            <AnchorPane layoutX="454.0" layoutY="41.0" onMouseClicked="#redirecionarTelaAcervo" prefHeight="103.0" prefWidth="166.0" AnchorPane.rightAnchor="24.0">
+               <children>
+                  <ImageView fitHeight="56.0" fitWidth="87.0" layoutX="55.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Assets/acervo.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="59.0" layoutY="70.0" text="Acervo">
+                     <font>
+                        <Font name="Cambria" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </AnchorPane>
+            <AnchorPane layoutX="217.0" layoutY="41.0" onMouseClicked="#redirecionarTelaBibliotecario" prefHeight="103.0" prefWidth="166.0">
+               <children>
+                  <ImageView fitHeight="56.0" fitWidth="87.0" layoutX="55.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Assets/bibliotecario.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="42.0" layoutY="70.0" text="Bibliotecário">
+                     <font>
+                        <Font name="Cambria" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
