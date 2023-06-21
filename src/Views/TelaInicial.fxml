@@ -30,7 +30,7 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #5F9EA0;" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane layoutX="24.0" layoutY="41.0" onMouseClicked="#redirecionarTelaUsers" prefHeight="103.0" prefWidth="166.0" AnchorPane.leftAnchor="24.0">
+            <AnchorPane fx:id="usuariosPane" layoutX="24.0" layoutY="41.0" onMouseClicked="#redirecionarTelaUsers" prefHeight="103.0" prefWidth="166.0" AnchorPane.leftAnchor="24.0">
                <children>
                   <ImageView fitHeight="56.0" fitWidth="87.0" layoutX="55.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -44,7 +44,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="454.0" layoutY="41.0" onMouseClicked="#redirecionarTelaAcervo" prefHeight="103.0" prefWidth="166.0" AnchorPane.rightAnchor="24.0">
+            <AnchorPane fx:id="acervoPane" layoutX="454.0" layoutY="41.0" onMouseClicked="#redirecionarTelaAcervo" prefHeight="103.0" prefWidth="166.0" AnchorPane.rightAnchor="24.0">
                <children>
                   <ImageView fitHeight="56.0" fitWidth="87.0" layoutX="55.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -58,7 +58,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="217.0" layoutY="41.0" onMouseClicked="#redirecionarTelaBibliotecario" prefHeight="103.0" prefWidth="166.0">
+            <AnchorPane fx:id="bibliotecarioPane" layoutX="217.0" layoutY="41.0" onMouseClicked="#redirecionarTelaBibliotecario" prefHeight="103.0" prefWidth="166.0">
                <children>
                   <ImageView fitHeight="56.0" fitWidth="87.0" layoutX="55.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
