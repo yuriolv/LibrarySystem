@@ -1,11 +1,8 @@
 package Controllers;
 
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane; 
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -13,6 +10,7 @@ public class App extends Application {
 
     private static Scene pageLogin;
     private static Scene pageAdmin;
+    private static Scene pageInitial;
     private static Stage stage;
 
     public static void main(String[] args) throws Exception {
@@ -23,15 +21,19 @@ public class App extends Application {
     public void start(Stage primaryStage) throws Exception {
         try {
 
-        Parent loginFxml = FXMLLoader.load(getClass().getResource("../Views/TelaInicial.fxml"));
-        pageLogin = new Scene(loginFxml);  
+        Parent contentTelaInicial = FXMLLoader.load(getClass().getResource("../Views/Home.fxml"));
+        pageInitial = new Scene(contentTelaInicial);  
+
+        Parent contentTelaLogin = FXMLLoader.load(getClass().getResource("../Views/Login.fxml"));
+        pageLogin = new Scene(contentTelaLogin); 
         
+
         stage = primaryStage;
         stage.setTitle("SISTEMA BIBLIOTECA");
-        stage.setScene(pageLogin); 
+        stage.setScene(pageInitial); 
         stage.show();
     } catch (Exception e) {
-        System.out.println("erro");
+        System.out.println(e);
     }
 }
     public static void changeScene(String option){

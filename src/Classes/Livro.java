@@ -1,4 +1,4 @@
-package Controllers;
+package Classes;
 
 public class Livro {
     private String titulo;

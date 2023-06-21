@@ -3,18 +3,20 @@ package Models;
 import java.io.*;
 import java.util.ArrayList;
 
-import Controllers.Livro;
+import Classes.Livro;
 
-public class CrudLivros {
+public class Livros {
     
 
 
-    public boolean addLivro(Livro livro){
+    public boolean create(Livro livro){
         try {
-            FileWriter fWriter = new FileWriter("src/Models/Data/Acervo.txt", true);
+            FileWriter fWriter = new FileWriter("src/Data/Acervo.txt", true);
             BufferedWriter bWriter = new BufferedWriter(fWriter);
+
             bWriter.write(livro.toString());
             bWriter.newLine();
+            
             bWriter.close();
             fWriter.close();
         
@@ -25,12 +27,12 @@ public class CrudLivros {
         return true;
     }
 
-    public void readLivros(ArrayList<Livro> livros){
+    public void read(ArrayList<Livro> livros){
         livros.clear();
         Livro livro;
     
         try{
-            FileReader fReader = new FileReader("src/Models/Data/Acervo.txt");
+            FileReader fReader = new FileReader("src/Data/Acervo.txt");
             BufferedReader bReader = new BufferedReader(fReader);
             String linha = bReader.readLine();
             
@@ -50,13 +52,13 @@ public class CrudLivros {
 
     }
 
-    public boolean updateLivro(ArrayList<Livro> livros){
-        File file = new File("src/Models/Data/Acervo.txt");  
+    public boolean update(ArrayList<Livro> livros){
+        File file = new File("src/Data/Acervo.txt");  
 
         if(file.delete()){
             if(createFile("Acervo")){
                 for (Livro livro : livros) {
-                    addLivro(livro);                 
+                    create(livro);                 
                 }
                 return true;
             }
@@ -64,15 +66,15 @@ public class CrudLivros {
         return false; 
 
     }
-    public boolean deleteLivro(int index, ArrayList<Livro> livros){
-        File file = new File("src/Models/Data/Acervo.txt");
+    public boolean delete(int index, ArrayList<Livro> livros){
+        File file = new File("src/Data/Acervo.txt");
         
         if(file.delete()){
             if(createFile("Acervo")){
                 livros.remove(index);
 
                 for (Livro livro : livros) {
-                    addLivro(livro);                 
+                    create(livro);                 
                 }
                 return true;
             }
@@ -82,7 +84,7 @@ public class CrudLivros {
     }
     public boolean createFile(String nome){
 
-        File file = new File("src/Models/Data/"+nome+".txt");
+        File file = new File("src/Data/"+nome+".txt");
             
         try {
             return file.createNewFile();
