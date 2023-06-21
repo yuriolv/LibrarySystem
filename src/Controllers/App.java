@@ -21,15 +21,19 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent loginFxml = FXMLLoader.load(getClass().getResource("../Views/TelaInicial.fxml"));
-        pageLogin = new Scene(loginFxml);    
+        try {
 
+        Parent loginFxml = FXMLLoader.load(getClass().getResource("../Views/TelaInicial.fxml"));
+        pageLogin = new Scene(loginFxml);  
+        
         stage = primaryStage;
         stage.setTitle("SISTEMA BIBLIOTECA");
         stage.setScene(pageLogin); 
         stage.show();
+    } catch (Exception e) {
+        System.out.println("erro");
     }
-
+}
     public static void changeScene(String option){
 
         switch(option) {

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -28,9 +29,9 @@
       <AnchorPane prefHeight="39.0" prefWidth="600.0" style="-fx-background-color: #008B45;" BorderPane.alignment="CENTER" />
    </bottom>
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #5F9EA0;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #5F9EA0;" styleClass="classe" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane fx:id="usuariosPane" layoutX="24.0" layoutY="41.0" onMouseClicked="#redirecionarTelaUsers" prefHeight="103.0" prefWidth="166.0" AnchorPane.leftAnchor="24.0">
+            <AnchorPane cache="true" layoutX="24.0" layoutY="41.0" onMouseClicked="#redirecionarTelaUsers" prefHeight="103.0" prefWidth="166.0" AnchorPane.leftAnchor="24.0">
                <children>
                   <ImageView fitHeight="56.0" fitWidth="87.0" layoutX="55.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -41,10 +42,16 @@
                      <font>
                         <Font name="Cambria" size="15.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Label>
                </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </AnchorPane>
-            <AnchorPane fx:id="acervoPane" layoutX="454.0" layoutY="41.0" onMouseClicked="#redirecionarTelaAcervo" prefHeight="103.0" prefWidth="166.0" AnchorPane.rightAnchor="24.0">
+            <AnchorPane layoutX="454.0" layoutY="41.0" onMouseClicked="#redirecionarTelaAcervo" prefHeight="103.0" prefWidth="166.0" AnchorPane.rightAnchor="24.0">
                <children>
                   <ImageView fitHeight="56.0" fitWidth="87.0" layoutX="55.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -57,8 +64,11 @@
                      </font>
                   </Label>
                </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </AnchorPane>
-            <AnchorPane fx:id="bibliotecarioPane" layoutX="217.0" layoutY="41.0" onMouseClicked="#redirecionarTelaBibliotecario" prefHeight="103.0" prefWidth="166.0">
+            <AnchorPane layoutX="217.0" layoutY="41.0" onMouseClicked="#redirecionarTelaBibliotecario" prefHeight="103.0" prefWidth="166.0">
                <children>
                   <ImageView fitHeight="56.0" fitWidth="87.0" layoutX="55.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -71,6 +81,9 @@
                      </font>
                   </Label>
                </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </AnchorPane>
          </children>
       </AnchorPane>
