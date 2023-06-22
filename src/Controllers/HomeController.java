@@ -7,6 +7,7 @@ public class HomeController{
 
     @FXML
     void changePageAcervo(MouseEvent event) {
+        App.changeScene("pageAcervo");
     }
 
     @FXML

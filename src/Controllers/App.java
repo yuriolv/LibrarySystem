@@ -10,6 +10,7 @@ public class App extends Application {
 
     private static Scene pageLogin;
     private static Scene pageAdmin;
+    private static Scene pageAcervo;
     private static Scene pageInitial;
     private static Stage stage;
 
@@ -26,6 +27,9 @@ public class App extends Application {
 
         Parent contentTelaLogin = FXMLLoader.load(getClass().getResource("../Views/Login.fxml"));
         pageLogin = new Scene(contentTelaLogin); 
+
+        Parent contentTelaAcervo = FXMLLoader.load(getClass().getResource("../Views/Acervo.fxml"));
+        pageAcervo = new Scene(contentTelaAcervo);
         
 
         stage = primaryStage;
@@ -46,6 +50,11 @@ public class App extends Application {
 
             case "pageAdmin": 
                 stage.setScene(pageAdmin);
+                break;
+
+            case "pageAcervo":
+                stage.setScene(pageAcervo);
+
             break;
 
         }
