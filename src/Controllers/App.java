@@ -30,6 +30,9 @@ public class App extends Application {
 
         Parent contentTelaAcervo = FXMLLoader.load(getClass().getResource("../Views/Acervo.fxml"));
         pageAcervo = new Scene(contentTelaAcervo);
+
+        Parent contentTelaAdmin = FXMLLoader.load(getClass().getResource("../Views/Admin.fxml"));
+        pageAdmin = new Scene(contentTelaAdmin);
         
 
         stage = primaryStage;
@@ -54,8 +57,7 @@ public class App extends Application {
 
             case "pageAcervo":
                 stage.setScene(pageAcervo);
-
-            break;
+                break;
 
         }
     }

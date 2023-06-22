@@ -12,7 +12,7 @@ public class HomeController{
 
     @FXML
     void changePageAdmin(MouseEvent event) {
-
+        App.changeScene("pageAdmin");
     }
 
     @FXML
