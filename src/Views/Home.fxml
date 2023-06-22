@@ -10,7 +10,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.HomeController">
    <top>
-      <AnchorPane prefHeight="77.0" prefWidth="600.0" style="-fx-background-color: #5F9EA0;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="77.0" prefWidth="600.0" style="-fx-background-color: E5E5E5;" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="230.0" layoutY="14.0" text="Biblioteca">
                <font>
@@ -29,9 +29,9 @@
       <AnchorPane prefHeight="39.0" prefWidth="600.0" style="-fx-background-color: #008B45;" BorderPane.alignment="CENTER" />
    </bottom>
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #5F9EA0;" styleClass="classe" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: E5E5E5;" styleClass="classe" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane cache="true" layoutX="24.0" layoutY="41.0" onMouseClicked="#changePageLogin" prefHeight="103.0" prefWidth="166.0" AnchorPane.leftAnchor="24.0">
+            <AnchorPane cache="true" layoutX="24.0" layoutY="41.0" onMouseClicked="#changeLoginUser" prefHeight="103.0" prefWidth="166.0" AnchorPane.leftAnchor="24.0">
                <children>
                   <ImageView fitHeight="56.0" fitWidth="87.0" layoutX="55.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -68,7 +68,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </AnchorPane>
-            <AnchorPane layoutX="217.0" layoutY="41.0" onMouseClicked="#changePageAdmin" prefHeight="103.0" prefWidth="166.0">
+            <AnchorPane layoutX="217.0" layoutY="41.0" onMouseClicked="#changeLoginAdmin" prefHeight="103.0" prefWidth="166.0">
                <children>
                   <ImageView fitHeight="56.0" fitWidth="87.0" layoutX="55.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>

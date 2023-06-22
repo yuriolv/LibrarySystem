@@ -8,10 +8,11 @@ import javafx.stage.Stage;
 
 public class App extends Application {
 
-    private static Scene pageLogin;
-    private static Scene pageAdmin;
+    private static Scene pageHome;
+    private static Scene loginUser;
+    private static Scene loginAdmin;
+    //private static Scene pageAdmin;
     private static Scene pageAcervo;
-    private static Scene pageInitial;
     private static Stage stage;
 
     public static void main(String[] args) throws Exception {
@@ -23,21 +24,21 @@ public class App extends Application {
         try {
 
         Parent contentTelaInicial = FXMLLoader.load(getClass().getResource("../Views/Home.fxml"));
-        pageInitial = new Scene(contentTelaInicial);  
+        pageHome = new Scene(contentTelaInicial);  
 
-        Parent contentTelaLogin = FXMLLoader.load(getClass().getResource("../Views/Login.fxml"));
-        pageLogin = new Scene(contentTelaLogin); 
+        Parent contentUserLogin = FXMLLoader.load(getClass().getResource("../Views/Login.fxml"));
+        loginUser = new Scene(contentUserLogin); 
 
         Parent contentTelaAcervo = FXMLLoader.load(getClass().getResource("../Views/Acervo.fxml"));
         pageAcervo = new Scene(contentTelaAcervo);
 
-        Parent contentTelaAdmin = FXMLLoader.load(getClass().getResource("../Views/Admin.fxml"));
-        pageAdmin = new Scene(contentTelaAdmin);
+        Parent contentLoginAdmin = FXMLLoader.load(getClass().getResource("../Views/loginAdmin.fxml"));
+        loginAdmin = new Scene(contentLoginAdmin);
         
 
         stage = primaryStage;
         stage.setTitle("SISTEMA BIBLIOTECA");
-        stage.setScene(pageInitial); 
+        stage.setScene(pageHome); 
         stage.show();
     } catch (Exception e) {
         System.out.println(e);
@@ -47,16 +48,19 @@ public class App extends Application {
 
         switch(option) {
 
-            case "pageLogin":
-                stage.setScene(pageLogin);
+            case "loginUser":
+                stage.setScene(loginUser);
             break;
 
-            case "pageAdmin": 
-                stage.setScene(pageAdmin);
+            case "loginAdmin": 
+                stage.setScene(loginAdmin);
                 break;
 
             case "pageAcervo":
                 stage.setScene(pageAcervo);
+                break;
+            case "pageHome":
+                stage.setScene(pageHome);
                 break;
 
         }
