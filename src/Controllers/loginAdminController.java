@@ -8,4 +8,9 @@ public class loginAdminController {
     public void changePageHome(MouseEvent e){
         App.changeScene("pageHome");
     }
+
+    @FXML 
+    public void changePageAdmin(MouseEvent e){
+        App.changeScene("pageAdmin");
+    }
 }
