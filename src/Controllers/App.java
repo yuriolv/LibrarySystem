@@ -34,7 +34,6 @@ public class App extends Application {
 
         Parent contentLoginAdmin = FXMLLoader.load(getClass().getResource("../Views/loginAdmin.fxml"));
         loginAdmin = new Scene(contentLoginAdmin);
-        
 
         stage = primaryStage;
         stage.setTitle("SISTEMA BIBLIOTECA");
