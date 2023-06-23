@@ -11,13 +11,13 @@ public class HomeController{
     }
 
     @FXML
-    void changePageAdmin(MouseEvent event) {
-
+    void changeLoginAdmin(MouseEvent event) {
+        App.changeScene("loginAdmin");
     }
 
     @FXML
-    void changePageLogin(MouseEvent event) {
-        App.changeScene("pageLogin");
+    void changeLoginUser(MouseEvent event) {
+        App.changeScene("loginUser");
     }
 
 
