@@ -31,7 +31,7 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #5F9EA0;" styleClass="classe" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane cache="true" layoutX="24.0" layoutY="41.0" onMouseClicked="#changePageLogin" prefHeight="103.0" prefWidth="166.0" AnchorPane.leftAnchor="24.0">
+            <AnchorPane cache="true" layoutX="24.0" layoutY="41.0" onMouseClicked="#changePageLogin" prefHeight="103.0" prefWidth="166.0" style="-fx-background-color: purple;">
                <children>
                   <ImageView fitHeight="56.0" fitWidth="87.0" layoutX="55.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -51,7 +51,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </AnchorPane>
-            <AnchorPane layoutX="454.0" layoutY="41.0" onMouseClicked="#changePageAcervo" prefHeight="103.0" prefWidth="166.0" AnchorPane.rightAnchor="24.0">
+            <AnchorPane layoutX="420.0" layoutY="41.0" onMouseClicked="#changePageAcervo" prefHeight="103.0" prefWidth="166.0" style="-fx-background-color: gray;" AnchorPane.rightAnchor="24.0">
                <children>
                   <ImageView fitHeight="56.0" fitWidth="87.0" layoutX="55.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -68,14 +68,14 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </AnchorPane>
-            <AnchorPane layoutX="217.0" layoutY="41.0" onMouseClicked="#changePageAdmin" prefHeight="103.0" prefWidth="166.0">
+            <AnchorPane layoutX="217.0" layoutY="41.0" onMouseClicked="#changePageAdmin" prefHeight="103.0" prefWidth="166.0" style="-fx-background-color: white;">
                <children>
                   <ImageView fitHeight="56.0" fitWidth="87.0" layoutX="55.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Assets/bibliotecario.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="42.0" layoutY="70.0" text="Bibliotecário">
+                  <Label layoutX="42.0" layoutY="70.0" text="Bibliotecário" AnchorPane.leftAnchor="42.0" AnchorPane.topAnchor="70.0">
                      <font>
                         <Font name="Cambria" size="15.0" />
                      </font>
