@@ -11,7 +11,7 @@ public class App extends Application {
     private static Scene pageHome;
     private static Scene loginUser;
     private static Scene loginAdmin;
-    private static Scene pageAdmin;
+    //private static Scene pageAdmin;
     private static Scene pageAcervo;
     private static Stage stage;
 

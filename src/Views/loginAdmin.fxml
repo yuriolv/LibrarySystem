@@ -19,7 +19,8 @@
          <children>
             <AnchorPane prefHeight="366.0" prefWidth="384.0" style="-fx-background-color: #dfdedf; -fx-view-order: -1; -fx-background-radius: 10;">
                <children>
-                  <Button layoutX="218.0" layoutY="267.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="87.0" style="-fx-background-color: #008B45; -fx-text-fill: ffffff;" text="Entrar">
+                  <PasswordField fx:id="password" layoutX="89.0" layoutY="195.0" onKeyPressed="#clearLabel" prefHeight="27.0" prefWidth="206.0" promptText="Digite a sua senha" />
+                  <Button layoutX="218.0" layoutY="267.0" mnemonicParsing="false" onMouseClicked="#verifyLoginAdmin" prefHeight="26.0" prefWidth="87.0" style="-fx-background-color: #008B45; -fx-text-fill: ffffff;" text="Entrar">
                      <font>
                         <Font name="Arial Bold Italic" size="13.0" />
                      </font>
@@ -27,7 +28,6 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <PasswordField layoutX="89.0" layoutY="195.0" prefHeight="27.0" prefWidth="206.0" promptText="Digite a sua senha" />
                   <TextField editable="false" layoutX="89.0" layoutY="146.0" prefHeight="27.0" prefWidth="206.0" text="Bibliotecario@2023" />
                   <Label layoutX="23.0" layoutY="145.0" text="Usuário">
                      <font>
@@ -52,6 +52,11 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
+                  <Label fx:id="responseLabel" layoutX="89.0" layoutY="232.0" prefHeight="17.0" prefWidth="206.0" textFill="#d02424">
+                     <font>
+                        <Font name="Arial Bold" size="10.0" />
+                     </font>
+                  </Label>
                </children>
                <effect>
                   <DropShadow />
