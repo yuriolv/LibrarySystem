@@ -14,6 +14,10 @@ public class User {
         this.tipo = tipo;
         this.senha = senha;
     }
+
+    public String toString() {
+        return matricula + "\t" + nome + "\t" + tipo + "\t" + senha;
+    }
     
     public int getMatricula() {
         return matricula;
