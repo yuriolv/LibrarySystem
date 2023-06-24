@@ -5,64 +5,72 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: E5E5E5;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: E5E5E5;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.loginUserController">
    <children>
-      <AnchorPane layoutX="156.0" layoutY="79.0" prefHeight="242.0" prefWidth="287.0" style="-fx-background-color: #dfdedf; -fx-background-radius: 10;">
+      <AnchorPane layoutY="558.0" prefHeight="42.0" prefWidth="700.0" style="-fx-background-color: #008B45;" AnchorPane.bottomAnchor="-0.2686555131184747" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-0.6566964716926122" />
+      <HBox alignment="CENTER" fillHeight="false" layoutY="70.0" prefHeight="460.0" prefWidth="700.0" AnchorPane.bottomAnchor="69.34329669601391" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.373114361745479" AnchorPane.topAnchor="70.0">
          <children>
-            <RadioButton id="#radio-button" layoutX="32.0" layoutY="45.0" mnemonicParsing="false" style="-fx-cursor: HAND;" text="Aluno" AnchorPane.leftAnchor="32.0" AnchorPane.topAnchor="48.0">
-               <font>
-                  <Font name="Dubai Regular" size="14.0" />
-               </font>
-            </RadioButton>
-            <RadioButton id="#radio-button" layoutX="183.0" layoutY="45.0" mnemonicParsing="false" style="-fx-cursor: HAND;" text="Professor" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="48.0">
-               <font>
-                  <Font name="Dubai Regular" size="14.0" />
-               </font>
-            </RadioButton>
-            <Label layoutX="18.0" layoutY="113.0" text="Matrícula" AnchorPane.leftAnchor="16.0">
-               <font>
-                  <Font name="Dubai Bold" size="14.0" />
-               </font>
-            </Label>
-            <TextField layoutX="78.0" layoutY="109.0" promptText="Ex. 9999999" />
-            <Label layoutX="26.0" layoutY="157.0" text="Senha" AnchorPane.leftAnchor="26.0">
-               <font>
-                  <Font name="Dubai Bold" size="14.0" />
-               </font>
-            </Label>
-            <Button layoutX="148.0" layoutY="201.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="87.0" style="-fx-background-color: #008B45; -fx-text-fill: #ffffff;" text="Entrar">
-               <font>
-                  <Font name="Arial Bold Italic" size="12.0" />
-               </font>
-            </Button>
-            <Button layoutX="51.0" layoutY="201.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="87.0" style="-fx-background-color: #008B45; -fx-text-fill: #ffffff;" text="Voltar">
-               <font>
-                  <Font name="Arial Bold Italic" size="12.0" />
-               </font>
-            </Button>
-            <PasswordField layoutX="78.0" layoutY="157.0" promptText="Sua senha" />
-            <Label layoutX="97.0" layoutY="-3.0" prefHeight="35.0" prefWidth="81.0" text="Login">
-               <font>
-                  <Font name="Dubai Regular" size="24.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="35.0" fitWidth="30.0" layoutX="159.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../../../Users/renan/Downloads/person_FILL0_wght400_GRAD0_opsz48.png" />
-               </image>
-            </ImageView>
+            <AnchorPane prefHeight="366.0" prefWidth="384.0" style="-fx-background-color: #dfdedf; -fx-background-radius: 10;">
+               <children>
+                  <Label layoutX="14.0" layoutY="154.0" text="Matrícula" AnchorPane.leftAnchor="14.0">
+                     <font>
+                        <Font name="Dubai Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField layoutX="89.0" layoutY="154.0" prefHeight="27.0" prefWidth="206.0" promptText="Ex. 9999999" />
+                  <Label layoutX="23.0" layoutY="215.0" text="Senha" AnchorPane.leftAnchor="23.0">
+                     <font>
+                        <Font name="Dubai Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="228.0" layoutY="281.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="87.0" style="-fx-background-color: #008B45; -fx-text-fill: #ffffff; -fx-background-radius: 10;" text="Entrar">
+                     <font>
+                        <Font name="Arial Bold Italic" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="73.0" layoutY="281.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="87.0" style="-fx-background-color: #008B45; -fx-text-fill: #ffffff; -fx-background-radius: 10;" text="Voltar">
+                     <font>
+                        <Font name="Arial Bold Italic" size="12.0" />
+                     </font>
+                  </Button>
+                  <PasswordField layoutX="89.0" layoutY="216.0" prefHeight="27.0" prefWidth="206.0" promptText="Sua senha" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="148.0" layoutY="16.0" prefHeight="35.0" prefWidth="81.0" text="Login">
+                     <font>
+                        <Font name="Dubai Regular" size="33.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="35.0" fitWidth="30.0" layoutX="159.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../Users/renan/Downloads/person_FILL0_wght400_GRAD0_opsz48.png" />
+                     </image>
+                  </ImageView>
+                  <RadioButton id="#radio-button" layoutX="203.0" layoutY="96.0" mnemonicParsing="false" style="-fx-cursor: HAND;" text="Professor">
+                     <font>
+                        <Font name="Dubai Regular" size="14.0" />
+                     </font>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="typeGroup" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton id="#radio-button" layoutX="89.0" layoutY="96.0" mnemonicParsing="false" style="-fx-cursor: HAND;" text="Aluno" toggleGroup="$typeGroup">
+                     <font>
+                        <Font name="Dubai Regular" size="14.0" />
+                     </font>
+                  </RadioButton>
+               </children>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </AnchorPane>
          </children>
-         <effect>
-            <DropShadow />
-         </effect>
-      </AnchorPane>
-      <AnchorPane layoutY="358.0" prefHeight="41.0" prefWidth="600.0" style="-fx-background-color: #008B45;" />
+      </HBox>
    </children>
 </AnchorPane>
