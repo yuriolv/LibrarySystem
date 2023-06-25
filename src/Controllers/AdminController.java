@@ -13,6 +13,7 @@ public class AdminController {
 
     @FXML
     void changePageAcervoTable(MouseEvent event) {
+        App.changeScene("pageAdminLivros");
 
     }
 
