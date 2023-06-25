@@ -1,5 +1,6 @@
 package Controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -23,7 +24,7 @@ public class loginAdminController{
     }
 
     @FXML 
-    public void verifyLoginAdmin(MouseEvent e){
+    public void verifyLoginAdmin(ActionEvent e){
         String passwordInput = password.getText().toString();
 
         if(passwordInput.equals("uece2023")){
@@ -34,9 +35,22 @@ public class loginAdminController{
             responseLabel.setText("SENHA INCORRETA! TENTE NOVAMENTE");
             password.setText("");
         }
-
-        
     }
+    @FXML
+    void verifyLoginAdmin(KeyEvent event) {
+        String passwordInput = password.getText().toString();
+
+        if(passwordInput.equals("uece2023")){
+            responseLabel.setText("");
+            password.setText("");
+            App.changeScene("pageAdmin");
+        }else {
+            responseLabel.setText("SENHA INCORRETA! TENTE NOVAMENTE");
+            password.setText("");
+        }
+    }
+
+
 
     @FXML 
     public final void clearLabel(KeyEvent e){
