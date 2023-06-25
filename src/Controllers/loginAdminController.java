@@ -29,7 +29,7 @@ public class loginAdminController{
         if(passwordInput.equals("uece2023")){
             responseLabel.setText("");
             password.setText("");
-            //App.changeScene("pageAdmin");
+            App.changeScene("pageAdmin");
         }else {
             responseLabel.setText("SENHA INCORRETA! TENTE NOVAMENTE");
             password.setText("");
