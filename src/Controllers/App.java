@@ -14,7 +14,8 @@ public class App extends Application {
     private static Scene pageAdmin;
     private static Scene pageAdminLivros;
     private static Scene pageAcervo;
-    private static Scene menuUser;
+    private static Scene pageUser;
+
     private static Stage stage;
 
     public static void main(String[] args) throws Exception {
@@ -38,7 +39,7 @@ public class App extends Application {
         loginAdmin = new Scene(contentLoginAdmin);
         
         Parent contentMenuUser = FXMLLoader.load(getClass().getResource("../Views/MenuUser.fxml"));
-        menuUser = new Scene(contentMenuUser);
+        pageUser = new Scene(contentMenuUser);
         
         Parent contentTelaAdmin = FXMLLoader.load(getClass().getResource("../Views/Admin.fxml"));
         pageAdmin = new Scene(contentTelaAdmin);
@@ -58,6 +59,10 @@ public class App extends Application {
 
         switch(option) {
 
+            case "pageHome":
+                stage.setScene(pageHome);
+                break;
+                
             case "loginUser":
                 stage.setScene(loginUser);
             break;
@@ -69,12 +74,9 @@ public class App extends Application {
             case "pageAcervo":
                 stage.setScene(pageAcervo);
                 break;
-            case "pageHome":
-                stage.setScene(pageHome);
-                break;
 
-            case "pageMenuUser":
-                stage.setScene(menuUser);
+            case "pageUser":
+                stage.setScene(pageUser);
                 break;
            
             case "pageAdmin":

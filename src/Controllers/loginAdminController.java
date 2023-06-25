@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
@@ -36,17 +37,20 @@ public class loginAdminController{
             password.setText("");
         }
     }
-    @FXML
-    void verifyLoginAdmin(KeyEvent event) {
-        String passwordInput = password.getText().toString();
 
-        if(passwordInput.equals("uece2023")){
-            responseLabel.setText("");
-            password.setText("");
-            App.changeScene("pageAdmin");
-        }else {
-            responseLabel.setText("SENHA INCORRETA! TENTE NOVAMENTE");
-            password.setText("");
+    @FXML
+    public void verifyLoginAdmin2(KeyEvent event) {
+        if(event.getCode() == KeyCode.ENTER){
+            String passwordInput = password.getText().toString();
+    
+            if(passwordInput.equals("uece2023")){
+                responseLabel.setText("");
+                password.setText("");
+                App.changeScene("pageAdmin");
+            }else {
+                responseLabel.setText("SENHA INCORRETA! TENTE NOVAMENTE");
+                password.setText("");
+            }
         }
     }
 
