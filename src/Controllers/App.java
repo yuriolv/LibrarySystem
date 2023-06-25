@@ -12,6 +12,8 @@ public class App extends Application {
     private static Scene loginUser;
     private static Scene loginAdmin;
     private static Scene pageAdmin;
+    private static Scene pageAdminUsers;
+    private static Scene pageAdminBooks;
     private static Scene pageAcervo;
     private static Scene pageUser;
 
@@ -25,23 +27,29 @@ public class App extends Application {
     public void start(Stage primaryStage) throws Exception {
         try {
 
-        Parent contentTelaInicial = FXMLLoader.load(getClass().getResource("../Views/Home.fxml"));
-        pageHome = new Scene(contentTelaInicial);  
+        Parent contentHome = FXMLLoader.load(getClass().getResource("../Views/Home.fxml"));
+        pageHome = new Scene(contentHome);  
             
         Parent contentUserLogin = FXMLLoader.load(getClass().getResource("../Views/loginUser.fxml"));
         loginUser = new Scene(contentUserLogin); 
 
-        Parent contentTelaAcervo = FXMLLoader.load(getClass().getResource("../Views/Acervo.fxml"));
-        pageAcervo = new Scene(contentTelaAcervo);
+        Parent contentAcervo = FXMLLoader.load(getClass().getResource("../Views/Acervo.fxml"));
+        pageAcervo = new Scene(contentAcervo);
 
         Parent contentLoginAdmin = FXMLLoader.load(getClass().getResource("../Views/loginAdmin.fxml"));
         loginAdmin = new Scene(contentLoginAdmin);
         
-        Parent contentMenuUser = FXMLLoader.load(getClass().getResource("../Views/MenuUser.fxml"));
-        pageUser = new Scene(contentMenuUser);
+        Parent contentUser = FXMLLoader.load(getClass().getResource("../Views/User.fxml"));
+        pageUser = new Scene(contentUser);
         
-        Parent contentTelaAdmin = FXMLLoader.load(getClass().getResource("../Views/Admin.fxml"));
-        pageAdmin = new Scene(contentTelaAdmin);
+        Parent contentAdmin = FXMLLoader.load(getClass().getResource("../Views/Admin.fxml"));
+        pageAdmin = new Scene(contentAdmin);
+
+       /*  Parent contentAdminUsers = FXMLLoader.load(getClass().getResource("../Views/AdminUsers.fxml"));
+        pageAdminUsers = new Scene(contentAdminUsers);
+
+        Parent contentAdminBooks = FXMLLoader.load(getClass().getResource("../Views/AdminBooks.fxml"));
+        pageAdminBooks = new Scene(contentAdminBooks); */
 
         stage = primaryStage;
         stage.setTitle("SISTEMA BIBLIOTECA");
@@ -76,6 +84,13 @@ public class App extends Application {
                 break;
            
             case "pageAdmin":
+                stage.setScene(pageAdmin);
+                break;
+
+            case "pageAdminUsers":
+                stage.setScene(pageAdmin);
+                break;
+            case "pageAdminBooks":
                 stage.setScene(pageAdmin);
                 break;
 

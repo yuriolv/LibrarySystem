@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: E5E5E5;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdminController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: E5E5E5;" stylesheets="@Stylesheets/Admin.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdminController">
    <children>
       <AnchorPane prefHeight="123.0" prefWidth="705.0" style="-fx-background-color: #008B45;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-5.0">
          <children>
@@ -24,7 +24,7 @@
                   <Font name="Cambria" size="26.0" />
                </font>
             </Label>
-            <Label layoutX="645.0" layoutY="69.0" onMouseClicked="#changePageHome" text="Sair" textAlignment="RIGHT" textFill="WHITE" AnchorPane.rightAnchor="27.0">
+            <Label id="exit" layoutX="645.0" layoutY="69.0" onMouseClicked="#changePageHome" text="Sair" textAlignment="RIGHT" textFill="WHITE" AnchorPane.rightAnchor="27.0">
                <font>
                   <Font size="20.0" />
                </font>
@@ -45,7 +45,7 @@
       </VBox>
       <HBox alignment="CENTER" fillHeight="false" layoutX="3.0" layoutY="294.0" prefHeight="168.0" prefWidth="694.0" spacing="100.0" AnchorPane.bottomAnchor="138.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="294.0">
          <children>
-            <AnchorPane onMouseClicked="#changePageAcervoTable" prefHeight="142.0" prefWidth="206.0" style="-fx-background-radius: 10; -fx-background-color: #dfdedf; -fx-border-radius: 20;">
+            <AnchorPane id="books" onMouseClicked="#changePageBooks" prefHeight="142.0" prefWidth="206.0" style="-fx-background-radius: 10; -fx-background-color: #dfdedf; -fx-border-radius: 20;">
                <children>
                   <ImageView fitHeight="123.0" fitWidth="123.0" layoutX="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -64,15 +64,18 @@
                <effect>
                   <DropShadow />
                </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </AnchorPane>
-            <AnchorPane onMouseClicked="#changePageUserTable" prefHeight="142.0" prefWidth="206.0" style="-fx-background-radius: 10; -fx-background-color: #dfdedf; -fx-border-radius: 20;">
+            <AnchorPane id="users" onMouseClicked="#changePageUsers" prefHeight="142.0" prefWidth="206.0" style="-fx-background-radius: 10; -fx-background-color: #dfdedf; -fx-border-radius: 20;">
                <children>
                   <Label layoutX="35.0" layoutY="113.0" prefHeight="20.0" prefWidth="141.0" text="Dados dos usuários" textAlignment="CENTER">
                      <font>
                         <Font name="Cambria Bold" size="15.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="123.0" fitWidth="123.0" layoutX="42.0" onMouseClicked="#ChangePaneUsersTable" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="123.0" fitWidth="123.0" layoutX="42.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Assets/usuarios.png" />
                      </image>
@@ -84,6 +87,9 @@
                <effect>
                   <DropShadow />
                </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </AnchorPane>
          </children>
       </HBox>

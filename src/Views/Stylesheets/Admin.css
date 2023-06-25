@@ -1,0 +1,7 @@
+#exit:hover {
+    -fx-opacity: 0.7;
+}
+
+#books:hover,#users:hover{
+    -fx-opacity: 0.9 ;
+}
