@@ -13,7 +13,7 @@ public class AdminController {
 
     @FXML
     public void changePageBooks(MouseEvent event) {
-        App.changeScene("pageAdminBooks");
+        App.changeScene("pageAdminLivros");
     }
 
     @FXML
