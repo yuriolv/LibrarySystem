@@ -72,6 +72,11 @@
                         <Font name="Dubai Regular" size="14.0" />
                      </font>
                   </RadioButton>
+                  <Label fx:id="responseLabel" layoutX="178.0" layoutY="249.0" text="Erro" textAlignment="CENTER" textFill="RED" visible="false">
+                     <font>
+                        <Font name="Cambria" size="15.0" />
+                     </font>
+                  </Label>
                </children>
                <effect>
                   <DropShadow />

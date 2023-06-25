@@ -19,32 +19,38 @@ public class loginUserController {
     private ToggleGroup typeGroup;
     @FXML
     private TextField userTextField;
-    
+    @FXML
+    private Label responseLabel;
+
+
 
     @FXML
     void verifyLoginUser(MouseEvent event) {
         String typeSelected, user, pass;
         ArrayList<User> users = new ArrayList<User>();
         Users crud = new Users();
-        
         RadioButton radio = (RadioButton) typeGroup.getSelectedToggle();
-        typeSelected = radio.getText();
-        user = userTextField.getText();
-        pass = passPasswordField.getText();
-        crud.readUser(users);
         
-        resetPane();
-        for (User usuario : users) {
-            if(usuario.getMatricula().equals(user)
+        try{
+
+            typeSelected = radio.getText();
+            user = userTextField.getText();
+            pass = passPasswordField.getText();
+            crud.readUser(users);
+            
+            resetPane();
+            for (User usuario : users) {
+                if(usuario.getMatricula().equals(user)
              && usuario.getSenha().equals(pass)
              && usuario.getTipo().equals(typeSelected)){                
-                
-                App.changeScene("pageMenuUser");
-            }
+                 
+                 App.changeScene("pageMenuUser");
+                }
+            }            
+        } catch (NullPointerException e) {
+            //setar text caso o usuário aperte no button sem escolher um radioButton 
+
         }
-
-
-
 
     }
 
@@ -59,6 +65,7 @@ public class loginUserController {
         passPasswordField.setText("");
         userTextField.setText("");
         typeGroup.getSelectedToggle().setSelected(false);
+
 
     }
 
