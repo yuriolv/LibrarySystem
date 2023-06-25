@@ -32,7 +32,7 @@
                <children>
                   <ImageView fitHeight="93.0" fitWidth="131.0" layoutX="53.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Assets/usuarios.png" />
+                        <Image url="@Assets/usuario.png" />
                      </image>
                   </ImageView>
                   <Label layoutX="12.0" layoutY="93.0" text="Discente e professor">
