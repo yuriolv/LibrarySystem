@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#verifyLoginAdmin" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: E5E5E5;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.loginAdminController">
@@ -39,7 +39,7 @@
                         <Font name="Dubai Bold" size="16.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="50.0" layoutY="56.0" prefHeight="42.0" prefWidth="284.0" text="Acesso restrito 🔒">
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="37.0" layoutY="56.0" prefHeight="42.0" prefWidth="309.0" text="Acesso institucional 🔒">
                      <font>
                         <Font name="Constantia" size="31.0" />
                      </font>
@@ -64,17 +64,19 @@
             </AnchorPane>
          </children>
       </HBox>
-      <VBox alignment="CENTER" layoutX="1.0" layoutY="-8.0" prefHeight="139.0" prefWidth="700.0" AnchorPane.bottomAnchor="469.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="-8.0">
+      <HBox alignment="CENTER" prefHeight="139.0" prefWidth="700.0" spacing="15.0" AnchorPane.bottomAnchor="460.2985114396932" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-0.6566964716926122" AnchorPane.topAnchor="0.0">
          <children>
-            <Label lineSpacing="1.0" text="Biblioteca #NOME">
+            <ImageView fitHeight="45.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/icons8-alert-96.png" />
+               </image>
+            </ImageView>
+            <Label lineSpacing="1.0" text="Área restrita à funcionários da instituição.">
                <font>
-                  <Font name="Constantia" size="36.0" />
+                  <Font name="Constantia" size="24.0" />
                </font>
             </Label>
          </children>
-         <padding>
-            <Insets top="30.0" />
-         </padding>
-      </VBox>
+      </HBox>
    </children>
 </AnchorPane>
