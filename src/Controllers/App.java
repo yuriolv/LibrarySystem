@@ -13,6 +13,7 @@ public class App extends Application {
     private static Scene loginAdmin;
     //private static Scene pageAdmin;
     private static Scene pageAcervo;
+    private static Scene menuUser;
     private static Stage stage;
 
     public static void main(String[] args) throws Exception {
@@ -26,7 +27,7 @@ public class App extends Application {
         Parent contentTelaInicial = FXMLLoader.load(getClass().getResource("../Views/Home.fxml"));
         pageHome = new Scene(contentTelaInicial);  
 
-        Parent contentUserLogin = FXMLLoader.load(getClass().getResource("../Views/LoginUser.fxml"));
+        Parent contentUserLogin = FXMLLoader.load(getClass().getResource("../Views/loginUser.fxml"));
         loginUser = new Scene(contentUserLogin); 
 
         Parent contentTelaAcervo = FXMLLoader.load(getClass().getResource("../Views/Acervo.fxml"));
@@ -34,6 +35,9 @@ public class App extends Application {
 
         Parent contentLoginAdmin = FXMLLoader.load(getClass().getResource("../Views/loginAdmin.fxml"));
         loginAdmin = new Scene(contentLoginAdmin);
+        
+        Parent contentMenuUser = FXMLLoader.load(getClass().getResource("../Views/MenuUser.fxml"));
+        menuUser = new Scene(contentMenuUser);
 
         stage = primaryStage;
         stage.setTitle("SISTEMA BIBLIOTECA");
@@ -60,6 +64,10 @@ public class App extends Application {
                 break;
             case "pageHome":
                 stage.setScene(pageHome);
+                break;
+
+            case "pageMenuUser":
+                stage.setScene(menuUser);
                 break;
 
         }

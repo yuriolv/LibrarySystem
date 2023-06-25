@@ -1,24 +1,28 @@
 package Classes;
 
 public class User {
-    private int matricula;
+    private String matricula;
     private String nome;
     private String tipo;
     private String senha;
     
     
     
-    public User(int matricula, String nome, String tipo, String senha) {
+    public User(String matricula, String nome, String tipo, String senha) {
         this.matricula = matricula;
         this.nome = nome;
         this.tipo = tipo;
         this.senha = senha;
     }
+
+    public String toString() {
+        return matricula + "\t" + nome + "\t" + tipo + "\t" + senha;
+    }
     
-    public int getMatricula() {
+    public String getMatricula() {
         return matricula;
     }
-    public void setMatricula(int matricula) {
+    public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
     public String getNome() {

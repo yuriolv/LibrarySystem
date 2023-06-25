@@ -6,7 +6,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
-public class loginAdminController {
+public class loginAdminController{
     @FXML
     private Label responseLabel;
     
