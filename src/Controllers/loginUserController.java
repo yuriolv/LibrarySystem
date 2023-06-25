@@ -10,6 +10,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 public class loginUserController {
@@ -21,34 +22,50 @@ public class loginUserController {
     private TextField userTextField;
     @FXML
     private Label responseLabel;
+    @FXML
+    private Label responseLabel2;
 
 
 
     @FXML
     void verifyLoginUser(MouseEvent event) {
+
         String typeSelected, user, pass;
         ArrayList<User> users = new ArrayList<User>();
         Users crud = new Users();
         RadioButton radio = (RadioButton) typeGroup.getSelectedToggle();
         
         try{
-
-            typeSelected = radio.getText();
-            user = userTextField.getText();
-            pass = passPasswordField.getText();
-            crud.readUser(users);
             
-            resetPane();
-            for (User usuario : users) {
-                if(usuario.getMatricula().equals(user)
-             && usuario.getSenha().equals(pass)
-             && usuario.getTipo().equals(typeSelected)){                
-                 
-                 App.changeScene("pageMenuUser");
+            if(radio == null){
+                    responseLabel2.setText("PREENCHA TODOS OS CAMPOS!");
+                    resetPane();
+            } else {
+
+                typeSelected = radio.getText();
+            
+                user = userTextField.getText();
+                pass = passPasswordField.getText();
+                crud.readUser(users);
+                
+                resetPane();
+
+                for (User usuario : users) {
+                    if(usuario.getMatricula().equals(user)
+                        && usuario.getSenha().equals(pass)
+                        && usuario.getTipo().equals(typeSelected)){                
+                    
+                            App.changeScene("pageMenuUser");
+
+                    } else {
+                        responseLabel.setText("MATRICULA OU SENHA INVÁLIDAS!");
+                    }
                 }
+
+            
             }            
         } catch (NullPointerException e) {
-            //setar text caso o usuário aperte no button sem escolher um radioButton 
+            System.out.println(e);
 
         }
 
@@ -64,9 +81,26 @@ public class loginUserController {
     public void resetPane(){
         passPasswordField.setText("");
         userTextField.setText("");
+        responseLabel.setText("");
+
+        if(typeGroup.getSelectedToggle() == null)
+            return;
+
         typeGroup.getSelectedToggle().setSelected(false);
 
 
     }
 
+
+    @FXML 
+    public final void clearLabelIncorrect(KeyEvent e){
+        responseLabel.setText("");
+        responseLabel2.setText("");
+    }
+
+    @FXML 
+    public final void clearLabelIncomplete(MouseEvent e){
+        responseLabel.setText("");
+        responseLabel2.setText("");
+    }
 }

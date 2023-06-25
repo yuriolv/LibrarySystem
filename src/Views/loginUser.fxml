@@ -21,18 +21,18 @@
          <children>
             <AnchorPane prefHeight="366.0" prefWidth="384.0" style="-fx-background-color: #dfdedf; -fx-background-radius: 10;">
                <children>
-                  <Label layoutX="14.0" layoutY="154.0" text="Matrícula" AnchorPane.leftAnchor="14.0">
+                  <Label layoutX="13.0" layoutY="167.0" text="Matrícula" AnchorPane.leftAnchor="13.0">
                      <font>
                         <Font name="Dubai Bold" size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="userTextField" layoutX="89.0" layoutY="154.0" prefHeight="27.0" prefWidth="206.0" promptText="Ex. 9999999" />
+                  <TextField fx:id="userTextField" layoutX="89.0" layoutY="169.0" onKeyPressed="#clearLabelIncorrect" prefHeight="27.0" prefWidth="206.0" promptText="Ex. 9999999" />
                   <Label layoutX="23.0" layoutY="215.0" text="Senha" AnchorPane.leftAnchor="23.0">
                      <font>
                         <Font name="Dubai Bold" size="16.0" />
                      </font>
                   </Label>
-                  <Button layoutX="228.0" layoutY="281.0" mnemonicParsing="false" onMouseClicked="#verifyLoginUser" prefHeight="30.0" prefWidth="87.0" style="-fx-background-color: #008B45; -fx-text-fill: #ffffff; -fx-background-radius: 10;" text="Entrar">
+                  <Button layoutX="227.0" layoutY="296.0" mnemonicParsing="false" onMouseClicked="#verifyLoginUser" prefHeight="30.0" prefWidth="87.0" style="-fx-background-color: #008B45; -fx-text-fill: #ffffff; -fx-background-radius: 10;" text="Entrar">
                      <font>
                         <Font name="Arial Bold Italic" size="12.0" />
                      </font>
@@ -40,7 +40,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button layoutX="73.0" layoutY="281.0" mnemonicParsing="false" onMouseClicked="#changePageHome" prefHeight="30.0" prefWidth="87.0" style="-fx-background-color: #008B45; -fx-text-fill: #ffffff; -fx-background-radius: 10;" text="Voltar">
+                  <Button layoutX="74.0" layoutY="296.0" mnemonicParsing="false" onMouseClicked="#changePageHome" prefHeight="30.0" prefWidth="87.0" style="-fx-background-color: #008B45; -fx-text-fill: #ffffff; -fx-background-radius: 10;" text="Voltar">
                      <font>
                         <Font name="Arial Bold Italic" size="12.0" />
                      </font>
@@ -48,7 +48,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <PasswordField fx:id="passPasswordField" layoutX="89.0" layoutY="216.0" prefHeight="27.0" prefWidth="206.0" promptText="Sua senha" />
+                  <PasswordField fx:id="passPasswordField" layoutX="89.0" layoutY="216.0" onKeyPressed="#clearLabelIncorrect" prefHeight="27.0" prefWidth="206.0" promptText="Sua senha" />
                   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="118.0" layoutY="13.0" prefHeight="35.0" prefWidth="81.0" text="Login">
                      <font>
                         <Font name="Dubai Regular" size="33.0" />
@@ -59,24 +59,34 @@
                         <Image url="@Assets/iconePessoa.png" />
                      </image>
                   </ImageView>
-                  <RadioButton id="#radio-button" layoutX="203.0" layoutY="96.0" mnemonicParsing="false" style="-fx-cursor: HAND;" text="Docente">
+                  <RadioButton id="#radio-button" layoutX="89.0" layoutY="96.0" mnemonicParsing="false" onMouseClicked="#clearLabelIncomplete" prefWidth="87.0" style="-fx-cursor: HAND;" text="Discente">
                      <font>
-                        <Font name="Dubai Regular" size="14.0" />
+                        <Font name="Dubai Regular" size="16.0" />
                      </font>
                      <toggleGroup>
                         <ToggleGroup fx:id="typeGroup" />
                      </toggleGroup>
-                  </RadioButton>
-                  <RadioButton id="#radio-button" layoutX="89.0" layoutY="96.0" mnemonicParsing="false" style="-fx-cursor: HAND;" text="Discente" toggleGroup="$typeGroup">
-                     <font>
-                        <Font name="Dubai Regular" size="14.0" />
-                     </font>
                   </RadioButton>
                   <Label fx:id="responseLabel" layoutX="178.0" layoutY="249.0" text="Erro" textAlignment="CENTER" textFill="RED" visible="false">
                      <font>
                         <Font name="Cambria" size="15.0" />
                      </font>
                   </Label>
+                  <Label fx:id="responseLabel" alignment="CENTER" layoutX="88.0" layoutY="260.0" prefHeight="17.0" prefWidth="206.0" textFill="#d02424">
+                     <font>
+                        <Font name="Arial Bold" size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="responseLabel2" alignment="CENTER" layoutX="89.0" layoutY="260.0" prefHeight="17.0" prefWidth="206.0" textFill="#1a1a1a">
+                     <font>
+                        <Font name="Arial Bold" size="10.0" />
+                     </font>
+                  </Label>
+                  <RadioButton id="#radio-button" layoutX="203.0" layoutY="96.0" mnemonicParsing="false" onMouseClicked="#clearLabelIncomplete" style="-fx-cursor: HAND;" text="Docente" toggleGroup="$typeGroup">
+                     <font>
+                        <Font name="Dubai Regular" size="16.0" />
+                     </font>
+                  </RadioButton>
                </children>
                <effect>
                   <DropShadow />
