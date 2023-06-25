@@ -4,7 +4,7 @@ public class Livro {
     private String titulo;
     private String autor;
     private String assunto;
-    private int qtdEstoque;
+    private Integer qtdEstoque;
 
     public Livro(String titulo, String autor, String assunto, int qtdEstoque){
         this.titulo = titulo;

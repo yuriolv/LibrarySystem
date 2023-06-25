@@ -50,7 +50,7 @@ public class App extends Application {
 
         Parent contentAdminBooks = FXMLLoader.load(getClass().getResource("../Views/AdminBooks.fxml"));
         pageAdminBooks = new Scene(contentAdminBooks); */
-        
+
         Parent contentTelaAdmin = FXMLLoader.load(getClass().getResource("../Views/Admin.fxml"));
         pageAdmin = new Scene(contentTelaAdmin);
         
@@ -98,9 +98,6 @@ public class App extends Application {
                 break;
 
             case "pageAdminUsers":
-                stage.setScene(pageAdmin);
-                break;
-            case "pageAdminBooks":
                 stage.setScene(pageAdmin);
                 break;
 

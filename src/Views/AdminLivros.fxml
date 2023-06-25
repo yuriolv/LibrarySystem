@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdminLivrosController">
    <children>
       <AnchorPane layoutX="-2.0" layoutY="-2.0" prefHeight="112.0" prefWidth="705.0" style="-fx-background-color: #008B45;" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="-3.0">
