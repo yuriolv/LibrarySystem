@@ -1,9 +1,12 @@
 package Controllers;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import Classes.Livro;
+import Models.Livros;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,6 +23,8 @@ public class AdminLivrosController  implements Initializable{
     @FXML
     private TableView<Livro> tableLivros;
 
+    @FXML
+    private TableColumn<Livro, String> assuntoColumn;
 
     @FXML
     private TableColumn<Livro, String> autorColumn;
@@ -39,15 +44,21 @@ public class AdminLivrosController  implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        autorColumn.setCellValueFactory(new PropertyValueFactory<>("Autor"));
-        tituloColumn.setCellValueFactory(new PropertyValueFactory<>("Titulo"));
-        estoqueColumn.setCellValueFactory(new PropertyValueFactory<>("Estoque"));
+        Livros crud = new Livros();
+        ArrayList<Livro> livros = new ArrayList<Livro>();
+        
+        crud.read(livros);
+
+        tituloColumn.setCellValueFactory(new PropertyValueFactory<Livro, String>("Titulo"));
+        autorColumn.setCellValueFactory(new PropertyValueFactory<Livro, String>("Autor"));
+        assuntoColumn.setCellValueFactory(new PropertyValueFactory<>("Assunto"));
+        estoqueColumn.setCellValueFactory(new PropertyValueFactory<>("QtdEstoque"));
         tableLivros.setItems(booksList);
     }
 
 
     ObservableList<Livro> booksList = FXCollections.observableArrayList(
-        new Livro("Banco de dados para web", "Ana Luiza", "Banco de dados", 4)
+      new Livro("Banco de dados para web", "Ana Luiza", "Banco de dados", 4)
     );
 
 

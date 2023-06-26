@@ -38,7 +38,7 @@
             <Font size="29.0" />
          </font>
       </Label>
-      <TableView layoutX="25.0" layoutY="213.0" prefHeight="290.0" prefWidth="652.0" style="-fx-background-color: #dfdedf;" AnchorPane.bottomAnchor="97.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="213.0">
+      <TableView fx:id="tableLivros" layoutX="25.0" layoutY="213.0" prefHeight="290.0" prefWidth="652.0" style="-fx-background-color: #dfdedf;" AnchorPane.bottomAnchor="97.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="213.0">
         <columns>
           <TableColumn fx:id="tituloColumn" prefWidth="77.0" text="Titulo" />
           <TableColumn fx:id="autorColumn" prefWidth="86.0" text="Autor" />
