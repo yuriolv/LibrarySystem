@@ -47,7 +47,7 @@ public class loginUserController {
             
                 user = userTextField.getText();
                 pass = passPasswordField.getText();
-                crud.readUser(users);
+                crud.read(users);
                 
                 resetPane();
 
@@ -93,7 +93,7 @@ public class loginUserController {
                 
                     user = userTextField.getText();
                     pass = passPasswordField.getText();
-                    crud.readUser(users);
+                    crud.read(users);
                     
                     resetPane();
 

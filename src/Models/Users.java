@@ -12,7 +12,7 @@ import Classes.User;
 public class Users {
     
 
-    public boolean createUser(User user) {
+    public boolean create(User user) {
         try {
             FileWriter fWriter = new FileWriter("src/Data/Users.txt", true);
             BufferedWriter bWriter = new BufferedWriter(fWriter);
@@ -29,7 +29,7 @@ public class Users {
         return true;
     }
 
-    public void readUser(ArrayList<User> users) {
+    public void read(ArrayList<User> users) {
         users.clear();
         User user;
 
@@ -53,13 +53,13 @@ public class Users {
         }
     }
 
-    public boolean updateUser(ArrayList<User> users) {
+    public boolean update(ArrayList<User> users) {
         File file = new File("src/Data/Users.txt");
 
         if(file.delete()) {
             if(createFile("Users")) {
                 for(User user: users) {
-                    createUser(user);
+                    create(user);
                     return true;
                 }
             }
@@ -69,7 +69,7 @@ public class Users {
     }
 
 
-    public boolean deleteUser(int index, ArrayList<User> users) {
+    public boolean delete(int index, ArrayList<User> users) {
         File file = new File("src/Data/Users.txt");
 
         if(file.delete()) {
@@ -77,7 +77,7 @@ public class Users {
                 users.remove(index);
                 
                 for(User user: users) {
-                    createUser(user);
+                    create(user);
                     return true;
                 }
             }

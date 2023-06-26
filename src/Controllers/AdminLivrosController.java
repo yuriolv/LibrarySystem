@@ -53,7 +53,10 @@ public class AdminLivrosController  implements Initializable{
         autorColumn.setCellValueFactory(new PropertyValueFactory<Livro, String>("Autor"));
         assuntoColumn.setCellValueFactory(new PropertyValueFactory<>("Assunto"));
         estoqueColumn.setCellValueFactory(new PropertyValueFactory<>("QtdEstoque"));
+
+        
         tableLivros.setItems(booksList);
+        tableLivros.getItems().add(livros.get(0));
     }
 
 
