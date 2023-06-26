@@ -1,9 +1,10 @@
 package Controllers;
 
-import java.util.ArrayList;
 
 import Classes.User;
 import Models.Users;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -32,7 +33,7 @@ public class loginUserController {
     void verifyLoginUser(MouseEvent event) {
 
         String typeSelected, user, pass;
-        ArrayList<User> users = new ArrayList<User>();
+        ObservableList<User> users = FXCollections.observableArrayList();
         Users crud = new Users();
         RadioButton radio = (RadioButton) typeGroup.getSelectedToggle();
         
@@ -78,7 +79,7 @@ public class loginUserController {
         if(event.getCode() == KeyCode.ENTER){
 
             String typeSelected, user, pass;
-            ArrayList<User> users = new ArrayList<User>();
+            ObservableList<User> users = FXCollections.observableArrayList();
             Users crud = new Users();   
             RadioButton radio = (RadioButton) typeGroup.getSelectedToggle();
         

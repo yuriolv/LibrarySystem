@@ -1,7 +1,6 @@
 package Controllers;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import Classes.User;
@@ -42,7 +41,7 @@ public class AdminUsersController  implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Users crud = new Users();
-        ArrayList<User> users = new ArrayList<User>();
+        ObservableList<User> users = FXCollections.observableArrayList();
         
         crud.read(users);
 
@@ -51,15 +50,8 @@ public class AdminUsersController  implements Initializable{
         tipoColumn.setCellValueFactory(new PropertyValueFactory<>("Tipo"));
 
         
-        tableUsers.setItems(booksList);
-        tableUsers.getItems().add(users.get(0));
+        tableUsers.setItems(users);
     }
-
-
-    ObservableList<User> booksList = FXCollections.observableArrayList(
-      new User("1234578", "Ana Luiza", "docente")
-    );
-
 
     @FXML
     void changePageAdmin(ActionEvent event) {
