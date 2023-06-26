@@ -44,8 +44,11 @@ public class AdminLivrosController  implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        
         Livros crud = new Livros();
         ArrayList<Livro> livros = new ArrayList<Livro>();
+
+
         
         crud.read(livros);
 
@@ -53,16 +56,19 @@ public class AdminLivrosController  implements Initializable{
         autorColumn.setCellValueFactory(new PropertyValueFactory<Livro, String>("Autor"));
         assuntoColumn.setCellValueFactory(new PropertyValueFactory<>("Assunto"));
         estoqueColumn.setCellValueFactory(new PropertyValueFactory<>("QtdEstoque"));
+        editarColumn.setCellValueFactory(new PropertyValueFactory<>("Update"));
+        removerColumn.setCellValueFactory(new PropertyValueFactory<>("Delete"));
 
         
         tableLivros.setItems(booksList);
-        tableLivros.getItems().add(livros.get(0));
+        //tableLivros.getItems().add(livros.get(0));
     }
 
 
     ObservableList<Livro> booksList = FXCollections.observableArrayList(
       new Livro("Banco de dados para web", "Ana Luiza", "Banco de dados", 4)
     );
+
 
 
     @FXML

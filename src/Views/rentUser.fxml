@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="80.0" layoutY="246.0" prefHeight="334.0" prefWidth="538.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="82.0" AnchorPane.topAnchor="246.0">
+         <content>
+            <FlowPane alignment="CENTER" hgap="85.0" prefHeight="201.0" prefWidth="517.0" rowValignment="BASELINE" vgap="60.0">
+               <children>
+                  <AnchorPane prefHeight="136.0" prefWidth="201.0" />
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: red;" />
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" />
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" />
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" />
+                  <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: red;" />
+               </children>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+            </FlowPane>
+         </content>
+      </ScrollPane>
+      <HBox alignment="CENTER" fillHeight="false" layoutY="123.0" prefHeight="100.0" prefWidth="700.0" spacing="15.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-0.6566964716926122">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <TextField focusTraversable="false" layoutY="34.0" prefHeight="32.0" prefWidth="480.0" promptText="Busque por 'Autor', 'Título' ou 'Assunto'" />
+                  <ImageView fitHeight="20.0" fitWidth="22.0" layoutX="450.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Assets/magnifying-glass.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="112.0" prefWidth="700.0" style="-fx-background-color: #008B45;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-0.6566964716926122">
+         <children>
+            <Label alignment="CENTER" text="Selecione o livro para empréstimo" textAlignment="RIGHT" textFill="WHITE">
+               <font>
+                  <Font name="Cambria" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

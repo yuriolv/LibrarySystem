@@ -11,7 +11,7 @@ public class Livro {
         this.autor = autor;
         this.assunto = assunto;
         this.qtdEstoque = qtdEstoque;
-
+        
     }
 
     public String toString(){
@@ -21,11 +21,11 @@ public class Livro {
     public String getTitulo() {
         return titulo;
     }
-
+    
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
-
+    
     public String getAutor() {
         return autor;
     }
@@ -33,11 +33,11 @@ public class Livro {
     public void setAutor(String autor) {
         this.autor = autor;
     }
-
+    
     public String getAssunto() {
         return assunto;
     }
-
+    
     public void setAssunto(String assunto) {
         this.assunto = assunto;
     }
@@ -45,10 +45,10 @@ public class Livro {
     public int getQtdEstoque() {
         return qtdEstoque;
     }
-
+    
     public void setQtdEstoque(int qtdEstoque) {
         this.qtdEstoque = qtdEstoque;
     }
-
     
+
 }

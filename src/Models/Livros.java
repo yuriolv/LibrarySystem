@@ -30,7 +30,6 @@ public class Livros {
     public void read(ArrayList<Livro> livros){
         livros.clear();
         Livro livro;
-    
         try{
             FileReader fReader = new FileReader("src/Data/Acervo.txt");
             BufferedReader bReader = new BufferedReader(fReader);
