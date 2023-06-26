@@ -1,7 +1,6 @@
 package Controllers;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import Classes.Livro;
@@ -41,11 +40,13 @@ public class AdminLivrosController  implements Initializable{
     @FXML
     private TableColumn<Livro, Button> editarColumn;
 
+    private Button but;
+
+    ObservableList<Livro> livros = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Livros crud = new Livros();
-        ArrayList<Livro> livros = new ArrayList<Livro>();
         
         crud.read(livros);
 
@@ -54,19 +55,11 @@ public class AdminLivrosController  implements Initializable{
         assuntoColumn.setCellValueFactory(new PropertyValueFactory<>("Assunto"));
         estoqueColumn.setCellValueFactory(new PropertyValueFactory<>("QtdEstoque"));
 
-        
-        tableLivros.setItems(booksList);
-        tableLivros.getItems().add(livros.get(0));
+        tableLivros.setItems(livros);
     }
 
-
-    ObservableList<Livro> booksList = FXCollections.observableArrayList(
-      new Livro("Banco de dados para web", "Ana Luiza", "Banco de dados", 4)
-    );
-
-
     @FXML
-    void changePageAdmin(ActionEvent event) {
+    void changePageAdmin(MouseEvent event) {
         App.changeScene("pageAdmin");
 
     }
@@ -76,6 +69,24 @@ public class AdminLivrosController  implements Initializable{
         App.changeScene("pageHome");
         
     }
+    @FXML
+    void editarLivro(ActionEvent event) {
+        
+
+
+
+    }
+
+    @FXML
+    void removerLivro(ActionEvent event) {
+        Livros crud = new Livros();
+        
+        int indice = tableLivros.getSelectionModel().getSelectedIndex();
+
+        crud.delete(indice, livros);
+    }
+
+    
 
 
 }

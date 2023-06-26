@@ -1,9 +1,9 @@
 package Models;
 
 import java.io.*;
-import java.util.ArrayList;
 
 import Classes.Livro;
+import javafx.collections.ObservableList;
 
 public class Livros {
     
@@ -27,7 +27,7 @@ public class Livros {
         return true;
     }
 
-    public void read(ArrayList<Livro> livros){
+    public void read(ObservableList<Livro> livros){
         livros.clear();
         Livro livro;
     
@@ -52,7 +52,7 @@ public class Livros {
 
     }
 
-    public boolean update(ArrayList<Livro> livros){
+    public boolean update(ObservableList<Livro> livros){
         File file = new File("src/Data/Acervo.txt");  
 
         if(file.delete()){
@@ -66,7 +66,7 @@ public class Livros {
         return false; 
 
     }
-    public boolean delete(int index, ArrayList<Livro> livros){
+    public boolean delete(int index, ObservableList<Livro> livros){
         File file = new File("src/Data/Acervo.txt");
         
         if(file.delete()){

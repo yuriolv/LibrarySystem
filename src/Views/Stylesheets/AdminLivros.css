@@ -1,3 +1,7 @@
 .buttons:hover {
     -fx-opacity: 0.4;
 }
+
+.table-column{
+    -fx-alignment: CENTER;
+}
