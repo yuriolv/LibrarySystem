@@ -48,7 +48,7 @@ public class App extends Application {
         Parent contentTelaAdmin = FXMLLoader.load(getClass().getResource("../Views/Admin.fxml"));
         pageAdmin = new Scene(contentTelaAdmin);
         
-        Parent contentTelaAdminLivros = FXMLLoader.load(getClass().getResource("../Views/AdminLivros2.fxml"));
+        Parent contentTelaAdminLivros = FXMLLoader.load(getClass().getResource("../Views/AdminLivros.fxml"));
         pageAdminLivros = new Scene(contentTelaAdminLivros);
         
         Parent contentAdminUsers = FXMLLoader.load(getClass().getResource("../Views/AdminUsers.fxml"));
