@@ -45,17 +45,14 @@ public class App extends Application {
         Parent contentAdmin = FXMLLoader.load(getClass().getResource("../Views/Admin.fxml"));
         pageAdmin = new Scene(contentAdmin);
 
-       /*  Parent contentAdminUsers = FXMLLoader.load(getClass().getResource("../Views/AdminUsers.fxml"));
-        pageAdminUsers = new Scene(contentAdminUsers);
-
-        Parent contentAdminBooks = FXMLLoader.load(getClass().getResource("../Views/AdminBooks.fxml"));
-        pageAdminBooks = new Scene(contentAdminBooks); */
-
         Parent contentTelaAdmin = FXMLLoader.load(getClass().getResource("../Views/Admin.fxml"));
         pageAdmin = new Scene(contentTelaAdmin);
         
         Parent contentTelaAdminLivros = FXMLLoader.load(getClass().getResource("../Views/AdminLivros.fxml"));
         pageAdminLivros = new Scene(contentTelaAdminLivros);
+        
+        Parent contentAdminUsers = FXMLLoader.load(getClass().getResource("../Views/AdminUsers.fxml"));
+        pageAdminUsers = new Scene(contentAdminUsers);
 
         stage = primaryStage;
         stage.setTitle("SISTEMA BIBLIOTECA");
@@ -98,7 +95,7 @@ public class App extends Application {
                 break;
 
             case "pageAdminUsers":
-                stage.setScene(pageAdmin);
+                stage.setScene(pageAdminUsers);
                 break;
 
         }

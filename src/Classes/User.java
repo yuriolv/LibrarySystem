@@ -14,6 +14,11 @@ public class User {
         this.tipo = tipo;
         this.senha = senha;
     }
+    public User(String matricula, String nome, String tipo) {
+        this.matricula = matricula;
+        this.nome = nome;
+        this.tipo = tipo;
+    }
 
     public String toString() {
         return matricula + "\t" + nome + "\t" + tipo + "\t" + senha;
