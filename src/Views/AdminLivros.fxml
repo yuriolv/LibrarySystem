@@ -35,7 +35,7 @@
                   <Font name="Cambria" size="26.0" />
                </font>
             </Label>
-            <Label layoutX="645.0" layoutY="62.0" onMouseClicked="#changePageHome" text="Sair" textAlignment="RIGHT" textFill="WHITE" AnchorPane.rightAnchor="27.0">
+            <Label layoutX="645.0" layoutY="62.0" onMouseClicked="#changePageHome" styleClass="navbar-btns" stylesheets="@Stylesheets/User.css" text="Sair" textAlignment="RIGHT" textFill="WHITE" AnchorPane.rightAnchor="27.0">
                <font>
                   <Font size="20.0" />
                </font>
@@ -43,7 +43,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Label layoutX="566.0" layoutY="62.0" onMouseClicked="#changePageAdmin" text="Voltar" textFill="WHITE" AnchorPane.rightAnchor="86.0">
+            <Label layoutX="566.0" layoutY="62.0" onMouseClicked="#changePageAdmin" styleClass="navbar-btns" stylesheets="@Stylesheets/User.css" text="Voltar" textFill="WHITE" AnchorPane.rightAnchor="86.0">
                <font>
                   <Font size="20.0" />
                </font>
