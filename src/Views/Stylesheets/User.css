@@ -1,0 +1,7 @@
+.buttons:hover {
+    -fx-opacity: 0.9;
+}
+
+.navbar-btns:hover {
+    -fx-underline: true;
+}
