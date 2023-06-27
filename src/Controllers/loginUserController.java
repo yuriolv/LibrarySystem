@@ -1,7 +1,5 @@
 package Controllers;
 
-import java.util.ArrayList;
-
 import Classes.User;
 import Models.Users;
 import javafx.collections.FXCollections;

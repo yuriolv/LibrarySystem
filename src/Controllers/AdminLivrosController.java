@@ -40,7 +40,6 @@ public class AdminLivrosController  implements Initializable{
     @FXML
     private TableColumn<Livro, Button> editarColumn;
 
-    private Button but;
 
     ObservableList<Livro> livros = FXCollections.observableArrayList();
 
