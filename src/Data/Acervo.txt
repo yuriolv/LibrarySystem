@@ -1,1 +1,6 @@
-Algebra linear	Thelmo Araujo	Matematica	1
+Algebra Linear	Thelmo Araujo	Matemática	1
+Algebra Linear	Thelmo Araujo	Matemática	1
+Calculo	JC	calculo	15
+Ingles instrumental	Rafael	ingles	10
+Geometria analitica	Davi	Matemática	2
+Organização de pcs	Oriá	hardware	10
