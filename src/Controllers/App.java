@@ -72,6 +72,7 @@ public class App extends Application {
                 
             case "loginUser":
                 stage.setScene(loginUser);
+                maximizarScene();
             break;
 
             case "loginAdmin": 
@@ -99,5 +100,11 @@ public class App extends Application {
                 break;
 
         }
+    }
+
+    public static void maximizarScene(){
+        if(stage.isFullScreen() == false)
+            stage.setFullScreen(true);
+        
     }
 }
