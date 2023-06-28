@@ -83,7 +83,6 @@ public class AdminLivrosController  implements Initializable{
 
     @FXML
     void adicionarLivro(ActionEvent event) {
-        ArrayList<Livro> livros = new ArrayList<Livro>();
 
         Livros crud = new Livros();
         String titulo, autor, assunto;

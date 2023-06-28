@@ -1,2 +1,3 @@
-1652078	Diogo	Discente	plinplon
-1657820	Yuri	Discente	plonplin
+1652004	Yuri	Discente	null
+1651786	Renan	Discente	null
+1652004	Thelmo	Docente	null

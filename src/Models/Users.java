@@ -8,7 +8,6 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 
 import Classes.User;
-import javafx.collections.ObservableList;
 
 public class Users {
     
@@ -30,7 +29,7 @@ public class Users {
         return true;
     }
 
-    public void read(ObservableList<User> users) {
+    public void read(ArrayList<User> users) {
         users.clear();
         User user;
 
@@ -79,8 +78,8 @@ public class Users {
                 
                 for(User user: users) {
                     create(user);
-                    return true;
                 }
+                return true;
             }
         }
 

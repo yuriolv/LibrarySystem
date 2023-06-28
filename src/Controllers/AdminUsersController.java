@@ -50,20 +50,21 @@ public class AdminUsersController  implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Users crud = new Users();
-        ObservableList<User> users = FXCollections.observableArrayList();
+        users = new ArrayList<>();
         
         crud.read(users);
+        usersObs = FXCollections.observableArrayList(users);
 
         matriculaColumn.setCellValueFactory(new PropertyValueFactory<>("Matricula"));
         nomeColumn.setCellValueFactory(new PropertyValueFactory<>("Nome"));
         tipoColumn.setCellValueFactory(new PropertyValueFactory<>("Tipo"));
 
         
-        tableUsers.setItems(users);
+        tableUsers.setItems(usersObs);
     }
 
     @FXML 
-    public void editarTabela(ActionEvent event){
+    public void editarUser(MouseEvent event){
         int i = tableUsers.getSelectionModel().getSelectedIndex();
         Users crud = new Users();
         String nome, tipo, matricula;
@@ -117,14 +118,16 @@ public class AdminUsersController  implements Initializable{
         Users crud = new Users();
 
         int i = tableUsers.getSelectionModel().getSelectedIndex();
-
-        users.remove(i);
-        crud.delete(i, users);
+        
+        usersObs.remove(i);
+        crud.delete(i, users); 
+        
+        resetTextFields();
     }
 
     @FXML
     public void pesquisarLivro(ActionEvent event){
-        
+
     }
 
     @FXML
