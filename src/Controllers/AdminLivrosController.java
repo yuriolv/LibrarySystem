@@ -69,20 +69,20 @@ public class AdminLivrosController  implements Initializable{
     }
 
     @FXML
-    void changePageAdmin(MouseEvent event) {
+    public void changePageAdmin(MouseEvent event) {
         App.changeScene("pageAdmin");
 
     }
 
     @FXML
-    void changePageHome(MouseEvent event) {
+    public void changePageHome(MouseEvent event) {
         App.changeScene("pageHome");
         
     }
 
 
     @FXML
-    void adicionarLivro(ActionEvent event) {
+    public void adicionarLivro(ActionEvent event) {
         ArrayList<Livro> livros = new ArrayList<Livro>();
 
         Livros crud = new Livros();
@@ -108,7 +108,7 @@ public class AdminLivrosController  implements Initializable{
     }
 
     @FXML
-    void editarLivro(ActionEvent event) {
+    public void editarLivro(ActionEvent event) {
         int i = tableLivros.getSelectionModel().getSelectedIndex();
         Livros crud = new Livros();
         String titulo, autor, assunto;
@@ -134,8 +134,19 @@ public class AdminLivrosController  implements Initializable{
 
     }
     @FXML
-    void pesquisarLivro(ActionEvent event) {
-      
+    public void pesquisarLivro(ActionEvent event) {
+        
+
+
+        if(tituloTextField.getText().equals("") 
+        && autorTextField.getText().equals("") 
+        && estoqueTextField.getText().equals("")
+        && assuntoTextField.getText().equals("")){
+
+
+
+
+        }
             
     }
 

@@ -54,13 +54,13 @@ public class AdminUsersController  implements Initializable{
     }
 
     @FXML
-    void changePageAdmin(ActionEvent event) {
+    public void changePageAdmin(ActionEvent event) {
         App.changeScene("pageAdmin");
 
     }
 
     @FXML
-    void changePageHome(MouseEvent event) {
+    public void changePageHome(MouseEvent event) {
         App.changeScene("pageHome");
         
     }

@@ -77,6 +77,7 @@ public class App extends Application {
 
             case "loginAdmin": 
                 stage.setScene(loginAdmin);
+                
                 break;
 
             case "pageAcervo":
@@ -103,7 +104,7 @@ public class App extends Application {
     }
 
     public static void maximizarScene(){
-        if(stage.isFullScreen() == false)
+        if(stage.isFullScreen() == true)
             stage.setFullScreen(true);
         
     }

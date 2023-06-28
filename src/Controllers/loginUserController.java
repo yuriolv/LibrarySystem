@@ -29,7 +29,7 @@ public class loginUserController {
 
 
     @FXML
-    void verifyLoginUser(MouseEvent event) {
+    public void verifyLoginUser(MouseEvent event) {
 
         String typeSelected, user, pass;
         ObservableList<User> users = FXCollections.observableArrayList();
