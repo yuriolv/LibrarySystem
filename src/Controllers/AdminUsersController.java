@@ -41,6 +41,8 @@ public class AdminUsersController  implements Initializable{
     @FXML
     private TextField tipoTextField;
 
+    private TextField pesquisaTextField;
+
     private ArrayList<User> users;
 
     private ObservableList<User> usersObs;
@@ -126,8 +128,26 @@ public class AdminUsersController  implements Initializable{
     }
 
     @FXML
-    public void pesquisarLivro(ActionEvent event){
+    public void pesquisarUsuario(ActionEvent event){
+        Users crud = new Users();
+        ObservableList<User> filteredList = FXCollections.observableArrayList();
+        
+        
+        crud.read(users); 
+        if(pesquisaTextField.getText().equals("")) {
+            tableUsers.setItems(usersObs);
+        }
 
+        else {
+            String filtro = pesquisaTextField.getText();
+            for(User user: users) {
+                if(user.getMatricula().equals(filtro) || user.getNome().equals(filtro) || user.getTipo().equals(filtro)) {
+                    filteredList.add(user);
+                }
+            }
+
+            tableUsers.setItems(filteredList);
+        }
     }
 
     @FXML
