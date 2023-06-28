@@ -9,7 +9,6 @@ import Models.Livros;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -46,6 +45,8 @@ public class AdminLivrosController  implements Initializable{
     
     @FXML
     private TextField estoqueTextField;
+    @FXML
+    private TextField filtroTextField;
 
     private ArrayList<Livro> livros;
 
@@ -82,7 +83,7 @@ public class AdminLivrosController  implements Initializable{
 
 
     @FXML
-    void adicionarLivro(ActionEvent event) {
+    void adicionarLivro(MouseEvent event) {
 
         Livros crud = new Livros();
 
@@ -112,7 +113,7 @@ public class AdminLivrosController  implements Initializable{
     }
 
     @FXML
-    public void editarLivro(ActionEvent event) {
+    public void editarLivro(MouseEvent event) {
         int i = tableLivros.getSelectionModel().getSelectedIndex();
         Livros crud = new Livros();
         String titulo, autor, assunto;
@@ -141,18 +142,18 @@ public class AdminLivrosController  implements Initializable{
 
     }
     @FXML
-    public void pesquisarLivro(ActionEvent event) {
+    public void pesquisarLivro(MouseEvent event) {
         Livros crud = new Livros();
         ObservableList<Livro> filter = FXCollections.observableArrayList();
 
         crud.read(livros);
         
-        if(tituloTextField.getText().equals("")){
+        if(filtroTextField.getText().equals("")){
             
             tableLivros.setItems(livrosObs);
         }
         else{
-            String filtro = tituloTextField.getText();
+            String filtro = filtroTextField.getText();
 
             for (Livro livro : livros) {
                 if(livro.getTitulo().equals(filtro)
@@ -169,7 +170,7 @@ public class AdminLivrosController  implements Initializable{
     }
 
     @FXML
-    void removerLivro(ActionEvent event) {
+    void removerLivro(MouseEvent event) {
         Livros crud = new Livros();
         
         int i = tableLivros.getSelectionModel().getSelectedIndex();
