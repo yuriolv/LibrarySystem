@@ -104,9 +104,8 @@ public class App extends Application {
     }
 
     public static void maximizarScene(){
-        if(stage.isFullScreen() == true)
-            stage.setFullScreen(false);
-            stage.setFullScreen(true);
+        if(stage.isMaximized() == true)
+            stage.setMaximized(true);
         
     }
 }
