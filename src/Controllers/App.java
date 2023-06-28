@@ -77,6 +77,7 @@ public class App extends Application {
 
             case "loginAdmin": 
                 stage.setScene(loginAdmin);
+                
                 break;
 
             case "pageAcervo":

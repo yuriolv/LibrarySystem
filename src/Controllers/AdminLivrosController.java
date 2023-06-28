@@ -69,13 +69,13 @@ public class AdminLivrosController  implements Initializable{
     }
 
     @FXML
-    void changePageAdmin(MouseEvent event) {
+    public void changePageAdmin(MouseEvent event) {
         App.changeScene("pageAdmin");
 
     }
 
     @FXML
-    void changePageHome(MouseEvent event) {
+    public void changePageHome(MouseEvent event) {
         App.changeScene("pageHome");
         
     }
@@ -85,6 +85,9 @@ public class AdminLivrosController  implements Initializable{
     void adicionarLivro(ActionEvent event) {
 
         Livros crud = new Livros();
+
+        crud.read(livros);
+
         String titulo, autor, assunto;
         int estoque;
         try{
@@ -93,6 +96,8 @@ public class AdminLivrosController  implements Initializable{
             autor = autorTextField.getText();
             assunto = assuntoTextField.getText();
             estoque = Integer.parseInt(estoqueTextField.getText());
+
+            resetTextFields();
             
             Livro livro = new Livro(titulo, autor, assunto, estoque);
             
@@ -107,11 +112,14 @@ public class AdminLivrosController  implements Initializable{
     }
 
     @FXML
-    void editarLivro(ActionEvent event) {
+    public void editarLivro(ActionEvent event) {
         int i = tableLivros.getSelectionModel().getSelectedIndex();
         Livros crud = new Livros();
         String titulo, autor, assunto;
         int estoque;
+        
+        tableLivros.setItems(livrosObs);
+
 
         try{ 
             titulo=  tituloTextField.getText();
@@ -133,8 +141,30 @@ public class AdminLivrosController  implements Initializable{
 
     }
     @FXML
-    void pesquisarLivro(ActionEvent event) {
-      
+    public void pesquisarLivro(ActionEvent event) {
+        Livros crud = new Livros();
+        ObservableList<Livro> filter = FXCollections.observableArrayList();
+
+        crud.read(livros);
+        
+        if(tituloTextField.getText().equals("")){
+            
+            tableLivros.setItems(livrosObs);
+        }
+        else{
+            String filtro = tituloTextField.getText();
+
+            for (Livro livro : livros) {
+                if(livro.getTitulo().equals(filtro)
+                 ||livro.getAutor().equals(filtro)
+                 ||livro.getAssunto().equals(filtro)
+                 ||String.valueOf(livro.getQtdEstoque()).equals(filtro)){
+
+                    filter.add(livro);
+                 }
+            }
+            tableLivros.setItems(filter);
+        }
             
     }
 
