@@ -83,9 +83,14 @@ public class AdminLivrosController  implements Initializable{
 
     @FXML
     public void adicionarLivro(ActionEvent event) {
-        ArrayList<Livro> livros = new ArrayList<Livro>();
+        tableLivros.setItems(livrosObs);
+
+        livros = new ArrayList<Livro>();
 
         Livros crud = new Livros();
+
+        crud.read(livros);
+
         String titulo, autor, assunto;
         int estoque;
         try{
@@ -94,6 +99,8 @@ public class AdminLivrosController  implements Initializable{
             autor = autorTextField.getText();
             assunto = assuntoTextField.getText();
             estoque = Integer.parseInt(estoqueTextField.getText());
+
+            resetTextFields();
             
             Livro livro = new Livro(titulo, autor, assunto, estoque);
             
@@ -113,6 +120,9 @@ public class AdminLivrosController  implements Initializable{
         Livros crud = new Livros();
         String titulo, autor, assunto;
         int estoque;
+        
+        tableLivros.setItems(livrosObs);
+
 
         try{ 
             titulo=  tituloTextField.getText();
@@ -135,17 +145,28 @@ public class AdminLivrosController  implements Initializable{
     }
     @FXML
     public void pesquisarLivro(ActionEvent event) {
+        Livros crud = new Livros();
+        ObservableList<Livro> filter = FXCollections.observableArrayList();
+
+        crud.read(livros);
         
+        if(tituloTextField.getText().equals("")){
+            
+            tableLivros.setItems(livrosObs);
+        }
+        else{
+            String filtro = tituloTextField.getText();
 
+            for (Livro livro : livros) {
+                if(livro.getTitulo().equals(filtro)
+                 ||livro.getAutor().equals(filtro)
+                 ||livro.getAssunto().equals(filtro)
+                 ||String.valueOf(livro.getQtdEstoque()).equals(filtro)){
 
-        if(tituloTextField.getText().equals("") 
-        && autorTextField.getText().equals("") 
-        && estoqueTextField.getText().equals("")
-        && assuntoTextField.getText().equals("")){
-
-
-
-
+                    filter.add(livro);
+                 }
+            }
+            tableLivros.setItems(filter);
         }
             
     }
