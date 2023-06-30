@@ -1,6 +1,8 @@
 package Controllers;
 
+import java.io.File;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -19,6 +21,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 
 
 public class AdminLivrosController  implements Initializable{
@@ -106,6 +109,10 @@ public class AdminLivrosController  implements Initializable{
         int estoque;
         try{
 
+            /* String imagePath = chooseImage();
+
+            System.out.println(imagePath); */
+
             titulo=  tituloTextField.getText();
             autor = autorTextField.getText();
             assunto = assuntoTextField.getText();
@@ -118,7 +125,8 @@ public class AdminLivrosController  implements Initializable{
             estoque = Integer.parseInt(estoqueTextField.getText());
             
             resetTextFields();
-            
+
+            //adicionar imagem ao construtor
             Livro livro = new Livro(titulo, autor, assunto, estoque);
             
             livros.add(livro);
@@ -252,6 +260,30 @@ public class AdminLivrosController  implements Initializable{
             estoqueTextField.setText(estoque);
     
 
+    }
+
+    
+    public String chooseImage(){
+        try {
+            FileChooser fc = new FileChooser();
+            File file = fc.showOpenDialog(null);
+    
+            if(file == null ){
+                return "arquivo corrompido";
+            } 
+
+            String typeFile = Files.probeContentType(file.toPath());
+            
+            if(typeFile.equals("image/png") || typeFile.equals("image/jpeg" )) {
+                return file.getPath(); //retornar o caminho relativo
+            } else {
+                return "arquivo invalido";
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+            return "arquivo corrompido";
+        }
     }
 
     public void resetTextFields(){

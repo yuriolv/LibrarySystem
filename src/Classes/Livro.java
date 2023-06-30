@@ -6,12 +6,12 @@ public class Livro {
     private String assunto;
     private Integer qtdEstoque;
 
-    public Livro(String titulo, String autor, String assunto, int qtdEstoque){
+    public Livro(String titulo, String autor, String assunto, int qtdEstoque /* , String image */ ){
         this.titulo = titulo;
         this.autor = autor;
         this.assunto = assunto;
         this.qtdEstoque = qtdEstoque;
-        
+        //this.image = image;
     }
 
     public String toString(){
@@ -21,6 +21,10 @@ public class Livro {
     public String getTitulo() {
         return titulo;
     }
+
+    /* public String getImage(){
+        return image;
+    } */
     
     public void setTitulo(String titulo) {
         this.titulo = titulo;
