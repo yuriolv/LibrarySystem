@@ -11,11 +11,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+
 
 public class AdminLivrosController  implements Initializable{
 
@@ -45,8 +47,17 @@ public class AdminLivrosController  implements Initializable{
     
     @FXML
     private TextField estoqueTextField;
+
     @FXML
     private TextField filtroTextField;
+
+    @FXML
+    private Label responseLabel;
+
+    @FXML
+    private Label responseLabel2;
+
+
 
     private ArrayList<Livro> livros;
 
@@ -96,8 +107,14 @@ public class AdminLivrosController  implements Initializable{
             titulo=  tituloTextField.getText();
             autor = autorTextField.getText();
             assunto = assuntoTextField.getText();
-            estoque = Integer.parseInt(estoqueTextField.getText());
+            
+            if(titulo.equals("") || autor.equals("") || assunto.equals("") || estoqueTextField.getText().equals("") ) {
+                responseLabel.setText("Preencha todos os campos!");
+                return; 
+            }
 
+            estoque = Integer.parseInt(estoqueTextField.getText());
+            
             resetTextFields();
             
             Livro livro = new Livro(titulo, autor, assunto, estoque);
@@ -106,7 +123,7 @@ public class AdminLivrosController  implements Initializable{
             livrosObs.add(livro);
             crud.create(livro);
         }catch(NumberFormatException e){
-            System.out.println("Lembrete: digite apenas numeros");
+            responseLabel2.setText("O campo 'estoque' deve conter apenas números!");
         }
         
 
@@ -204,6 +221,7 @@ public class AdminLivrosController  implements Initializable{
         autorTextField.setText("");
         assuntoTextField.setText("");
         estoqueTextField.setText("");
+        responseLabel.setText("");
     }    
 
 
