@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.UserController">
    <children>
       <AnchorPane prefHeight="123.0" prefWidth="700.0" style="-fx-background-color: #008B45;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
@@ -33,7 +33,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Label layoutX="550.0" layoutY="61.0" style="-fx-text-fill: #ffffff;" styleClass="navbar-btns" stylesheets="@Stylesheets/User.css" text="Sair" AnchorPane.rightAnchor="32.0">
+            <Label layoutX="550.0" layoutY="61.0" onMouseClicked="#changePageHome" style="-fx-text-fill: #ffffff;" styleClass="navbar-btns" stylesheets="@Stylesheets/User.css" text="Sair" AnchorPane.rightAnchor="32.0">
                <font>
                   <Font name="Cambria" size="18.0" />
                </font>
@@ -57,7 +57,7 @@
       </VBox>
       <HBox alignment="CENTER" fillHeight="false" layoutY="289.0" prefHeight="168.0" prefWidth="700.0" AnchorPane.bottomAnchor="143.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="289.0">
          <children>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #dfdedf; -fx-background-radius: 10; -fx-border-radius: 20;" styleClass="buttons" stylesheets="@Stylesheets/User.css">
+            <AnchorPane onMouseClicked="#changePageRentBook" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #dfdedf; -fx-background-radius: 10; -fx-border-radius: 20;" styleClass="buttons" stylesheets="@Stylesheets/User.css">
                <effect>
                   <DropShadow />
                </effect>
@@ -80,7 +80,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #dfdedf; -fx-background-radius: 10; -fx-border-radius: 20;" styleClass="buttons" stylesheets="@Stylesheets/User.css">
+            <AnchorPane onMouseClicked="#changePageDevolution" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #dfdedf; -fx-background-radius: 10; -fx-border-radius: 20;" styleClass="buttons" stylesheets="@Stylesheets/User.css">
                <effect>
                   <DropShadow />
                </effect>
@@ -103,7 +103,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #dfdedf; -fx-background-radius: 10; -fx-border-radius: 20;" styleClass="buttons" stylesheets="@Stylesheets/User.css">
+            <AnchorPane onMouseClicked="#changeGenerateReport" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #dfdedf; -fx-background-radius: 10; -fx-border-radius: 20;" styleClass="buttons" stylesheets="@Stylesheets/User.css">
                <effect>
                   <DropShadow />
                </effect>

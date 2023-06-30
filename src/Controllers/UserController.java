@@ -10,8 +10,8 @@ public class UserController {
     }
 
     @FXML
-    public void changeRentBook(MouseEvent event) {
-        App.changeScene("pageAdminLivros");
+    public void changePageRentBook(MouseEvent event) {
+        App.changeScene("pageRentBook");
     }
 
     @FXML
@@ -22,5 +22,9 @@ public class UserController {
     @FXML
     public void changeGenerateReport(MouseEvent event) {
         App.changeScene("pageAdminUsers");
+
+
     }
+
 }
+
