@@ -2,3 +2,7 @@ POO	Paulo Henrique	Desenvolvimento	10
 Base de Dados	Ana Luiza	Desenvolvimento	10
 Matemática Discreta	Claudemir	Matemática	7
 Machine Learning	Gustavo Campos	Desenvolvimento	11
+Física para computação	Dimitry	Física	25
+Algebra Linear	Thelmo	Matemática 	3
+Introdução a computação	Ana Luiza	Desenvolvimento	20
+Computação	Ana Luiza 	Desenvolvimento	2
