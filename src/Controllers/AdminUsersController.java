@@ -9,13 +9,14 @@ import Models.Users;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 public class AdminUsersController  implements Initializable{
@@ -41,7 +42,8 @@ public class AdminUsersController  implements Initializable{
     @FXML
     private TextField tipoTextField;
 
-    private TextField pesquisaTextField;
+    @FXML
+    private TextField filtroTextField;
 
     private ArrayList<User> users;
 
@@ -70,6 +72,9 @@ public class AdminUsersController  implements Initializable{
         int i = tableUsers.getSelectionModel().getSelectedIndex();
         Users crud = new Users();
         String nome, tipo, matricula;
+        User user;
+
+        crud.read(users);
 
         try {
 
@@ -77,11 +82,16 @@ public class AdminUsersController  implements Initializable{
             tipo = tipoTextField.getText();
             nome = nomeTextField.getText();
 
-            User user = new User(matricula, nome, tipo);
+            user = users.get(i);
 
-            users.set(i, user);
-            usersObs.set(i, user);
+            user.setMatricula(matricula);
+            user.setNome(nome);
+            user.setTipo(tipo);
 
+           /*  users.set(i, user);
+           */
+           
+           usersObs.set(i, user); 
             crud.update(users);
             resetTextFields();
 
@@ -92,7 +102,7 @@ public class AdminUsersController  implements Initializable{
 
     @FXML 
     public void adicionarUser(MouseEvent event){
-        String nome, tipo, matricula;
+        String nome, tipo, matricula, senha;
         Users crud  = new Users();
 
         try {
@@ -100,8 +110,8 @@ public class AdminUsersController  implements Initializable{
             matricula = matriculaTextField.getText();
             tipo = tipoTextField.getText();
             nome = nomeTextField.getText();
-
-            User user = new User(matricula, nome, tipo);
+            senha = nome+"@"+tipo;
+            User user = new User(matricula, nome, tipo, senha);
 
             users.add(user);
             usersObs.add(user);
@@ -128,18 +138,18 @@ public class AdminUsersController  implements Initializable{
     }
 
     @FXML
-    public void pesquisarUsuario(ActionEvent event){
+    public void pesquisarUser(MouseEvent event){
         Users crud = new Users();
         ObservableList<User> filteredList = FXCollections.observableArrayList();
         
         
         crud.read(users); 
-        if(pesquisaTextField.getText().equals("")) {
+        if(filtroTextField.getText().equals("")) {
             tableUsers.setItems(usersObs);
         }
 
         else {
-            String filtro = pesquisaTextField.getText();
+            String filtro = filtroTextField.getText();
             for(User user: users) {
                 if(user.getMatricula().equals(filtro) || user.getNome().equals(filtro) || user.getTipo().equals(filtro)) {
                     filteredList.add(user);
@@ -148,10 +158,38 @@ public class AdminUsersController  implements Initializable{
 
             tableUsers.setItems(filteredList);
         }
+        resetTextFields();
+    }
+    @FXML
+    void pesquisarUser2(KeyEvent event) {
+        if(event.getCode() == KeyCode.ENTER){
+            Users crud = new Users();
+            ObservableList<User> filteredList = FXCollections.observableArrayList();
+            
+            
+            crud.read(users); 
+            if(filtroTextField.getText().equals("")) {
+                tableUsers.setItems(usersObs);
+            }
+    
+            else {
+                String filtro = filtroTextField.getText();
+                for(User user: users) {
+                    if(user.getMatricula().equals(filtro) || user.getNome().equals(filtro) || user.getTipo().equals(filtro)) {
+                        filteredList.add(user);
+                    }
+                }
+    
+                tableUsers.setItems(filteredList);
+            }
+            resetTextFields();
+        
+        }
+
     }
 
     @FXML
-    public void changePageAdmin(ActionEvent event) {
+    public void changePageAdmin(MouseEvent event) {
         App.changeScene("pageAdmin");
 
     }
@@ -177,6 +215,7 @@ public class AdminUsersController  implements Initializable{
         matriculaTextField.setText("");
         nomeTextField.setText("");
         tipoTextField.setText("");
+        filtroTextField.setText("");
     }    
 
 

@@ -1,3 +1,1 @@
-1652004	Yuri	Discente	null
-1651786	Renan	Discente	null
-1652004	Thelmo	Docente	null
+1652079	Diogo	Discente	Diogo@Discente
