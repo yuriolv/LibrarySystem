@@ -16,6 +16,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 
@@ -183,8 +185,44 @@ public class AdminLivrosController  implements Initializable{
             }
             tableLivros.setItems(filter);
         }
+        resetTextFields();
+
             
     }
+    @FXML
+    void pesquisarLivro2(KeyEvent event) {
+        if(event.getCode() == KeyCode.ENTER){
+            Livros crud = new Livros();
+            ObservableList<Livro> filter = FXCollections.observableArrayList();
+    
+            crud.read(livros);
+            
+            if(filtroTextField.getText().equals("")){
+                
+                tableLivros.setItems(livrosObs);
+            }
+            else{
+                String filtro = filtroTextField.getText();
+    
+                for (Livro livro : livros) {
+                    if(livro.getTitulo().equals(filtro)
+                     ||livro.getAutor().equals(filtro)
+                     ||livro.getAssunto().equals(filtro)
+                     ||String.valueOf(livro.getQtdEstoque()).equals(filtro)){
+    
+                        filter.add(livro);
+                     }
+                }
+                tableLivros.setItems(filter);
+            }
+            resetTextFields();
+
+
+
+            
+        }
+    }
+
 
     @FXML
     void removerLivro(MouseEvent event) {
@@ -222,6 +260,7 @@ public class AdminLivrosController  implements Initializable{
         assuntoTextField.setText("");
         estoqueTextField.setText("");
         responseLabel.setText("");
+        filtroTextField.setText("");
     }    
 
 
