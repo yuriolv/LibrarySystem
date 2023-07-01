@@ -4,6 +4,7 @@ import java.io.File;
 import java.net.URI;
 import java.net.URL;
 import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -290,16 +291,23 @@ public class AdminLivrosController  implements Initializable{
             FileChooser fc = new FileChooser();
             File file = fc.showOpenDialog(null);
             File mainFile = new File("C:\\Users\\yuri4\\Desktop\\code\\Faculdade\\P.O.O\\Trabalhos\\sistema_biblioteca\\src");
-    
+            
             if(file == null ){
                 return "arquivo corrompido";
             } 
+            
+            String fileName = file.getName();
+            File destinationDiretory = new File("src/Views/CapasDeLivros/"+fileName);
 
             String typeFile = Files.probeContentType(file.toPath());
-            
+
             if(typeFile.equals("image/png") || typeFile.equals("image/jpeg" )) {
+    
+                Files.copy(file.toPath(), destinationDiretory.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+                
                 URI absoluteMain = mainFile.toURI();
-                URI absoluteImage = file.toURI();
+                URI absoluteImage = destinationDiretory.toURI();
 
                 URI relativeImage = absoluteMain.relativize(absoluteImage);
 
@@ -309,6 +317,8 @@ public class AdminLivrosController  implements Initializable{
             } else {
                 return "arquivo invalido";
             }
+
+            
 
         } catch (Exception e) {
             System.out.println(e);
