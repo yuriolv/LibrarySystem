@@ -1,14 +1,27 @@
 package Controllers;
 
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 public class loginAdminController{
+
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+
     @FXML
     private Label responseLabel;
     
@@ -18,20 +31,24 @@ public class loginAdminController{
 
 
     @FXML
-    public void changePageHome(MouseEvent e){
+    public void changePageHome(MouseEvent event) throws IOException{
         responseLabel.setText("");
         password.setText("");
-        App.changeScene("pageHome");
+        
+        root = FXMLLoader.load(getClass().getResource("../Views/Home.fxml"));
+        stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML 
-    public void verifyLoginAdmin(ActionEvent e){
+    public void verifyLoginAdmin(ActionEvent event) throws IOException{
         String passwordInput = password.getText().toString();
 
         if(passwordInput.equals("uece2023")){
-            responseLabel.setText("");
-            password.setText("");
-            App.changeScene("pageAdmin");
+             changePageAdmin(event);
         }else {
             responseLabel.setText("SENHA INCORRETA! TENTE NOVAMENTE");
             password.setText("");
@@ -39,25 +56,33 @@ public class loginAdminController{
     }
 
     @FXML
-    public void verifyLoginAdmin2(KeyEvent event) {
+    public void verifyLoginAdmin2(KeyEvent event) throws IOException {
         if(event.getCode() == KeyCode.ENTER){
             String passwordInput = password.getText().toString();
     
             if(passwordInput.equals("uece2023")){
-                responseLabel.setText("");
-                password.setText("");
-                App.changeScene("pageAdmin");
+                changePageAdmin(event);
+
             }else {
                 responseLabel.setText("SENHA INCORRETA! TENTE NOVAMENTE");
                 password.setText("");
             }
         }
     }
-
-
-
     @FXML 
     public final void clearLabel(KeyEvent e){
         responseLabel.setText("");
+    }
+
+    public void changePageAdmin(Event event) throws IOException{
+        responseLabel.setText("");
+        password.setText("");
+        
+        root = FXMLLoader.load(getClass().getResource("../Views/Admin.fxml"));
+        stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+
+        stage.setScene(scene);
+        stage.show();
     }
 }

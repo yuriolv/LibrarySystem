@@ -15,17 +15,17 @@
    <children>
       <AnchorPane prefHeight="123.0" prefWidth="700.0" style="-fx-background-color: #008B45;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Label layoutX="32.0" layoutY="40.0" style="-fx-text-fill: #ffffff;" text="Nome Completo">
+            <Label fx:id="nomeLabel" layoutX="514.0" layoutY="10.0" style="-fx-text-fill: #ffffff;" text="Nome Completo" AnchorPane.rightAnchor="21.0">
                <font>
-                  <Font name="Cambria" size="18.0" />
+                  <Font name="Cambria" size="24.0" />
                </font>
             </Label>
-            <Label layoutX="32.0" layoutY="61.0" style="-fx-text-fill: #ffffff;" text="9999999">
+            <Label fx:id="matriculaLabel" layoutX="599.0" layoutY="41.0" style="-fx-text-fill: #ffffff;" text="9999999" AnchorPane.rightAnchor="21.0">
                <font>
-                  <Font name="Cambria" size="18.0" />
+                  <Font name="Cambria" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="550.0" layoutY="40.0" style="-fx-text-fill: #ffffff;" styleClass="navbar-btns" stylesheets="@Stylesheets/User.css" text="Informações da conta" AnchorPane.rightAnchor="32.0">
+            <Label layoutX="514.0" layoutY="68.0" style="-fx-text-fill: #ffffff;" styleClass="navbar-btns" stylesheets="@Stylesheets/User.css" text="Informações da conta" AnchorPane.rightAnchor="20.0">
                <font>
                   <Font name="Cambria" size="18.0" />
                </font>
@@ -33,7 +33,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Label layoutX="550.0" layoutY="61.0" onMouseClicked="#changePageHome" style="-fx-text-fill: #ffffff;" styleClass="navbar-btns" stylesheets="@Stylesheets/User.css" text="Sair" AnchorPane.rightAnchor="32.0">
+            <Label layoutX="646.0" layoutY="89.0" onMouseClicked="#changePageHome" style="-fx-text-fill: #ffffff;" styleClass="navbar-btns" stylesheets="@Stylesheets/User.css" text="Sair" AnchorPane.rightAnchor="23.0">
                <font>
                   <Font name="Cambria" size="18.0" />
                </font>
@@ -129,5 +129,10 @@
          </children>
       </HBox>
       <AnchorPane layoutY="546.0" prefHeight="53.0" prefWidth="700.0" style="-fx-background-color: #008B45;" AnchorPane.bottomAnchor="0.3999999999999986" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <Label alignment="CENTER" layoutX="52.0" layoutY="43.0" text="Biblioteca #nome" textAlignment="RIGHT" textFill="WHITE">
+         <font>
+            <Font name="Cambria" size="36.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

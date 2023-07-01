@@ -1,5 +1,6 @@
 package Controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -10,7 +11,11 @@ import Models.Users;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -18,35 +23,31 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 public class AdminUsersController  implements Initializable{
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
 
     @FXML
     private TableView<User> tableUsers;
-
     @FXML
     private TableColumn<User, String> matriculaColumn;
-
     @FXML
     private TableColumn<User, String> nomeColumn;
-
     @FXML
     private TableColumn<User, String> tipoColumn;
-
     @FXML
     private TextField matriculaTextField;
-
     @FXML
     private TextField nomeTextField;
-    
     @FXML
     private TextField tipoTextField;
-
     @FXML
     private TextField filtroTextField;
 
     private ArrayList<User> users;
-
     private ObservableList<User> usersObs;
 
     
@@ -189,14 +190,23 @@ public class AdminUsersController  implements Initializable{
     }
 
     @FXML
-    public void changePageAdmin(MouseEvent event) {
-        App.changeScene("pageAdmin");
+    public void changePageAdmin(MouseEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("../Views/Admin.fxml"));
+        stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
 
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
-    public void changePageHome(MouseEvent event) {
-        App.changeScene("pageHome");
+    public void changePageHome(MouseEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("../Views/Home.fxml"));
+        stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+
+        stage.setScene(scene);
+        stage.show();
         
     }
 

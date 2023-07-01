@@ -1,10 +1,16 @@
 package Controllers;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import Classes.User;
 import Models.Users;
+import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
@@ -13,8 +19,14 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 public class loginUserController {
+    
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+
     @FXML
     private PasswordField passPasswordField;
     @FXML
@@ -26,10 +38,8 @@ public class loginUserController {
     @FXML
     private Label responseLabel2;
 
-
-
     @FXML
-    public void verifyLoginUser(MouseEvent event) {
+    public void verifyLoginUser(MouseEvent event) throws IOException {
 
         String typeSelected, user, pass;
         ArrayList<User> users = new ArrayList<>();
@@ -56,7 +66,7 @@ public class loginUserController {
                         && usuario.getSenha().equals(pass)
                         && usuario.getTipo().equals(typeSelected)){                
                     
-                            App.changeScene("pageUser");
+                           changePageUser(event, usuario);
 
                     } else {
                         responseLabel.setText("MATRICULA OU SENHA INVÁLIDAS!");
@@ -73,7 +83,7 @@ public class loginUserController {
     }
 
     @FXML
-    public void verifyLoginUser2(KeyEvent event){
+    public void verifyLoginUser2(KeyEvent event) throws IOException{
 
         if(event.getCode() == KeyCode.ENTER){
 
@@ -102,7 +112,7 @@ public class loginUserController {
                             && usuario.getSenha().equals(pass)
                             && usuario.getTipo().equals(typeSelected)){                
                         
-                                App.changeScene("pageUser");
+                                changePageUser(event, usuario);
 
                         } else {
                             responseLabel.setText("MATRICULA OU SENHA INVÁLIDAS!");
@@ -118,11 +128,44 @@ public class loginUserController {
         }
     }
 
-
     @FXML
-    public void changePageHome(MouseEvent e){
+    public void changePageHome(MouseEvent event) throws IOException{
         resetPane();
-        App.changeScene("pageHome");
+        root = FXMLLoader.load(getClass().getResource("../Views/Home.fxml"));
+        stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void changePageUser(Event event, User user) throws IOException{
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/User.fxml"));
+
+        root = loader.load();
+
+        UserController userController = loader.getController();
+
+        userController.setData(user);
+        userController.setLabels(user);
+
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show(); 
+    }
+    @FXML 
+    public final void clearLabelIncorrect(KeyEvent e){
+        responseLabel.setText("");
+        responseLabel2.setText("");
+    }
+
+    @FXML 
+    public final void clearLabelIncomplete(MouseEvent e){
+        responseLabel.setText("");
+        responseLabel2.setText("");
     }
 
     public void resetPane(){
@@ -136,18 +179,5 @@ public class loginUserController {
         typeGroup.getSelectedToggle().setSelected(false);
 
 
-    }
-
-
-    @FXML 
-    public final void clearLabelIncorrect(KeyEvent e){
-        responseLabel.setText("");
-        responseLabel2.setText("");
-    }
-
-    @FXML 
-    public final void clearLabelIncomplete(MouseEvent e){
-        responseLabel.setText("");
-        responseLabel2.setText("");
     }
 }

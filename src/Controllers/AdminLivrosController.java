@@ -1,5 +1,6 @@
 package Controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -10,7 +11,11 @@ import Models.Livros;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -19,50 +24,40 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 
 public class AdminLivrosController  implements Initializable{
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
 
     @FXML
     private TableView<Livro> tableLivros;
-
     @FXML
     private TableColumn<Livro, String> tituloColumn;
-    
     @FXML
     private TableColumn<Livro, String> autorColumn;
-    
     @FXML
     private TableColumn<Livro, String> assuntoColumn;
-    
     @FXML
     private TableColumn<Livro, Integer> estoqueColumn;
-
     @FXML
     private TextField tituloTextField;
-
     @FXML
     private TextField autorTextField;
-    
     @FXML
     private TextField assuntoTextField;
-    
     @FXML
     private TextField estoqueTextField;
-
     @FXML
     private TextField filtroTextField;
-
     @FXML
     private Label responseLabel;
-
     @FXML
     private Label responseLabel2;
 
-
-
     private ArrayList<Livro> livros;
-
     private ObservableList<Livro> livrosObs; 
 
     @Override
@@ -83,14 +78,23 @@ public class AdminLivrosController  implements Initializable{
     }
 
     @FXML
-    public void changePageAdmin(MouseEvent event) {
-        App.changeScene("pageAdmin");
+    public void changePageAdmin(MouseEvent event) throws IOException{
+        root = FXMLLoader.load(getClass().getResource("../Views/Admin.fxml"));
+        stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
 
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
-    public void changePageHome(MouseEvent event) {
-        App.changeScene("pageHome");
+    public void changePageHome(MouseEvent event) throws IOException{
+        root = FXMLLoader.load(getClass().getResource("../Views/Home.fxml"));
+        stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+
+        stage.setScene(scene);
+        stage.show();
         
     }
 
