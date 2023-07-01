@@ -5,26 +5,27 @@ public class Livro {
     private String autor;
     private String assunto;
     private Integer qtdEstoque;
+    private String image;
 
-    public Livro(String titulo, String autor, String assunto, int qtdEstoque /* , String image */ ){
+    public Livro(String titulo, String autor, String assunto, int qtdEstoque , String image ){
         this.titulo = titulo;
         this.autor = autor;
         this.assunto = assunto;
         this.qtdEstoque = qtdEstoque;
-        //this.image = image;
+        this.image = image;
     }
 
     public String toString(){
-        return titulo+"\t"+autor+"\t"+assunto+"\t"+qtdEstoque;
+        return titulo+"\t"+autor+"\t"+assunto+"\t"+qtdEstoque+"\t"+image;
     }
 
     public String getTitulo() {
         return titulo;
     }
 
-    /* public String getImage(){
+    public String getImage(){
         return image;
-    } */
+    }
     
     public void setTitulo(String titulo) {
         this.titulo = titulo;

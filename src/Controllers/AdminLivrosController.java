@@ -1,6 +1,7 @@
 package Controllers;
 
 import java.io.File;
+import java.net.URI;
 import java.net.URL;
 import java.nio.file.Files;
 import java.util.ArrayList;
@@ -109,9 +110,6 @@ public class AdminLivrosController  implements Initializable{
         int estoque;
         try{
 
-            /* String imagePath = chooseImage();
-
-            System.out.println(imagePath); */
 
             titulo=  tituloTextField.getText();
             autor = autorTextField.getText();
@@ -122,16 +120,24 @@ public class AdminLivrosController  implements Initializable{
                 return; 
             }
 
+            String imagePath = chooseImage();
+
+            if(imagePath.equals("arquivo corrompido") || imagePath.equals("arquivo invalido")){
+                responseLabel.setText("Escolha uma imagem válida!");
+                return;
+            }
+
             estoque = Integer.parseInt(estoqueTextField.getText());
             
             resetTextFields();
 
-            //adicionar imagem ao construtor
-            Livro livro = new Livro(titulo, autor, assunto, estoque);
+
+            Livro livro = new Livro(titulo, autor, assunto, estoque, imagePath);
             
             livros.add(livro);
             livrosObs.add(livro);
             crud.create(livro);
+
         }catch(NumberFormatException e){
             responseLabel2.setText("O campo 'estoque' deve conter apenas números!");
         }
@@ -150,21 +156,37 @@ public class AdminLivrosController  implements Initializable{
 
 
         try{ 
+            
             titulo=  tituloTextField.getText();
             autor = autorTextField.getText();
-            estoque = Integer.parseInt(estoqueTextField.getText());
             assunto = assuntoTextField.getText();
+
             
-            Livro livro = new Livro(titulo, autor, assunto, estoque);
+            if(titulo.equals("") || autor.equals("") || assunto.equals("") || estoqueTextField.getText().equals("") ) {
+                responseLabel.setText("Preencha todos os campos!");
+                return; 
+            }
+
+            String imagePath = chooseImage();
+
+            if(imagePath.equals("arquivo corrompido") || imagePath.equals("arquivo invalido")){
+                responseLabel.setText("Escolha uma imagem válida!");
+                return;
+            }
+
+            estoque = Integer.parseInt(estoqueTextField.getText());
+            
+            resetTextFields();
+
+            Livro livro = new Livro(titulo, autor, assunto, estoque, imagePath);
 
             livros.set(i, livro);
             livrosObs.set(i, livro);
             
             crud.update(livros);
         
-            resetTextFields();
         }catch(NumberFormatException e){
-            System.out.println("Lembrete: digite apenas numeros");
+            responseLabel2.setText("O campo 'estoque' deve conter apenas números!");
         }
 
     }
@@ -267,6 +289,7 @@ public class AdminLivrosController  implements Initializable{
         try {
             FileChooser fc = new FileChooser();
             File file = fc.showOpenDialog(null);
+            File mainFile = new File("C:\\Users\\yuri4\\Desktop\\code\\Faculdade\\P.O.O\\Trabalhos\\sistema_biblioteca\\src");
     
             if(file == null ){
                 return "arquivo corrompido";
@@ -275,7 +298,14 @@ public class AdminLivrosController  implements Initializable{
             String typeFile = Files.probeContentType(file.toPath());
             
             if(typeFile.equals("image/png") || typeFile.equals("image/jpeg" )) {
-                return file.getPath(); //retornar o caminho relativo
+                URI absoluteMain = mainFile.toURI();
+                URI absoluteImage = file.toURI();
+
+                URI relativeImage = absoluteMain.relativize(absoluteImage);
+
+                String path = relativeImage.getPath();
+
+                return path; 
             } else {
                 return "arquivo invalido";
             }
