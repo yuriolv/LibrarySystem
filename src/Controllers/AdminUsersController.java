@@ -89,10 +89,8 @@ public class AdminUsersController  implements Initializable{
             user.setNome(nome);
             user.setTipo(tipo);
 
-           /*  users.set(i, user);
-           */
-           
-           usersObs.set(i, user); 
+            users.set(i, user);
+            usersObs.set(i, user); 
             crud.update(users);
             resetTextFields();
 
