@@ -26,7 +26,7 @@
                         <Font name="Dubai Bold" size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="userTextField" layoutX="89.0" layoutY="169.0" onKeyPressed="#clearLabelIncorrect" prefHeight="27.0" prefWidth="206.0" promptText="Ex. 9999999">
+                  <TextField fx:id="userTextField" focusTraversable="false" layoutX="89.0" layoutY="169.0" onKeyPressed="#clearLabelIncorrect" prefHeight="27.0" prefWidth="206.0" promptText="Ex. 9999999">
                      <font>
                         <Font name="Segoe UI Symbol" size="14.0" />
                      </font></TextField>
