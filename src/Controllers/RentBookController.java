@@ -44,7 +44,7 @@ public class RentBookController{
         stage.show();
     }
    // @FXML
-    void changePageBooKk(MouseEvent event) throws IOException{
+    void changePageBook(MouseEvent event) throws IOException{
         root = FXMLLoader.load(getClass().getResource("../Views/book.fxml"));
         stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
