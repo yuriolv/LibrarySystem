@@ -15,6 +15,14 @@ public class RentBook {
         this.titulo = titulo;
     }
 
+    public RentBook(String matricula, String titulo, String dateRent, String dateDevolution) {
+        this.matricula = matricula;
+        this.titulo = titulo;
+        this.dateRent = dateRent;
+        this.dateDevolution = dateDevolution;
+
+    }
+
     public String getTitulo() {
         return titulo;
     }

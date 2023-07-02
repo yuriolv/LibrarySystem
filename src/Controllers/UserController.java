@@ -34,11 +34,11 @@ public class UserController{
 
     @FXML
     public void changePageRentBook(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/rentBook.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/Books.fxml"));
 
         root = loader.load();
 
-        RentBookController rentController = loader.getController();
+        BooksController rentController = loader.getController();
 
         rentController.setData(user);
         rentController.setLabels(user);
@@ -52,7 +52,7 @@ public class UserController{
         } else {
             scene = new Scene(root);
         }
-        
+
         stage.setScene(scene);
         stage.show(); 
     }
