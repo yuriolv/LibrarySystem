@@ -37,7 +37,7 @@ public class Livros {
             
             while(linha != null){
                 String[] dados = linha.split("\t");
-                livro = new Livro(dados[0], dados[1], dados[2], Integer.parseInt(dados[3]),dados[4]);
+                livro = new Livro(dados[0], dados[1], dados[2], Integer.parseInt(dados[3]),dados[4], dados[5]);
                 livros.add(livro);
                 linha = bReader.readLine();
 
