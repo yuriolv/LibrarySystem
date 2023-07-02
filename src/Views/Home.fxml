@@ -87,6 +87,6 @@
             </AnchorPane>
          </children>
       </HBox>
-      <AnchorPane layoutY="258.0" prefHeight="53.0" prefWidth="700.0" style="-fx-background-color: #008B45;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <AnchorPane layoutY="547.9850761360887" maxHeight="53.0" minHeight="53.0" prefHeight="53.0" prefWidth="700.0" style="-fx-background-color: #008B45;" AnchorPane.bottomAnchor="-0.9999999999999574" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-0.6566964716926122" />
    </children>
 </AnchorPane>

@@ -47,26 +47,33 @@
             </Label>
          </children>
       </AnchorPane>
-      <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutY="109.0" prefHeight="448.0" prefWidth="701.0" AnchorPane.bottomAnchor="42.52240082691242" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.373114361745479" AnchorPane.topAnchor="109.0">
+      <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutY="109.0" prefHeight="448.0" prefWidth="700.0" AnchorPane.bottomAnchor="43.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="109.0">
          <content>
-            <VBox alignment="CENTER" fillWidth="false" prefHeight="447.0" prefWidth="693.0">
+            <VBox alignment="CENTER" layoutX="-2.0" prefHeight="448.0" prefWidth="700.0">
                <children>
-                  <AnchorPane prefHeight="165.0" prefWidth="547.0">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="filtroTextField" layoutY="41.0" onKeyPressed="#pesquisarUser2" prefHeight="32.0" prefWidth="547.0" promptText="Busque por &quot;Título&quot;, &quot;Matricula&quot;, &quot;Nome&quot; ou &quot;Tipo&quot;" style="-fx-background-radius: 10;" />
-                        <ImageView fitHeight="19.0" fitWidth="20.0" layoutX="514.0" layoutY="48.0" onMouseClicked="#pesquisarUser" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Assets/icons8-search-50.png" />
-                           </image>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </ImageView>
+                        <AnchorPane prefHeight="165.0" prefWidth="547.0">
+                           <children>
+                              <TextField fx:id="filtroTextField" layoutY="20.0" onKeyPressed="#pesquisarUser2" prefHeight="32.0" prefWidth="547.0" promptText="Busque por &quot;Título&quot;, &quot;Matricula&quot;, &quot;Nome&quot; ou &quot;Tipo&quot;" style="-fx-background-radius: 10;">
+                                 <font>
+                                    <Font name="Segoe UI Semibold" size="14.0" />
+                                 </font></TextField>
+                              <ImageView fitHeight="19.0" fitWidth="20.0" layoutX="514.0" layoutY="27.0" onMouseClicked="#pesquisarUser" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Assets/icons8-search-50.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
                      </children>
                      <VBox.margin>
-                        <Insets bottom="40.0" top="25.0" />
+                        <Insets bottom="20.0" top="20.0" />
                      </VBox.margin>
-                  </AnchorPane>
+                  </HBox>
                   <VBox prefHeight="429.0" prefWidth="686.0" style="-fx-background-color: #dfdedf; -fx-background-radius: 10;">
                      <children>
                         <HBox alignment="CENTER" prefHeight="142.0" prefWidth="700.0" style="-fx-background-color: #dfdedf; -fx-background-radius: 7;">
@@ -80,11 +87,17 @@
                                     </Label>
                                     <HBox alignment="CENTER" prefHeight="25.0" prefWidth="560.0" spacing="10.0">
                                        <children>
-                                          <TextField fx:id="matriculaTextField" layoutX="346.0" layoutY="10.0" prefHeight="25.0" prefWidth="139.0" promptText="Matricula" />
-                                          <TextField fx:id="nomeTextField" layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="139.0" promptText="Nome" />
+                                          <TextField fx:id="matriculaTextField" layoutX="346.0" layoutY="10.0" prefHeight="25.0" prefWidth="139.0" promptText="Matricula">
+                                             <font>
+                                                <Font name="Nirmala UI" size="14.0" />
+                                             </font></TextField>
+                                          <TextField fx:id="nomeTextField" layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="139.0" promptText="Nome">
+                                             <font>
+                                                <Font name="Nirmala UI" size="14.0" />
+                                             </font></TextField>
                                           <TextField fx:id="tipoTextField" layoutX="159.0" layoutY="10.0" prefHeight="25.0" prefWidth="139.0" promptText="Tipo">
                                              <font>
-                                                <Font size="11.0" />
+                                                <Font name="Nirmala UI" size="14.0" />
                                              </font>
                                           </TextField>
                                        </children>
@@ -159,20 +172,23 @@
                         </HBox>
                         <TableView fx:id="tableUsers" onMouseClicked="#getRowData" prefHeight="254.0" prefWidth="700.0" style="-fx-background-color: #dfdedf;" stylesheets="@Stylesheets/AdminLivros.css">
                            <columns>
-                              <TableColumn fx:id="matriculaColumn" prefWidth="150.0" text="Matricula" />
-                              <TableColumn fx:id="nomeColumn" prefWidth="141.0" text="Nome" />
-                              <TableColumn fx:id="tipoColumn" prefWidth="128.0" text="Tipo" />
+                              <TableColumn fx:id="matriculaColumn" prefWidth="150.0" style="-fx-font-size: 14;" text="Matricula" />
+                              <TableColumn fx:id="nomeColumn" prefWidth="141.0" style="-fx-font-size: 14;" text="Nome" />
+                              <TableColumn fx:id="tipoColumn" prefWidth="128.0" style="-fx-font-size: 14;" text="Tipo" />
                            </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
                      </children>
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" />
+                     </VBox.margin>
                   </VBox>
                </children>
             </VBox>
          </content>
       </ScrollPane>
-      <AnchorPane layoutY="557.2985087067758" prefHeight="43.0" prefWidth="700.0" style="-fx-background-color: #008B45;" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <AnchorPane layoutY="548.0" minHeight="53.0" prefHeight="53.0" prefWidth="700.0" style="-fx-background-color: #008B45;" AnchorPane.bottomAnchor="-1.0149238639113491" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-0.6566964716926122" />
    </children>
 </AnchorPane>

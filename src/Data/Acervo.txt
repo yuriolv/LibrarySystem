@@ -1,1 +1,3 @@
-Lógica para computação	João Nunes de Souza	Lógica 	20	src/Views/CapasDeLivros/Lógica-para-computação.jpg
+Logica para computação	Rivas	Programação	20	src/Views/CapasDeLivros/Lógica-para-computação.jpg
+Introd. ao Python	Deitel	Programação	30	src/Views/CapasDeLivros/51Br4G6dF4L._AC_UF1000,1000_QL80_.jpg
+Código Limpo	Robert C. Martin	Programação	2	src/Views/CapasDeLivros/41IRFCLk-kL.jpg
