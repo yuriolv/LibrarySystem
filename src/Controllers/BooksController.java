@@ -1,9 +1,12 @@
 package Controllers;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.scene.paint.Color;
 
 import Classes.Livro;
 import Classes.User;
@@ -16,6 +19,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.effect.BlurType;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Screen;
 import javafx.scene.layout.AnchorPane;
@@ -33,6 +40,10 @@ public class BooksController implements Initializable{
     private Label matriculaLabel;
     @FXML
     private FlowPane flowPane;
+
+    
+    BlurType threePassBox = BlurType.THREE_PASS_BOX;
+    private  DropShadow dropShadow = new DropShadow(threePassBox, Color.BLACK, 10, 0, 0, 0);
 
     private User user;
     private Livro selectedLivro;
@@ -94,15 +105,54 @@ public class BooksController implements Initializable{
         matriculaLabel.setText(user.getMatricula());    
     }
 
-    public AnchorPane createAnchorPane(String bookName, String bookAuthor) {
+    public AnchorPane createAnchorPane(Livro livro) {
         AnchorPane anchorPane = new AnchorPane();
         anchorPane.setPrefWidth(179);
         anchorPane.setPrefHeight(241);
+        anchorPane.setStyle("-fx-background-color: white;"+"-fx-background-radius: 10;"+"-fx-cursor:HAND;");
+        anchorPane.setEffect(dropShadow);
+        
+        try {
+            FileInputStream file = new FileInputStream(livro.getImage());
+            Image img = new Image(file);
+            ImageView image = new ImageView(img);
 
-        Label name = new Label(bookName);
-        Label author = new Label(bookAuthor);
+            image.setFitHeight(142);
+            image.setFitWidth(97);
 
-        anchorPane.getChildren().addAll(name, author);
+            image.setLayoutX(41);
+            image.setLayoutY(14);
+
+            Label name = new Label(livro.getTitulo());
+            Label author = new Label(livro.getAutor());
+            Label subject = new Label(livro.getAssunto());
+
+            
+            name.setStyle("-fx-font-weight: bold;"+"-fx-font-size: 12;");
+            author.setStyle("-fx-font-style: italic;"+"-fx-font-size: 14;");
+            subject.setStyle("-fx-font-size: 14;");
+
+            name.setLayoutX(14);
+            name.setLayoutY(167);
+
+            author.setLayoutX(14);
+            author.setLayoutY(184);
+
+            subject.setLayoutX(14);
+            subject.setLayoutY(204);
+    
+            anchorPane.getChildren().addAll(name, author, subject, image);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        anchorPane.setOnMouseClicked(event -> {
+            try {
+                changePageBook(event);
+            } catch(IOException e) {
+                System.out.println(e);
+            }
+        });
         return anchorPane;
     }
 
@@ -114,7 +164,7 @@ public class BooksController implements Initializable{
         crud.read(livros);
 
         for (Livro livro : livros) {
-            AnchorPane bookCard = createAnchorPane(livro.getTitulo(), livro.getAutor());
+            AnchorPane bookCard = createAnchorPane(livro);
             flowPane.getChildren().add(bookCard);
         }
     }
