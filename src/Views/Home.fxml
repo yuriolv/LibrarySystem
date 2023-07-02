@@ -3,39 +3,30 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" stylesheets="@Stylesheets/Home.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.HomeController">
    <children>
-      <VBox alignment="CENTER" prefHeight="152.0" prefWidth="600.0" AnchorPane.bottomAnchor="448.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Label alignment="CENTER" layoutX="129.0" layoutY="145.0" prefHeight="38.0" prefWidth="443.0" text="Selecione uma das opções abaixo" AnchorPane.leftAnchor="129.0" AnchorPane.rightAnchor="128.0">
+         <font>
+            <Font name="Cambria" size="30.0" />
+         </font>
+      </Label>
+      <HBox alignment="CENTER" fillHeight="false" layoutY="164.0" prefHeight="394.0" prefWidth="700.0" spacing="30.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="164.0">
          <children>
-            <Label text="Biblioteca">
-               <font>
-                  <Font name="Cambria" size="48.0" />
-               </font>
-            </Label>
-            <Label text="Selecione uma das opções abaixo">
-               <font>
-                  <Font name="Cambria" size="24.0" />
-               </font>
-            </Label>
-         </children>
-      </VBox>
-      <HBox alignment="CENTER" fillHeight="false" layoutY="145.0" prefHeight="413.0" prefWidth="600.0" spacing="75.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="145.0">
-         <children>
-            <AnchorPane id="users" cache="true" onMouseClicked="#changeLoginUser" prefHeight="150.0" prefWidth="200.0" styleClass="buttons">
+            <AnchorPane id="users" cache="true" onMouseClicked="#changeLoginUser" prefHeight="150.0" prefWidth="200.0" style="-fx-background-radius: 10; -fx-border-radius: 20; -fx-background-color: #dfdedf;" styleClass="buttons">
                <children>
-                  <ImageView fitHeight="93.0" fitWidth="131.0" layoutX="53.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="93.0" fitWidth="131.0" layoutX="54.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Assets/usuario.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="12.0" layoutY="93.0" text="Discente e professor">
+                  <Label layoutX="13.0" layoutY="112.0" text="Discente e professor">
                      <font>
                         <Font name="Cambria" size="20.0" />
                      </font>
@@ -50,15 +41,18 @@
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
+               <effect>
+                  <DropShadow />
+               </effect>
             </AnchorPane>
-            <AnchorPane id="admin" onMouseClicked="#changeLoginAdmin" prefHeight="150.0" prefWidth="200.0" styleClass="buttons">
+            <AnchorPane id="admin" onMouseClicked="#changeLoginAdmin" prefHeight="150.0" prefWidth="200.0" style="-fx-background-radius: 10; -fx-border-radius: 20; -fx-background-color: #dfdedf;" styleClass="buttons">
                <children>
-                  <ImageView fitHeight="100.0" fitWidth="103.0" layoutX="48.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="50.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Assets/bibliotecario.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="44.0" layoutY="93.0" text="Bibliotecário">
+                  <Label layoutX="45.0" layoutY="114.0" text="Bibliotecário">
                      <font>
                         <Font name="Cambria" size="20.0" />
                      </font>
@@ -67,15 +61,18 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
+               <effect>
+                  <DropShadow />
+               </effect>
             </AnchorPane>
-            <AnchorPane id="acervo" onMouseClicked="#changePageAcervo" prefHeight="150.0" prefWidth="200.0" styleClass="buttons">
+            <AnchorPane id="acervo" onMouseClicked="#changePageAcervo" prefHeight="150.0" prefWidth="200.0" style="-fx-background-radius: 10; -fx-border-radius: 20; -fx-background-color: #dfdedf;" styleClass="buttons">
                <children>
-                  <ImageView fitHeight="93.0" fitWidth="93.0" layoutX="50.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="93.0" fitWidth="93.0" layoutX="54.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Assets/acervo.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="62.0" layoutY="93.0" text="Acervo">
+                  <Label layoutX="70.0" layoutY="112.0" text="Acervo">
                      <font>
                         <Font name="Cambria" size="20.0" />
                      </font>
@@ -84,9 +81,24 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
+               <effect>
+                  <DropShadow />
+               </effect>
             </AnchorPane>
          </children>
+         <effect>
+            <DropShadow />
+         </effect>
       </HBox>
       <AnchorPane layoutY="547.9850761360887" maxHeight="53.0" minHeight="53.0" prefHeight="53.0" prefWidth="700.0" style="-fx-background-color: #008B45;" AnchorPane.bottomAnchor="-0.9999999999999574" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-0.6566964716926122" />
+      <AnchorPane prefHeight="112.0" prefWidth="700.0" style="-fx-background-color: #008B45;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label alignment="CENTER" layoutX="247.0" layoutY="26.0" text="Biblioteca" textFill="WHITE" AnchorPane.leftAnchor="247.0" AnchorPane.rightAnchor="247.0">
+               <font>
+                  <Font name="Cambria" size="48.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

@@ -52,12 +52,27 @@ public class BooksController implements Initializable{
 
     @FXML
     void changePageUser(MouseEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("../Views/User.fxml"));
-        stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/User.fxml"));
 
+        root = loader.load();
+
+        UserController userController = loader.getController();
+
+        userController.setData(user);
+        userController.setLabels(user);
+
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        if(stage.isMaximized() == true){
+            Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
+            scene = new Scene(root, screenSize.getMaxX(), screenSize.getMaxY());
+            stage.setMaximized(true);
+        } else {
+            scene = new Scene(root);
+        }
+        
         stage.setScene(scene);
-        stage.show();
+        stage.show(); 
     }
 
     @FXML

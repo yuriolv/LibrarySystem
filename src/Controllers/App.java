@@ -23,7 +23,6 @@ public class App extends Application {
         stage = primaryStage;
         stage.setTitle("SISTEMA BIBLIOTECA");
         stage.setScene(pageHome); 
-        //stage.setMaximized(true);
         stage.show();
    
     }

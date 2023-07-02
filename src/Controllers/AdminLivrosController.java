@@ -21,9 +21,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -47,6 +49,8 @@ public class AdminLivrosController  implements Initializable{
     @FXML
     private TableColumn<Livro, String> assuntoColumn;
     @FXML
+    private TableColumn<Livro, String> coleçãoColumn;
+    @FXML
     private TableColumn<Livro, Integer> estoqueColumn;
     @FXML
     private TextField tituloTextField;
@@ -61,7 +65,12 @@ public class AdminLivrosController  implements Initializable{
     @FXML
     private Label responseLabel;
     @FXML
-    private Label responseLabel2;
+    private ToggleGroup coleção;
+    @FXML
+    private RadioButton radioComum;
+    @FXML
+    private RadioButton radioEspecial;
+
 
     private ArrayList<Livro> livros;
     private ObservableList<Livro> livrosObs; 
@@ -78,6 +87,7 @@ public class AdminLivrosController  implements Initializable{
         tituloColumn.setCellValueFactory(new PropertyValueFactory<>("Titulo"));
         autorColumn.setCellValueFactory(new PropertyValueFactory<>("Autor"));
         assuntoColumn.setCellValueFactory(new PropertyValueFactory<>("Assunto"));
+        coleçãoColumn.setCellValueFactory(new PropertyValueFactory<>("Coleção"));
         estoqueColumn.setCellValueFactory(new PropertyValueFactory<>("QtdEstoque"));
 
         tableLivros.setItems(livrosObs);
@@ -128,6 +138,9 @@ public class AdminLivrosController  implements Initializable{
 
         String titulo, autor, assunto;
         int estoque;
+        RadioButton radio = (RadioButton) coleção.getSelectedToggle();
+        if(radio!=null){
+            String selected = radio.getText();
         try{
 
 
@@ -152,7 +165,7 @@ public class AdminLivrosController  implements Initializable{
             resetTextFields();
 
 
-            Livro livro = new Livro(titulo, autor, assunto, estoque, imagePath);
+            Livro livro = new Livro(titulo, autor, assunto, estoque, selected,imagePath);
             
             livros.add(livro);
             livrosObs.add(livro);
@@ -160,9 +173,9 @@ public class AdminLivrosController  implements Initializable{
 
         }catch(NumberFormatException e){
             responseLabel.setText("");
-            responseLabel2.setText("O campo 'estoque' deve conter apenas números!");
+            responseLabel.setText("O campo 'estoque' deve conter apenas números!");
         }
-        
+    }
 
     }
 
@@ -172,43 +185,47 @@ public class AdminLivrosController  implements Initializable{
         Livros crud = new Livros();
         String titulo, autor, assunto;
         int estoque;
+        RadioButton radio = (RadioButton) coleção.getSelectedToggle();
         
         tableLivros.setItems(livrosObs);
 
 
-        try{ 
+        if(radio!=null){
+            String selected = radio.getText();
+            try{ 
             
-            titulo=  tituloTextField.getText();
-            autor = autorTextField.getText();
-            assunto = assuntoTextField.getText();
+                titulo=  tituloTextField.getText();
+                autor = autorTextField.getText();
+                assunto = assuntoTextField.getText();
 
             
-            if(titulo.equals("") || autor.equals("") || assunto.equals("") || estoqueTextField.getText().equals("") ) {
-                responseLabel.setText("Preencha todos os campos!");
-                return; 
-            }
+                if(titulo.equals("") || autor.equals("") || assunto.equals("") || estoqueTextField.getText().equals("") ) {
+                    responseLabel.setText("Preencha todos os campos!");
+                    return; 
+                }
 
-            String imagePath = chooseImage();
+                String imagePath = chooseImage();
 
-            if(imagePath.equals("arquivo corrompido") || imagePath.equals("arquivo invalido")){
-                responseLabel.setText("Escolha uma imagem válida!");
-                return;
-            }
+                if(imagePath.equals("arquivo corrompido") || imagePath.equals("arquivo invalido")){
+                    responseLabel.setText("Escolha uma imagem válida!");
+                    return;
+                }
 
-            estoque = Integer.parseInt(estoqueTextField.getText());
+                estoque = Integer.parseInt(estoqueTextField.getText());
+
+                resetTextFields();
+
+                Livro livro = new Livro(titulo, autor, assunto, estoque, selected, imagePath);
+
+                livros.set(i, livro);
+                crud.update(livros);
+                livrosObs.set(i, livro);
             
-            resetTextFields();
-
-            Livro livro = new Livro(titulo, autor, assunto, estoque, imagePath);
-
-            livros.set(i, livro);
-            livrosObs.set(i, livro);
-            
-            crud.update(livros);
         
-        }catch(NumberFormatException e){
-            responseLabel.setText("");
-            responseLabel2.setText("O campo 'estoque' deve conter apenas números!");
+            }catch(NumberFormatException e){
+                responseLabel.setText("");
+                responseLabel.setText("O campo 'estoque' deve conter apenas números!");
+            }
         }
 
     }
@@ -281,8 +298,9 @@ public class AdminLivrosController  implements Initializable{
         Livros crud = new Livros();
         
         int i = tableLivros.getSelectionModel().getSelectedIndex();
+        if(i<0)
+            return;
 
-        
         livrosObs.remove(i);
         crud.delete(i, livros);
 
@@ -293,16 +311,24 @@ public class AdminLivrosController  implements Initializable{
     void getRowData(MouseEvent event) {
 
         int i = tableLivros.getSelectionModel().getSelectedIndex();
-    
-        Livro livro = (Livro) tableLivros.getItems().get(i);
-    
+        if(i>-1){
+
+            Livro livro = (Livro) tableLivros.getItems().get(i);
+            String estoque = String.valueOf(livro.getQtdEstoque());
+        
             tituloTextField.setText(livro.getTitulo());
             autorTextField.setText(livro.getAutor());
             assuntoTextField.setText(livro.getAssunto());
-            String estoque = String.valueOf(livro.getQtdEstoque());
+
+           if(livro.getColeção().equals("Coleção Comum"))
+                radioComum.setSelected(true);
+            else
+                radioEspecial.setSelected(true);
+            
             
             estoqueTextField.setText(estoque);
     
+        }
 
     }
 
@@ -346,6 +372,10 @@ public class AdminLivrosController  implements Initializable{
         estoqueTextField.setText("");
         responseLabel.setText("");
         filtroTextField.setText("");
+
+        if(coleção.getSelectedToggle() == null)
+            return;
+        coleção.getSelectedToggle().setSelected(false);
     }    
 
 
