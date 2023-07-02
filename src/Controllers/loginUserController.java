@@ -156,7 +156,7 @@ public class loginUserController {
         stage.setScene(scene);
         stage.show(); 
     }
-    @FXML 
+     @FXML 
     public final void clearLabelIncorrect(KeyEvent e){
         responseLabel.setText("");
         responseLabel2.setText("");

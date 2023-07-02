@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class UserController{
     private Stage stage;
@@ -27,7 +28,12 @@ public class UserController{
 
     @FXML
     public void changePageHome(MouseEvent event) throws IOException {
-       
+        root = FXMLLoader.load(getClass().getResource("../Views/Home.fxml"));
+        stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -54,8 +60,24 @@ public class UserController{
     }
 
     @FXML
-    public void changeGenerateReport(MouseEvent event) {
-       // App.changeScene("pageAdminUsers");
+    public void changeGenerateReport(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/invoiceUser.fxml"));
+
+        root = loader.load();
+
+        InvoiceUserController invoice = loader.getController();
+
+       // invoice.setData(user);
+        invoice.setLabels(user);
+
+        scene = new Scene(root);
+        stage=new Stage();
+
+        stage.initStyle(StageStyle.UTILITY);
+        stage.setTitle("recibo");
+        stage.setScene(scene);
+        stage.show();
+        
     }
 
    public void setData(User user){
