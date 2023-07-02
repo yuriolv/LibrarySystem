@@ -10,6 +10,7 @@ import Classes.User;
 import Models.Livros;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -21,7 +22,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
-public class BooksController{
+public class BooksController implements Initializable{
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -31,7 +32,7 @@ public class BooksController{
     @FXML
     private Label matriculaLabel;
     @FXML
-    private FlowPane flowpane;
+    private FlowPane flowPane;
 
     private User user;
     private Livro selectedLivro;
@@ -120,7 +121,7 @@ public class BooksController{
         return anchorPane;
     }
 
-    @FXML
+    
     public void initialize(URL location, ResourceBundle resources) {
         Livros crud = new Livros();
 
@@ -129,7 +130,7 @@ public class BooksController{
 
         for (Livro livro : livros) {
             AnchorPane bookCard = createAnchorPane(livro.getTitulo(), livro.getAutor());
-            flowpane.getChildren().add(bookCard);
+            flowPane.getChildren().add(bookCard);
         }
     }
 

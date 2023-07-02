@@ -1,2 +1,2 @@
-logica	diogo	logic	15	Coleção Comum	src/Views/CapasDeLivros/Lógica-para-computação.jpg
-logica para computação	Rivas	Logica	1	Coleção Especial	src/Views/CapasDeLivros/Lógica-para-computação.jpg
+Introd. ao Python	Deitel	Programação	20	src/Views/CapasDeLivros/51Br4G6dF4L._AC_UF1000,1000_QL80_.jpg
+Código Limpo	Robert C. Martin	Programação	10	src/Views/CapasDeLivros/41IRFCLk-kL.jpg

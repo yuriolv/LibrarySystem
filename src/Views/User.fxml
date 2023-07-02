@@ -15,12 +15,12 @@
    <children>
       <AnchorPane prefHeight="123.0" prefWidth="700.0" style="-fx-background-color: #008B45;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Label fx:id="nomeLabel" layoutX="510.0" layoutY="25.0" style="-fx-text-fill: #ffffff;" text="Nome Completo" AnchorPane.rightAnchor="25.0">
+            <Label fx:id="nomeLabel" layoutX="510.0" layoutY="25.0" onMouseClicked="#changePageEdit" style="-fx-text-fill: #ffffff; -fx-cursor: hand;" text="Nome Completo" AnchorPane.rightAnchor="25.0">
                <font>
                   <Font name="Cambria" size="24.0" />
                </font>
             </Label>
-            <Label fx:id="matriculaLabel" layoutX="597.0" layoutY="62.0" style="-fx-text-fill: #ffffff;" text="9999999" AnchorPane.rightAnchor="25.0">
+            <Label fx:id="matriculaLabel" layoutX="597.0" layoutY="62.0" onMouseClicked="#changePageEdit" style="-fx-text-fill: #ffffff; -fx-cursor: hand;" text="9999999" AnchorPane.rightAnchor="25.0">
                <font>
                   <Font name="Cambria" size="20.0" />
                </font>
