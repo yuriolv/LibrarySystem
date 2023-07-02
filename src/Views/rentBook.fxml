@@ -36,7 +36,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Label layoutX="566.0" layoutY="62.0" onMouseClicked="#changePageAdmin" text="Voltar" textFill="WHITE" AnchorPane.rightAnchor="86.0">
+            <Label layoutX="566.0" layoutY="62.0" onMouseClicked="#changePageUser" text="Voltar" textFill="WHITE" AnchorPane.rightAnchor="86.0">
                <font>
                   <Font size="20.0" />
                </font>

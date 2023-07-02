@@ -6,3 +6,4 @@ Física para computação	Dimitry	Física	25
 Algebra Linear	Thelmo	Matemática 	3
 Introdução a computação	Ana Luiza	Desenvolvimento	20
 Computação	Ana Luiza 	Desenvolvimento	2
+Lógica para computação	João Nunes de Souza	Lógica	20	/C:/Users/graziane/Documents/java/Trabalhos POO/sistema_biblioteca/src/Views/CapasDeLivros/Lógica-para-computação.jpg

@@ -25,13 +25,27 @@ public class RentBookController{
     private User user;
 
     @FXML
-    void changePageAdmin(MouseEvent event) {
+    void changePageUser(MouseEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("../Views/User.fxml"));
+        stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
 
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
     void changePageHome(MouseEvent event) throws IOException{
         root = FXMLLoader.load(getClass().getResource("../Views/Home.fxml"));
+        stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+
+        stage.setScene(scene);
+        stage.show();
+    }
+   // @FXML
+    void changePageBooKk(MouseEvent event) throws IOException{
+        root = FXMLLoader.load(getClass().getResource("../Views/book.fxml"));
         stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
 
