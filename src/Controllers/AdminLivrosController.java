@@ -2,7 +2,6 @@ package Controllers;
 
 import java.io.IOException;
 import java.io.File;
-import java.net.URI;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
@@ -294,8 +293,6 @@ public class AdminLivrosController  implements Initializable{
         try {
             FileChooser fc = new FileChooser();
             File file = fc.showOpenDialog(null);
-            File mainFile = new File("C:\\Users\\yuri4\\Desktop\\code\\Faculdade\\P.O.O\\Trabalhos\\sistema_biblioteca\\src");
-            
             if(file == null ){
                 return "arquivo corrompido";
             } 
@@ -306,16 +303,10 @@ public class AdminLivrosController  implements Initializable{
             String typeFile = Files.probeContentType(file.toPath());
 
             if(typeFile.equals("image/png") || typeFile.equals("image/jpeg" )) {
-    
+
                 Files.copy(file.toPath(), destinationDiretory.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
-                
-                URI absoluteMain = mainFile.toURI();
-                URI absoluteImage = destinationDiretory.toURI();
-
-                URI relativeImage = absoluteMain.relativize(absoluteImage);
-
-                String path = relativeImage.getPath();
+                String path = "src/Views/CapasDeLivros/" + fileName;
 
                 return path; 
             } else {
