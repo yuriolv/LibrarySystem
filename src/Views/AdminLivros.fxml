@@ -127,12 +127,12 @@
                                           </AnchorPane>
                                           <AnchorPane layoutX="365.0" layoutY="10.0" prefHeight="27.0" prefWidth="33.0">
                                              <children>
-                                                <Button mnemonicParsing="false" onMouseClicked="#removerLivro" prefHeight="27.0" prefWidth="32.0">
+                                                <Button mnemonicParsing="false" onMouseClicked="#editarLivro" prefHeight="27.0" prefWidth="32.0">
                                                    <cursor>
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor>
                                                 </Button>
-                                                <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="9.0" layoutY="6.0" onMouseClicked="#removerLivro" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="9.0" layoutY="6.0" onMouseClicked="#editarLivro" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@Assets/edit.png" />
                                                    </image>

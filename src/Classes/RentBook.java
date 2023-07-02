@@ -8,6 +8,7 @@ public class RentBook {
     private String titulo;
     private String dateRent;
     private String dateDevolution;
+    //não colocar devolução
 
 
     public RentBook(String matricula, String titulo) {

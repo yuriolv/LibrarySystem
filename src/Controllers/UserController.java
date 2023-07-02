@@ -89,6 +89,27 @@ public class UserController{
         
     }
 
+    @FXML
+    public void changePageEdit(MouseEvent event) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/EditarUser.fxml"));
+
+        root = loader.load();
+
+        EditarUserController editar = loader.getController();
+
+        editar.setData(user);
+        editar.setLabels(user);
+
+        scene = new Scene(root);
+        stage = new Stage();
+
+        stage.initStyle(StageStyle.UTILITY);
+        stage.setTitle("Editar Usuário");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
    public void setData(User user){
        this.user=user;
    } 
