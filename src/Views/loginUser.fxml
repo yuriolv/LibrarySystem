@@ -16,7 +16,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#verifyLoginUser2" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: E5E5E5;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.loginUserController">
    <children>
-      <AnchorPane layoutY="558.0" prefHeight="42.0" prefWidth="700.0" style="-fx-background-color: #008B45;" AnchorPane.bottomAnchor="-0.2686555131184747" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-0.6566964716926122" />
+      <AnchorPane layoutY="548.0" minHeight="53.0" prefHeight="53.0" prefWidth="700.0" style="-fx-background-color: #008B45;" AnchorPane.bottomAnchor="-1.0149238639113065" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-0.6566964716926122" />
       <HBox alignment="CENTER" fillHeight="false" layoutY="70.0" prefHeight="460.0" prefWidth="700.0" AnchorPane.bottomAnchor="69.34329669601391" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.373114361745479" AnchorPane.topAnchor="70.0">
          <children>
             <AnchorPane prefHeight="366.0" prefWidth="384.0" style="-fx-background-color: #dfdedf; -fx-background-radius: 10;">
@@ -26,7 +26,10 @@
                         <Font name="Dubai Bold" size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="userTextField" layoutX="89.0" layoutY="169.0" onKeyPressed="#clearLabelIncorrect" prefHeight="27.0" prefWidth="206.0" promptText="Ex. 9999999" />
+                  <TextField fx:id="userTextField" layoutX="89.0" layoutY="169.0" onKeyPressed="#clearLabelIncorrect" prefHeight="27.0" prefWidth="206.0" promptText="Ex. 9999999">
+                     <font>
+                        <Font name="Segoe UI Symbol" size="14.0" />
+                     </font></TextField>
                   <Label layoutX="23.0" layoutY="215.0" text="Senha" AnchorPane.leftAnchor="23.0">
                      <font>
                         <Font name="Dubai Bold" size="16.0" />
@@ -48,7 +51,10 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <PasswordField fx:id="passPasswordField" layoutX="89.0" layoutY="216.0" onKeyPressed="#clearLabelIncorrect" prefHeight="27.0" prefWidth="206.0" promptText="Sua senha" />
+                  <PasswordField fx:id="passPasswordField" layoutX="89.0" layoutY="216.0" onKeyPressed="#clearLabelIncorrect" prefHeight="27.0" prefWidth="206.0" promptText="Sua senha">
+                     <font>
+                        <Font name="Segoe UI Symbol" size="14.0" />
+                     </font></PasswordField>
                   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="118.0" layoutY="13.0" prefHeight="35.0" prefWidth="81.0" text="Login">
                      <font>
                         <Font name="Dubai Regular" size="33.0" />

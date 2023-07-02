@@ -5,11 +5,13 @@ import java.io.IOException;
 import Classes.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class UserController{
@@ -43,7 +45,14 @@ public class UserController{
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 
-        scene = new Scene(root);
+        if(stage.isMaximized() == true){
+            Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
+            scene = new Scene(root, screenSize.getMaxX(), screenSize.getMaxY());
+            stage.setMaximized(true);
+        } else {
+            scene = new Scene(root);
+        }
+        
         stage.setScene(scene);
         stage.show(); 
     }
