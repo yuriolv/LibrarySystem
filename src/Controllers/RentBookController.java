@@ -3,15 +3,19 @@ package Controllers;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import Classes.Livro;
 import Classes.RentBook;
 import Classes.User;
+import Models.Comments;
 import Models.Livros;
 import Models.Rents;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -22,17 +26,20 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class RentBookController {
+public class RentBookController implements Initializable{
+
     
     @FXML
     private Label labelSair;
     @FXML
     private Label matriculaLabel;
     @FXML
+    private VBox vbox;
     private Label nomeLabel;
     @FXML
     private Label assuntoLabel;
@@ -48,6 +55,7 @@ public class RentBookController {
     private Livro livro;
     private RentBook rentBookClass;
     private Livros crud;
+    private ArrayList<String> comments;
 
     private ArrayList<Livro> livros;
     private Stage stage;
@@ -187,5 +195,27 @@ public class RentBookController {
 
         capaImage.setImage(img);
 
+    }
+
+    public Label createLabel(String comment) {
+        Label label = new Label();
+        label.setText(comment);
+        label.setPrefWidth(700);
+        label.setStyle("-fx-font-family: Cambria;"+"-fx-font-size: 16;");
+
+
+        return label;
+    }
+
+    public void initialize(URL location, ResourceBundle resources) {
+        Comments crud = new Comments(); //substituir pelo crud de comentários
+
+        comments = new ArrayList<String>(); 
+        crud.read(comments);
+
+        for(String comment: comments) {
+            Label commentLabel = createLabel(comment);
+            vbox.getChildren().addAll(commentLabel);
+        }
     }
 }
