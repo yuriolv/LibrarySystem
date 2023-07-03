@@ -49,12 +49,15 @@ public class RentBook {
     public void setDateDevolution() {
         DateTimeFormatter dateTimeFormatter =  DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate today = LocalDate.now();
-        today.plusDays(7);
         dateDevolution = today.format(dateTimeFormatter);
     }
 
-    public String toString(){
-        return matricula + "\t" + titulo + "\t" + dateRent + "\t" + dateDevolution;
+    public String toStringRent(){
+        return matricula + "\t" + titulo + "\t" + dateRent;
+    }
+
+    public String toStringDevolution(){
+        return  matricula + "\t" + titulo + "\t" + dateRent + "\t" + dateDevolution;
     }
 
     

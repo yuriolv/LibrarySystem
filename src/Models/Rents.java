@@ -12,7 +12,12 @@ public class Rents {
             FileWriter fWriter = new FileWriter("src/Data/Rents.txt", true);
             BufferedWriter bWriter = new BufferedWriter(fWriter);
 
-            bWriter.write(rent.toString());
+            if(rent.getDateDevolution().equals("")){
+                bWriter.write(rent.toStringRent());
+            }else {
+                bWriter.write(rent.toStringDevolution());
+            }
+
             bWriter.newLine();
             
             bWriter.close();
