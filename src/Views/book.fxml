@@ -127,14 +127,7 @@
                               <Insets left="10.0" />
                            </VBox.margin>
                         </Label>
-                        <VBox fx:id="vbox" prefHeight="140.0" prefWidth="702.0" spacing="15.0">
-                           <children>
-                              <Label prefHeight="20.0" prefWidth="700.0" text="Livro muito bom. Aprendi muitas coisas com ele">
-                                 <font>
-                                    <Font name="Cambria" size="16.0" />
-                                 </font>
-                              </Label>
-                           </children></VBox>
+                        <VBox fx:id="vbox" prefHeight="140.0" prefWidth="702.0" spacing="15.0" />
                      </children>
                   </VBox>
                </children>

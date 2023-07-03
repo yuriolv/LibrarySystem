@@ -108,6 +108,7 @@ public class RentBookController{
 
     @FXML
     public void rentBook(MouseEvent event) throws IOException{
+        int num = limitarEmprestimo();
         if(selectedLivro.getQtdEstoque()==0){
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Aviso");
@@ -125,6 +126,22 @@ public class RentBookController{
             alert.showAndWait();
             return;
 
+        }
+        if(user.getTipo().equals("Docente") && num==3){
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Aviso");
+            alert.setHeaderText("Lamentamos informar");
+            alert.setContentText("Limite de empréstimos simultaneos atingido");
+            alert.showAndWait();
+            return;
+        }
+        if(user.getTipo().equals("Discente") && num==2){
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Aviso");
+            alert.setHeaderText("Lamentamos informar");
+            alert.setContentText("Limite de empréstimos simultaneos atingido");
+            alert.showAndWait();
+            return;
         }
 
         Rents crudRent = new Rents();
@@ -173,6 +190,20 @@ public class RentBookController{
         stage.setScene(scene);
         stage.show();
     }
+
+    public int limitarEmprestimo(){
+        Rents crud = new Rents();
+        ArrayList<RentBook> rents = new ArrayList<RentBook>();
+        crud.read(rents);
+        int count = 0;
+        for (RentBook rent : rents) {
+            if(rent.getMatricula().equals(user.getMatricula())){
+                count++;
+            }
+        }
+        return count;
+    }
+
 
      public void setData(User user, Livro selectedLivro){
         this.user=user;

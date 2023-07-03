@@ -20,7 +20,7 @@
                   <Font name="Cambria" size="36.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="510.0" layoutY="25.0" text="Nome Completo" textAlignment="RIGHT" textFill="WHITE" AnchorPane.rightAnchor="30.200000000000045">
+            <Label fx:id="nomeLabel" alignment="CENTER" layoutX="510.0" layoutY="25.0" text="Nome Completo" textAlignment="RIGHT" textFill="WHITE" AnchorPane.rightAnchor="30.200000000000045">
                <font>
                   <Font name="Cambria" size="24.0" />
                </font>
@@ -33,7 +33,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Label layoutX="565.0" layoutY="75.0" onMouseClicked="#changePageAdmin" styleClass="navbar-btns" stylesheets="@Stylesheets/User.css" text="Voltar" textFill="WHITE" AnchorPane.rightAnchor="86.39999999999998">
+            <Label layoutX="565.0" layoutY="75.0" onMouseClicked="#changePageUser" styleClass="navbar-btns" stylesheets="@Stylesheets/User.css" text="Voltar" textFill="WHITE" AnchorPane.rightAnchor="86.39999999999998">
                <font>
                   <Font size="18.0" />
                </font>
@@ -41,7 +41,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Label alignment="CENTER" layoutX="597.0" layoutY="55.0" text="9999999" textAlignment="RIGHT" textFill="WHITE" AnchorPane.rightAnchor="32.0">
+            <Label fx:id="matriculaLabel" alignment="CENTER" layoutX="597.0" layoutY="55.0" text="9999999" textAlignment="RIGHT" textFill="WHITE" AnchorPane.rightAnchor="32.0">
                <font>
                   <Font name="Cambria" size="20.0" />
                </font>

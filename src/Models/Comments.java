@@ -28,7 +28,6 @@ public class Comments {
 
     public void read(ArrayList<String> comentarios, String fileName) {
         comentarios.clear();
-        String comentario = "";
         try {
             FileReader fReader = new FileReader("src/Data/Comentários/"+fileName+".txt");
             BufferedReader bReader = new BufferedReader(fReader);
@@ -36,7 +35,7 @@ public class Comments {
             String linha = bReader.readLine();
 
             while(linha != null) {
-                comentarios.add(comentario);
+                comentarios.add(linha);
                 linha = bReader.readLine();
             }
 

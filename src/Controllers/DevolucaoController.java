@@ -15,6 +15,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -25,6 +27,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -56,30 +59,58 @@ public class DevolucaoController implements Initializable{
 
 
     @FXML
-    public void changePageAdmin(MouseEvent event) {
+    void changePageUser(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/User.fxml"));
 
+        root = loader.load();
+
+        UserController userController = loader.getController();
+
+        userController.setData(user);
+        userController.setLabels(user);
+
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        if(stage.isMaximized() == true){
+            Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
+            scene = new Scene(root, screenSize.getMaxX(), screenSize.getMaxY());
+            stage.setMaximized(true);
+        } else {
+            scene = new Scene(root);
+        }
+        
+        stage.setScene(scene);
+        stage.show(); 
     }
 
     @FXML
-    public void changePageHome(MouseEvent event) {
+    public void changePageHome(MouseEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("../Views/Home.fxml"));
+        stage = (Stage)((Node) event.getSource()).getScene().getWindow();
 
+        
+        if(stage.isMaximized() == true){
+            Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
+            scene = new Scene(root, screenSize.getMaxX(), screenSize.getMaxY());
+            stage.setMaximized(true);
+        } else {
+            scene = new Scene(root);
+        }
+
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
     public void devolverLivro(MouseEvent event) throws IOException {
         Rents crud = new Rents();
         int i = tableRent.getSelectionModel().getSelectedIndex();
-        RentBook selectedRent;
         try{
 
             for (RentBook rent : rents) {
-                if(rentsObs.get(i).getDateRent().equals(rent.getDateRent()) ||
+                if(rentsObs.get(i).getDateRent().equals(rent.getDateRent()) &&
                 rentsObs.get(i).getTitulo().equals(rent.getTitulo())){
-                    selectedRent = rent;
-                selectedRent.setDateDevolution();
-                rentsObs.remove(selectedRent);
-                rent = selectedRent;
-                crud.update(rents);
+                crud.delete(rents.indexOf(rent), rents);
 
                 changePageComentarios(event, rent);
                 }
@@ -134,4 +165,8 @@ public class DevolucaoController implements Initializable{
     public void setData(User user) {
         this.user = user;
     }
+     public void setLabels(User user){
+        matriculaLabel.setText(user.getMatricula());
+        nomeLabel.setText(user.getNome()); 
+   }
 }

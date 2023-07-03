@@ -81,16 +81,22 @@ public class RentBook {
                 LocalDate dateForDevolution = LocalDate.parse( dateDevolution , dateTimeFormatter);
                 LocalDate dateOfRent = LocalDate.parse(getDateRent(), dateTimeFormatter);
                 int dias = dateForDevolution.getDayOfMonth() - dateOfRent.plusDays(7).getDayOfMonth();
-    
-                return dias*0.5;
+                
+                if(dias>0)
+                    return dias*0.5;
+                else
+                    return 0;
                 
             } else {
                 DateTimeFormatter dateTimeFormatter =  DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 LocalDate dateForDevolution = LocalDate.parse( setDateForDevolution() , dateTimeFormatter);
                 LocalDate dateOfRent = LocalDate.parse(getDateRent(), dateTimeFormatter);
                 int dias = dateForDevolution.getDayOfMonth() - dateOfRent.plusDays(7).getDayOfMonth();
-    
-                return dias*0.8;
+                
+                if(dias>0)
+                    return dias*0.8;
+                else
+                    return 0;
             } 
             
         } catch (Exception e) {

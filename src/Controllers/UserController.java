@@ -82,6 +82,7 @@ public class UserController{
         DevolucaoController devolucaoController = loader.getController();
 
         devolucaoController.setData(user);
+        devolucaoController.setLabels(user);
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 

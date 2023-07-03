@@ -1,3 +1,1 @@
-1652079	Python	Discente	03/07/2023	null
 1652079	Lógica 	Discente	03/07/2023	null
-1652079	Código Limpo	Discente	03/07/2023	null
