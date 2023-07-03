@@ -32,7 +32,15 @@ public class UserController{
     public void changePageHome(MouseEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("../Views/Home.fxml"));
         stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
+
+        
+        if(stage.isMaximized() == true){
+            Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
+            scene = new Scene(root, screenSize.getMaxX(), screenSize.getMaxY());
+            stage.setMaximized(true);
+        } else {
+            scene = new Scene(root);
+        }
 
         stage.setScene(scene);
         stage.show();

@@ -69,7 +69,6 @@ public class RentBook {
     }
 
     public String setDateForDevolution() {
-        System.out.println(getDateRent() + "aqui");
         DateTimeFormatter dateTimeFormatter =  DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate dateForDevolution = LocalDate.parse( getDateRent(), dateTimeFormatter);
         return dateForDevolution.plusDays(7).format(dateTimeFormatter).toString();
@@ -78,7 +77,6 @@ public class RentBook {
     public double getMulta(){
         try {
             if(tipo.equals("Discente") ){
-                System.out.println(dateDevolution);
                 DateTimeFormatter dateTimeFormatter =  DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 LocalDate dateForDevolution = LocalDate.parse( dateDevolution , dateTimeFormatter);
                 LocalDate dateOfRent = LocalDate.parse(getDateRent(), dateTimeFormatter);

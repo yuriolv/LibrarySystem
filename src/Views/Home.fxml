@@ -17,7 +17,7 @@
             <Font name="Cambria" size="30.0" />
          </font>
       </Label>
-      <HBox alignment="CENTER" fillHeight="false" layoutY="164.0" prefHeight="394.0" prefWidth="700.0" spacing="30.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="164.0">
+      <HBox alignment="CENTER" fillHeight="false" layoutY="164.0" prefHeight="394.0" prefWidth="700.0" spacing="100.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="164.0">
          <children>
             <AnchorPane id="users" cache="true" onMouseClicked="#changeLoginUser" prefHeight="150.0" prefWidth="200.0" style="-fx-background-radius: 10; -fx-border-radius: 20; -fx-background-color: #dfdedf;" styleClass="buttons">
                <children>
@@ -53,26 +53,6 @@
                      </image>
                   </ImageView>
                   <Label layoutX="45.0" layoutY="114.0" text="Bibliotecário">
-                     <font>
-                        <Font name="Cambria" size="20.0" />
-                     </font>
-                  </Label>
-               </children>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <effect>
-                  <DropShadow />
-               </effect>
-            </AnchorPane>
-            <AnchorPane id="acervo" onMouseClicked="#changePageAcervo" prefHeight="150.0" prefWidth="200.0" style="-fx-background-radius: 10; -fx-border-radius: 20; -fx-background-color: #dfdedf;" styleClass="buttons">
-               <children>
-                  <ImageView fitHeight="93.0" fitWidth="93.0" layoutX="54.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Assets/acervo.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="70.0" layoutY="112.0" text="Acervo">
                      <font>
                         <Font name="Cambria" size="20.0" />
                      </font>

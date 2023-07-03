@@ -20,23 +20,6 @@ public class HomeController{
 
 
     @FXML
-    public void changePageAcervo(MouseEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("../Views/Acervo.fxml"));
-        stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-
-        if(stage.isMaximized() == true){
-            Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
-            scene = new Scene(root, screenSize.getMaxX(), screenSize.getMaxY());
-            stage.setMaximized(true);
-        } else {
-            scene = new Scene(root);
-        }
-
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
     public void changeLoginAdmin(MouseEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("../Views/loginAdmin.fxml"));
         stage = (Stage)((Node) event.getSource()).getScene().getWindow();
