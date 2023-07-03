@@ -1,4 +1,1 @@
-Introd. ao Python	Deitel	Programação	30	src/Views/CapasDeLivros/51Br4G6dF4L._AC_UF1000,1000_QL80_.jpg
-Codigo Limpo	Robert C. Martin	Programacao	30	src/Views/CapasDeLivros/41IRFCLk-kL.jpg
-Logica 	Rivas	Logica 	1	src/Views/CapasDeLivros/L�gica-para-computa��o.jpg
-Lógica para computação	Diogo	Lógica	2	Coleção Comum	src/Views/CapasDeLivros/Lógica-para-computação.jpg
+Lógica para computação	Diogo	Lógica	1	Coleção Comum	src/Views/CapasDeLivros/Lógica-para-computação.jpg
