@@ -65,8 +65,6 @@ public class AdminLivrosController  implements Initializable{
     @FXML
     private TextField filtroTextField;
     @FXML
-    private Label responseLabel;
-    @FXML
     private ToggleGroup coleção;
     @FXML
     private RadioButton radioComum;
@@ -223,7 +221,8 @@ public class AdminLivrosController  implements Initializable{
                 String imagePath = chooseImage();
 
                 if(imagePath.equals("arquivo corrompido") || imagePath.equals("arquivo invalido")){
-                    responseLabel.setText("Escolha uma imagem válida!");
+                    alert.setContentText("Escolha uma imagem válida");
+                    alert.showAndWait();
                     return;
                 }
 
@@ -239,8 +238,8 @@ public class AdminLivrosController  implements Initializable{
             
         
             }catch(NumberFormatException e){
-                responseLabel.setText("");
-                responseLabel.setText("O campo 'estoque' deve conter apenas números!");
+                alert.setContentText("O campo estoque deve conter somente numeros");
+                alert.showAndWait();
             }
         }
 
@@ -314,9 +313,14 @@ public class AdminLivrosController  implements Initializable{
         Livros crud = new Livros();
         
         int i = tableLivros.getSelectionModel().getSelectedIndex();
-        if(i<0)
+        if(i<0){
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Erro");
+            alert.setHeaderText("Erro");
+            alert.setContentText("Selecionea linha que deseja remover");
+            alert.showAndWait();
             return;
-
+        }
         livrosObs.remove(i);
         crud.delete(i, livros);
 
@@ -386,7 +390,6 @@ public class AdminLivrosController  implements Initializable{
         autorTextField.setText("");
         assuntoTextField.setText("");
         estoqueTextField.setText("");
-        responseLabel.setText("");
         filtroTextField.setText("");
 
         if(coleção.getSelectedToggle() == null)

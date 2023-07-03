@@ -17,9 +17,11 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -103,6 +105,10 @@ public class AdminUsersController  implements Initializable{
 
     @FXML 
     public void adicionarUser(MouseEvent event){
+        Alert alert = new Alert(AlertType.WARNING);
+        alert.setTitle("Erro");
+        alert.setHeaderText("Erro");
+
         String nome, tipo, matricula, senha;
         Users crud  = new Users();
 
@@ -122,7 +128,10 @@ public class AdminUsersController  implements Initializable{
             resetTextFields();
 
         } catch (Exception e) {
-            System.out.println(e);
+
+            alert.setContentText("Ocorreu um erro");
+            alert.showAndWait();
+            return;
         }
     }
 
@@ -132,6 +141,15 @@ public class AdminUsersController  implements Initializable{
 
         int i = tableUsers.getSelectionModel().getSelectedIndex();
         
+        if(i<0){
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Erro");
+            alert.setHeaderText("Erro");
+            alert.setContentText("Selecione uma linha para remover");
+            alert.showAndWait();
+            return;
+        }
+
         usersObs.remove(i);
         crud.delete(i, users); 
         
