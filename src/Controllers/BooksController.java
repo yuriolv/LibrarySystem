@@ -11,6 +11,8 @@ import javafx.scene.paint.Color;
 import Classes.Livro;
 import Classes.User;
 import Models.Livros;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -89,7 +91,7 @@ public class BooksController implements Initializable{
     }
    // @FXML
     void changePageBook(MouseEvent event) throws IOException{
-        FXMLLoader loader =new FXMLLoader(getClass().getResource("../Views/Home.fxml"));
+        FXMLLoader loader =new FXMLLoader(getClass().getResource("../Views/book.fxml"));
         root = loader.load();
 
         stage = (Stage)((Node) event.getSource()).getScene().getWindow();
@@ -161,12 +163,17 @@ public class BooksController implements Initializable{
             System.out.println(e);
         }
 
-        anchorPane.setOnMouseClicked(event -> {
-            try {
-                changePageBook(event);
-            } catch(IOException e) {
+        anchorPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent arg0) {
+               try   {
+                changePageBook(arg0);
+               } catch(Exception e) {
                 System.out.println(e);
+               }
             }
+            
         });
         return anchorPane;
     }
