@@ -1,37 +1,15 @@
 package Controllers;
 
+import java.util.ArrayList;
+
+import Classes.RentBook;
 import Classes.User;
+import Models.Rents;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 
 public class InvoiceUserController {
-    
-    @FXML
-    private Label Livro1Label;
-    
-    @FXML
-    private Label livro2Label;
-    
-    @FXML
-    private Label livro3Label;
-    
-    @FXML
-    private Label devolução1Label;
-
-    @FXML
-    private Label devolução2Label;
-
-    @FXML
-    private Label devolução3Label;
-
-    @FXML
-    private Label emprestimo1Label;
-
-    @FXML
-    private Label emprestimo2Label;
-
-    @FXML
-    private Label emprestimo3Label;
 
     @FXML
     private Label nomeLabel;
@@ -40,18 +18,84 @@ public class InvoiceUserController {
     private Label matriculaLabel;
 
     @FXML
-    private Label multaTotalLabel;
+    private Label multaLabel;
+   
     @FXML
-    private Label naoUteisLabel;
+    private Label atrasoLabel;
+
     @FXML
-    private Label uteisLabel;
+    private HBox livro1;
+    @FXML
+    private HBox livro2;
+    @FXML
+    private HBox livro3;
+
+    private ArrayList<RentBook> rents;
+    private User user;
+
+
+    public void getRents(){
+        int i = 0;
+        double multa = 0;
+        double dias = 0;
+        rents = new ArrayList<>();
+        
+        Rents crud = new Rents();
+        crud.read(rents);
+        
+        for (RentBook rentBook : rents) {
+            if(rentBook.getMatricula().equals(user.getMatricula())){
+                i++;
+                Label titulo = new Label(rentBook.getTitulo());
+                Label dateRent = new Label(rentBook.getDateRent());
+                Label dateDevolution = new Label(rentBook.setDateForDevolution());
+
+                titulo.setPrefSize(170, 20);
+                titulo.setStyle("-fx-font-size: 14;");
+
+                dateRent.setPrefSize(97, 20);
+                dateRent.setStyle("-fx-font-size: 14;");
+
+                dateDevolution.setPrefSize(80, 20);
+                dateDevolution.setStyle("-fx-font-size: 14;");
+                
+
+                if(i == 1){
+                    livro1.getChildren().addAll(titulo, dateRent, dateDevolution);
+                } else if(i == 2){
+                    livro2.getChildren().addAll(titulo, dateRent, dateDevolution);
+                }else {
+                    livro3.getChildren().addAll(titulo, dateRent, dateDevolution);
+                }
+
+                multa += rentBook.getMulta();
+
+
+                if(rentBook.getTipo().equals("Discente")){
+                    dias = multa/0.5;
+                }else{
+                    dias = multa/0.8;
+                }
+            }
+
+        }
+        multaLabel.setText(multa+"");
+        atrasoLabel.setText(dias+"");
+    }
 
 
 
-    public void setLabels(User user){
+    public void setLabels(){
+        getRents();
         nomeLabel.setText(user.getNome());
         matriculaLabel.setText(user.getMatricula());
 
+        
+
+    }
+
+    public void setData(User user){
+        this.user = user;
     }
 
 }

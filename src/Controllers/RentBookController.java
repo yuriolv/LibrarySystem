@@ -53,7 +53,7 @@ public class RentBookController{
 
 
     private User user;
-    private Livro livro;
+    private Livro selectedLivro;
     private RentBook rentBookClass;
     private Livros crud;
     private ArrayList<String> comments;
@@ -108,7 +108,7 @@ public class RentBookController{
 
     @FXML
     public void rentBook(MouseEvent event) throws IOException{
-        if(livro.getQtdEstoque()==0){
+        if(selectedLivro.getQtdEstoque()==0){
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Aviso");
             alert.setHeaderText(null);
@@ -117,7 +117,7 @@ public class RentBookController{
             return;
 
         }
-        if(livro.getColeção().equals("Coleção Especial") && user.getTipo().equals("Discente")){
+        if(selectedLivro.getColeção().equals("Coleção Especial") && user.getTipo().equals("Discente")){
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Aviso");
             alert.setHeaderText("Lamentamos informar");
@@ -134,20 +134,20 @@ public class RentBookController{
         crud.read(livros);
         
         for (Livro livro : livros) {
-            if(livro.getTitulo().equals(livro.getTitulo())) {
+            if(livro.getTitulo().equals(selectedLivro.getTitulo())) {
                 i = livros.indexOf(livro);
                 break;
             }
         }
 
-        rentBookClass = new RentBook(user.getMatricula(), livro.getTitulo());
+        rentBookClass = new RentBook(user.getMatricula(),  selectedLivro.getTitulo(), user.getTipo());
         rentBookClass.setDateRent();
 
         crudRent.create(rentBookClass);
 
-        livro.setQtdEstoque(livro.getQtdEstoque() - 1);
+        selectedLivro.setQtdEstoque(selectedLivro.getQtdEstoque() - 1);
 
-        livros.set(i, livro);
+        livros.set(i, selectedLivro);
         crud.update(livros);
 
         changePageRentReport(event);
@@ -176,7 +176,7 @@ public class RentBookController{
 
      public void setData(User user, Livro selectedLivro){
         this.user=user;
-        this.livro = selectedLivro;
+        this.selectedLivro = selectedLivro;
     }
 
     public void setLabels(User user, Livro livro) throws FileNotFoundException{
