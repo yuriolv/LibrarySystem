@@ -105,6 +105,7 @@ public class BooksController implements Initializable{
 
         bookController.setData(user, selectedLivro);
         bookController.setLabels(user, selectedLivro);
+        bookController.setComments(selectedLivro);
 
         stage.setScene(scene);
         stage.show();

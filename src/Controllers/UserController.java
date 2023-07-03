@@ -88,8 +88,6 @@ public class UserController{
         stage.setScene(scene);
         stage.show(); 
     }
-    
-
     @FXML
     public void changeGenerateReport(MouseEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/invoiceUser.fxml"));

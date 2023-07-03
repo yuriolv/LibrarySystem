@@ -31,7 +31,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class RentBookController implements Initializable{
+public class RentBookController{
 
     
     @FXML
@@ -40,6 +40,7 @@ public class RentBookController implements Initializable{
     private Label matriculaLabel;
     @FXML
     private VBox vbox;
+    @FXML
     private Label nomeLabel;
     @FXML
     private Label assuntoLabel;
@@ -173,11 +174,6 @@ public class RentBookController implements Initializable{
         stage.show();
     }
 
-
-
-
-
-
      public void setData(User user, Livro selectedLivro){
         this.user=user;
         this.livro = selectedLivro;
@@ -207,15 +203,16 @@ public class RentBookController implements Initializable{
         return label;
     }
 
-    public void initialize(URL location, ResourceBundle resources) {
+    public void setComments(Livro livro){
         Comments crud = new Comments(); //substituir pelo crud de comentários
 
         comments = new ArrayList<String>(); 
-        crud.read(comments);
+        crud.read(comments, livro.getTitulo());
 
         for(String comment: comments) {
             Label commentLabel = createLabel(comment);
             vbox.getChildren().addAll(commentLabel);
         }
     }
+
 }

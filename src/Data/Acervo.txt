@@ -1,1 +1,1 @@
-Lógica para computação	Diogo	Lógica	2	Coleção Comum	src/Views/CapasDeLivros/Lógica-para-computação.jpg
+Lógica para computação	Diogo	Lógica	4	Coleção Comum	src/Views/CapasDeLivros/Lógica-para-computação.jpg

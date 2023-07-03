@@ -1,5 +1,6 @@
 package Controllers;
 
+import Classes.RentBook;
 import Models.Comments;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -9,24 +10,27 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class ComentariosController {
+
+    private RentBook rent;
     @FXML
-    private TextArea textArea;
-    @FXML
-    private Button button;
+    private TextArea comentarioTextArea;
+
 
     public void enviarComentario(MouseEvent event) {
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Comments crud = new Comments();
 
-        if(textArea.getText().equals("")) {
-            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        if(comentarioTextArea.getText().equals("")) {
             stage.close();
-        }
+        } 
+            String comentario = comentarioTextArea.getText();
+            crud.createComment(comentario, rent.getTitulo());
+            stage.close();
+        
+    }
 
-        else {
-            String comentario = textArea.getText();
-            crud.createComment(comentario);
-            
-        }
+    public void setData(RentBook rent){
+        this.rent=rent;
     }
 }
  

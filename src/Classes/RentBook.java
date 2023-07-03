@@ -16,6 +16,7 @@ public class RentBook {
         this.titulo = titulo;
     }
 
+    
     public RentBook(String matricula, String titulo, String dateRent, String dateDevolution) {
         this.matricula = matricula;
         this.titulo = titulo;
@@ -49,10 +50,16 @@ public class RentBook {
     public void setDateDevolution() {
         DateTimeFormatter dateTimeFormatter =  DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate today = LocalDate.now();
-        today.plusDays(7);
         dateDevolution = today.format(dateTimeFormatter);
     }
+    
+    public String getMatricula() {
+        return matricula;
+    }
 
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
     public String toString(){
         return matricula + "\t" + titulo + "\t" + dateRent + "\t" + dateDevolution;
     }
