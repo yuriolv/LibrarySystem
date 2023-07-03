@@ -1,1 +1,1 @@
-Codigo Limpo	Robert C. Martin 	Programacao	30	Cole��o Comum	src/Views/CapasDeLivros/41IRFCLk-kL.jpg
+Lógica para computação	Diogo	Lógica	1	Coleção Comum	src/Views/CapasDeLivros/Lógica-para-computação.jpg

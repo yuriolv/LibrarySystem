@@ -1,6 +1,5 @@
 package Controllers;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
@@ -11,7 +10,6 @@ import javafx.scene.paint.Color;
 import Classes.Livro;
 import Classes.User;
 import Models.Livros;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -89,7 +87,6 @@ public class BooksController implements Initializable{
         stage.setScene(scene);
         stage.show();
     }
-   // @FXML
     void changePageBook(MouseEvent event) throws IOException{
         FXMLLoader loader =new FXMLLoader(getClass().getResource("../Views/book.fxml"));
         root = loader.load();
@@ -106,8 +103,8 @@ public class BooksController implements Initializable{
 
         RentBookController bookController = loader.getController();
 
-        bookController.setData(user, selectedLivro );
-        bookController.setLabels(user);
+        bookController.setData(user, selectedLivro);
+        bookController.setLabels(user, selectedLivro);
 
         stage.setScene(scene);
         stage.show();
@@ -168,6 +165,7 @@ public class BooksController implements Initializable{
             @Override
             public void handle(MouseEvent arg0) {
                try   {
+                selectedLivro = livro;
                 changePageBook(arg0);
                } catch(Exception e) {
                 System.out.println(e);
@@ -184,11 +182,12 @@ public class BooksController implements Initializable{
 
         livros = new ArrayList<Livro>();
         crud.read(livros);
-
+        
         for (Livro livro : livros) {
             AnchorPane bookCard = createAnchorPane(livro);
             flowPane.getChildren().add(bookCard);
         }
+       
     }
 
 }
