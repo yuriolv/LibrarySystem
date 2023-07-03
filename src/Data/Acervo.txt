@@ -1,1 +1,3 @@
-Codigo Limpo	Robert C. Martin 	Programacao	30	Cole��o Comum	src/Views/CapasDeLivros/41IRFCLk-kL.jpg
+Código Limpo	Robert	Programação	18	Coleção Comum	src/Views/CapasDeLivros/41IRFCLk-kL.jpg
+Lógica 	Rivas	Programação	29	Coleção Comum	src/Views/CapasDeLivros/Lógica-para-computação.jpg
+Python	Deitel	Programação	8	Coleção Comum	src/Views/CapasDeLivros/51Br4G6dF4L._AC_UF1000,1000_QL80_.jpg

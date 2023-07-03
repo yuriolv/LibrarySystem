@@ -20,11 +20,13 @@ public class RentBook {
         this.matricula = matricula;
         this.titulo = titulo;
         this.tipo = tipo;
+        dateDevolution = null;
     }
     
-    public RentBook(String matricula, String titulo, String dateRent, String dateDevolution) {
+    public RentBook(String matricula, String titulo, String tipo, String dateRent, String dateDevolution) {
         this.matricula = matricula;
         this.titulo = titulo;
+        this.tipo = tipo;
         this.dateRent = dateRent;
         this.dateDevolution = dateDevolution;
         
@@ -67,37 +69,41 @@ public class RentBook {
     }
 
     public String setDateForDevolution() {
+        System.out.println(getDateRent() + "aqui");
         DateTimeFormatter dateTimeFormatter =  DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate dateForDevolution = LocalDate.parse( getDateRent() , dateTimeFormatter);
+        LocalDate dateForDevolution = LocalDate.parse( getDateRent(), dateTimeFormatter);
         return dateForDevolution.plusDays(7).format(dateTimeFormatter).toString();
     }
 
     public double getMulta(){
-        if(tipo.equals("Discente")){
-            DateTimeFormatter dateTimeFormatter =  DateTimeFormatter.ofPattern("dd/mm/yyyy");
-            LocalDate dateForDevolution = LocalDate.parse( getDateRent() , dateTimeFormatter);
-            LocalDate dateOfRent = LocalDate.parse(dateDevolution, dateTimeFormatter);
-            int dias = dateForDevolution.getDayOfMonth() - dateOfRent.getDayOfMonth();
-
-            return dias*0.5;
+        try {
+            if(tipo.equals("Discente") ){
+                System.out.println(dateDevolution);
+                DateTimeFormatter dateTimeFormatter =  DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                LocalDate dateForDevolution = LocalDate.parse( dateDevolution , dateTimeFormatter);
+                LocalDate dateOfRent = LocalDate.parse(getDateRent(), dateTimeFormatter);
+                int dias = dateForDevolution.getDayOfMonth() - dateOfRent.plusDays(7).getDayOfMonth();
+    
+                return dias*0.5;
+                
+            } else {
+                DateTimeFormatter dateTimeFormatter =  DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                LocalDate dateForDevolution = LocalDate.parse( setDateForDevolution() , dateTimeFormatter);
+                LocalDate dateOfRent = LocalDate.parse(getDateRent(), dateTimeFormatter);
+                int dias = dateForDevolution.getDayOfMonth() - dateOfRent.plusDays(7).getDayOfMonth();
+    
+                return dias*0.8;
+            } 
             
-        } else {
-            DateTimeFormatter dateTimeFormatter =  DateTimeFormatter.ofPattern("dd/mm/yyyy");
-            LocalDate dateForDevolution = LocalDate.parse( getDateRent() , dateTimeFormatter);
-            LocalDate dateOfRent = LocalDate.parse(dateDevolution, dateTimeFormatter);
-            int dias = dateForDevolution.getDayOfMonth() - dateOfRent.getDayOfMonth();
-
-            return dias*0.8;
+        } catch (Exception e) {
+            System.out.println(e);
+            return 0;
         }
+     
     }
     
     public String toString(){
-
-        if(dateDevolution.equals("")){
-            return matricula + "\t" + titulo + "\t" + dateRent;
-        }else {
-            return matricula + "\t" + titulo + "\t" + dateRent + "\t" + dateDevolution;
-        }
+        return matricula + "\t" + titulo + "\t" + tipo + "\t" + dateRent  + "\t" + dateDevolution;
     }
 
     

@@ -5,9 +5,13 @@ import java.util.ArrayList;
 import Classes.User;
 import Models.Users;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 public class EditarUserController {
     @FXML 
@@ -56,6 +60,18 @@ public class EditarUserController {
             user.setSenha(confirmarSenha);
             users.set(i, user);
             crud.update(users);
+
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("SUCESSO");
+            alert.setHeaderText(null);
+            alert.setContentText("Senha alterada com sucesso!");
+
+            alert.showAndWait();
+
+            
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            stage.close();
+
         }else{
             responseLabel.setText("Senhas digitadas não conferem");
         }

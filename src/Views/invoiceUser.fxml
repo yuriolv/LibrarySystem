@@ -74,7 +74,7 @@
                   <Font name="System Bold" size="12.179104804992676" />
                </font>
             </Label>
-            <Label fx:id="multaLabel" layoutX="270.0" layoutY="39.0" prefHeight="29.0" prefWidth="106.0">
+            <Label fx:id="multaLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="270.0" layoutY="39.0" prefHeight="29.0" prefWidth="106.0">
                <font>
                   <Font name="Times New Roman" size="24.0" />
                </font>

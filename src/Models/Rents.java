@@ -12,11 +12,9 @@ public class Rents {
             FileWriter fWriter = new FileWriter("src/Data/Rents.txt", true);
             BufferedWriter bWriter = new BufferedWriter(fWriter);
 
-            if(rent.getDateDevolution().equals("")){
-                bWriter.write(rent.toString());
-            }else {
-                bWriter.write(rent.toString());
-            }
+            
+            bWriter.write(rent.toString());
+            
 
             bWriter.newLine();
             
@@ -40,7 +38,7 @@ public class Rents {
             
             while(linha != null){
                 String[] dados = linha.split("\t");
-                rent = new RentBook(dados[0], dados[1], dados[2],dados[3]);
+                rent = new RentBook(dados[0], dados[1], dados[2],dados[3], dados[4]);
                 rents.add(rent);
                 linha = bReader.readLine();
 

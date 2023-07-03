@@ -18,7 +18,7 @@ public class InvoiceUserController {
     private Label matriculaLabel;
 
     @FXML
-    private Label multaTotalLabel;
+    private Label multaLabel;
    
     @FXML
     private Label atrasoLabel;
@@ -42,7 +42,7 @@ public class InvoiceUserController {
         
         Rents crud = new Rents();
         crud.read(rents);
-
+        
         for (RentBook rentBook : rents) {
             if(rentBook.getMatricula().equals(user.getMatricula())){
                 i++;
@@ -56,28 +56,30 @@ public class InvoiceUserController {
                 dateRent.setPrefSize(97, 20);
                 dateRent.setStyle("-fx-font-size: 14;");
 
-                dateDevolution.setPrefSize(66, 20);
+                dateDevolution.setPrefSize(80, 20);
                 dateDevolution.setStyle("-fx-font-size: 14;");
                 
 
-                if(rents.indexOf(rentBook) == 1){
+                if(i == 1){
                     livro1.getChildren().addAll(titulo, dateRent, dateDevolution);
-                } else if(rents.indexOf(rentBook) == 2){
+                } else if(i == 2){
                     livro2.getChildren().addAll(titulo, dateRent, dateDevolution);
                 }else {
                     livro3.getChildren().addAll(titulo, dateRent, dateDevolution);
                 }
 
                 multa += rentBook.getMulta();
+
+
                 if(rentBook.getTipo().equals("Discente")){
-                    dias = dias/0.5;
+                    dias = multa/0.5;
                 }else{
-                    dias = dias/0.8;
+                    dias = multa/0.8;
                 }
             }
 
         }
-        multaTotalLabel.setText(multa+"");
+        multaLabel.setText(multa+"");
         atrasoLabel.setText(dias+"");
     }
 

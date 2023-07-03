@@ -1,38 +1,68 @@
 package Controllers;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import Classes.Livro;
 import Classes.RentBook;
 import Classes.User;
+import Models.Comments;
 import Models.Livros;
+import Models.Rents;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
-public class RentBookController {
+public class RentBookController implements Initializable{
+
+    
     @FXML
     private Label labelSair;
     @FXML
     private Label matriculaLabel;
+    @FXML
+    private VBox vbox;
+
+    @FXML
+    private Label nomeLabel;
+    @FXML
+    private Label assuntoLabel;
+    @FXML
+    private Label autorLabel;
+    @FXML
+    private Label bookNameLabel;
+    @FXML
+    private ImageView capaImage;
+
 
     private User user;
     private Livro selectedLivro;
     private RentBook rentBookClass;
     private Livros crud;
+    private ArrayList<String> comments;
 
     private ArrayList<Livro> livros;
     private Stage stage;
     private Scene scene;
     private Parent root;
+
     @FXML
     public void changePageHome(MouseEvent event) throws IOException{
         root = FXMLLoader.load(getClass().getResource("../Views/Home.fxml"));
@@ -77,7 +107,29 @@ public class RentBookController {
     }
 
     @FXML
-    public void rentBook(MouseEvent event){ 
+    public void rentBook(MouseEvent event) throws IOException{
+        if(selectedLivro.getQtdEstoque()==0){
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Aviso");
+            alert.setHeaderText(null);
+            alert.setContentText("Livro fora de estoque");
+            alert.showAndWait();
+            return;
+
+        }
+        if(selectedLivro.getColeção().equals("Coleção Especial") && user.getTipo().equals("Discente")){
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Aviso");
+            alert.setHeaderText("Lamentamos informar");
+            alert.setContentText("Este livro faz parte de uma coleção exclusiva para Docentes");
+            alert.showAndWait();
+            return;
+
+        }
+
+        Rents crudRent = new Rents();
+        crud = new Livros();
+        livros = new ArrayList<Livro>(); 
         int i = 0;
         crud.read(livros);
         
@@ -88,17 +140,17 @@ public class RentBookController {
             }
         }
 
-        rentBookClass = new RentBook(user.getMatricula(), selectedLivro.getTitulo(), user.getTipo());
+        rentBookClass = new RentBook(user.getMatricula(),  selectedLivro.getTitulo(), user.getTipo());
         rentBookClass.setDateRent();
-        rentBookClass.setDateDevolution();
 
-        //crudRentBook.create(rentBookClass.toString());
+        crudRent.create(rentBookClass);
 
         selectedLivro.setQtdEstoque(selectedLivro.getQtdEstoque() - 1);
 
         livros.set(i, selectedLivro);
         crud.update(livros);
-        //change page rentBooks
+        
+        changePageBooks(event);
 
     }
 
@@ -107,7 +159,39 @@ public class RentBookController {
         this.selectedLivro = selectedLivro;
     }
 
-    public void setLabels(User user){
-        matriculaLabel.setText(user.getMatricula());    
+    public void setLabels(User user, Livro livro) throws FileNotFoundException{
+        matriculaLabel.setText(user.getMatricula());  
+        nomeLabel.setText(user.getNome());
+        bookNameLabel.setText(livro.getTitulo());
+        autorLabel.setText(livro.getAutor());
+        assuntoLabel.setText(livro.getAssunto());
+
+        FileInputStream file = new FileInputStream(livro.getImage());
+        Image img = new Image(file);
+
+        capaImage.setImage(img);
+
+    }
+
+    public Label createLabel(String comment) {
+        Label label = new Label();
+        label.setText(comment);
+        label.setPrefWidth(700);
+        label.setStyle("-fx-font-family: Cambria;"+"-fx-font-size: 16;");
+
+
+        return label;
+    }
+
+    public void initialize(URL location, ResourceBundle resources) {
+        Comments crud = new Comments(); //substituir pelo crud de comentários
+
+        comments = new ArrayList<String>(); 
+        //crud.read(comments);
+
+        for(String comment: comments) {
+            Label commentLabel = createLabel(comment);
+            vbox.getChildren().addAll(commentLabel);
+        }
     }
 }
