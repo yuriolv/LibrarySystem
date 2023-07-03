@@ -22,14 +22,8 @@ public class RentBook {
         this.tipo = tipo;
         dateDevolution = null;
     }
-<<<<<<< HEAD
-
-    
-    public RentBook(String matricula, String titulo, String dateRent, String dateDevolution) {
-=======
     
     public RentBook(String matricula, String titulo, String tipo, String dateRent, String dateDevolution) {
->>>>>>> 84b81b93f7e607ec5a711d91d8776a9a3cfa0c21
         this.matricula = matricula;
         this.titulo = titulo;
         this.tipo = tipo;
@@ -74,15 +68,6 @@ public class RentBook {
         dateDevolution = today.format(dateTimeFormatter);
     }
     
-    public String getMatricula() {
-        return matricula;
-    }
-
-<<<<<<< HEAD
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
-    }
-=======
     public String setDateForDevolution() {
         DateTimeFormatter dateTimeFormatter =  DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate dateForDevolution = LocalDate.parse( getDateRent(), dateTimeFormatter);
@@ -115,7 +100,6 @@ public class RentBook {
      
     }
     
->>>>>>> 84b81b93f7e607ec5a711d91d8776a9a3cfa0c21
     public String toString(){
         return matricula + "\t" + titulo + "\t" + tipo + "\t" + dateRent  + "\t" + dateDevolution;
     }
