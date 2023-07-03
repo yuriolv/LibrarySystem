@@ -57,12 +57,10 @@
                         <Font name="Cambria" size="18.0" />
                      </font>
                   </Label>
-                  <TableView prefHeight="254.0" prefWidth="700.0">
+                  <TableView fx:id="tabela" prefHeight="254.0" prefWidth="700.0">
                     <columns>
-                      <TableColumn prefWidth="185.0" text="Nome" />
-                      <TableColumn prefWidth="185.0" text="Autor" />
-                        <TableColumn prefWidth="185.0" text="Coleção" />
-                        <TableColumn prefWidth="185.0" text="Column X" />
+                      <TableColumn fx:id="nomeLivro" prefWidth="370.0" text="Nome" />
+                        <TableColumn fx:id="dataEmprestimo" prefWidth="370.0" text="Data de empréstimo" />
                     </columns>
                   </TableView>
                   <Button mnemonicParsing="false" style="-fx-background-color: #008B45; -fx-text-fill: #ffffff;" text="Devolver Livro">

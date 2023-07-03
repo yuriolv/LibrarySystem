@@ -64,9 +64,31 @@ public class UserController{
     }
 
     @FXML
-    public void changePageDevolution(MouseEvent event) {
-       // App.changeScene("pageAdminUsers");
+    public void changePageDevolution(MouseEvent event) throws IOException {
+
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/Devolucao.fxml"));
+
+        root = loader.load();
+
+        DevolucaoController devolucaoController = loader.getController();
+
+        devolucaoController.setData(user);
+
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+        if(stage.isMaximized() == true){
+            Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
+            scene = new Scene(root, screenSize.getMaxX(), screenSize.getMaxY());
+            stage.setMaximized(true);
+        } else {
+            scene = new Scene(root);
+        }
+
+        stage.setScene(scene);
+        stage.show(); 
     }
+    
 
     @FXML
     public void changeGenerateReport(MouseEvent event) throws IOException {
