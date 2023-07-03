@@ -20,12 +20,14 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -131,7 +133,9 @@ public class AdminLivrosController  implements Initializable{
 
     @FXML
     void adicionarLivro(MouseEvent event) {
-
+        Alert alert = new Alert(AlertType.WARNING);
+        alert.setTitle("Erro");
+        alert.setHeaderText("Erro");
         Livros crud = new Livros();
 
         crud.read(livros);
@@ -139,7 +143,12 @@ public class AdminLivrosController  implements Initializable{
         String titulo, autor, assunto;
         int estoque;
         RadioButton radio = (RadioButton) coleção.getSelectedToggle();
-        if(radio!=null){
+        if(radio==null){
+            alert.setContentText("Selecione um radio Button");
+            alert.showAndWait();
+            return;
+
+        }
             String selected = radio.getText();
         try{
 
@@ -149,14 +158,16 @@ public class AdminLivrosController  implements Initializable{
             assunto = assuntoTextField.getText();
             
             if(titulo.equals("") || autor.equals("") || assunto.equals("") || estoqueTextField.getText().equals("") ) {
-                responseLabel.setText("Preencha todos os campos!");
-                return; 
+                alert.setContentText("Preencha todos os campos");
+                alert.showAndWait();
+                return;
             }
 
             String imagePath = chooseImage();
 
             if(imagePath.equals("arquivo corrompido") || imagePath.equals("arquivo invalido")){
-                responseLabel.setText("Escolha uma imagem válida!");
+                alert.setContentText("Selecione uma imagem valida!");
+                alert.showAndWait();
                 return;
             }
 
@@ -172,15 +183,19 @@ public class AdminLivrosController  implements Initializable{
             crud.create(livro);
 
         }catch(NumberFormatException e){
-            responseLabel.setText("");
-            responseLabel.setText("O campo 'estoque' deve conter apenas números!");
+            alert.setContentText("O campo estoque deve conter somente numeros");
+            alert.showAndWait();
+            return;
         }
-    }
 
     }
 
     @FXML
     public void editarLivro(MouseEvent event) {
+        Alert alert = new Alert(AlertType.WARNING);
+        alert.setTitle("Erro");
+        alert.setHeaderText("Erro");
+
         int i = tableLivros.getSelectionModel().getSelectedIndex();
         Livros crud = new Livros();
         String titulo, autor, assunto;
@@ -200,7 +215,8 @@ public class AdminLivrosController  implements Initializable{
 
             
                 if(titulo.equals("") || autor.equals("") || assunto.equals("") || estoqueTextField.getText().equals("") ) {
-                    responseLabel.setText("Preencha todos os campos!");
+                    alert.setContentText("Preencha todos os campos!");
+                    alert.showAndWait();
                     return; 
                 }
 
