@@ -24,6 +24,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class RentBookController {
     
@@ -139,10 +140,35 @@ public class RentBookController {
 
         livros.set(i, livro);
         crud.update(livros);
+
+        changePageRentReport(event);
         
         changePageBooks(event);
 
     }
+
+    public void changePageRentReport(MouseEvent event) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/rentReport.fxml"));
+
+        root = loader.load();
+
+        RentReportController rent = loader.getController();
+
+        rent.setLabels(user, rentBookClass);
+
+        scene = new Scene(root);
+        stage = new Stage();
+
+        stage.initStyle(StageStyle.UTILITY);
+        stage.setTitle("Editar Usuário");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
+
+
+
 
      public void setData(User user, Livro selectedLivro){
         this.user=user;

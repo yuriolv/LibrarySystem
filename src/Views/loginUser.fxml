@@ -65,7 +65,7 @@
                         <Image url="@Assets/iconePessoa.png" />
                      </image>
                   </ImageView>
-                  <RadioButton id="#radio-button" layoutX="89.0" layoutY="96.0" mnemonicParsing="false" onMouseClicked="#clearLabelIncomplete" prefWidth="87.0" style="-fx-cursor: HAND;" text="Discente">
+                  <RadioButton id="#radio-button" layoutX="77.0" layoutY="96.0" mnemonicParsing="false" onMouseClicked="#clearLabelIncomplete" prefHeight="25.0" prefWidth="101.0" style="-fx-cursor: HAND;" text="Discente">
                      <font>
                         <Font name="Dubai Regular" size="16.0" />
                      </font>
@@ -88,7 +88,7 @@
                         <Font name="Arial Bold" size="10.0" />
                      </font>
                   </Label>
-                  <RadioButton id="#radio-button" layoutX="203.0" layoutY="96.0" mnemonicParsing="false" onMouseClicked="#clearLabelIncomplete" style="-fx-cursor: HAND;" text="Docente" toggleGroup="$typeGroup">
+                  <RadioButton id="#radio-button" layoutX="212.0" layoutY="96.0" mnemonicParsing="false" onMouseClicked="#clearLabelIncomplete" style="-fx-cursor: HAND;" text="Docente" toggleGroup="$typeGroup">
                      <font>
                         <Font name="Dubai Regular" size="16.0" />
                      </font>
