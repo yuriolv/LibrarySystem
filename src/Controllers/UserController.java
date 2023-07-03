@@ -76,8 +76,8 @@ public class UserController{
 
         InvoiceUserController invoice = loader.getController();
 
-       // invoice.setData(user);
-        invoice.setLabels(user);
+        invoice.setData(user);
+        invoice.setLabels();
 
         scene = new Scene(root);
         stage=new Stage();

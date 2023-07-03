@@ -13,9 +13,9 @@ public class Rents {
             BufferedWriter bWriter = new BufferedWriter(fWriter);
 
             if(rent.getDateDevolution().equals("")){
-                bWriter.write(rent.toStringRent());
+                bWriter.write(rent.toString());
             }else {
-                bWriter.write(rent.toStringDevolution());
+                bWriter.write(rent.toString());
             }
 
             bWriter.newLine();

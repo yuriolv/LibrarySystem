@@ -88,7 +88,7 @@ public class RentBookController {
             }
         }
 
-        rentBookClass = new RentBook(user.getMatricula(), selectedLivro.getTitulo());
+        rentBookClass = new RentBook(user.getMatricula(), selectedLivro.getTitulo(), user.getTipo());
         rentBookClass.setDateRent();
         rentBookClass.setDateDevolution();
 
