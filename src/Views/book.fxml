@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.RentBookController">
    <children>
       <AnchorPane prefHeight="123.0" prefWidth="700.0" style="-fx-background-color: #008B45;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -23,7 +22,7 @@
                   <Font name="Cambria" size="27.0" />
                </font>
             </Label>
-            <Label fx:id="matriculaLabel1" layoutX="599.0" layoutY="62.0" style="-fx-text-fill: #ffffff;" text="9999999" AnchorPane.rightAnchor="23.0">
+            <Label fx:id="matriculaLabel" layoutX="599.0" layoutY="62.0" style="-fx-text-fill: #ffffff;" text="9999999" AnchorPane.rightAnchor="23.0">
                <font>
                   <Font name="Cambria" size="20.0" />
                </font>
@@ -36,12 +35,12 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Label alignment="CENTER" layoutX="106.0" layoutY="37.0" text="Biblioteca #nome" textAlignment="RIGHT" textFill="WHITE" AnchorPane.leftAnchor="106.0">
+            <Label alignment="CENTER" layoutX="106.0" layoutY="37.0" text="Biblioteca " textAlignment="RIGHT" textFill="WHITE" AnchorPane.leftAnchor="106.0">
                <font>
                   <Font name="Cambria" size="36.0" />
                </font>
             </Label>
-            <Label alignment="BOTTOM_RIGHT" layoutX="577.0" layoutY="89.0" onMouseClicked="#changePageRentBooks" style="-fx-text-fill: #ffffff;" styleClass="navbar-btns" stylesheets="@Stylesheets/User.css" text="Voltar" AnchorPane.rightAnchor="77.0">
+            <Label alignment="BOTTOM_RIGHT" layoutX="577.0" layoutY="89.0" onMouseClicked="#changePageBooks" style="-fx-text-fill: #ffffff;" styleClass="navbar-btns" stylesheets="@Stylesheets/User.css" text="Voltar" AnchorPane.rightAnchor="77.0">
                <font>
                   <Font name="Cambria" size="18.0" />
                </font>
