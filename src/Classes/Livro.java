@@ -6,17 +6,21 @@ public class Livro {
     private String assunto;
     private Integer qtdEstoque;
     private String image;
+    private String coleção;
 
-    public Livro(String titulo, String autor, String assunto, int qtdEstoque , String image ){
+    public Livro(String titulo, String autor, String assunto, int qtdEstoque ,String coleção , String image){
         this.titulo = titulo;
         this.autor = autor;
         this.assunto = assunto;
         this.qtdEstoque = qtdEstoque;
         this.image = image;
+        this.coleção = coleção;
     }
 
+   
+
     public String toString(){
-        return titulo+"\t"+autor+"\t"+assunto+"\t"+qtdEstoque+"\t"+image;
+        return titulo+"\t"+autor+"\t"+assunto+"\t"+qtdEstoque+"\t"+coleção+"\t"+image;
     }
 
     public String getTitulo() {
@@ -55,5 +59,11 @@ public class Livro {
         this.qtdEstoque = qtdEstoque;
     }
     
+    public String getColeção() {
+        return coleção;
+    }
 
+    public void setColeção(String coleção) {
+        this.coleção = coleção;
+    }
 }

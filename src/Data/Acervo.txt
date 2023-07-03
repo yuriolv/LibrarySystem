@@ -1,2 +1,1 @@
-Introd. ao Python	Deitel	Programação	20	src/Views/CapasDeLivros/51Br4G6dF4L._AC_UF1000,1000_QL80_.jpg
-Código Limpo	Robert C. Martin	Programação	10	src/Views/CapasDeLivros/41IRFCLk-kL.jpg
+Codigo Limpo	Robert C. Martin 	Programacao	30	Cole��o Comum	src/Views/CapasDeLivros/41IRFCLk-kL.jpg
