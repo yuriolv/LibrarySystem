@@ -107,6 +107,15 @@ public class RentBookController {
             return;
 
         }
+        if(livro.getColeção().equals("Coleção Especial") && user.getTipo().equals("Discente")){
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Aviso");
+            alert.setHeaderText("Lamentamos informar");
+            alert.setContentText("Este livro faz parte de uma coleção exclusiva para Docentes");
+            alert.showAndWait();
+            return;
+
+        }
 
         Rents crudRent = new Rents();
         crud = new Livros();

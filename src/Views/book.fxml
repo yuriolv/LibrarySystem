@@ -34,7 +34,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Label alignment="CENTER" layoutX="106.0" layoutY="37.0" text="Biblioteca #nome" textAlignment="RIGHT" textFill="WHITE" AnchorPane.leftAnchor="106.0">
+            <Label alignment="CENTER" layoutX="106.0" layoutY="37.0" text="Biblioteca " textAlignment="RIGHT" textFill="WHITE" AnchorPane.leftAnchor="106.0">
                <font>
                   <Font name="Cambria" size="36.0" />
                </font>
