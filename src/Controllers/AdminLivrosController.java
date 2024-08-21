@@ -6,10 +6,12 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
-import Classes.Livro;
-import Models.Livros;
+import Classes.Book;
+import DB.DataBase;
+import Models.Books;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +22,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart.Data;
 import javafx.scene.control.Alert;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
@@ -42,17 +45,17 @@ public class AdminLivrosController  implements Initializable{
     private Parent root;
 
     @FXML
-    private TableView<Livro> tableLivros;
+    private TableView<Book> tableLivros;
     @FXML
-    private TableColumn<Livro, String> tituloColumn;
+    private TableColumn<Book, String> tituloColumn;
     @FXML
-    private TableColumn<Livro, String> autorColumn;
+    private TableColumn<Book, String> autorColumn;
     @FXML
-    private TableColumn<Livro, String> assuntoColumn;
+    private TableColumn<Book, String> assuntoColumn;
     @FXML
-    private TableColumn<Livro, String> coleçãoColumn;
+    private TableColumn<Book, String> coleçãoColumn;
     @FXML
-    private TableColumn<Livro, Integer> estoqueColumn;
+    private TableColumn<Book, Integer> estoqueColumn;
     @FXML
     private TextField tituloTextField;
     @FXML
@@ -71,15 +74,15 @@ public class AdminLivrosController  implements Initializable{
     private RadioButton radioEspecial;
 
 
-    private ArrayList<Livro> livros;
-    private ObservableList<Livro> livrosObs; 
+    private ArrayList<Book> livros;
+    private ObservableList<Book> livrosObs; 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Livros crud = new Livros();
-    
-        livros = new ArrayList<Livro>();
-        crud.read(livros);
+        DataBase db = new DataBase();
+        db.initialize();
+        Books crud_Books = new Books();
+        livros = crud_Books.read(db, Optional.empty());
 
         livrosObs = FXCollections.observableArrayList(livros);
 
@@ -129,13 +132,13 @@ public class AdminLivrosController  implements Initializable{
 
 
     @FXML
-    void adicionarLivro(MouseEvent event) {
+    void adicionarLivro(MouseEvent event, DataBase db) {
         Alert alert = new Alert(AlertType.WARNING);
         alert.setTitle("Erro");
         alert.setHeaderText("Erro");
-        Livros crud = new Livros();
+        Books crud = new Books();
 
-        crud.read(livros);
+        livros = crud.read(db, Optional.empty());
 
         String titulo, autor, assunto;
         int estoque;
@@ -160,9 +163,9 @@ public class AdminLivrosController  implements Initializable{
                 return;
             }
 
-            String imagePath = chooseImage();
+            byte[] image = chooseImage();
 
-            if(imagePath.equals("arquivo corrompido") || imagePath.equals("arquivo invalido")){
+            if(image == null){
                 alert.setContentText("Selecione uma imagem valida!");
                 alert.showAndWait();
                 return;
@@ -173,11 +176,11 @@ public class AdminLivrosController  implements Initializable{
             resetTextFields();
 
 
-            Livro livro = new Livro(titulo, autor, assunto, estoque, selected,imagePath);
+            Book livro = new Book(titulo, autor, assunto, estoque, selected,image);
             
             livros.add(livro);
             livrosObs.add(livro);
-            crud.create(livro);
+            crud.create(livro, db);
 
         }catch(NumberFormatException e){
             alert.setContentText("O campo estoque deve conter somente numeros");
@@ -188,13 +191,13 @@ public class AdminLivrosController  implements Initializable{
     }
 
     @FXML
-    public void editarLivro(MouseEvent event) {
+    public void editarLivro(MouseEvent event, DataBase db) {
         Alert alert = new Alert(AlertType.WARNING);
         alert.setTitle("Erro");
         alert.setHeaderText("Erro");
 
         int i = tableLivros.getSelectionModel().getSelectedIndex();
-        Livros crud = new Livros();
+        Books crud = new Books();
         String titulo, autor, assunto;
         int estoque;
         RadioButton radio = (RadioButton) coleção.getSelectedToggle();
@@ -217,7 +220,7 @@ public class AdminLivrosController  implements Initializable{
                     return; 
                 }
 
-                String imagePath = chooseImage();
+                byte[] imagePath = chooseImage();
 
                 if(imagePath.equals("arquivo corrompido") || imagePath.equals("arquivo invalido")){
                     alert.setContentText("Escolha uma imagem válida");
@@ -229,10 +232,10 @@ public class AdminLivrosController  implements Initializable{
 
                 resetTextFields();
 
-                Livro livro = new Livro(titulo, autor, assunto, estoque, selected, imagePath);
+                Book livro = new Book(titulo, autor, assunto, estoque, selected, imagePath);
 
                 livros.set(i, livro);
-                crud.update(livros);
+                crud.update(db,);
                 livrosObs.set(i, livro);
             
         
@@ -244,11 +247,11 @@ public class AdminLivrosController  implements Initializable{
 
     }
     @FXML
-    public void pesquisarLivro(MouseEvent event) {
-        Livros crud = new Livros();
-        ObservableList<Livro> filter = FXCollections.observableArrayList();
+    public void pesquisarLivro(MouseEvent event, DataBase db) {
+        Books crud = new Books();
+        ObservableList<Book> filter = FXCollections.observableArrayList();
 
-        crud.read(livros);
+        livros = crud.read(db, Optional.empty());
         
         if(filtroTextField.getText().equals("")){
             
@@ -257,7 +260,7 @@ public class AdminLivrosController  implements Initializable{
         else{
             String filtro = filtroTextField.getText();
 
-            for (Livro livro : livros) {
+            for (Book livro : livros) {
                 if(livro.getTitulo().equals(filtro)
                  ||livro.getAutor().equals(filtro)
                  ||livro.getAssunto().equals(filtro)
@@ -274,11 +277,13 @@ public class AdminLivrosController  implements Initializable{
     }
     @FXML
     void pesquisarLivro2(KeyEvent event) {
+        DataBase db = new DataBase();
+        db.initialize();
         if(event.getCode() == KeyCode.ENTER){
-            Livros crud = new Livros();
-            ObservableList<Livro> filter = FXCollections.observableArrayList();
+            Books crud = new Books();
+            ObservableList<Book> filter = FXCollections.observableArrayList();
     
-            crud.read(livros);
+            livros = crud.read(db, Optional.empty());
             
             if(filtroTextField.getText().equals("")){
                 
@@ -287,7 +292,7 @@ public class AdminLivrosController  implements Initializable{
             else{
                 String filtro = filtroTextField.getText();
     
-                for (Livro livro : livros) {
+                for (Book livro : livros) {
                     if(livro.getTitulo().equals(filtro)
                      ||livro.getAutor().equals(filtro)
                      ||livro.getAssunto().equals(filtro)
@@ -309,7 +314,7 @@ public class AdminLivrosController  implements Initializable{
 
     @FXML
     void removerLivro(MouseEvent event) {
-        Livros crud = new Livros();
+        Books crud = new Books();
         
         int i = tableLivros.getSelectionModel().getSelectedIndex();
         if(i<0){
@@ -332,7 +337,7 @@ public class AdminLivrosController  implements Initializable{
         int i = tableLivros.getSelectionModel().getSelectedIndex();
         if(i>-1){
 
-            Livro livro = (Livro) tableLivros.getItems().get(i);
+            Book livro = (Book) tableLivros.getItems().get(i);
             String estoque = String.valueOf(livro.getQtdEstoque());
         
             tituloTextField.setText(livro.getTitulo());
@@ -352,35 +357,31 @@ public class AdminLivrosController  implements Initializable{
     }
 
     
-    public String chooseImage(){
+    public byte[] chooseImage(){
         try {
             FileChooser fc = new FileChooser();
             File file = fc.showOpenDialog(null);
             if(file == null ){
-                return "arquivo corrompido";
+                return null;
             } 
-            
+
+            byte [] image = Files.readAllBytes(file.toPath());
             String fileName = file.getName();
-            File destinationDiretory = new File("src/Views/CapasDeLivros/"+fileName);
 
-            String typeFile = Files.probeContentType(file.toPath());
+            int index = fileName.lastIndexOf(".");
+            String extension = fileName.substring(index + 1);
 
-            if(typeFile.equals("image/png") || typeFile.equals("image/jpeg" )) {
-
-                Files.copy(file.toPath(), destinationDiretory.toPath(), StandardCopyOption.REPLACE_EXISTING);
-
-                String path = "src/Views/CapasDeLivros/" + fileName;
-
-                return path; 
+            if(extension.equals("jpg") || extension.equals("png") ||  extension.equals("jpeg")) {
+                return image;
             } else {
-                return "arquivo invalido";
+                return null;
             }
 
             
 
         } catch (Exception e) {
             System.out.println(e);
-            return "arquivo corrompido";
+            return null;
         }
     }
 

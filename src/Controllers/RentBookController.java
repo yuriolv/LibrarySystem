@@ -1,17 +1,19 @@
 package Controllers;
 
+import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Optional;
 
-
-import Classes.Livro;
+import Classes.Book;
 import Classes.RentBook;
 import Classes.User;
+import DB.DataBase;
 import Models.Comments;
-import Models.Livros;
+import Models.Books;
 import Models.Rents;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -53,12 +55,12 @@ public class RentBookController{
 
 
     private User user;
-    private Livro selectedLivro;
+    private Book selectedLivro;
     private RentBook rentBookClass;
-    private Livros crud;
+    private Books crud;
     private ArrayList<String> comments;
 
-    private ArrayList<Livro> livros;
+    private ArrayList<Book> livros;
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -107,7 +109,7 @@ public class RentBookController{
     }
 
     @FXML
-    public void rentBook(MouseEvent event) throws IOException{
+    public void rentBook(MouseEvent event, DataBase db) throws IOException{
         int num = limitarEmprestimo();
         if(selectedLivro.getQtdEstoque()==0){
             Alert alert = new Alert(AlertType.INFORMATION);
@@ -118,7 +120,7 @@ public class RentBookController{
             return;
 
         }
-        if(selectedLivro.getColeção().equals("Coleção Especial") && user.getTipo().equals("Discente")){
+        if(selectedLivro.getColeção().equals("Especial") && user.getTipo().equals("Discente")){
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Aviso");
             alert.setHeaderText("Lamentamos informar");
@@ -145,12 +147,11 @@ public class RentBookController{
         }
 
         Rents crudRent = new Rents();
-        crud = new Livros();
-        livros = new ArrayList<Livro>(); 
+        crud = new Books();
         int i = 0;
-        crud.read(livros);
+        livros = crud.read(db, Optional.empty());
         
-        for (Livro livro : livros) {
+        for (Book livro : livros) {
             if(livro.getTitulo().equals(selectedLivro.getTitulo())) {
                 i = livros.indexOf(livro);
                 break;
@@ -205,20 +206,20 @@ public class RentBookController{
     }
 
 
-     public void setData(User user, Livro selectedLivro){
+     public void setData(User user, Book selectedLivro){
         this.user=user;
         this.selectedLivro = selectedLivro;
     }
 
-    public void setLabels(User user, Livro livro) throws FileNotFoundException{
+    public void setLabels(User user, Book livro) throws FileNotFoundException{
         matriculaLabel.setText(user.getMatricula());  
         nomeLabel.setText(user.getNome());
         bookNameLabel.setText(livro.getTitulo());
         autorLabel.setText(livro.getAutor());
         assuntoLabel.setText(livro.getAssunto());
 
-        FileInputStream file = new FileInputStream(livro.getImage());
-        Image img = new Image(file);
+        InputStream is = new ByteArrayInputStream(livro.getImage());
+        Image img = new Image(is);
 
         capaImage.setImage(img);
 
@@ -234,7 +235,7 @@ public class RentBookController{
         return label;
     }
 
-    public void setComments(Livro livro){
+    public void setComments(Book livro){
         Comments crud = new Comments(); //substituir pelo crud de comentários
 
         comments = new ArrayList<String>(); 

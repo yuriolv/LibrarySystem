@@ -1,14 +1,14 @@
 package Classes;
 
-public class Livro {
+public class Book {
     private String titulo;
     private String autor;
     private String assunto;
     private Integer qtdEstoque;
-    private String image;
+    private byte[] image;
     private String coleção;
 
-    public Livro(String titulo, String autor, String assunto, int qtdEstoque ,String coleção , String image){
+    public Book(String titulo, String autor, String assunto, int qtdEstoque ,String coleção , byte[] image){
         this.titulo = titulo;
         this.autor = autor;
         this.assunto = assunto;
@@ -27,7 +27,7 @@ public class Livro {
         return titulo;
     }
 
-    public String getImage(){
+    public byte[] getImage(){
         return image;
     }
     

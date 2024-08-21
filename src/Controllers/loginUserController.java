@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import Classes.User;
+import DB.DataBase;
 import Models.Users;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -41,7 +42,7 @@ public class loginUserController {
     private Label responseLabel2;
 
     @FXML
-    public void verifyLoginUser(MouseEvent event) throws IOException {
+    public void verifyLoginUser(MouseEvent event, DataBase db) throws IOException {
 
         String typeSelected, user, pass;
         ArrayList<User> users = new ArrayList<>();
@@ -68,7 +69,7 @@ public class loginUserController {
                         && usuario.getSenha().equals(pass)
                         && usuario.getTipo().equals(typeSelected)){                
                     
-                           changePageUser(event, usuario);
+                           changePageUser(event, usuario, db);
 
                     } else {
                         responseLabel.setText("MATRICULA OU SENHA INVÁLIDAS!");
@@ -85,7 +86,7 @@ public class loginUserController {
     }
 
     @FXML
-    public void verifyLoginUser2(KeyEvent event) throws IOException{
+    public void verifyLoginUser2(KeyEvent event, DataBase db) throws IOException{
 
         if(event.getCode() == KeyCode.ENTER){
 
@@ -114,7 +115,7 @@ public class loginUserController {
                             && usuario.getSenha().equals(pass)
                             && usuario.getTipo().equals(typeSelected)){                
                         
-                                changePageUser(event, usuario);
+                                changePageUser(event, usuario, db);
 
                         } else {
                             responseLabel.setText("MATRICULA OU SENHA INVÁLIDAS!");
@@ -148,7 +149,7 @@ public class loginUserController {
         stage.show();
     }
 
-    public void changePageUser(Event event, User user) throws IOException{
+    public void changePageUser(Event event, User user, DataBase db) throws IOException{
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/User.fxml"));
 

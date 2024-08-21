@@ -11,7 +11,7 @@ public class RentBook {
         return tipo;
     }
 
-    private String titulo;
+    private String titulo;  
     private String dateRent;
     private String dateDevolution;
     

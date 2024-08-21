@@ -1,15 +1,19 @@
 package Controllers;
 
+import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.scene.paint.Color;
 
-import Classes.Livro;
+import Classes.Book;
 import Classes.User;
-import Models.Livros;
+import DB.DataBase;
+import Models.Books;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -46,9 +50,9 @@ public class BooksController implements Initializable{
     private  DropShadow dropShadow = new DropShadow(threePassBox, Color.BLACK, 10, 0, 0, 0);
 
     private User user;
-    private Livro selectedLivro;
+    private Book selectedLivro;
 
-    private ArrayList<Livro> livros;
+    private ArrayList<Book> livros;
 
     @FXML
     void changePageUser(MouseEvent event) throws IOException {
@@ -127,7 +131,7 @@ public class BooksController implements Initializable{
         matriculaLabel.setText(user.getMatricula());    
     }
 
-    public AnchorPane createAnchorPane(Livro livro) {
+    public AnchorPane createAnchorPane(Book livro) {
         AnchorPane anchorPane = new AnchorPane();
         anchorPane.setPrefWidth(179);
         anchorPane.setPrefHeight(241);
@@ -135,8 +139,8 @@ public class BooksController implements Initializable{
         anchorPane.setEffect(dropShadow);
         
         try {
-            FileInputStream file = new FileInputStream(livro.getImage());
-            Image img = new Image(file);
+            InputStream is = new ByteArrayInputStream(livro.getImage());
+            Image img = new Image(is);
             ImageView image = new ImageView(img);
 
             image.setFitHeight(142);
@@ -186,12 +190,12 @@ public class BooksController implements Initializable{
 
     
     public void initialize(URL location, ResourceBundle resources) {
-        Livros crud = new Livros();
-
-        livros = new ArrayList<Livro>();
-        crud.read(livros);
+        DataBase db = new DataBase();
+        db.initialize();
+        Books crud_Books = new Books();
+        livros = crud_Books.read(db, Optional.empty());
         
-        for (Livro livro : livros) {
+        for (Book livro : livros) {
             AnchorPane bookCard = createAnchorPane(livro);
             flowPane.getChildren().add(bookCard);
         }

@@ -1,6 +1,7 @@
 package Controllers;
 
 import DB.DataBase;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,16 +20,17 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        DataBase db = new DataBase();
+        db.initialize();
+
         Parent contentHome = FXMLLoader.load(getClass().getResource("../Views/Home.fxml"));
         pageHome = new Scene(contentHome);  
 
-        DataBase db = new DataBase();
         
         stage = primaryStage;
         stage.setTitle("SISTEMA BIBLIOTECA");
         stage.setScene(pageHome); 
         stage.show();
         
-        db.initialize();
     }
 }
