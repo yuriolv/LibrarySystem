@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 
 import Classes.RentBook;
 import Classes.User;
+import DB.DataBase;
 import Models.Rents;
 
 import javafx.collections.FXCollections;
@@ -35,6 +36,11 @@ public class DevolucaoController implements Initializable{
     private Stage stage;
     private Scene scene;
     private Parent root;
+    private DataBase db;
+    
+    public void initializeDB(DataBase db){
+        this.db = db;
+    }
 
     @FXML
     private TableColumn<RentBook, String> dataColumn;
@@ -64,6 +70,7 @@ public class DevolucaoController implements Initializable{
 
         UserController userController = loader.getController();
 
+        userController.initializeDB(db);
         userController.setData(user);
         userController.setLabels(user);
 
@@ -129,6 +136,7 @@ public class DevolucaoController implements Initializable{
 
         ComentariosController comentario = loader.getController();
 
+        comentario.initializeDB(db);
         comentario.setData(rent);
 
         scene = new Scene(root);

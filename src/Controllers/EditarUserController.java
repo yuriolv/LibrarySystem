@@ -3,6 +3,7 @@ package Controllers;
 import java.util.ArrayList;
 
 import Classes.User;
+import DB.DataBase;
 import Models.Users;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -40,6 +41,11 @@ public class EditarUserController {
     private ArrayList<User> users = new ArrayList<>();
 
     private Users crud = new Users();
+    private DataBase db;
+    
+    public void initializeDB(DataBase db){
+        this.db = db;
+    }
 
     public void setLabels(User user){
         nomeLabel.setText(user.getNome());

@@ -12,6 +12,7 @@ public class App extends Application {
 
     private static Scene pageHome;
     private Stage stage;
+    public DataBase db = new DataBase();
     
 
     public static void main(String[] args) throws Exception {
@@ -20,10 +21,14 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        DataBase db = new DataBase();
-        db.initialize();
 
-        Parent contentHome = FXMLLoader.load(getClass().getResource("../Views/Home.fxml"));
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/Home.fxml"));
+        Parent contentHome = loader.load();
+        
+        HomeController homeController = loader.getController();
+        homeController.initializeDB(db);
+
         pageHome = new Scene(contentHome);  
 
         

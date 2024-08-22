@@ -64,6 +64,11 @@ public class RentBookController{
     private Stage stage;
     private Scene scene;
     private Parent root;
+    private DataBase db;
+    
+    public void initializeDB(DataBase db){
+        this.db = db;
+    }
 
     @FXML
     public void changePageHome(MouseEvent event) throws IOException{
@@ -91,6 +96,7 @@ public class RentBookController{
 
         BooksController rentController = loader.getController();
 
+        rentController.initializeDB(db);
         rentController.setData(user);
         rentController.setLabels(user);
 
@@ -109,7 +115,7 @@ public class RentBookController{
     }
 
     @FXML
-    public void rentBook(MouseEvent event, DataBase db) throws IOException{
+    public void rentBook(MouseEvent event) throws IOException{
         int num = limitarEmprestimo();
         if(selectedLivro.getQtdEstoque()==0){
             Alert alert = new Alert(AlertType.INFORMATION);
@@ -181,6 +187,7 @@ public class RentBookController{
 
         RentReportController rent = loader.getController();
 
+        rent.initializeDB(db);
         rent.setLabels(user, rentBookClass);
 
         scene = new Scene(root);

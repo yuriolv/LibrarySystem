@@ -37,6 +37,11 @@ public class BooksController implements Initializable{
     private Stage stage;
     private Scene scene;
     private Parent root;
+    private DataBase db;
+    
+    public void initializeDB(DataBase db){
+        this.db = db;
+    }
 
     @FXML
     private Label labelSair;
@@ -62,6 +67,7 @@ public class BooksController implements Initializable{
 
         UserController userController = loader.getController();
 
+        userController.initializeDB(db);
         userController.setData(user);
         userController.setLabels(user);
 
@@ -99,8 +105,11 @@ public class BooksController implements Initializable{
         stage.show();
     }
     void changePageBook(MouseEvent event) throws IOException{
-        FXMLLoader loader =new FXMLLoader(getClass().getResource("../Views/book.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/book.fxml"));
         root = loader.load();
+
+        BooksController booksController = loader.getController();
+        booksController.initializeDB(db);
 
         stage = (Stage)((Node) event.getSource()).getScene().getWindow();
 
@@ -190,8 +199,6 @@ public class BooksController implements Initializable{
 
     
     public void initialize(URL location, ResourceBundle resources) {
-        DataBase db = new DataBase();
-        db.initialize();
         Books crud_Books = new Books();
         livros = crud_Books.read(db, Optional.empty());
         

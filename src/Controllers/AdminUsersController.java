@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import Classes.User;
+import DB.DataBase;
 import Models.Users;
 
 import javafx.collections.FXCollections;
@@ -33,6 +34,11 @@ public class AdminUsersController  implements Initializable{
     private Stage stage;
     private Scene scene;
     private Parent root;
+    private DataBase db;
+    
+    public void initializeDB(DataBase db){
+        this.db = db;
+    }
 
     @FXML
     private TableView<User> tableUsers;
@@ -210,6 +216,8 @@ public class AdminUsersController  implements Initializable{
     @FXML
     public void changePageAdmin(MouseEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("../Views/Admin.fxml"));
+
+
         stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         
         if(stage.isMaximized() == true){

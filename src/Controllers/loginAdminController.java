@@ -2,6 +2,7 @@ package Controllers;
 
 import java.io.IOException;
 
+import DB.DataBase;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -23,6 +24,11 @@ public class loginAdminController{
     private Stage stage;
     private Scene scene;
     private Parent root;
+    private DataBase db;
+    
+    public void initializeDB(DataBase db){
+        this.db = db;
+    }
 
     @FXML
     private Label responseLabel;
@@ -87,7 +93,13 @@ public class loginAdminController{
         responseLabel.setText("");
         password.setText("");
         
-        root = FXMLLoader.load(getClass().getResource("../Views/Admin.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/Admin.fxml"));
+        root = loader.load();
+
+        AdminController adminController = loader.getController();
+        adminController.initializeDB(db);
+
+
         stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         
         if(stage.isMaximized() == true){

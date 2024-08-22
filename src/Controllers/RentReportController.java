@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 
 import Classes.RentBook;
 import Classes.User;
+import DB.DataBase;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -24,6 +25,11 @@ public class RentReportController {
 
     @FXML
     private Label tituloLabel;
+    private DataBase db;
+    
+    public void initializeDB(DataBase db){
+        this.db = db;
+    }
 
 
     

@@ -1,6 +1,7 @@
 package Controllers;
 
 import Classes.RentBook;
+import DB.DataBase;
 import Models.Comments;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -14,6 +15,11 @@ public class ComentariosController {
     private RentBook rent;
     @FXML
     private TextArea comentarioTextArea;
+    private DataBase db;
+    
+    public void initializeDB(DataBase db){
+        this.db = db;
+    }
 
 
     public void enviarComentario(MouseEvent event) {

@@ -9,6 +9,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart.Data;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -17,10 +18,14 @@ public class AdminController {
     private Stage stage;
     private Scene scene;
     private Parent root;
-
+    private DataBase db;
     
+    public void initializeDB(DataBase db){
+        this.db = db;
+    }
+
     @FXML
-    public void changePageHome(MouseEvent event, DataBase db) throws IOException {
+    public void changePageHome(MouseEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("../Views/Home.fxml"));
         stage = (Stage)((Node) event.getSource()).getScene().getWindow();
 
@@ -37,8 +42,15 @@ public class AdminController {
     }
 
     @FXML
-    public void changePageBooks(MouseEvent event, DataBase db) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("../Views/AdminLivros.fxml"));
+    public void changePageBooks(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/AdminLivros.fxml"));
+        root = loader.load();
+        
+        AdminLivrosController adminLivrosController = loader.getController();
+        adminLivrosController.initializeDB(db);
+
+        adminLivrosController.init();
+
         stage = (Stage)((Node) event.getSource()).getScene().getWindow();
 
         if(stage.isMaximized() == true){
@@ -54,8 +66,13 @@ public class AdminController {
     }
 
     @FXML
-    public void changePageUsers(MouseEvent event, DataBase db) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("../Views/AdminUsers.fxml"));
+    public void changePageUsers(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/AdminUsers.fxml"));
+        root = loader.load();
+
+        AdminUsersController adminUsersController = loader.getController();
+        adminUsersController.initializeDB(db);
+
         stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         
         if(stage.isMaximized() == true){

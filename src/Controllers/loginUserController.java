@@ -29,6 +29,11 @@ public class loginUserController {
     private Stage stage;
     private Scene scene;
     private Parent root;
+    private DataBase db;
+    
+    public void initializeDB(DataBase db){
+        this.db = db;
+    }
 
     @FXML
     private PasswordField passPasswordField;
@@ -42,7 +47,7 @@ public class loginUserController {
     private Label responseLabel2;
 
     @FXML
-    public void verifyLoginUser(MouseEvent event, DataBase db) throws IOException {
+    public void verifyLoginUser(MouseEvent event) throws IOException {
 
         String typeSelected, user, pass;
         ArrayList<User> users = new ArrayList<>();
@@ -69,7 +74,7 @@ public class loginUserController {
                         && usuario.getSenha().equals(pass)
                         && usuario.getTipo().equals(typeSelected)){                
                     
-                           changePageUser(event, usuario, db);
+                           changePageUser(event, usuario);
 
                     } else {
                         responseLabel.setText("MATRICULA OU SENHA INVÁLIDAS!");
@@ -86,7 +91,7 @@ public class loginUserController {
     }
 
     @FXML
-    public void verifyLoginUser2(KeyEvent event, DataBase db) throws IOException{
+    public void verifyLoginUser2(KeyEvent event) throws IOException{
 
         if(event.getCode() == KeyCode.ENTER){
 
@@ -115,7 +120,7 @@ public class loginUserController {
                             && usuario.getSenha().equals(pass)
                             && usuario.getTipo().equals(typeSelected)){                
                         
-                                changePageUser(event, usuario, db);
+                                changePageUser(event, usuario);
 
                         } else {
                             responseLabel.setText("MATRICULA OU SENHA INVÁLIDAS!");
@@ -149,7 +154,7 @@ public class loginUserController {
         stage.show();
     }
 
-    public void changePageUser(Event event, User user, DataBase db) throws IOException{
+    public void changePageUser(Event event, User user) throws IOException{
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/User.fxml"));
 
@@ -157,6 +162,7 @@ public class loginUserController {
 
         UserController userController = loader.getController();
 
+        userController.initializeDB(db);
         userController.setData(user);
         userController.setLabels(user);
 

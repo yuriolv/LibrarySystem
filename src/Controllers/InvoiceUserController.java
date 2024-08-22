@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import Classes.RentBook;
 import Classes.User;
+import DB.DataBase;
 import Models.Rents;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -32,6 +33,11 @@ public class InvoiceUserController {
 
     private ArrayList<RentBook> rents;
     private User user;
+    private DataBase db;
+    
+    public void initializeDB(DataBase db){
+        this.db = db;
+    }
 
 
     public void getRents(){

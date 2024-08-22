@@ -3,6 +3,7 @@ package Controllers;
 import java.io.IOException;
 
 import Classes.User;
+import DB.DataBase;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -19,6 +20,11 @@ public class UserController{
     private Stage stage;
     private Scene scene;
     private Parent root;
+    private DataBase db;
+    
+    public void initializeDB(DataBase db){
+        this.db = db;
+    }
 
     @FXML
     private Label matriculaLabel;
@@ -54,6 +60,7 @@ public class UserController{
 
         BooksController rentController = loader.getController();
 
+        rentController.initializeDB(db);
         rentController.setData(user);
         rentController.setLabels(user);
 
@@ -81,6 +88,7 @@ public class UserController{
 
         DevolucaoController devolucaoController = loader.getController();
 
+        devolucaoController.initializeDB(db);
         devolucaoController.setData(user);
         devolucaoController.setLabels(user);
 
@@ -105,6 +113,7 @@ public class UserController{
 
         InvoiceUserController invoice = loader.getController();
 
+        invoice.initializeDB(db);
         invoice.setData(user);
         invoice.setLabels();
 
@@ -126,6 +135,7 @@ public class UserController{
 
         EditarUserController editar = loader.getController();
 
+        editar.initializeDB(db);
         editar.setData(user);
         editar.setLabels(user);
 
