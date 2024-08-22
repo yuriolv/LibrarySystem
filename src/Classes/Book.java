@@ -8,9 +8,9 @@ public class Book {
     private byte[] image;
     private String coleção;
 
-    public Book(String titulo, String autor, String assunto, int qtdEstoque ,String coleção , byte[] image){
-        this.titulo = titulo;
+    public Book(String autor, String titulo, String assunto, int qtdEstoque ,String coleção , byte[] image){
         this.autor = autor;
+        this.titulo = titulo;
         this.assunto = assunto;
         this.qtdEstoque = qtdEstoque;
         this.image = image;
@@ -20,7 +20,7 @@ public class Book {
    
 
     public String toString(){
-        return titulo+"\t"+autor+"\t"+assunto+"\t"+qtdEstoque+"\t"+coleção+"\t"+image;
+        return autor+"\t"+titulo+"\t"+assunto+"\t"+qtdEstoque+"\t"+coleção+"\t"+image;
     }
 
     public String getTitulo() {

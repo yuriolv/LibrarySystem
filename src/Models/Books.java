@@ -29,7 +29,6 @@ public class Books {
             values.add(qtd_estoque);
             values.add(capa_livro);
             values.add(colecao);
-            ;
 
             Boolean result = db.modifySQL(insert, arrValues);
             return result;
@@ -53,7 +52,6 @@ public class Books {
                 result = String.join(" ", select);
             }
             ResultSet rs = db.requestSQL(result);
-            System.out.println(rs);
 
             while (rs.next()) {
                 Book book = new Book(rs.getString("autor"), rs.getString("titulo"), rs.getString("assunto"), rs.getInt("qtd_estoque"), rs.getString("colecao"), rs.getBytes("capa_livro"));
@@ -72,14 +70,17 @@ public class Books {
         String result = "";
         try {
             if(!conditions.isEmpty()){
-                select.add("UPDATE books SET autor = ?,titulo = ?,assunto = ?,qtd_estoque = ?,capa_livro = ?,colecao values = ? WHERE");
+                System.out.println("entrei");
+                select.add("UPDATE books SET autor = ?,titulo = ?,assunto = ?,qtd_estoque = ?,capa_livro = ?,colecao = ? WHERE");
                 String condition = String.join(" AND ", conditions.get());
                 select.add(condition);
+            }else{
+                select.add("UPDATE books SET autor = ?,titulo = ?,assunto = ?,qtd_estoque = ?,capa_livro = ?,colecao = ?");
             }
 
 
             result = String.join(" ", select);
-           
+
             db.modifySQL(result, Optional.of(values));
             return true;
         } catch (Exception e) {

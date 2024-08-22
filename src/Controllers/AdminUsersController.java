@@ -234,7 +234,11 @@ public class AdminUsersController  implements Initializable{
 
     @FXML
     public void changePageHome(MouseEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("../Views/Home.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/Home.fxml"));
+        root = loader.load();
+
+        HomeController homeController = loader.getController();
+        homeController.initializeDB(db);
         stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         
         if(stage.isMaximized() == true){

@@ -34,14 +34,17 @@ public class DataBase {
                         stmt.setInt(i+1, (Integer) obj);
                     }else if(obj instanceof byte[]){
                         stmt.setBytes(i+1, (byte[]) obj);
+                    }else if(obj == null){
+                        stmt.setNull(i+1, Types.BINARY);
                     }
                 }
                 result = stmt.executeUpdate();
             }else {
                 Statement stmt = connection.createStatement();
+                System.out.println(command);
                 result = stmt.executeUpdate(command);
             }
-            System.out.println(result);
+
             return result != 0;
          
         } catch (SQLException e) {
@@ -53,10 +56,9 @@ public class DataBase {
     //Função utilizada para 
     public ResultSet requestSQL(String command) {
         
-        try(
+        try {
             Statement stmt = connection.createStatement();
-            ResultSet result = stmt.executeQuery(command);) {
-            
+            ResultSet result = stmt.executeQuery(command);
             return result;
         } catch (SQLException e) {
             System.out.println(e);

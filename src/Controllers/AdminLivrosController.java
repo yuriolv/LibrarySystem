@@ -1,7 +1,9 @@
 package Controllers;
 
 import java.io.IOException;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
@@ -124,7 +126,12 @@ public class AdminLivrosController  {
 
     @FXML
     public void changePageHome(MouseEvent event) throws IOException{
-        root = FXMLLoader.load(getClass().getResource("../Views/Home.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/Home.fxml"));
+        root = loader.load();
+
+        HomeController homeController = loader.getController();
+        homeController.initializeDB(db);
+        
         stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         
         if(stage.isMaximized() == true){
@@ -243,19 +250,21 @@ public class AdminLivrosController  {
 
                 resetTextFields();
 
-                Book livro = new Book(titulo, autor, assunto, estoque, selected, image);
+                Book livro = new Book(autor, titulo, assunto, estoque, selected, image);
 
                 ArrayList<Object> values = new ArrayList<>();
                 
-                values.add("titulo = "+ titulo);
-                values.add("autor = "+ autor);
-                values.add("assunto = "+ assunto);
-                values.add("qtd_estoque = "+ estoque);
-                values.add("selected = "+ selected);
-                values.add("capa_livro = "+ image);
+                values.add( livro.getAutor());
+                values.add( livro.getTitulo());
+                values.add( livro.getAssunto());
+                values.add( livro.getQtdEstoque());
+                values.add( livro.getColeção());
+                values.add( livro.getImage());
+
+
 
                 ArrayList<String> conditions = new ArrayList<>();
-                conditions.add("titulo = "+ titulo);
+                conditions.add("titulo = "+ "'"+titulo+"'");
 
                 crud.update(db, values, Optional.of(conditions));
                 livrosObs.set(i, livro);
@@ -348,7 +357,7 @@ public class AdminLivrosController  {
         String titulo =  tituloTextField.getText();
         livrosObs.remove(i);
         ArrayList<String> conditions = new ArrayList<>();
-        conditions.add("titulo = " + titulo);
+        conditions.add("titulo = " + "'"+titulo+"'");
 
         crud.delete(db, conditions);
 
@@ -388,16 +397,26 @@ public class AdminLivrosController  {
             if(file == null ){
                 return null;
             } 
+            FileInputStream fis = new FileInputStream(file);
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
 
-            byte [] image = Files.readAllBytes(file.toPath());
             String fileName = file.getName();
 
+            byte[] buffer = new byte[1024];
+            int bytesRead;
+
+            while ((bytesRead = fis.read(buffer)) != -1) {
+                bos.write(buffer, 0, bytesRead);
+            }
+            
             int index = fileName.lastIndexOf(".");
             String extension = fileName.substring(index + 1);
-
+            
             if(extension.equals("jpg") || extension.equals("png") ||  extension.equals("jpeg")) {
-                return image;
+                fis.close();
+                return bos.toByteArray();
             } else {
+                fis.close();
                 return null;
             }
 
