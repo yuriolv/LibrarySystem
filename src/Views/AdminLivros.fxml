@@ -89,11 +89,11 @@
                                     </Label>
                                     <HBox alignment="CENTER" prefHeight="25.0" prefWidth="560.0" spacing="10.0">
                                        <children>
-                                          <TextField fx:id="tituloTextField" layoutX="346.0" layoutY="10.0" prefHeight="25.0" prefWidth="139.0" promptText="Titulo">
+                                          <TextField fx:id="autorTextField" layoutX="346.0" layoutY="10.0" prefHeight="25.0" prefWidth="139.0" promptText="Autor">
                                              <font>
                                                 <Font name="Nirmala UI Semilight" size="14.0" />
                                              </font></TextField>
-                                          <TextField fx:id="autorTextField" layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="139.0" promptText="Autor">
+                                          <TextField fx:id="tituloTextField" layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="139.0" promptText="Titulo">
                                              <font>
                                                 <Font name="Nirmala UI Semilight" size="14.0" />
                                              </font></TextField>
@@ -188,8 +188,8 @@
                         </HBox>
                         <TableView fx:id="tableLivros" onMouseClicked="#getRowData" prefHeight="254.0" prefWidth="700.0" style="-fx-background-color: #dfdedf;" stylesheets="@Stylesheets/AdminLivros.css">
                            <columns>
-                              <TableColumn fx:id="tituloColumn" prefWidth="150.0" style="-fx-font-size: 14;" text="Titulo" />
                               <TableColumn fx:id="autorColumn" prefWidth="141.0" style="-fx-font-size: 14;" text="Autor" />
+                              <TableColumn fx:id="tituloColumn" prefWidth="150.0" style="-fx-font-size: 14;" text="Titulo" />
                               <TableColumn fx:id="assuntoColumn" prefWidth="128.0" style="-fx-font-size: 14;" text="Assunto" />
                               <TableColumn fx:id="coleçãoColumn" prefWidth="128.0" style="-fx-font-size: 14;" text="Coleção" />
                               <TableColumn fx:id="estoqueColumn" prefWidth="74.0" style="-fx-font-size: 14;" text="Estoque" />

@@ -72,7 +72,11 @@ public class RentBookController{
 
     @FXML
     public void changePageHome(MouseEvent event) throws IOException{
-        root = FXMLLoader.load(getClass().getResource("../Views/Home.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/Home.fxml"));
+        root = loader.load();
+
+        HomeController homeController = loader.getController();
+        homeController.initializeDB(db);
         stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         
         if(stage.isMaximized() == true){
@@ -117,7 +121,14 @@ public class RentBookController{
     @FXML
     public void rentBook(MouseEvent event) throws IOException{
         int num = limitarEmprestimo();
-        if(selectedLivro.getQtdEstoque()==0){
+        ArrayList<Book> books = new ArrayList<>();
+        Optional<ArrayList<String>> condition = Optional.of(new ArrayList<>());
+
+        condition.get().add("titulo = "+ selectedLivro.getTitulo());
+        books = crud.read(db, condition);
+
+
+        if(books.getFirst().getQtdEstoque()==0){
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Aviso");
             alert.setHeaderText(null);
@@ -126,7 +137,7 @@ public class RentBookController{
             return;
 
         }
-        if(selectedLivro.getColeção().equals("Especial") && user.getTipo().equals("Discente")){
+        if(books.getFirst().getColeção().equals("Especial") && user.getTipo().equals("Discente")){
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Aviso");
             alert.setHeaderText("Lamentamos informar");
@@ -169,10 +180,15 @@ public class RentBookController{
 
         crudRent.create(rentBookClass);
 
-        selectedLivro.setQtdEstoque(selectedLivro.getQtdEstoque() - 1);
+        ArrayList<Object> value = new ArrayList<>();
+        value.add(selectedLivro.getAutor());
+        value.add(selectedLivro.getTitulo());
+        value.add(selectedLivro.getAssunto());
+        value.add(selectedLivro.getQtdEstoque()-1);
+        value.add(selectedLivro.getImage());
+        value.add(selectedLivro.getColeção());
 
-        livros.set(i, selectedLivro);
-        crud.update(livros);
+        crud.update(db, value, Optional.empty() );
 
         changePageRentReport(event);
         

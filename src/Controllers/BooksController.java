@@ -33,7 +33,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
-public class BooksController implements Initializable{
+public class BooksController {
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -87,9 +87,11 @@ public class BooksController implements Initializable{
 
     @FXML
     void changePageHome(MouseEvent event) throws IOException{
-        FXMLLoader loader =new FXMLLoader(getClass().getResource("../Views/Home.fxml"));
-
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/Home.fxml"));
         root = loader.load();
+
+        HomeController homeController = loader.getController();
+        homeController.initializeDB(db);
 
         stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         
@@ -198,7 +200,7 @@ public class BooksController implements Initializable{
     }
 
     
-    public void initialize(URL location, ResourceBundle resources) {
+    public void init() {
         Books crud_Books = new Books();
         livros = crud_Books.read(db, Optional.empty());
         
