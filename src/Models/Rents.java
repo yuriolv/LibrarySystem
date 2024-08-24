@@ -1,99 +1,97 @@
 package Models;
 
-import java.io.*;
 import java.util.ArrayList;
+import java.util.Optional;
 
 import Classes.RentBook;
+import DB.DataBase;
+import java.sql.ResultSet;
 
 public class Rents {  
 
-    public boolean create(RentBook rent){
+    public boolean create(RentBook rent, DataBase db){
         try {
-            FileWriter fWriter = new FileWriter("src/Data/Rents.txt", true);
-            BufferedWriter bWriter = new BufferedWriter(fWriter);
+            String insert = "Insert into rents(matricula, titulo_livro, tipo_usuario , data_aluguel, data_devolucao) values (?, ?, ?, ?, ?)";
+            ArrayList<Object> values = new ArrayList<>();
+            Optional<ArrayList<Object>> arrValues = Optional.of(values);
 
-            
-            bWriter.write(rent.toString());
-            
+            values.add(rent.getMatricula());
+            values.add(rent.getTitulo());
+            values.add(rent.getTipo());
+            values.add(rent.getDateRent());
+            values.add(rent.getDateDevolution());
 
-            bWriter.newLine();
-            
-            bWriter.close();
-            fWriter.close();
-        
+            Boolean result = db.modifySQL(insert, arrValues);
+            return result;
         } catch (Exception e) {
             return false;
     
         }
-        return true;
     }
 
-    public void read(ArrayList<RentBook> rents){
-        rents.clear();
-        RentBook rent;
-        try{
-            FileReader fReader = new FileReader("src/Data/Rents.txt");
-            BufferedReader bReader = new BufferedReader(fReader);
-            String linha = bReader.readLine();
-            
-            while(linha != null){
-                String[] dados = linha.split("\t");
-                rent = new RentBook(dados[0], dados[1], dados[2],dados[3], dados[4]);
+    public ArrayList<RentBook> read(DataBase db, Optional<ArrayList<String>> conditions){
+        ArrayList<RentBook> rents = new ArrayList<>();
+        ArrayList<String> select = new ArrayList<>();
+        String result = "";
+        try {
+            if(conditions.isEmpty()){
+                select.add("SELECT * FROM rents");
+                result = String.join(" ", select);
+            }else{
+                select.add("SELECT * FROM rents WHERE");
+                String command = String.join(" OR ",conditions.get());
+                select.add(command);
+                result = String.join(" ", select);
+            }
+            ResultSet rs = db.requestSQL(result);
+
+            while (rs.next()) {
+                String matricula =  Integer.toString(rs.getInt("matricula"));
+                RentBook rent = new RentBook(matricula, rs.getString("titulo_livro"), rs.getString("tipo_usuario"), rs.getString("data_aluguel"), rs.getString("data_devolucao"));
                 rents.add(rent);
-                linha = bReader.readLine();
-
             }
-            fReader.close();
-            bReader.close();
-        }catch(Exception e){
-           return;
-        }
-        
 
-    }
-
-    public boolean update(ArrayList<RentBook> rents){
-        File file = new File("src/Data/Rents.txt");  
-
-        if(file.delete()){
-            if(createFile("Rents")){
-                for (RentBook rent : rents) {
-                    create(rent);                 
-                }
-                return true;
-            }
-        }
-        return false; 
-
-    }
-    public boolean delete(int index, ArrayList<RentBook> rents){
-        File file = new File("src/Data/Rents.txt");
-        
-        if(file.delete()){
-            if(createFile("Rents")){
-                rents.remove(index);
-
-                for (RentBook rent : rents) {
-                    create(rent);                 
-                }
-                return true;
-            }
-        }
-        return false; 
-
-    }
-    
-    public boolean createFile(String nome){
-        
-        File file = new File("src/Data/"+nome+".txt");
-        
-        try {
-            return file.createNewFile();
+            return rents;
         } catch (Exception e) {
+            System.out.println(e);
+            return rents;
+        }
+    }
+
+    public boolean update(DataBase db,ArrayList<Object> values,Optional<ArrayList<String>> conditions){
+        ArrayList<String> select = new ArrayList<>();
+        String result = "";
+        try {
+            if(!conditions.isEmpty()){
+                select.add("UPDATE rents SET matricula = ?,titulo_livro = ?,tipo_usuario = ?,data_aluguel = ?,data_devolucao = ? WHERE");
+                String condition = String.join(" AND ", conditions.get());
+                select.add(condition);
+            }else{
+                select.add("UPDATE rents SET matricula = ?,titulo_livro = ?,tipo_usuario = ?,data_aluguel = ?,data_devolucao = ?");
+            }
+
+            result = String.join(" ", select);
+
+            db.modifySQL(result, Optional.of(values));
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
             return false;
         }
-    }
 
+    }
+        
+    public boolean delete(DataBase db, ArrayList<String> conditions){
+        ArrayList<String> command = new ArrayList<>();
+        command.add("DELETE FROM rents WHERE");
+        String condition = String.join(" AND ", conditions);
+        command.add(condition);
+
+        String delete = String.join(" ", command);
+        Boolean rs = db.modifySQL(delete, Optional.empty());
+
+        return rs;
+    }
 }
 
 
