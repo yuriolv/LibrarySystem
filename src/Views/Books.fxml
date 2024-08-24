@@ -13,21 +13,21 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.BooksController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.BooksController">
    <children>
       <AnchorPane prefHeight="112.0" prefWidth="705.0" style="-fx-background-color: #008B45;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-5.67162170206268" AnchorPane.topAnchor="0.0">
          <children>
-            <Label alignment="CENTER" layoutX="42.0" layoutY="33.0" text="Biblioteca #nome" textAlignment="RIGHT" textFill="WHITE" AnchorPane.leftAnchor="42.0">
+            <Label alignment="CENTER" layoutX="42.0" layoutY="33.0" text="Biblioteca" textAlignment="RIGHT" textFill="WHITE" AnchorPane.leftAnchor="42.0">
                <font>
                   <Font name="Cambria" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="matriculaLabel" alignment="CENTER" layoutX="534.0" layoutY="23.0" text="#matrícula" textAlignment="RIGHT" textFill="WHITE" AnchorPane.rightAnchor="26.955207911385855">
+            <Label fx:id="matriculaLabel" alignment="CENTER" layoutX="552.0" layoutY="24.0" prefHeight="44.0" prefWidth="154.0" text="#matrícula" textAlignment="RIGHT" textFill="WHITE" AnchorPane.rightAnchor="14.0">
                <font>
-                  <Font name="Cambria" size="26.0" />
+                  <Font name="Cambria" size="28.0" />
                </font>
             </Label>
-            <Label fx:id="labelSair" layoutX="646.0" layoutY="62.0" onMouseClicked="#changePageHome" text="Sair" textAlignment="RIGHT" textFill="WHITE" underline="true" AnchorPane.rightAnchor="26.716398759631375">
+            <Label fx:id="labelSair" layoutX="646.0" layoutY="68.0" onMouseClicked="#changePageHome" text="Sair" textAlignment="RIGHT" textFill="WHITE" AnchorPane.rightAnchor="26.67162170206268">
                <font>
                   <Font size="20.0" />
                </font>
@@ -35,7 +35,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Label layoutX="566.0" layoutY="62.0" onMouseClicked="#changePageUser" text="Voltar" textFill="WHITE" AnchorPane.rightAnchor="86.0">
+            <Label layoutX="564.0" layoutY="68.0" onMouseClicked="#changePageUser" text="Voltar" textFill="WHITE" AnchorPane.rightAnchor="88.67162170206268">
                <font>
                   <Font size="20.0" />
                </font>

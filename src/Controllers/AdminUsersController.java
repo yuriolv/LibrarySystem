@@ -49,11 +49,15 @@ public class AdminUsersController  implements Initializable{
     @FXML
     private TableColumn<User, String> tipoColumn;
     @FXML
+    private TableColumn<User, String> telefoneColumn;
+    @FXML
     private TextField matriculaTextField;
     @FXML
     private TextField nomeTextField;
     @FXML
     private TextField tipoTextField;
+    @FXML
+    private TextField telefoneTextField;
     @FXML
     private TextField filtroTextField;
 

@@ -10,16 +10,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: E5E5E5;" stylesheets="@Stylesheets/Admin.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdminController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: E5E5E5;" stylesheets="@Stylesheets/Admin.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdminController">
    <children>
-      <AnchorPane prefHeight="123.0" prefWidth="705.0" style="-fx-background-color: #008B45;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-5.0">
+      <AnchorPane prefHeight="123.0" prefWidth="700.0" style="-fx-background-color: #008B45;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Label alignment="CENTER" layoutX="79.0" layoutY="40.0" text="Biblioteca #nome" textAlignment="RIGHT" textFill="WHITE" AnchorPane.leftAnchor="79.0">
+            <Label alignment="CENTER" layoutX="79.0" layoutY="40.0" text="Biblioteca" textAlignment="RIGHT" textFill="WHITE" AnchorPane.leftAnchor="79.0">
                <font>
                   <Font name="Cambria" size="36.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="437.0" layoutY="23.0" text="Bibliotecário@2023" textAlignment="RIGHT" textFill="WHITE" AnchorPane.rightAnchor="27.0">
+            <Label alignment="CENTER" layoutX="437.0" layoutY="23.0" text="Bibliotecário@2024" textAlignment="RIGHT" textFill="WHITE" AnchorPane.rightAnchor="27.0">
                <font>
                   <Font name="Cambria" size="26.0" />
                </font>

@@ -15,11 +15,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdminUsersController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdminUsersController">
    <children>
       <AnchorPane layoutX="-5.0" layoutY="-3.0" prefHeight="112.0" prefWidth="700.0" style="-fx-background-color: #008B45;" AnchorPane.leftAnchor="-5.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Label alignment="CENTER" layoutX="42.0" layoutY="33.0" text="Biblioteca #nome" textAlignment="RIGHT" textFill="WHITE" AnchorPane.leftAnchor="42.0">
+            <Label alignment="CENTER" layoutX="42.0" layoutY="33.0" text="Biblioteca" textAlignment="RIGHT" textFill="WHITE" AnchorPane.leftAnchor="42.0">
                <font>
                   <Font name="Cambria" size="36.0" />
                </font>
@@ -100,6 +100,11 @@
                                                 <Font name="Nirmala UI" size="14.0" />
                                              </font>
                                           </TextField>
+                                          <TextField fx:id="telefoneTextField" prefHeight="25.0" prefWidth="139.0" promptText="Telefone">
+                                             <font>
+                                                <Font name="Nirmala UI" size="14.0" />
+                                             </font>
+                                          </TextField>
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER" fillHeight="false" prefHeight="32.0" prefWidth="421.0" spacing="40.0">
@@ -175,6 +180,7 @@
                               <TableColumn fx:id="matriculaColumn" prefWidth="150.0" style="-fx-font-size: 14;" text="Matricula" />
                               <TableColumn fx:id="nomeColumn" prefWidth="141.0" style="-fx-font-size: 14;" text="Nome" />
                               <TableColumn fx:id="tipoColumn" prefWidth="128.0" style="-fx-font-size: 14;" text="Tipo" />
+                              <TableColumn fx:id="telefoneColumn" prefWidth="128.0" style="-fx-font-size: 14;" text="Telefone" />
                            </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

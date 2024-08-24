@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="407.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.EditarUserController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="407.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.EditarUserController">
    <children>
       <AnchorPane layoutY="430.0" minHeight="53.0" prefHeight="53.0" prefWidth="407.0" style="-fx-background-color: #008B45;" />
       <Label layoutX="87.0" layoutY="21.0" text="Dados do usuário">
@@ -34,7 +34,7 @@
       <PasswordField fx:id="passwordTField" layoutX="102.0" layoutY="278.0" prefHeight="26.0" prefWidth="203.0" promptText="Digite a nova senha" />
       <Button layoutX="168.0" layoutY="358.0" mnemonicParsing="false" onMouseClicked="#alterarSenha" text="Confirmar" />
       <PasswordField fx:id="validationTField" layoutX="102.0" layoutY="318.0" prefHeight="26.0" prefWidth="203.0" promptText="Confirme a nova senha" />
-      <Label fx:id="nomeLabel" layoutX="109.0" layoutY="97.0" prefHeight="25.0" prefWidth="186.0">
+      <Label fx:id="nomeLabel" layoutX="75.0" layoutY="98.0" prefHeight="25.0" prefWidth="186.0">
          <font>
             <Font name="Segoe UI Light" size="16.0" />
          </font>
@@ -49,17 +49,17 @@
             <Font name="Nirmala UI" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="tipoLabel" layoutX="157.0" layoutY="126.0" prefHeight="25.0" prefWidth="64.0">
+      <Label fx:id="tipoLabel" layoutX="67.0" layoutY="126.0" prefHeight="25.0" prefWidth="64.0">
          <font>
             <Font name="Segoe UI Light" size="16.0" />
          </font>
       </Label>
-      <Label fx:id="matriculaLabel" layoutX="147.0" layoutY="155.0" prefHeight="25.0" prefWidth="85.0">
+      <Label fx:id="matriculaLabel" layoutX="99.0" layoutY="156.0" prefHeight="25.0" prefWidth="85.0">
          <font>
             <Font name="Segoe UI Light" size="16.0" />
          </font>
       </Label>
-      <Label fx:id="senhaLabel" layoutX="155.0" layoutY="183.0" prefHeight="25.0" prefWidth="69.0">
+      <Label fx:id="senhaLabel" layoutX="75.0" layoutY="183.0" prefHeight="25.0" prefWidth="69.0">
          <font>
             <Font name="Segoe UI Light" size="16.0" />
          </font>
