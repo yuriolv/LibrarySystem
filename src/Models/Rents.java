@@ -10,7 +10,7 @@ public class Rents {
 
     public boolean create(RentBook rent, DataBase db){
         try {
-            String insert = "Insert into aluguel(matricula, id_livro, tipo_usuario , data_aluguel, data_devolucao) values (?, ?, ?, ?, ?)";
+            String insert = "Insert into aluguel(matricula, id_livro, data_aluguel, data_devolucao) values (?, ?, ?, ?)";
             ArrayList<Object> values = new ArrayList<>();
             Optional<ArrayList<Object>> arrValues = Optional.of(values);
 
