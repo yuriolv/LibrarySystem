@@ -1,12 +1,10 @@
 package Models;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Optional;
-
 import Classes.Book;
 import DB.DataBase;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.Optional;
 
 public class Books {
     
@@ -20,7 +18,7 @@ public class Books {
         
         
         try {
-            String insert = "Insert into books(autor, titulo, assunto, qtd_estoque,capa_livro, colecao) values (?,?,?,?,?,?)";
+            String insert = "Insert into livro(autor, titulo, assunto, qtd_estoque,capa_livro, colecao) values (?,?,?,?,?,?)";
             ArrayList<Object> values = new ArrayList<>();
             Optional<ArrayList<Object>> arrValues = Optional.of(values);
             values.add(autor);
@@ -43,10 +41,10 @@ public class Books {
         String result = "";
         try {
             if(conditions.isEmpty()){
-                select.add("SELECT * FROM books");
+                select.add("SELECT * FROM livro");
                 result = String.join(" ", select);
             }else{
-                select.add("SELECT * FROM books WHERE");
+                select.add("SELECT * FROM livro WHERE");
                 String command = String.join(" OR ",conditions.get());
                 select.add(command);
                 result = String.join(" ", select);
@@ -71,11 +69,11 @@ public class Books {
         try {
             if(!conditions.isEmpty()){
                 System.out.println("entrei");
-                select.add("UPDATE books SET autor = ?,titulo = ?,assunto = ?,qtd_estoque = ?,capa_livro = ?,colecao = ? WHERE");
+                select.add("UPDATE livro SET autor = ?,titulo = ?,assunto = ?,qtd_estoque = ?,capa_livro = ?,colecao = ? WHERE");
                 String condition = String.join(" AND ", conditions.get());
                 select.add(condition);
             }else{
-                select.add("UPDATE books SET autor = ?,titulo = ?,assunto = ?,qtd_estoque = ?,capa_livro = ?,colecao = ?");
+                select.add("UPDATE livro SET autor = ?,titulo = ?,assunto = ?,qtd_estoque = ?,capa_livro = ?,colecao = ?");
             }
 
 
@@ -92,7 +90,7 @@ public class Books {
     
     public boolean delete(DataBase db, ArrayList<String> conditions){
         ArrayList<String> command = new ArrayList<>();
-        command.add("DELETE FROM books WHERE");
+        command.add("DELETE FROM livro WHERE");
         String condition = String.join(" AND ", conditions);
         command.add(condition);
 

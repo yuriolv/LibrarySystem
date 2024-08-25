@@ -34,7 +34,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class DevolucaoController implements Initializable{
+public class DevolucaoController{
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -162,11 +162,7 @@ public class DevolucaoController implements Initializable{
 
 
     }
-
-
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void init() {
         Rents crud = new Rents();
         rents = crud.read(db, Optional.empty()); 
 

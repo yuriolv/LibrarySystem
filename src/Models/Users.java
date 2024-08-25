@@ -1,17 +1,16 @@
 package Models;
 
+import Classes.User;
+import DB.DataBase;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Optional;
-
-import Classes.User;
-import DB.DataBase;
 
 public class Users {
     
     public boolean create(User user, DataBase db) {
         try {
-            String insert = "Insert into users(matricula, nome, tipo, senha) values (?, ?, ?, ?)";
+            String insert = "Insert into usuario(matricula, nome, tipo, senha) values (?, ?, ?, ?)";
             ArrayList<Object> values = new ArrayList<>();
             Optional<ArrayList<Object>> arrValues = Optional.of(values);
 
@@ -33,7 +32,7 @@ public class Users {
         String result = "";
         try {
             if(conditions.isEmpty()){
-                select.add("SELECT * FROM users");
+                select.add("SELECT * FROM usuario");
                 result = String.join(" ", select);
             }else{
                 select.add("SELECT * FROM users WHERE");
@@ -60,20 +59,20 @@ public class Users {
         String command;
 
         if (values.size() == 1) {
-            command = "UPDATE users SET senha = ? WHERE";
+            command = "UPDATE usuario SET senha = ? WHERE";
         } else if (values.size() == 3) {
-            command = "UPDATE users SET matricula = ?,nome = ?,tipo = ? WHERE";
+            command = "UPDATE usuario SET matricula = ?,nome = ?,tipo = ? WHERE";
         }
 
         ArrayList<String> select = new ArrayList<>();
         String result = "";
         try {
             if(!conditions.isEmpty()){
-                select.add("UPDATE users SET matricula = ?,nome = ?,tipo = ?,senha = ? WHERE");
+                select.add("UPDATE usuario SET matricula = ?,nome = ?,tipo = ?,senha = ? WHERE");
                 String condition = String.join(" AND ", conditions.get());
                 select.add(condition);
             }else{
-                select.add("UPDATE users SET matricula = ?,nome = ?,tipo = ?,senha = ?");
+                select.add("UPDATE usuario SET matricula = ?,nome = ?,tipo = ?,senha = ?");
             }
 
 
@@ -89,7 +88,7 @@ public class Users {
 
     public boolean delete(DataBase db, ArrayList<String> conditions){
         ArrayList<String> command = new ArrayList<>();
-        command.add("DELETE FROM users WHERE");
+        command.add("DELETE FROM usuario WHERE");
         String condition = String.join(" AND ", conditions);
         command.add(condition);
 

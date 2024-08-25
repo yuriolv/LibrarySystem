@@ -77,6 +77,7 @@ public class AdminController {
 
         AdminUsersController adminUsersController = loader.getController();
         adminUsersController.initializeDB(db);
+        adminUsersController.init();
 
         stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         

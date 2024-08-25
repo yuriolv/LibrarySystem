@@ -1,17 +1,16 @@
 package Models;
 
-import java.util.ArrayList;
-import java.util.Optional;
-
 import Classes.RentBook;
 import DB.DataBase;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.Optional;
 
 public class Rents {  
 
     public boolean create(RentBook rent, DataBase db){
         try {
-            String insert = "Insert into rents(matricula, titulo_livro, tipo_usuario , data_aluguel, data_devolucao) values (?, ?, ?, ?, ?)";
+            String insert = "Insert into aluguel(matricula, id_livro, tipo_usuario , data_aluguel, data_devolucao) values (?, ?, ?, ?, ?)";
             ArrayList<Object> values = new ArrayList<>();
             Optional<ArrayList<Object>> arrValues = Optional.of(values);
 
@@ -35,10 +34,10 @@ public class Rents {
         String result = "";
         try {
             if(conditions.isEmpty()){
-                select.add("SELECT * FROM rents");
+                select.add("SELECT * FROM aluguel");
                 result = String.join(" ", select);
             }else{
-                select.add("SELECT * FROM rents WHERE");
+                select.add("SELECT * FROM aluguel WHERE");
                 String command = String.join(" OR ",conditions.get());
                 select.add(command);
                 result = String.join(" ", select);
@@ -63,11 +62,11 @@ public class Rents {
         String result = "";
         try {
             if(!conditions.isEmpty()){
-                select.add("UPDATE rents SET matricula = ?,titulo_livro = ?,tipo_usuario = ?,data_aluguel = ?,data_devolucao = ? WHERE");
+                select.add("UPDATE aluguel SET matricula = ?,titulo_livro = ?,tipo_usuario = ?,data_aluguel = ?,data_devolucao = ? WHERE");
                 String condition = String.join(" AND ", conditions.get());
                 select.add(condition);
             }else{
-                select.add("UPDATE rents SET matricula = ?,titulo_livro = ?,tipo_usuario = ?,data_aluguel = ?,data_devolucao = ?");
+                select.add("UPDATE aluguel SET matricula = ?,titulo_livro = ?,tipo_usuario = ?,data_aluguel = ?,data_devolucao = ?");
             }
 
             result = String.join(" ", select);
@@ -83,7 +82,7 @@ public class Rents {
         
     public boolean delete(DataBase db, ArrayList<String> conditions){
         ArrayList<String> command = new ArrayList<>();
-        command.add("DELETE FROM rents WHERE");
+        command.add("DELETE FROM aluguel WHERE");
         String condition = String.join(" AND ", conditions);
         command.add(condition);
 

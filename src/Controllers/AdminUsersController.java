@@ -31,7 +31,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
-public class AdminUsersController  implements Initializable{
+public class AdminUsersController{
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -67,8 +67,7 @@ public class AdminUsersController  implements Initializable{
 
     
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void init() {
         Users crud = new Users();
         users = new ArrayList<>();
         
@@ -230,8 +229,11 @@ public class AdminUsersController  implements Initializable{
 
     @FXML
     public void changePageAdmin(MouseEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("../Views/Admin.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/Admin.fxml"));
+        root = loader.load();
 
+        AdminController adminController = loader.getController();
+        adminController.initializeDB(db);
 
         stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         

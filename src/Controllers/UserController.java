@@ -94,6 +94,7 @@ public class UserController{
         DevolucaoController devolucaoController = loader.getController();
 
         devolucaoController.initializeDB(db);
+        devolucaoController.init();
         devolucaoController.setData(user);
         devolucaoController.setLabels(user);
 
