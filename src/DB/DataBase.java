@@ -38,6 +38,7 @@ public class DataBase {
                         stmt.setNull(i+1, Types.BINARY);
                     }
                 }
+                System.out.println(stmt.toString());
                 result = stmt.executeUpdate();
             }else {
                 Statement stmt = connection.createStatement();

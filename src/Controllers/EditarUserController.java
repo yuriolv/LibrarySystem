@@ -58,8 +58,9 @@ public class EditarUserController {
     @FXML
     public void alterarSenha(MouseEvent event){
         ArrayList<Object> valuesToUpdate = new ArrayList<>();
-        ArrayList<String> conditions_str;
+        ArrayList<String> conditions_str = new ArrayList<>();
         Optional<ArrayList<String>> conditions = Optional.of(conditions_str);
+        String matricula;
 
         responseLabel.setText("");
         String novaSenha = passwordTField.getText();
@@ -72,7 +73,8 @@ public class EditarUserController {
             users.set(i, user);
 
             valuesToUpdate.add("senha");
-            conditions_str.add(String.format("matricula = %s", users.get(i).getMatricula()));
+            matricula = "\'" + users.get(i).getMatricula() + "\'";
+            conditions_str.add(String.format("matricula = %s", matricula));
             crud.update(db, valuesToUpdate, conditions);
 
             Alert alert = new Alert(AlertType.INFORMATION);
