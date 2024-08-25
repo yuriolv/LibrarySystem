@@ -84,7 +84,7 @@ public class AdminUsersController{
 
     @FXML 
     public void editarUser(MouseEvent event){
-        ArrayList<String> condition_str;
+        ArrayList<String> condition_str = new ArrayList<>();
         Optional<ArrayList<String>> conditions = Optional.of(condition_str);
         ArrayList<Object> valuesToUpdate= new ArrayList<>();
         Users crud = new Users();
@@ -98,9 +98,9 @@ public class AdminUsersController{
             matricula = matriculaTextField.getText();
             tipo = tipoTextField.getText();
             nome = nomeTextField.getText();
-            valuesToUpdate.add("matricula");
-            valuesToUpdate.add("tipo");
-            valuesToUpdate.add("nome");
+            valuesToUpdate.add(matricula);
+            valuesToUpdate.add(nome);
+            valuesToUpdate.add(tipo);
                         
             user = users.get(i);
 
@@ -111,6 +111,7 @@ public class AdminUsersController{
             users.set(i, user);
             usersObs.set(i, user);
             
+            matricula = "\'" + matricula + "\'";
             condition_str.add(String.format("matricula = %s", matricula));
             crud.update(db, valuesToUpdate, conditions);
             resetTextFields();
@@ -156,6 +157,7 @@ public class AdminUsersController{
     public void removerUser(MouseEvent event){
         ArrayList<String> conditions = new ArrayList<>();
         Users crud = new Users();
+        String matricula;
 
         int i = tableUsers.getSelectionModel().getSelectedIndex();
         
@@ -170,7 +172,8 @@ public class AdminUsersController{
 
         usersObs.remove(i);
 
-        conditions.add(String.format("matricula = %s", users.get(i).getMatricula()));
+        matricula = "\'" + users.get(i).getMatricula() + "\'";
+        conditions.add(String.format("matricula = %s", matricula));
         crud.delete(db, conditions); 
         
         resetTextFields();

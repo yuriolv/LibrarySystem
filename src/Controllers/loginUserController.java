@@ -113,7 +113,7 @@ public class loginUserController {
                 
                     user = userTextField.getText();
                     pass = passPasswordField.getText();
-                    crud.read(db, Optional.empty());
+                    users = crud.read(db, Optional.empty());
                     
                     resetPane();
 

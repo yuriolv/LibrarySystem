@@ -43,8 +43,7 @@ public class Users {
             ResultSet rs = db.requestSQL(result);
 
             while (rs.next()) {
-                String matricula =  Integer.toString(rs.getInt("matricula"));
-                User user = new User(matricula, rs.getString("nome"), rs.getString("tipo"), rs.getString("senha"));
+                User user = new User(rs.getString("matricula"), rs.getString("nome"), rs.getString("tipo"), rs.getString("senha"));
                 users.add(user);
             }
 
@@ -56,7 +55,7 @@ public class Users {
     }
 
     public boolean update(DataBase db,ArrayList<Object> values,Optional<ArrayList<String>> conditions){
-        String command;
+        String command = "";
 
         if (values.size() == 1) {
             command = "UPDATE usuario SET senha = ? WHERE";
@@ -68,16 +67,16 @@ public class Users {
         String result = "";
         try {
             if(!conditions.isEmpty()){
-                select.add("UPDATE usuario SET matricula = ?,nome = ?,tipo = ?,senha = ? WHERE");
+                select.add(command);
                 String condition = String.join(" AND ", conditions.get());
                 select.add(condition);
             }else{
-                select.add("UPDATE usuario SET matricula = ?,nome = ?,tipo = ?,senha = ?");
+                select.add(command);
             }
 
 
             result = String.join(" ", select);
-
+            
             db.modifySQL(result, Optional.of(values));
             return true;
         } catch (Exception e) {
