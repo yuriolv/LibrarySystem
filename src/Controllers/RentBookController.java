@@ -178,7 +178,7 @@ public class RentBookController{
         rentBookClass = new RentBook(user.getMatricula(),  selectedLivro.getTitulo(), user.getTipo());
         rentBookClass.setDateRent();
 
-        crudRent.create(rentBookClass);
+        crudRent.create(rentBookClass, db);
 
         ArrayList<Object> value = new ArrayList<>();
         value.add(selectedLivro.getAutor());
@@ -219,6 +219,8 @@ public class RentBookController{
         Rents crud = new Rents();
         ArrayList<RentBook> rents = new ArrayList<RentBook>();
         crud.read(rents);
+
+
         int count = 0;
         for (RentBook rent : rents) {
             if(rent.getMatricula().equals(user.getMatricula())){

@@ -1,6 +1,7 @@
 package Controllers;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import Classes.RentBook;
 import Classes.User;
@@ -44,10 +45,9 @@ public class InvoiceUserController {
         int i = 0;
         double multa = 0;
         double dias = 0;
-        rents = new ArrayList<>();
-        
         Rents crud = new Rents();
-        crud.read(rents);
+
+        rents = crud.read(db, Optional.empty());
         
         for (RentBook rentBook : rents) {
             if(rentBook.getMatricula().equals(user.getMatricula())){

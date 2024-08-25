@@ -12,7 +12,7 @@ public class DataBase {
     public DataBase(){
         this.url = "jdbc:postgresql://localhost:1245/Library";
         this.user = "postgres";
-        this.password = "1245";
+        this.password = "ggaos15123";
         try{
             connection = DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {

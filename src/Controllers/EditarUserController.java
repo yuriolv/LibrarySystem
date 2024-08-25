@@ -1,6 +1,7 @@
 package Controllers;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import Classes.User;
 import DB.DataBase;
@@ -56,16 +57,23 @@ public class EditarUserController {
 
     @FXML
     public void alterarSenha(MouseEvent event){
+        ArrayList<Object> valuesToUpdate = new ArrayList<>();
+        ArrayList<String> conditions_str;
+        Optional<ArrayList<String>> conditions = Optional.of(conditions_str);
+
         responseLabel.setText("");
         String novaSenha = passwordTField.getText();
         String confirmarSenha = validationTField.getText();
-        crud.read(users);
+        users = crud.read(db, Optional.empty());
         int i = getIndexUser();
 
         if(novaSenha.equals(confirmarSenha)){
             user.setSenha(confirmarSenha);
             users.set(i, user);
-            crud.update(users);
+
+            valuesToUpdate.add("senha");
+            conditions_str.add(String.format("matricula = %s", users.get(i).getMatricula()));
+            crud.update(db, valuesToUpdate, conditions);
 
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("SUCESSO");

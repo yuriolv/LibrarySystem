@@ -2,7 +2,9 @@ package Controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 
@@ -114,14 +116,20 @@ public class DevolucaoController implements Initializable{
     public void devolverLivro(MouseEvent event) throws IOException {
         Rents crud = new Rents();
         int i = tableRent.getSelectionModel().getSelectedIndex();
+        ArrayList<String> conditions = new ArrayList<>();
+
         try{
 
             for (RentBook rent : rents) {
-                if(rentsObs.get(i).getDateRent().equals(rent.getDateRent()) &&
-                rentsObs.get(i).getTitulo().equals(rent.getTitulo())){
-                crud.delete(rents.indexOf(rent), rents);
+                String data_aluguel = rent.getDateRent();
+                String titulo = rent.getTitulo();
+                if(rentsObs.get(i).getDateRent().equals(data_aluguel) &&
+                rentsObs.get(i).getTitulo().equals(titulo)){
+                    conditions.add(String.format("titulo_livro = %s", rent.getTitulo()));
+                    conditions.add(String.format("data_aluguel = %s", rent.getDateRent()));
+                    crud.delete(db, conditions);
 
-                changePageComentarios(event, rent);
+                    changePageComentarios(event, rent);
                 }
             }
         }catch(Exception e){
@@ -160,9 +168,7 @@ public class DevolucaoController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Rents crud = new Rents();
-
-        rents = new ArrayList<RentBook>();
-        crud.read(rents); 
+        rents = crud.read(db, Optional.empty()); 
 
         rentsObs = FXCollections.observableArrayList(rents);
 

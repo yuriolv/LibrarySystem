@@ -57,6 +57,14 @@ public class Users {
     }
 
     public boolean update(DataBase db,ArrayList<Object> values,Optional<ArrayList<String>> conditions){
+        String command;
+
+        if (values.size() == 1) {
+            command = "UPDATE users SET senha = ? WHERE";
+        } else if (values.size() == 3) {
+            command = "UPDATE users SET matricula = ?,nome = ?,tipo = ? WHERE";
+        }
+
         ArrayList<String> select = new ArrayList<>();
         String result = "";
         try {

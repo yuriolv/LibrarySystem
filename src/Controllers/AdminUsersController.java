@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.Optional;
 
 import Classes.User;
 import DB.DataBase;
@@ -71,7 +72,7 @@ public class AdminUsersController  implements Initializable{
         Users crud = new Users();
         users = new ArrayList<>();
         
-        crud.read(users);
+        users = crud.read(db, Optional.empty());
         usersObs = FXCollections.observableArrayList(users);
 
         matriculaColumn.setCellValueFactory(new PropertyValueFactory<>("Matricula"));
@@ -84,19 +85,24 @@ public class AdminUsersController  implements Initializable{
 
     @FXML 
     public void editarUser(MouseEvent event){
-        int i = tableUsers.getSelectionModel().getSelectedIndex();
+        ArrayList<String> condition_str;
+        Optional<ArrayList<String>> conditions = Optional.of(condition_str);
+        ArrayList<Object> valuesToUpdate= new ArrayList<>();
         Users crud = new Users();
         String nome, tipo, matricula;
         User user;
 
-        crud.read(users);
+        int i = tableUsers.getSelectionModel().getSelectedIndex();
+        users = crud.read(db, Optional.empty());
 
         try {
-
             matricula = matriculaTextField.getText();
             tipo = tipoTextField.getText();
             nome = nomeTextField.getText();
-
+            valuesToUpdate.add("matricula");
+            valuesToUpdate.add("tipo");
+            valuesToUpdate.add("nome");
+                        
             user = users.get(i);
 
             user.setMatricula(matricula);
@@ -104,8 +110,10 @@ public class AdminUsersController  implements Initializable{
             user.setTipo(tipo);
 
             users.set(i, user);
-            usersObs.set(i, user); 
-            crud.update(users);
+            usersObs.set(i, user);
+            
+            condition_str.add(String.format("matricula = %s", matricula));
+            crud.update(db, valuesToUpdate, conditions);
             resetTextFields();
 
         } catch (Exception e) {
@@ -132,7 +140,7 @@ public class AdminUsersController  implements Initializable{
 
             users.add(user);
             usersObs.add(user);
-            crud.create(user);
+            crud.create(user, db);
 
 
             resetTextFields();
@@ -147,6 +155,7 @@ public class AdminUsersController  implements Initializable{
 
     @FXML
     public void removerUser(MouseEvent event){
+        ArrayList<String> conditions = new ArrayList<>();
         Users crud = new Users();
 
         int i = tableUsers.getSelectionModel().getSelectedIndex();
@@ -161,7 +170,9 @@ public class AdminUsersController  implements Initializable{
         }
 
         usersObs.remove(i);
-        crud.delete(i, users); 
+
+        conditions.add(String.format("matricula = %s", users.get(i).getMatricula()));
+        crud.delete(db, conditions); 
         
         resetTextFields();
     }
@@ -172,7 +183,7 @@ public class AdminUsersController  implements Initializable{
         ObservableList<User> filteredList = FXCollections.observableArrayList();
         
         
-        crud.read(users); 
+        users = crud.read(db, Optional.empty()); 
         if(filtroTextField.getText().equals("")) {
             tableUsers.setItems(usersObs);
         }
@@ -196,7 +207,7 @@ public class AdminUsersController  implements Initializable{
             ObservableList<User> filteredList = FXCollections.observableArrayList();
             
             
-            crud.read(users); 
+            users = crud.read(db, Optional.empty()); 
             if(filtroTextField.getText().equals("")) {
                 tableUsers.setItems(usersObs);
             }

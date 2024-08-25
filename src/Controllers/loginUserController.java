@@ -2,6 +2,7 @@ package Controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Optional;
 
 import Classes.User;
 import DB.DataBase;
@@ -50,7 +51,6 @@ public class loginUserController {
     public void verifyLoginUser(MouseEvent event) throws IOException {
 
         String typeSelected, user, pass;
-        ArrayList<User> users = new ArrayList<>();
         Users crud = new Users();
         RadioButton radio = (RadioButton) typeGroup.getSelectedToggle();
         
@@ -65,7 +65,8 @@ public class loginUserController {
             
                 user = userTextField.getText();
                 pass = passPasswordField.getText();
-                crud.read(users);
+
+                ArrayList<User> users = crud.read(db, Optional.empty());
                 
                 resetPane();
 
@@ -96,7 +97,8 @@ public class loginUserController {
         if(event.getCode() == KeyCode.ENTER){
 
             String typeSelected, user, pass;
-            ArrayList<User> users = new ArrayList<>();
+            ArrayList<User> users;
+
             Users crud = new Users();   
             RadioButton radio = (RadioButton) typeGroup.getSelectedToggle();
         
@@ -111,7 +113,7 @@ public class loginUserController {
                 
                     user = userTextField.getText();
                     pass = passPasswordField.getText();
-                    crud.read(users);
+                    crud.read(db, Optional.empty());
                     
                     resetPane();
 
