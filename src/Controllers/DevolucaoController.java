@@ -3,6 +3,8 @@ package Controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -116,7 +118,10 @@ public class DevolucaoController{
     public void devolverLivro(MouseEvent event) throws IOException {
         Rents crud = new Rents();
         int i = tableRent.getSelectionModel().getSelectedIndex();
-        ArrayList<String> conditions = new ArrayList<>();
+        ArrayList<String> conditions_str = new ArrayList<>();
+        ArrayList<Object> values = new ArrayList<>();
+        Optional<ArrayList<String>> conditions = Optional.of(conditions_str);
+        LocalDate lc_data_devolucao;
 
         try{
 
@@ -125,9 +130,9 @@ public class DevolucaoController{
                 int id_livro = rent.getId_livro();
                 if(rentsObs.get(i).getDateRent().equals(data_aluguel) &&
                 rentsObs.get(i).getId_livro() == id_livro){
-                    conditions.add(String.format("titulo_livro = %s", id_livro));
-                    conditions.add(String.format("data_aluguel = %s", data_aluguel));
-                    crud.delete(db, conditions);
+                    conditions.get().add(String.format("titulo_livro = %s", id_livro));
+                    conditions.get().add(String.format("data_aluguel = %s", data_aluguel));
+                    crud.delete(db, Optional.of(conditions));//consertar delete
 
                     changePageComentarios(event, rent);
                 }
