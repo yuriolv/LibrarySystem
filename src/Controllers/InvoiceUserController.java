@@ -50,8 +50,10 @@ public class InvoiceUserController {
         rents = crud.read(db, Optional.empty());
         
         for (RentBook rentBook : rents) {
+            System.out.println(user.getMatricula() + rentBook.getMatricula());
             if(rentBook.getMatricula().equals(user.getMatricula())){
                 i++;
+                System.out.println("entrei2");
                 Label titulo = new Label(rentBook.getTitulo(db)); //pegar titulo a partir do id
                 Label dateRent = new Label(rentBook.getDateRent());
                 Label dateDevolution = new Label(rentBook.setDateForDevolution());

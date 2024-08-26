@@ -1,5 +1,6 @@
 package Controllers;
 
+import Classes.RentBook;
 import java.io.IOException;
 
 import Classes.User;
@@ -21,6 +22,7 @@ public class UserController{
     private Scene scene;
     private Parent root;
     private DataBase db;
+    private RentBook rents;
     
     public void initializeDB(DataBase db){
         this.db = db;

@@ -1,10 +1,9 @@
 package Classes;
 
+import DB.DataBase;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
-import DB.DataBase;
 
 public class RentBook {
     private String matricula;
@@ -111,7 +110,7 @@ public class RentBook {
 
     public String getTitulo(DataBase db) {
         try {
-            ResultSet rs = db.requestSQL("SELECT titulo FROM livro WHERE id_livro = " + id_livro);
+            ResultSet rs = db.requestSQL("SELECT titulo FROM livro WHERE \"ID\" = " + id_livro);
             rs.next();
             return rs.getString("titulo");
         } catch (Exception e) {

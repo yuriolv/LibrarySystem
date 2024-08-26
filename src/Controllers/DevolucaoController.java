@@ -118,10 +118,10 @@ public class DevolucaoController{
     public void devolverLivro(MouseEvent event) throws IOException {
         Rents crud = new Rents();
         int i = tableRent.getSelectionModel().getSelectedIndex();
-        ArrayList<String> conditions_str = new ArrayList<>();
+        ArrayList<String> conditions = new ArrayList<>();
         ArrayList<Object> values = new ArrayList<>();
-        Optional<ArrayList<String>> conditions = Optional.of(conditions_str);
         LocalDate lc_data_devolucao;
+        LocalDate lc_data_aluguel;
 
         try{
 
@@ -130,9 +130,15 @@ public class DevolucaoController{
                 int id_livro = rent.getId_livro();
                 if(rentsObs.get(i).getDateRent().equals(data_aluguel) &&
                 rentsObs.get(i).getId_livro() == id_livro){
-                    conditions.get().add(String.format("titulo_livro = %s", id_livro));
-                    conditions.get().add(String.format("data_aluguel = %s", data_aluguel));
-                    crud.delete(db, Optional.of(conditions));//consertar delete
+                    conditions.add(String.format("id_livro = %s", id_livro));
+
+                    lc_data_aluguel = LocalDate.parse(data_aluguel, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                    System.out.println(data_aluguel);
+                    data_aluguel = lc_data_aluguel.format(DateTimeFormatter.ofPattern("YYYYMMDD"));
+                    System.out.println(data_aluguel);
+                    
+                    conditions.add(String.format("data_aluguel = \'%s\'", data_aluguel));
+                    crud.delete(db, conditions);//consertar delete
 
                     changePageComentarios(event, rent);
                 }

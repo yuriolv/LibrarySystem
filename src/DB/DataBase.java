@@ -37,7 +37,7 @@ public class DataBase {
                     }else if(obj == null){
                         stmt.setNull(i+1, Types.BINARY);
                     }else if(obj instanceof java.sql.Date){
-                        stmt.setNull(i+1, Types.BINARY);
+                        stmt.setDate(i+1, (java.sql.Date)obj);
                     }
                 }
                 System.out.println(stmt.toString());

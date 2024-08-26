@@ -2,10 +2,10 @@ package Models;
 
 import Classes.RentBook;
 import DB.DataBase;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -41,7 +41,6 @@ public class Rents {
         ArrayList<String> select = new ArrayList<>();
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy"); 
         String result = "";
-        String titulo_livro = "";
         String tipo_usuario = "";
         String data_aluguel = "";
         String data_devolucao = "";
@@ -60,21 +59,18 @@ public class Rents {
 
             while (rs.next()) {
                 int id_livro = rs.getInt("id_livro");
-                ResultSet rs_livro = db.requestSQL("SELECT titulo FROM livro WHERE id_livro = " + id_livro);
-                rs_livro.next();
-                titulo_livro = rs_livro.getString("titulo");
 
-                String matricula = "\'" + rs.getString("matricula") + "\'";
-                ResultSet rs_usuario = db.requestSQL("SELECT tipo FROM usuario WHERE matricula = " + matricula);
+                String matricula = rs.getString("matricula");
+                ResultSet rs_usuario = db.requestSQL("SELECT tipo FROM usuario WHERE matricula = " + "'" + matricula + "'");
                 rs_usuario.next();
                 tipo_usuario = rs_usuario.getString("tipo");
 
                 data_aluguel = df.format(rs.getDate("data_aluguel"));
 
-                if (rs.getDate("data_devolucao") == null) {
+                if (rs.getDate("data_devolução") == null) {
                     data_devolucao = null;
                 } else {
-                    data_devolucao = df.format(rs.getDate("data_devolucao"));
+                    data_devolucao = df.format(rs.getDate("data_devolução"));
                 }
 
                 RentBook rent = new RentBook(matricula, id_livro, tipo_usuario, data_aluguel, data_devolucao);
@@ -102,15 +98,15 @@ public class Rents {
             conditions.get().set(0, "id_livro = " + id_livro);
 
             data_aluguel = LocalDate.parse(conditions.get().get(1), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-            data_formatada = data_aluguel.format(DateTimeFormatter.ofPattern("YYYYMMDD"));
+            data_formatada = data_aluguel.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
             conditions.get().set(1, "data_aluguel = " + data_formatada);
 
             if(!conditions.isEmpty()){
-                select.add("UPDATE aluguel data_devolucao = ? WHERE");
+                select.add("UPDATE aluguel data_devolução = ? WHERE");
                 String condition = String.join(" AND ", conditions.get());
                 select.add(condition);
             }else{
-                select.add("UPDATE aluguel data_devolucao = ?");
+                select.add("UPDATE aluguel data_devolução = ?");
             }
 
             result = String.join(" ", select);
@@ -124,8 +120,6 @@ public class Rents {
 
     }
 
-    /*
-        
     public boolean delete(DataBase db, ArrayList<String> conditions){
         ArrayList<String> command = new ArrayList<>();
         command.add("DELETE FROM aluguel WHERE");
@@ -137,7 +131,7 @@ public class Rents {
 
         return rs;
     }
-    */
+
 }
 
 
