@@ -49,6 +49,7 @@ public class Books {
                 select.add(command);
                 result = String.join(" ", select);
             }
+
             ResultSet rs = db.requestSQL(result);
 
             while (rs.next()) {

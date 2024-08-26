@@ -52,7 +52,7 @@ public class InvoiceUserController {
         for (RentBook rentBook : rents) {
             if(rentBook.getMatricula().equals(user.getMatricula())){
                 i++;
-                Label titulo = new Label(rentBook.getTitulo()); //pegar titulo a partir do id
+                Label titulo = new Label(rentBook.getTitulo(db)); //pegar titulo a partir do id
                 Label dateRent = new Label(rentBook.getDateRent());
                 Label dateDevolution = new Label(rentBook.setDateForDevolution());
 

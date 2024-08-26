@@ -19,15 +19,12 @@ public class Rents {
 
 
         try {
-            ResultSet rs = db.requestSQL("SELECT id_livro FROM livro WHERE id_livro = " + rent.getId_livro());
-            rs.next();
-            String id_livro = rs.getString("id_livro");
             String insert = "Insert into aluguel(matricula, id_livro, data_aluguel) values (?, ?, ?)";
             ArrayList<Object> values = new ArrayList<>();
             Optional<ArrayList<Object>> arrValues = Optional.of(values);
 
             values.add(rent.getMatricula());
-            values.add(id_livro);
+            values.add(rent.getId_livro());
             date_rent = LocalDate.parse(rent.getDateRent(), dateTimeFormatter);
             values.add(Date.valueOf(date_rent));
 

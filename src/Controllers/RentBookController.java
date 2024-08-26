@@ -122,14 +122,17 @@ public class RentBookController{
     @FXML
     public void rentBook(MouseEvent event) throws IOException{
         int num = limitarEmprestimo();
-        ArrayList<Book> books = new ArrayList<>();
         Optional<ArrayList<String>> condition = Optional.of(new ArrayList<>());
+        String titulo;
 
-        condition.get().add("titulo = "+ selectedLivro.getTitulo());
-        books = crud.read(db, condition);
+        crud = new Books();
+        
+        titulo = "\'" + selectedLivro.getTitulo() + "\'";
+        condition.get().add("titulo = "+ titulo);
+        livros = crud.read(db, condition);
 
 
-        if(books.getFirst().getQtdEstoque()==0){
+        if(livros.getFirst().getQtdEstoque()==0){
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Aviso");
             alert.setHeaderText(null);
@@ -138,7 +141,7 @@ public class RentBookController{
             return;
 
         }
-        if(books.getFirst().getColeção().equals("Especial") && user.getTipo().equals("Discente")){
+        if(livros.getFirst().getColeção().equals("Especial") && user.getTipo().equals("Discente")){
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Aviso");
             alert.setHeaderText("Lamentamos informar");
@@ -165,7 +168,6 @@ public class RentBookController{
         }
 
         Rents crudRent = new Rents();
-        crud = new Books();
         int i = 0;
         livros = crud.read(db, Optional.empty());
         
@@ -220,7 +222,7 @@ public class RentBookController{
     public int limitarEmprestimo(){
         Rents crud = new Rents();
         ArrayList<RentBook> rents = new ArrayList<RentBook>();
-        crud.read(rents); //finalizar este método
+        rents = crud.read(db, Optional.empty()); //finalizar este método
 
 
         int count = 0;
