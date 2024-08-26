@@ -59,7 +59,7 @@ public class Books {
             return books;
         } catch (Exception e) {
             System.out.println(e);
-            return books;
+            return null;
         }
     }
 

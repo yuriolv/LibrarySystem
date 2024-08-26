@@ -122,11 +122,11 @@ public class DevolucaoController{
 
             for (RentBook rent : rents) {
                 String data_aluguel = rent.getDateRent();
-                String titulo = rent.getTitulo();
+                int id_livro = rent.getId_livro();
                 if(rentsObs.get(i).getDateRent().equals(data_aluguel) &&
-                rentsObs.get(i).getTitulo().equals(titulo)){
-                    conditions.add(String.format("titulo_livro = %s", rent.getTitulo()));
-                    conditions.add(String.format("data_aluguel = %s", rent.getDateRent()));
+                rentsObs.get(i).getId_livro() == id_livro){
+                    conditions.add(String.format("titulo_livro = %s", id_livro));
+                    conditions.add(String.format("data_aluguel = %s", data_aluguel));
                     crud.delete(db, conditions);
 
                     changePageComentarios(event, rent);
@@ -147,6 +147,7 @@ public class DevolucaoController{
         root = loader.load();
 
         ComentariosController comentario = loader.getController();
+        
 
         comentario.initializeDB(db);
         comentario.setData(rent);

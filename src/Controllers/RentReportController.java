@@ -3,8 +3,7 @@ package Controllers;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import Classes.RentBook;
-import Classes.User;
+import Classes.*;
 import DB.DataBase;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -25,10 +24,15 @@ public class RentReportController {
 
     @FXML
     private Label tituloLabel;
+    private Book selected_livro;
     private DataBase db;
     
     public void initializeDB(DataBase db){
         this.db = db;
+    }
+
+    public void setData(Book book){
+        selected_livro = book;
     }
 
 
@@ -46,7 +50,7 @@ public class RentReportController {
 
         nomeLabel.setText(user.getNome());
         matriculaLabel.setText(user.getMatricula());
-        tituloLabel.setText(rent.getTitulo());
+        tituloLabel.setText(selected_livro.getTitulo());
         dataAluguelLabel.setText(rent.getDateRent());
         dataDevoluçãoLabel.setText(data);
        

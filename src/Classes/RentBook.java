@@ -11,21 +11,21 @@ public class RentBook {
         return tipo;
     }
 
-    private String titulo;  
+    private int id_livro;  
     private String dateRent;
     private String dateDevolution;
     
     
-    public RentBook(String matricula, String titulo, String tipo) {
+    public RentBook(String matricula, int id_livro, String tipo) {
         this.matricula = matricula;
-        this.titulo = titulo;
+        this.id_livro = id_livro;
         this.tipo = tipo;
         dateDevolution = null;
     }
     
-    public RentBook(String matricula, String titulo, String tipo, String dateRent, String dateDevolution) {
+    public RentBook(String matricula, int id_livro, String tipo, String dateRent, String dateDevolution) {
         this.matricula = matricula;
-        this.titulo = titulo;
+        this.id_livro = id_livro;
         this.tipo = tipo;
         this.dateRent = dateRent;
         this.dateDevolution = dateDevolution;
@@ -40,12 +40,12 @@ public class RentBook {
         this.matricula = matricula;
     }
 
-    public String getTitulo() {
-        return titulo;
+    public int getId_livro() {
+        return id_livro;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setId_livro(int id_livro) {
+        this.id_livro = id_livro;
     }
 
     public String getDateRent() {
@@ -107,7 +107,7 @@ public class RentBook {
     }
     
     public String toString(){
-        return matricula + "\t" + titulo + "\t" + tipo + "\t" + dateRent  + "\t" + dateDevolution;
+        return matricula + "\t" + id_livro + "\t" + tipo + "\t" + dateRent  + "\t" + dateDevolution;
     }
 
     

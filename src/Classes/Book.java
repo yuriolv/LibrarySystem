@@ -1,13 +1,14 @@
 package Classes;
 
 public class Book {
+    private int ID;
     private String titulo;
     private String autor;
     private String assunto;
     private Integer qtdEstoque;
     private byte[] image;
     private String coleção;
-
+    
     public Book(String autor, String titulo, String assunto, int qtdEstoque ,String coleção , byte[] image){
         this.autor = autor;
         this.titulo = titulo;
@@ -16,17 +17,12 @@ public class Book {
         this.image = image;
         this.coleção = coleção;
     }
-
-   
-
-    public String toString(){
-        return autor+"\t"+titulo+"\t"+assunto+"\t"+qtdEstoque+"\t"+coleção+"\t"+image;
-    }
-
+    
+    
     public String getTitulo() {
         return titulo;
     }
-
+    
     public byte[] getImage(){
         return image;
     }
@@ -35,6 +31,13 @@ public class Book {
         this.titulo = titulo;
     }
     
+    public int getID() {
+        return ID;
+    }
+    
+    public void setID(int iD) {
+        ID = iD;
+}
     public String getAutor() {
         return autor;
     }

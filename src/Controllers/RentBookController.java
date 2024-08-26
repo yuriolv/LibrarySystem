@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 import Classes.Book;
+import Classes.Comment;
 import Classes.RentBook;
 import Classes.User;
 import DB.DataBase;
@@ -58,7 +59,7 @@ public class RentBookController{
     private Book selectedLivro;
     private RentBook rentBookClass;
     private Books crud;
-    private ArrayList<String> comments;
+    private ArrayList<Comment> comments;
 
     private ArrayList<Book> livros;
     private Stage stage;
@@ -175,7 +176,7 @@ public class RentBookController{
             }
         }
 
-        rentBookClass = new RentBook(user.getMatricula(),  selectedLivro.getTitulo(), user.getTipo());
+        rentBookClass = new RentBook(user.getMatricula(),  selectedLivro.getID(), user.getTipo());
         rentBookClass.setDateRent();
 
         crudRent.create(rentBookClass, db);
@@ -200,10 +201,11 @@ public class RentBookController{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/rentReport.fxml"));
 
         root = loader.load();
-
+        
         RentReportController rent = loader.getController();
 
         rent.initializeDB(db);
+        rent.setData(selectedLivro);
         rent.setLabels(user, rentBookClass);
 
         scene = new Scene(root);
@@ -218,7 +220,7 @@ public class RentBookController{
     public int limitarEmprestimo(){
         Rents crud = new Rents();
         ArrayList<RentBook> rents = new ArrayList<RentBook>();
-        crud.read(rents);
+        crud.read(rents); //finalizar este método
 
 
         int count = 0;
@@ -262,12 +264,14 @@ public class RentBookController{
 
     public void setComments(Book livro){
         Comments crud = new Comments(); //substituir pelo crud de comentários
+        ArrayList<String> conditions = new ArrayList<>();
 
-        comments = new ArrayList<String>(); 
-        crud.read(comments, livro.getTitulo());
+        conditions.add("id_livro = " + "'"+ livro.getID() + "'");
 
-        for(String comment: comments) {
-            Label commentLabel = createLabel(comment);
+        comments = crud.read(db, Optional.of(conditions));
+
+        for(Comment comment: comments) {
+            Label commentLabel = createLabel(comment.getComentario());
             vbox.getChildren().addAll(commentLabel);
         }
     }

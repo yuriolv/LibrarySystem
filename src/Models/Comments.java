@@ -2,55 +2,60 @@ package Models;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Optional;
+
+import Classes.Book;
+import Classes.Comment;
+import DB.DataBase;
+import java.sql.ResultSet;
 
 public class Comments {
     
-    public boolean createComment(String comentario, String fileName) {
+    public boolean create(DataBase db, Comment comment) {
         try {
-            FileWriter fwriter = new FileWriter("src/Data/Comentários/"+fileName+".txt", true);
-            BufferedWriter bWriter = new BufferedWriter(fwriter);
+            String insert = "INSERT INTO comentario(id_livro, matricula, avaliação) values (?,?,?)";
+            ArrayList<Object> values = new ArrayList<>();
+            Optional<ArrayList<Object>> arrValues = Optional.of(values);
+            
+            values.add(comment.getId_livro());
+            values.add(comment.getMatricula_usuario());
+            values.add(comment.getComentario());
 
-            bWriter.write(comentario);
-            bWriter.newLine();
 
-            bWriter.close();
-            fwriter.close();
-        } catch(Exception e) {
+            Boolean result = db.modifySQL(insert, arrValues);
+            return result;
+        } catch (Exception e) {
+            System.out.println(e);
             return false;
         }
-
-        return true;
     }
 
-    public void read(ArrayList<String> comentarios, String fileName) {
-        comentarios.clear();
+    public ArrayList<Comment> read(DataBase db, Optional<ArrayList<String>> conditions) {
+        ArrayList<Comment> comments = new ArrayList<>();
+        ArrayList<String> select = new ArrayList<>();
+        String result = "";
         try {
-            
-            FileReader fReader = new FileReader("src/Data/Comentários/"+fileName+".txt");
-            BufferedReader bReader = new BufferedReader(fReader);
+            if(conditions.isEmpty()){
+                select.add("SELECT * FROM comentario");
+                result = String.join(" ", select);
+            }else{
+                select.add("SELECT * FROM comentario WHERE");
+                String command = String.join(" AND ",conditions.get());
+                select.add(command);
+                result = String.join(" ", select);
+            }
+            ResultSet rs = db.requestSQL(result);
 
-            String linha = bReader.readLine();
-
-            while(linha != null) {
-                comentarios.add(linha);
-                linha = bReader.readLine();
+            while (rs.next()) {
+                Comment comment = new Comment(rs.getInt("id_livro"), rs.getString("matricula"), rs.getString("avaliação"));
+                comments.add(comment);
             }
 
-            fReader.close();
-            bReader.close();
-        } catch(Exception e) {
-            return;
-        }
-    }
-
-     public boolean createFile(String nome){
-
-        File file = new File("src/Data/"+nome+".txt");
-            
-        try {
-            return file.createNewFile();
+            return comments;
         } catch (Exception e) {
-            return false;
+            System.out.println(e);
+            return null;
         }
     }
+
 }

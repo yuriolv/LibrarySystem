@@ -15,7 +15,7 @@ public class Rents {
             Optional<ArrayList<Object>> arrValues = Optional.of(values);
 
             values.add(rent.getMatricula());
-            values.add(rent.getTitulo());
+            values.add(rent.getId_livro());
             values.add(rent.getTipo());
             values.add(rent.getDateRent());
             values.add(rent.getDateDevolution());
@@ -46,7 +46,7 @@ public class Rents {
 
             while (rs.next()) {
                 String matricula =  Integer.toString(rs.getInt("matricula"));
-                RentBook rent = new RentBook(matricula, rs.getString("titulo_livro"), rs.getString("tipo_usuario"), rs.getString("data_aluguel"), rs.getString("data_devolucao"));
+                RentBook rent = new RentBook(matricula, rs.getInt("id_livro"), rs.getString("tipo_usuario"), rs.getString("data_aluguel"), rs.getString("data_devolucao"));
                 rents.add(rent);
             }
 

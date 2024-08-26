@@ -1,6 +1,6 @@
 package Controllers;
 
-import Classes.RentBook;
+import Classes.*;
 import DB.DataBase;
 import Models.Comments;
 import javafx.fxml.FXML;
@@ -16,6 +16,7 @@ public class ComentariosController {
     @FXML
     private TextArea comentarioTextArea;
     private DataBase db;
+    private Book selected_livro;
     
     public void initializeDB(DataBase db){
         this.db = db;
@@ -29,9 +30,10 @@ public class ComentariosController {
         if(comentarioTextArea.getText().equals("")) {
             stage.close();
         } 
-            String comentario = comentarioTextArea.getText();
-            crud.createComment(comentario, rent.getTitulo());
-            stage.close();
+
+        Comment comentario = new Comment(rent.getId_livro(),rent.getMatricula(), comentarioTextArea.getText());
+        crud.create(db, comentario);
+        stage.close();
         
     }
 

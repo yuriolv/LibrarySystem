@@ -110,8 +110,8 @@ public class BooksController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/book.fxml"));
         root = loader.load();
 
-        BooksController booksController = loader.getController();
-        booksController.initializeDB(db);
+        RentBookController rentBookController = loader.getController();
+        rentBookController.initializeDB(db);
 
         stage = (Stage)((Node) event.getSource()).getScene().getWindow();
 
@@ -123,11 +123,9 @@ public class BooksController {
             scene = new Scene(root);
         }
 
-        RentBookController bookController = loader.getController();
-
-        bookController.setData(user, selectedLivro);
-        bookController.setLabels(user, selectedLivro);
-        bookController.setComments(selectedLivro);
+        rentBookController.setData(user, selectedLivro);
+        rentBookController.setLabels(user, selectedLivro);
+        rentBookController.setComments(selectedLivro);
 
         stage.setScene(scene);
         stage.show();
