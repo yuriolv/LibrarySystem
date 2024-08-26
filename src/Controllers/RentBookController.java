@@ -123,14 +123,15 @@ public class RentBookController{
     @FXML
     public void rentBook(MouseEvent event) throws IOException{
         int num = limitarEmprestimo();
-        Optional<ArrayList<String>> condition = Optional.of(new ArrayList<>());
+        ArrayList<String> condition = new ArrayList<>();
+        Optional<ArrayList<String>> conditions = Optional.of(condition);
         String titulo;
 
         crud = new Books();
         
-        titulo = "\'" + selectedLivro.getTitulo() + "\'";
-        condition.get().add("titulo = "+ titulo);
-        livros = crud.read(db, condition);
+        titulo = "'" + selectedLivro.getTitulo() + "'";
+        condition.add("titulo = "+ titulo);
+        livros = crud.read(db, conditions, Optional.of(" AND "));
 
 
         if(livros.getFirst().getQtdEstoque()==0){
@@ -169,30 +170,15 @@ public class RentBookController{
         }
 
         Rents crudRent = new Rents();
-        int i = 0;
-        livros = crud.read(db, Optional.empty(), Optional.empty());
-        
-        for (Book livro : livros) {
-            if(livro.getTitulo().equals(selectedLivro.getTitulo())) {
-                i = livros.indexOf(livro);
-                break;
-            }
-        }
 
         rentBookClass = new RentBook(user.getMatricula(),  selectedLivro.getID(), user.getTipo());
         rentBookClass.setDateRent();
 
         crudRent.create(rentBookClass, db);
+        selectedLivro.setQtdEstoque(selectedLivro.getQtdEstoque()-1);
 
-        ArrayList<Object> value = new ArrayList<>();
-        value.add(selectedLivro.getAutor());
-        value.add(selectedLivro.getTitulo());
-        value.add(selectedLivro.getAssunto());
-        value.add(selectedLivro.getQtdEstoque()-1);
-        value.add(selectedLivro.getImage());
-        value.add(selectedLivro.getColeção());
 
-        crud.update(db, value, Optional.empty() );
+        crud.update(db, selectedLivro, Optional.of(condition) );
 
         changePageRentReport(event);
         

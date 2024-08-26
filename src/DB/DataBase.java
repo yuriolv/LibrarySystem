@@ -36,6 +36,8 @@ public class DataBase {
                         stmt.setBytes(i+1, (byte[]) obj);
                     }else if(obj == null){
                         stmt.setNull(i+1, Types.BINARY);
+                    }else if(obj instanceof java.sql.Date){
+                        stmt.setNull(i+1, Types.BINARY);
                     }
                 }
                 System.out.println(stmt.toString());
