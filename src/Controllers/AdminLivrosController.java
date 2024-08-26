@@ -313,29 +313,30 @@ public class AdminLivrosController  {
     @FXML
     void pesquisarLivro2(KeyEvent event) {
         if(event.getCode() == KeyCode.ENTER){
-            Books crud = new Books();
-            ObservableList<Book> filter = FXCollections.observableArrayList();
-    
-            livros = crud.read(db, Optional.empty(), Optional.empty());
             
             if(filtroTextField.getText().equals("")){
-                
                 tableLivros.setItems(livrosObs);
             }
             else{
+                Books crud = new Books();
+                ObservableList<Book> filter = FXCollections.observableArrayList();
+        
                 String filtro = filtroTextField.getText();
+                ArrayList<String> like = new ArrayList<>();
     
+                like.add("autor LIKE "+"'%"+filtro+ "%'");
+                like.add("titulo LIKE "+"'%"+filtro+ "%'");
+                like.add("assunto LIKE "+"'%"+filtro+ "%'");
+                like.add("colecao LIKE "+"'%"+filtro+ "%'");
+    
+                livros = crud.read(db, Optional.of(like), Optional.of(" OR "));
+
                 for (Book livro : livros) {
-                    if(livro.getTitulo().equals(filtro)
-                     ||livro.getAutor().equals(filtro)
-                     ||livro.getAssunto().equals(filtro)
-                     ||String.valueOf(livro.getQtdEstoque()).equals(filtro)){
-    
                         filter.add(livro);
-                     }
                 }
                 tableLivros.setItems(filter);
             }
+
             resetTextFields();
 
 
