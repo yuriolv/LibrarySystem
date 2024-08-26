@@ -7,6 +7,7 @@ public class Book {
     private String assunto;
     private Integer qtdEstoque;
     private byte[] image;
+    
     private String coleção;
     
     public Book(String autor, String titulo, String assunto, int qtdEstoque ,String coleção , byte[] image){
@@ -17,7 +18,19 @@ public class Book {
         this.image = image;
         this.coleção = coleção;
     }
+    public Book(int ID, String autor, String titulo, String assunto, int qtdEstoque ,String coleção , byte[] image){
+        this.ID = ID;
+        this.autor = autor;
+        this.titulo = titulo;
+        this.assunto = assunto;
+        this.qtdEstoque = qtdEstoque;
+        this.image = image;
+        this.coleção = coleção;
+    }
     
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
     
     public String getTitulo() {
         return titulo;

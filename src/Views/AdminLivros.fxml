@@ -188,7 +188,7 @@
                         </HBox>
                         <TableView fx:id="tableLivros" onMouseClicked="#getRowData" prefHeight="254.0" prefWidth="700.0" style="-fx-background-color: #dfdedf;" stylesheets="@Stylesheets/AdminLivros.css">
                            <columns>
-                              <TableColumn fx:id="autorColumn" prefWidth="141.0" style="-fx-font-size: 14;" text="Autor" />
+                              <TableColumn fx:id="autorColumn" prefWidth="141.0" style="-fx-font-size: 14;" text="Autor"/>
                               <TableColumn fx:id="tituloColumn" prefWidth="150.0" style="-fx-font-size: 14;" text="Titulo" />
                               <TableColumn fx:id="assuntoColumn" prefWidth="128.0" style="-fx-font-size: 14;" text="Assunto" />
                               <TableColumn fx:id="coleçãoColumn" prefWidth="128.0" style="-fx-font-size: 14;" text="Coleção" />

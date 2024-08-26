@@ -35,7 +35,7 @@ public class Books {
         }
     }
 
-    public ArrayList<Book> read(DataBase db, Optional<ArrayList<String>> conditions){
+    public ArrayList<Book> read(DataBase db, Optional<ArrayList<String>> conditions, Optional<String> comando_logico){
         ArrayList<Book> books = new ArrayList<>();
         ArrayList<String> select = new ArrayList<>();
         String result = "";
@@ -45,15 +45,15 @@ public class Books {
                 result = String.join(" ", select);
             }else{
                 select.add("SELECT * FROM livro WHERE");
-                String command = String.join(" OR ",conditions.get());
+                String command = String.join(comando_logico.get(),conditions.get());
                 select.add(command);
                 result = String.join(" ", select);
             }
-
+            System.out.println(result);
             ResultSet rs = db.requestSQL(result);
 
             while (rs.next()) {
-                Book book = new Book(rs.getString("autor"), rs.getString("titulo"), rs.getString("assunto"), rs.getInt("qtd_estoque"), rs.getString("colecao"), rs.getBytes("capa_livro"));
+                Book book = new Book(rs.getInt("Id"),rs.getString("autor"), rs.getString("titulo"), rs.getString("assunto"), rs.getInt("qtd_estoque"), rs.getString("colecao"), rs.getBytes("capa_livro"));
                 books.add(book);
             }
 
@@ -64,9 +64,17 @@ public class Books {
         }
     }
 
-    public boolean update(DataBase db,ArrayList<Object> values,Optional<ArrayList<String>> conditions){
+    public boolean update(DataBase db,Book livro,Optional<ArrayList<String>> conditions){
         ArrayList<String> select = new ArrayList<>();
         String result = "";
+        ArrayList<Object> values = new ArrayList<>();
+        Optional<ArrayList<Object>> arrValues = Optional.of(values);
+            values.add(livro.getAutor());
+            values.add(livro.getTitulo());
+            values.add(livro.getAssunto());
+            values.add(livro.getQtdEstoque());
+            values.add(livro.getImage());
+            values.add(livro.getColeção());
         try {
             if(!conditions.isEmpty()){
                 System.out.println("entrei");
@@ -80,7 +88,7 @@ public class Books {
 
             result = String.join(" ", select);
 
-            db.modifySQL(result, Optional.of(values));
+            db.modifySQL(result,arrValues);
             return true;
         } catch (Exception e) {
             System.out.println(e);

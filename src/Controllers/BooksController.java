@@ -200,7 +200,7 @@ public class BooksController {
     
     public void init() {
         Books crud_Books = new Books();
-        livros = crud_Books.read(db, Optional.empty());
+        livros = crud_Books.read(db, Optional.empty(), Optional.empty());
         
         for (Book livro : livros) {
             AnchorPane bookCard = createAnchorPane(livro);

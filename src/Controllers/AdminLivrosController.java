@@ -89,7 +89,7 @@ public class AdminLivrosController  {
     public void init() {
         Books crud_Books = new Books();
 
-        livros = crud_Books.read(db, Optional.empty());
+        livros = crud_Books.read(db, Optional.empty(), Optional.empty());
 
         livrosObs = FXCollections.observableArrayList(livros);
 
@@ -196,7 +196,7 @@ public class AdminLivrosController  {
 
 
             
-            livro = new Book(titulo, autor, assunto, qtd_estoque, colecao_selecionada, image);
+            livro = new Book(autor, titulo, assunto, qtd_estoque, colecao_selecionada, image);
             livrosObs.add(livro);
             crud_Books.create(livro, db);
 
@@ -215,6 +215,8 @@ public class AdminLivrosController  {
         alert.setHeaderText("Erro");
 
         int i = tableLivros.getSelectionModel().getSelectedIndex();
+        Book livro_antes = (Book) tableLivros.getItems().get(i);
+
         Books crud = new Books();
         String titulo, autor, assunto;
         int estoque;
@@ -224,11 +226,11 @@ public class AdminLivrosController  {
 
 
         if(radio!=null){
-            String selected = radio.getText();
             try{ 
-            
-                titulo =  tituloTextField.getText();
+                
+                String selected = radio.getText();
                 autor = autorTextField.getText();
+                titulo =  tituloTextField.getText();
                 assunto = assuntoTextField.getText();
 
             
@@ -240,7 +242,7 @@ public class AdminLivrosController  {
 
                 byte[] image = chooseImage();
 
-                if((image == null) || (image == null)){
+                if((image == null)){
                     alert.setContentText("Escolha uma imagem válida");
                     alert.showAndWait();
                     return;
@@ -250,24 +252,25 @@ public class AdminLivrosController  {
 
                 resetTextFields();
 
-                Book livro = new Book(autor, titulo, assunto, estoque, selected, image);
-
-                ArrayList<Object> values = new ArrayList<>();
-                
-                values.add( livro.getAutor());
-                values.add( livro.getTitulo());
-                values.add( livro.getAssunto());
-                values.add( livro.getQtdEstoque());
-                values.add( livro.getColeção());
-                values.add( livro.getImage());
-
-
-
                 ArrayList<String> conditions = new ArrayList<>();
-                conditions.add("titulo = "+ "'"+titulo+"'");
+                conditions.add("autor = "+ "'"+livro_antes.getAutor()+"'");
+                conditions.add("titulo = "+ "'"+livro_antes.getTitulo()+"'");
 
-                crud.update(db, values, Optional.of(conditions));
-                livrosObs.set(i, livro);
+                ArrayList<Book> books = crud.read(db, Optional.of(conditions), Optional.of(" AND "));
+                Book livro_update = books.getFirst(); 
+
+                livro_update.setAutor(autor);
+                livro_update.setTitulo(titulo);
+                livro_update.setAssunto(assunto);
+                livro_update.setQtdEstoque(estoque);
+                livro_update.setImage(image);
+                livro_update.setColeção(selected);
+
+                conditions.clear();
+                conditions.add("\"ID\" = " +livro_update.getID());
+
+                crud.update(db, livro_update, Optional.of(conditions));
+                livrosObs.set(i, livro_update);
             
         
             }catch(NumberFormatException e){
@@ -284,13 +287,14 @@ public class AdminLivrosController  {
 
         String filtro = filtroTextField.getText();
         ArrayList<String> like = new ArrayList<>();
-        like.add("autor LIKE "+filtro+ "%");
-        like.add("titulo LIKE "+filtro+ "%");
-        like.add("assunto LIKE "+filtro+ "%");
-        like.add("qtd_estoque LIKE "+filtro+ "%");
-        like.add("colecao LIKE "+filtro+ "%");
 
-        livros = crud.read(db, Optional.of(like));
+        like.add("autor LIKE "+"%"+filtro+ "%");
+        like.add("titulo LIKE "+"%"+filtro+ "%");
+        like.add("assunto LIKE "+"%"+filtro+ "%");
+        like.add("qtd_estoque LIKE "+"%"+filtro+ "%");
+        like.add("colecao LIKE "+"%"+filtro+ "%");
+
+        livros = crud.read(db, Optional.of(like), Optional.of(" OR "));
         
         if(filtroTextField.getText().equals("")){
             tableLivros.setItems(livrosObs);
@@ -312,7 +316,7 @@ public class AdminLivrosController  {
             Books crud = new Books();
             ObservableList<Book> filter = FXCollections.observableArrayList();
     
-            livros = crud.read(db, Optional.empty());
+            livros = crud.read(db, Optional.empty(), Optional.empty());
             
             if(filtroTextField.getText().equals("")){
                 
@@ -373,8 +377,8 @@ public class AdminLivrosController  {
             Book livro = (Book) tableLivros.getItems().get(i);
             String estoque = String.valueOf(livro.getQtdEstoque());
         
-            tituloTextField.setText(livro.getTitulo());
             autorTextField.setText(livro.getAutor());
+            tituloTextField.setText(livro.getTitulo());
             assuntoTextField.setText(livro.getAssunto());
 
            if(livro.getColeção().equals("Coleção Comum"))

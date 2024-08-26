@@ -99,11 +99,12 @@ public class RentBookController{
 
         root = loader.load();
 
-        BooksController rentController = loader.getController();
+        BooksController booksController = loader.getController();
 
-        rentController.initializeDB(db);
-        rentController.setData(user);
-        rentController.setLabels(user);
+        booksController.initializeDB(db);
+        booksController.init();
+        booksController.setData(user);
+        booksController.setLabels(user);
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 
@@ -169,7 +170,7 @@ public class RentBookController{
 
         Rents crudRent = new Rents();
         int i = 0;
-        livros = crud.read(db, Optional.empty());
+        livros = crud.read(db, Optional.empty(), Optional.empty());
         
         for (Book livro : livros) {
             if(livro.getTitulo().equals(selectedLivro.getTitulo())) {
