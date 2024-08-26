@@ -3,6 +3,8 @@ package Controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -116,7 +118,10 @@ public class DevolucaoController{
     public void devolverLivro(MouseEvent event) throws IOException {
         Rents crud = new Rents();
         int i = tableRent.getSelectionModel().getSelectedIndex();
-        ArrayList<String> conditions = new ArrayList<>();
+        ArrayList<String> conditions_str = new ArrayList<>();
+        ArrayList<Object> values = new ArrayList<>();
+        Optional<ArrayList<String>> conditions = Optional.of(conditions_str);
+        LocalDate lc_data_devolucao;
 
         try{
 
@@ -125,9 +130,13 @@ public class DevolucaoController{
                 String titulo = rent.getTitulo();
                 if(rentsObs.get(i).getDateRent().equals(data_aluguel) &&
                 rentsObs.get(i).getTitulo().equals(titulo)){
-                    conditions.add(String.format("titulo_livro = %s", rent.getTitulo()));
-                    conditions.add(String.format("data_aluguel = %s", rent.getDateRent()));
-                    crud.delete(db, conditions);
+                    rent.setDateDevolution();
+                    String data_devolucao = rent.getDateDevolution();
+                    lc_data_devolucao = LocalDate.parse(data_devolucao, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                    values.add(Date.valueOf(lc_data_devolucao));
+                    conditions_str.add(String.format(rent.getTitulo()));
+                    conditions_str.add(String.format(rent.getDateRent()));
+                    crud.update(db, values, conditions);
 
                     changePageComentarios(event, rent);
                 }
