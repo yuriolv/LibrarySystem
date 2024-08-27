@@ -122,22 +122,20 @@ public class DevolucaoController{
         Books crud_livro = new Books();
         int i = tableRent.getSelectionModel().getSelectedIndex();
         ArrayList<String> conditions = new ArrayList<>();
-        ArrayList<Object> values = new ArrayList<>();
-        LocalDate lc_data_devolucao;
+
         LocalDate lc_data_aluguel;
 
         try{            
             for (RentBook rent : rents) {
                 String data_aluguel = rent.getDateRent();
+                int id = rent.getId();
                 int id_livro = rent.getId_livro();
-                if(rentsObs.get(i).getDateRent().equals(data_aluguel) &&
-                rentsObs.get(i).getId_livro() == id_livro){
-                    conditions.add(String.format("id_livro = %s", id_livro));
+                if(rentsObs.get(i).getId() == id){
+                    conditions.add(String.format("\"ID\" = %s", id));
 
                     lc_data_aluguel = LocalDate.parse(data_aluguel, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
                     data_aluguel = lc_data_aluguel.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
-                    
-                    conditions.add(String.format("data_aluguel = \'%s\'", data_aluguel));
+
                     crud.delete(db, conditions);//consertar delete
 
                     conditions.clear();

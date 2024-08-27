@@ -77,7 +77,6 @@ public class Books {
             values.add(livro.getColeção());
         try {
             if(!conditions.isEmpty()){
-                System.out.println("entrei");
                 select.add("UPDATE livro SET autor = ?,titulo = ?,assunto = ?,qtd_estoque = ?,capa_livro = ?,colecao = ? WHERE");
                 String condition = String.join(" AND ", conditions.get());
                 select.add(condition);

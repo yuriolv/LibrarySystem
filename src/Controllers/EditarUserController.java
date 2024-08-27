@@ -72,9 +72,9 @@ public class EditarUserController {
             user.setSenha(confirmarSenha);
             users.set(i, user);
 
-            valuesToUpdate.add("senha");
-            matricula = "\'" + users.get(i).getMatricula() + "\'";
-            conditions_str.add(String.format("matricula = %s", matricula));
+            valuesToUpdate.add(user.getSenha());
+            matricula = users.get(i).getMatricula() ;
+            conditions_str.add(String.format("matricula = '%s'", matricula));
             crud.update(db, valuesToUpdate, conditions);
 
             Alert alert = new Alert(AlertType.INFORMATION);

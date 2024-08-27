@@ -58,6 +58,7 @@ public class Rents {
             ResultSet rs = db.requestSQL(result);
 
             while (rs.next()) {
+                int ID = rs.getInt("ID");
                 int id_livro = rs.getInt("id_livro");
 
                 String matricula = rs.getString("matricula");
@@ -73,7 +74,7 @@ public class Rents {
                     data_devolucao = df.format(rs.getDate("data_devolução"));
                 }
 
-                RentBook rent = new RentBook(matricula, id_livro, tipo_usuario, data_aluguel, data_devolucao);
+                RentBook rent = new RentBook(ID, matricula, id_livro, tipo_usuario, data_aluguel, data_devolucao);
                 rents.add(rent);
             }
 

@@ -3,6 +3,7 @@ package Classes;
 import DB.DataBase;
 import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 
 public class RentBook {
@@ -14,6 +15,8 @@ public class RentBook {
     }
 
     private int id_livro;  
+    private int Id;  
+    
     private String dateRent;
     private String dateDevolution;
     
@@ -33,19 +36,36 @@ public class RentBook {
         this.dateDevolution = dateDevolution;
         
     }
-
+    public RentBook(int ID, String matricula, int id_livro, String tipo, String dateRent, String dateDevolution) {
+        this.Id = ID;
+        this.matricula = matricula;
+        this.id_livro = id_livro;
+        this.tipo = tipo;
+        this.dateRent = dateRent;
+        this.dateDevolution = dateDevolution;
+        
+    }
+    
     public String getMatricula() {
         return matricula;
     }
-
+    
     public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
-
+    
     public int getId_livro() {
         return id_livro;
     }
+    
+    public int getId() {
+        return Id;
+    }
 
+    public void setId(int id) {
+        Id = id;
+    }
+    
     public void setId_livro(int id_livro) {
         this.id_livro = id_livro;
     }
@@ -70,19 +90,16 @@ public class RentBook {
         dateDevolution = today.format(dateTimeFormatter);
     }
     
-    public String setDateForDevolution() {
-        DateTimeFormatter dateTimeFormatter =  DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate dateForDevolution = LocalDate.parse( getDateRent(), dateTimeFormatter);
-        return dateForDevolution.plusDays(7).format(dateTimeFormatter).toString();
-    }
 
     public double getMulta(){
         try {
             if(tipo.equals("Discente") ){
                 DateTimeFormatter dateTimeFormatter =  DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                LocalDate dateForDevolution = LocalDate.parse( dateDevolution , dateTimeFormatter);
-                LocalDate dateOfRent = LocalDate.parse(getDateRent(), dateTimeFormatter);
-                int dias = dateForDevolution.getDayOfMonth() - dateOfRent.plusDays(7).getDayOfMonth();
+                LocalDate dateForDevolution = LocalDate.parse( getDateDevolution() , dateTimeFormatter);
+                LocalDate startDate = LocalDate.of(dateForDevolution.getYear(), dateForDevolution.getMonthValue(), dateForDevolution.getDayOfMonth());
+                LocalDate endDate = LocalDate.now();
+
+                int dias = Period.between(startDate, endDate).getDays();
                 
                 if(dias>0)
                     return dias*0.5;
@@ -91,9 +108,11 @@ public class RentBook {
                 
             } else {
                 DateTimeFormatter dateTimeFormatter =  DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                LocalDate dateForDevolution = LocalDate.parse( setDateForDevolution() , dateTimeFormatter);
-                LocalDate dateOfRent = LocalDate.parse(getDateRent(), dateTimeFormatter);
-                int dias = dateForDevolution.getDayOfMonth() - dateOfRent.plusDays(7).getDayOfMonth();
+                LocalDate dateForDevolution = LocalDate.parse( getDateDevolution() , dateTimeFormatter);
+                LocalDate startDate = LocalDate.of(dateForDevolution.getYear(), dateForDevolution.getMonthValue(), dateForDevolution.getDayOfMonth());
+                LocalDate endDate = LocalDate.now();
+
+                int dias = Period.between(startDate, endDate).getDays();
                 
                 if(dias>0)
                     return dias*0.8;

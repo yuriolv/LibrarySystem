@@ -87,13 +87,15 @@ public class AdminUsersController{
         ArrayList<String> condition_str = new ArrayList<>();
         Optional<ArrayList<String>> conditions = Optional.of(condition_str);
         ArrayList<Object> valuesToUpdate= new ArrayList<>();
+
         Users crud = new Users();
         String nome, tipo, matricula;
-        User user;
-
         int i = tableUsers.getSelectionModel().getSelectedIndex();
-        users = crud.read(db, Optional.empty());
+        User user_antes = tableUsers.getItems().get(i);
 
+
+        
+        users = crud.read(db, Optional.empty());
         try {
             matricula = matriculaTextField.getText();
             tipo = tipoTextField.getText();
@@ -102,7 +104,7 @@ public class AdminUsersController{
             valuesToUpdate.add(nome);
             valuesToUpdate.add(tipo);
                         
-            user = users.get(i);
+            User user = users.get(i);
 
             user.setMatricula(matricula);
             user.setNome(nome);
@@ -111,8 +113,7 @@ public class AdminUsersController{
             users.set(i, user);
             usersObs.set(i, user);
             
-            matricula = "\'" + matricula + "\'";
-            condition_str.add(String.format("matricula = %s", matricula));
+            condition_str.add(String.format("matricula = '%s'", user_antes.getMatricula()));
             crud.update(db, valuesToUpdate, conditions);
             resetTextFields();
 
