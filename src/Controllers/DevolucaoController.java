@@ -123,8 +123,7 @@ public class DevolucaoController{
         LocalDate lc_data_devolucao;
         LocalDate lc_data_aluguel;
 
-        try{
-
+        try{            
             for (RentBook rent : rents) {
                 String data_aluguel = rent.getDateRent();
                 int id_livro = rent.getId_livro();
@@ -133,9 +132,7 @@ public class DevolucaoController{
                     conditions.add(String.format("id_livro = %s", id_livro));
 
                     lc_data_aluguel = LocalDate.parse(data_aluguel, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                    System.out.println(data_aluguel);
-                    data_aluguel = lc_data_aluguel.format(DateTimeFormatter.ofPattern("YYYYMMDD"));
-                    System.out.println(data_aluguel);
+                    data_aluguel = lc_data_aluguel.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
                     
                     conditions.add(String.format("data_aluguel = \'%s\'", data_aluguel));
                     crud.delete(db, conditions);//consertar delete

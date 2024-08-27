@@ -92,7 +92,7 @@ public class Rents {
         String data_formatada = "";
         ResultSet rs;
         try {
-            rs = db.requestSQL("SELECT id_livro FROM livro WHERE titulo = " + conditions.get().get(0));
+            rs = db.requestSQL("SELECT ID FROM livro WHERE titulo = " + conditions.get().get(0));
             rs.next();
             Integer id_livro = rs.getInt("id_livro");
             conditions.get().set(0, "id_livro = " + id_livro);
