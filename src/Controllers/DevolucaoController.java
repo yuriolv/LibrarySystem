@@ -12,7 +12,9 @@ import java.util.ResourceBundle;
 
 import Classes.RentBook;
 import Classes.User;
+import Classes.Book;
 import DB.DataBase;
+import Models.Books;
 import Models.Rents;
 
 import javafx.collections.FXCollections;
@@ -117,6 +119,7 @@ public class DevolucaoController{
     @FXML
     public void devolverLivro(MouseEvent event) throws IOException {
         Rents crud = new Rents();
+        Books crud_livro = new Books();
         int i = tableRent.getSelectionModel().getSelectedIndex();
         ArrayList<String> conditions = new ArrayList<>();
         ArrayList<Object> values = new ArrayList<>();
@@ -137,7 +140,16 @@ public class DevolucaoController{
                     conditions.add(String.format("data_aluguel = \'%s\'", data_aluguel));
                     crud.delete(db, conditions);//consertar delete
 
+                    conditions.clear();
+                    conditions.add("\"ID\" =" + id_livro);
+
+                    ArrayList<Book> livros = crud_livro.read(db, Optional.of(conditions), Optional.of(" AND "));
+                    
+                    livros.getFirst().setQtdEstoque(livros.getFirst().getQtdEstoque()+1);
+                    crud_livro.update(db, livros.getFirst(), Optional.of(conditions));
+
                     changePageComentarios(event, rent);
+                    rentsObs.remove(i);
                 }
             }
         }catch(Exception e){
