@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ComentariosController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ComentariosController">
    <children>
       <Label layoutX="183.0" layoutY="75.0" text="O que achou do livro?">
          <font>
@@ -14,7 +14,7 @@
          </font>
       </Label>
       <AnchorPane prefHeight="60.0" prefWidth="600.0" style="-fx-background-color: #008B45;" />
-      <TextArea fx:id="comentarioTextArea" layoutX="100.0" layoutY="118.0" prefHeight="200.0" prefWidth="400.0" />
+      <TextArea fx:id="comentarioTextArea" layoutX="100.0" layoutY="118.0" maxWidth="400.0" prefHeight="200.0" prefWidth="400.0" wrapText="true" />
       <Button layoutX="250.0" layoutY="342.0" mnemonicParsing="false" onMouseClicked="#enviarComentario" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #008B45; -fx-text-fill: white;" text="Enviar">
          <font>
             <Font name="Cambria Bold" size="16.0" />

@@ -16,23 +16,31 @@ import DB.DataBase;
 import Models.Comments;
 import Models.Books;
 import Models.Rents;
+import Models.Users;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.text.FontWeight;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javax.swing.text.html.ImageView;
 
 public class RentBookController{
 
@@ -49,6 +57,7 @@ public class RentBookController{
     private Label assuntoLabel;
     @FXML
     private Label autorLabel;
+
     @FXML
     private Label bookNameLabel;
     @FXML
@@ -241,27 +250,72 @@ public class RentBookController{
 
     }
 
-    public Label createLabel(String comment) {
+    public Label createLabel(String user) {
         Label label = new Label();
-        label.setText(comment);
-        label.setPrefWidth(700);
-        label.setStyle("-fx-font-family: Cambria;"+"-fx-font-size: 16;");
-
-
+        label.setText(user);
+        label.setPrefWidth(454);
+        label.setPrefHeight(28);
+        label.setFont(Font.font("System", FontWeight.BOLD, 11));
+        label.setTextFill(Color.web("#656565"));
         return label;
     }
 
     public void setComments(Book livro){
         Comments crud = new Comments(); //substituir pelo crud de comentários
+        Users crud_users = new Users();
         ArrayList<String> conditions = new ArrayList<>();
+        ArrayList<User> users = new ArrayList<>();
 
         conditions.add("id_livro = " + "'"+ livro.getID() + "'");
 
         comments = crud.read(db, Optional.of(conditions));
 
-        for(Comment comment: comments) {
-            Label commentLabel = createLabel(comment.getComentario());
-            vbox.getChildren().addAll(commentLabel);
+        
+        if (!comments.isEmpty()){
+            for(Comment comment: comments) {
+                conditions.clear();
+                conditions.add(String.format("matricula = '%s'", comment.getMatricula_usuario()));
+                users = crud_users.read(db, Optional.of(conditions));
+        
+                VBox vBox = new VBox();
+                HBox hbox = new HBox();
+                Text text = new Text();
+                Image file = new Image("file:src/Views/Assets/userIcon.png");
+                ImageView avatar = new ImageView(file);
+    
+                text.setText(comment.getComentario());
+                text.setWrappingWidth(541);
+    
+                vBox.setPrefWidth(700);
+                vBox.setMargin(text, new Insets(5, 0, 0, 70));
+                
+                hbox.setAlignment(Pos.CENTER_LEFT);
+                hbox.setPrefHeight(38);
+                hbox.setPrefWidth(700);
+                hbox.setPadding(new Insets(0, 20, 0, 20));
+                hbox.setSpacing(7);
+    
+                avatar.setFitWidth(34);
+                avatar.setFitHeight(34);
+    
+    
+                hbox.getChildren().addAll(avatar);
+                hbox.getChildren().addAll(createLabel(users.getFirst().getNome()));
+    
+                vBox.getChildren().addAll(hbox);
+                vBox.getChildren().addAll(text);
+    
+                vbox.getChildren().addAll(vBox);
+            }
+        }else {
+            Label result = createLabel("Ainda não há nenhuma avaliação para este livro");
+
+            result.setPrefWidth(342);
+            result.setFont(javafx.scene.text.Font.font("System", FontWeight.NORMAL, 16));
+            result.setTextFill(Color.web("#00000099"));
+
+            vbox.setAlignment(Pos.CENTER);
+            vbox.getChildren().addAll(result);
         }
     }
 

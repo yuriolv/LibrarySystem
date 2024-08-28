@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" stylesheets="@Stylesheets/Home.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.HomeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" stylesheets="@Stylesheets/Home.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.HomeController">
    <children>
       <Label alignment="CENTER" layoutX="129.0" layoutY="145.0" prefHeight="38.0" prefWidth="443.0" text="Selecione uma das opções abaixo" AnchorPane.leftAnchor="129.0" AnchorPane.rightAnchor="128.0">
          <font>
@@ -26,7 +26,7 @@
                         <Image url="@Assets/usuario.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="13.0" layoutY="112.0" text="Discente e professor">
+                  <Label layoutX="13.0" layoutY="112.0" text="Discente e Docente">
                      <font>
                         <Font name="Cambria" size="20.0" />
                      </font>

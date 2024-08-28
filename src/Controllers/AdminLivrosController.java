@@ -288,18 +288,17 @@ public class AdminLivrosController  {
         String filtro = filtroTextField.getText();
         ArrayList<String> like = new ArrayList<>();
 
-        like.add("autor LIKE "+"%"+filtro+ "%");
-        like.add("titulo LIKE "+"%"+filtro+ "%");
-        like.add("assunto LIKE "+"%"+filtro+ "%");
-        like.add("qtd_estoque LIKE "+"%"+filtro+ "%");
-        like.add("colecao LIKE "+"%"+filtro+ "%");
-
-        livros = crud.read(db, Optional.of(like), Optional.of(" OR "));
         
         if(filtroTextField.getText().equals("")){
             tableLivros.setItems(livrosObs);
         }
         else{
+            like.add("autor LIKE "+"'%"+filtro+ "%'");
+            like.add("titulo LIKE "+"'%"+filtro+ "%'");
+            like.add("assunto LIKE "+"'%"+filtro+ "%'");
+            like.add("colecao LIKE "+"'%"+filtro+ "%'");
+    
+            livros = crud.read(db, Optional.of(like), Optional.of(" OR "));
 
             for (Book livro : livros) {
                     filter.add(livro);
@@ -311,7 +310,7 @@ public class AdminLivrosController  {
     
     }
     @FXML
-    void pesquisarLivro2(KeyEvent event) {
+    public void pesquisarLivro2(KeyEvent event) {
         if(event.getCode() == KeyCode.ENTER){
             
             if(filtroTextField.getText().equals("")){

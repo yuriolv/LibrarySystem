@@ -35,7 +35,7 @@ public class Users {
                 select.add("SELECT * FROM usuario");
                 result = String.join(" ", select);
             }else{
-                select.add("SELECT * FROM users WHERE");
+                select.add("SELECT * FROM usuario WHERE");
                 String command = String.join(" OR ",conditions.get());
                 select.add(command);
                 result = String.join(" ", select);
