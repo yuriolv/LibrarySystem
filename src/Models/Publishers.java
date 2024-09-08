@@ -1,32 +1,25 @@
 package Models;
 
-import Classes.Book;
+import Classes.Publisher;
 import DB.DataBase;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Optional;
 
-public class Books {
+public class Publishers {
     
-    public boolean create(Book livro, DataBase db){
-        String autor = livro.getAutor();
-        String titulo = livro.getTitulo();
-        String assunto = livro.getAssunto();
-        int qtd_estoque = livro.getQtdEstoque();
-        String colecao = livro.getColeção();
-        byte[] capa_livro = livro.getImage();
-        
+    public boolean create(Publisher editora, DataBase db) {
+        String nome = editora.getNome();
+        String cnpj = editora.getCnpj();
+        String telefone = editora.getTelefone();        
         
         try {
-            String insert = "Insert into livro(autor, titulo, assunto, qtd_estoque,capa_livro, colecao) values (?,?,?,?,?,?)";
+            String insert = "Insert into editora(nome, cnpj, telefone) values (?,?,?)";
             ArrayList<Object> values = new ArrayList<>();
             Optional<ArrayList<Object>> arrValues = Optional.of(values);
-            values.add(autor);
-            values.add(titulo);
-            values.add(assunto);
-            values.add(qtd_estoque);
-            values.add(capa_livro);
-            values.add(colecao);
+            values.add(nome);
+            values.add(cnpj);
+            values.add(telefone);
 
             Boolean result = db.modifySQL(insert, arrValues);
             return result;
@@ -35,16 +28,16 @@ public class Books {
         }
     }
 
-    public ArrayList<Book> read(DataBase db, Optional<ArrayList<String>> conditions, Optional<String> comando_logico){
-        ArrayList<Book> books = new ArrayList<>();
+     public ArrayList<Publisher> read(DataBase db, Optional<ArrayList<String>> conditions, Optional<String> comando_logico){
+        ArrayList<Publisher> editoras = new ArrayList<>();
         ArrayList<String> select = new ArrayList<>();
         String result = "";
         try {
             if(conditions.isEmpty()){
-                select.add("SELECT * FROM livro");
+                select.add("SELECT * FROM editora");
                 result = String.join(" ", select);
             }else{
-                select.add("SELECT * FROM livro WHERE");
+                select.add("SELECT * FROM editora WHERE");
                 String command = String.join(comando_logico.get(),conditions.get());
                 select.add(command);
                 result = String.join(" ", select);
@@ -53,39 +46,35 @@ public class Books {
             ResultSet rs = db.requestSQL(result);
 
             while (rs.next()) {
-                Book book = new Book(rs.getInt("id_livro"),rs.getString("autor"), 
-                 rs.getString("titulo"), rs.getString("assunto"), rs.getInt("qtd_estoque"),
-                 rs.getString("colecao"), rs.getBytes("capa_livro"));
-                books.add(book);
+                Publisher editora = new Publisher(rs.getString("nome"), rs.getString("cnpj"), rs.getString("telefone"));
+                editoras.add(editora);
             }
 
-            return books;
+            return editoras;
         } catch (Exception e) {
             System.out.println(e);
             return null;
         }
     }
 
-    public boolean update(DataBase db,Book livro,Optional<ArrayList<String>> conditions){
+    public boolean update(DataBase db, Publisher editora, Optional<ArrayList<String>> conditions){
         ArrayList<String> select = new ArrayList<>();
         String result = "";
         ArrayList<Object> values = new ArrayList<>();
         Optional<ArrayList<Object>> arrValues = Optional.of(values);
-            values.add(livro.getAutor());
-            values.add(livro.getTitulo());
-            values.add(livro.getAssunto());
-            values.add(livro.getQtdEstoque());
-            values.add(livro.getImage());
-            values.add(livro.getColeção());
+
+        values.add(editora.getNome());
+        values.add(editora.getCnpj());
+        values.add(editora.getTelefone());
+
         try {
             if(!conditions.isEmpty()){
-                select.add("UPDATE livro SET autor = ?,titulo = ?,assunto = ?,qtd_estoque = ?,capa_livro = ?,colecao = ? WHERE");
+                select.add("UPDATE editora SET nome = ?,cnpj = ?,telefone = ? WHERE");
                 String condition = String.join(" AND ", conditions.get());
                 select.add(condition);
             }else{
-                select.add("UPDATE livro SET autor = ?,titulo = ?,assunto = ?,qtd_estoque = ?,capa_livro = ?,colecao = ?");
+                select.add("UPDATE editora SET nome = ?,cnpj = ?,telefone = ?");
             }
-
 
             result = String.join(" ", select);
 
@@ -97,10 +86,10 @@ public class Books {
         }
 
     }
-    
+
     public boolean delete(DataBase db, ArrayList<String> conditions){
         ArrayList<String> command = new ArrayList<>();
-        command.add("DELETE FROM livro WHERE");
+        command.add("DELETE FROM editora WHERE");
         String condition = String.join(" AND ", conditions);
         command.add(condition);
 
@@ -112,9 +101,4 @@ public class Books {
         return rs;
         
     }
-
-    
 }
-
-
-

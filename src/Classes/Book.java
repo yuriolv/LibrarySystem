@@ -82,4 +82,13 @@ public class Book {
     public void setColeção(String coleção) {
         this.coleção = coleção;
     }
+
+    public String getEditora() {        
+        return coleção;
+    }
+
+    public void setEditora(String coleção) {
+        this.coleção = coleção;
+    }
 }
+

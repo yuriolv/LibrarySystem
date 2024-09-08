@@ -143,7 +143,7 @@ public class RentBookController{
         livros = crud.read(db, conditions, Optional.of(" AND "));
 
 
-        if(livros.getFirst().getQtdEstoque()==0){
+        if(livros.get(0).getQtdEstoque()==0){
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Aviso");
             alert.setHeaderText(null);
@@ -152,7 +152,7 @@ public class RentBookController{
             return;
 
         }
-        if(livros.getFirst().getColeção().equals("Especial") && user.getTipo().equals("Discente")){
+        if(livros.get(0).getColeção().equals("Especial") && user.getTipo().equals("Discente")){
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Aviso");
             alert.setHeaderText("Lamentamos informar");
@@ -300,7 +300,7 @@ public class RentBookController{
     
     
                 hbox.getChildren().addAll(avatar);
-                hbox.getChildren().addAll(createLabel(users.getFirst().getNome()));
+                hbox.getChildren().addAll(createLabel(users.get(0).getNome()));
     
                 vBox.getChildren().addAll(hbox);
                 vBox.getChildren().addAll(text);

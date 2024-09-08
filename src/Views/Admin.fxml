@@ -43,7 +43,7 @@
             </Label>
          </children>
       </VBox>
-      <HBox alignment="CENTER" fillHeight="false" layoutX="3.0" layoutY="294.0" prefHeight="168.0" prefWidth="694.0" spacing="100.0" AnchorPane.bottomAnchor="138.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="294.0">
+      <HBox alignment="CENTER" fillHeight="false" layoutX="3.0" layoutY="294.0" prefHeight="168.0" prefWidth="694.0" spacing="25.0" AnchorPane.bottomAnchor="138.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="294.0">
          <children>
             <AnchorPane id="books" onMouseClicked="#changePageBooks" prefHeight="142.0" prefWidth="206.0" style="-fx-background-radius: 10; -fx-background-color: #dfdedf; -fx-border-radius: 20;">
                <children>
@@ -60,6 +60,29 @@
                         <Font name="Cambria Bold" size="15.0" />
                      </font>
                   </Label>
+               </children>
+               <effect>
+                  <DropShadow />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </AnchorPane>
+            <AnchorPane id="users" onMouseClicked="#changePageEditora" prefHeight="142.0" prefWidth="206.0" style="-fx-background-radius: 10; -fx-background-color: #dfdedf; -fx-border-radius: 20;">
+               <children>
+                  <Label layoutX="35.0" layoutY="113.0" prefHeight="20.0" prefWidth="141.0" text="Dados das editoras" textAlignment="CENTER">
+                     <font>
+                        <Font name="Cambria Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="123.0" fitWidth="123.0" layoutX="42.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Assets/usuarios.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
                </children>
                <effect>
                   <DropShadow />

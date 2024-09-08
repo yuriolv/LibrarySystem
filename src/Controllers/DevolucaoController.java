@@ -143,8 +143,8 @@ public class DevolucaoController{
 
                     ArrayList<Book> livros = crud_livro.read(db, Optional.of(conditions), Optional.of(" AND "));
                     
-                    livros.getFirst().setQtdEstoque(livros.getFirst().getQtdEstoque()+1);
-                    crud_livro.update(db, livros.getFirst(), Optional.of(conditions));
+                    livros.get(0).setQtdEstoque(livros.get(0).getQtdEstoque()+1);
+                    crud_livro.update(db, livros.get(0), Optional.of(conditions));
 
                     changePageComentarios(event, rent);
                     rentsObs.remove(i);

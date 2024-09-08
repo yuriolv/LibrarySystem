@@ -12,6 +12,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import Classes.Book;
+import Classes.Publisher;
 import DB.DataBase;
 import Models.Books;
 
@@ -30,6 +31,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -55,6 +57,8 @@ public class AdminLivrosController  {
     @FXML
     private TableColumn<Book, String> assuntoColumn;
     @FXML
+    private TableColumn<Publisher, String> editoraColumn;
+    @FXML
     private TableColumn<Book, String> coleçãoColumn;
     @FXML
     private TableColumn<Book, Integer> estoqueColumn;
@@ -65,9 +69,12 @@ public class AdminLivrosController  {
     @FXML
     private TextField assuntoTextField;
     @FXML
+    private ComboBox<Publisher> editoraComboBox;
+    @FXML
     private TextField estoqueTextField;
     @FXML
     private TextField filtroTextField;
+    
     @FXML
     private ToggleGroup coleção;
     @FXML
@@ -97,6 +104,7 @@ public class AdminLivrosController  {
         autorColumn.setCellValueFactory(new PropertyValueFactory<>("Autor"));
         assuntoColumn.setCellValueFactory(new PropertyValueFactory<>("Assunto"));
         coleçãoColumn.setCellValueFactory(new PropertyValueFactory<>("Coleção"));
+        coleçãoColumn.setCellValueFactory(new PropertyValueFactory<>("Editora"));
         estoqueColumn.setCellValueFactory(new PropertyValueFactory<>("QtdEstoque"));
 
         tableLivros.setItems(livrosObs);
@@ -257,7 +265,7 @@ public class AdminLivrosController  {
                 conditions.add("titulo = "+ "'"+livro_antes.getTitulo()+"'");
 
                 ArrayList<Book> books = crud.read(db, Optional.of(conditions), Optional.of(" AND "));
-                Book livro_update = books.getFirst(); 
+                Book livro_update = books.get(0); 
 
                 livro_update.setAutor(autor);
                 livro_update.setTitulo(titulo);
@@ -267,7 +275,7 @@ public class AdminLivrosController  {
                 livro_update.setColeção(selected);
 
                 conditions.clear();
-                conditions.add("\"ID\" = " +livro_update.getID());
+                conditions.add("\"id_livro\" = " +livro_update.getID());
 
                 crud.update(db, livro_update, Optional.of(conditions));
                 livrosObs.set(i, livro_update);
