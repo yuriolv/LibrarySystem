@@ -1,19 +1,7 @@
 {
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
-        "C:\\Users\\Diogo\\Downloads\\postgresql-42.7.4.jar",
-        "c:\\Users\\Yuri\\Downloads\\postgresql-42.7.3.jar",
-        "c:\\Users\\LAURA\\Downloads\\postgresql-42.7.3.jar",
-        "c:\\Users\\joaol\\Downloads\\postgresql-42.7.4.jar",
-        "c:\\Program Files\\Java\\javafx-sdk-22.0.2\\lib\\javafx.base.jar",
-        "c:\\Program Files\\Java\\javafx-sdk-22.0.2\\lib\\javafx.controls.jar",
-        "c:\\Program Files\\Java\\javafx-sdk-22.0.2\\lib\\javafx.fxml.jar",
-        "c:\\Program Files\\Java\\javafx-sdk-22.0.2\\lib\\javafx.graphics.jar",
-        "c:\\Program Files\\Java\\javafx-sdk-22.0.2\\lib\\javafx.media.jar",
-        "c:\\Program Files\\Java\\javafx-sdk-22.0.2\\lib\\javafx.swing.jar",
-        "c:\\Program Files\\Java\\javafx-sdk-22.0.2\\lib\\javafx.web.jar",
-        "c:\\Program Files\\Java\\javafx-sdk-22.0.2\\lib\\javafx-swt.jar",
-        "c:\\Users\\Jose N\\Downloads\\postgresql-42.7.4.jar",
-        "c:\\Users\\Yuri\\Downloads\\jbcrypt-0.4.jar"
+        "src/Utils/Jars Files/*",
+        "src/Utils/Jars Files/lib/*"
     ],
 }

@@ -16,7 +16,7 @@ public class ComentariosController {
     @FXML
     private TextArea comentarioTextArea;
     private DataBase db;
-    private Book selected_livro;
+
     
     public void initializeDB(DataBase db){
         this.db = db;
