@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 import Classes.User;
+import Utils.HashPass;
 import DB.DataBase;
 import Models.Users;
 import javafx.event.Event;
@@ -72,7 +73,7 @@ public class loginUserController {
 
                 for (User usuario : users) {
                     if(usuario.getMatricula().equals(user)
-                        && usuario.getSenha().equals(pass)
+                        && HashPass.verifyPass(usuario.getSenha(), pass) 
                         && usuario.getTipo().equals(typeSelected)){                
                     
                            changePageUser(event, usuario);

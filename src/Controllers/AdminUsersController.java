@@ -9,7 +9,7 @@ import java.util.Optional;
 import Classes.User;
 import DB.DataBase;
 import Models.Users;
-
+import Utils.HashPass;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -132,7 +132,8 @@ public class AdminUsersController{
             matricula = matriculaTextField.getText();
             tipo = tipoTextField.getText();
             nome = nomeTextField.getText();
-            senha = nome+"@"+tipo;
+            String firstname = nomeTextField.getText().split(" ")[0];
+            senha = HashPass.generateHash(firstname+"@"+tipo);
             User user = new User(matricula, nome, tipo, senha);
 
             users.add(user);

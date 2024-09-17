@@ -40,7 +40,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javax.swing.text.html.ImageView;
 
 public class RentBookController{
 
