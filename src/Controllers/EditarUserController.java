@@ -6,6 +6,7 @@ import java.util.Optional;
 import Classes.User;
 import DB.DataBase;
 import Models.Users;
+import Utils.HashPass;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
@@ -69,7 +70,8 @@ public class EditarUserController {
         int i = getIndexUser();
 
         if(novaSenha.equals(confirmarSenha)){
-            user.setSenha(confirmarSenha);
+            String newPass = HashPass.generateHash(confirmarSenha);
+            user.setSenha(newPass);
             users.set(i, user);
 
             valuesToUpdate.add(user.getSenha());

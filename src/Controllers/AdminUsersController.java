@@ -1,20 +1,20 @@
 package Controllers;
 
 import java.io.IOException;
-import java.net.URL;
+
 import java.util.ArrayList;
-import java.util.ResourceBundle;
+
 import java.util.Optional;
 
 import Classes.User;
 import DB.DataBase;
 import Models.Users;
-
+import Utils.HashPass;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
+
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -132,7 +132,8 @@ public class AdminUsersController{
             matricula = matriculaTextField.getText();
             tipo = tipoTextField.getText();
             nome = nomeTextField.getText();
-            senha = nome+"@"+tipo;
+            String firstname = nomeTextField.getText().split(" ")[0];
+            senha = HashPass.generateHash(firstname+"@"+tipo);
             User user = new User(matricula, nome, tipo, senha);
 
             users.add(user);
