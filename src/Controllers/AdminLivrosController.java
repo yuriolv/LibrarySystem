@@ -273,7 +273,7 @@ public class AdminLivrosController  {
                 livro_update.setColeção(selected);
 
                 conditions.clear();
-                conditions.add("\"id_livro\" = " +livro_update.getID());
+                conditions.add("\"ID\" = " +livro_update.getID());
 
                 crud.update(db, livro_update, Optional.of(conditions));
                 livrosObs.set(i, livro_update);

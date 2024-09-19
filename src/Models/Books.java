@@ -53,7 +53,7 @@ public class Books {
             ResultSet rs = db.requestSQL(result);
 
             while (rs.next()) {
-                Book book = new Book(rs.getInt("id_livro"),rs.getString("autor"), 
+                Book book = new Book(rs.getInt("ID"),rs.getString("autor"), 
                  rs.getString("titulo"), rs.getString("assunto"), rs.getInt("qtd_estoque"),
                  rs.getString("colecao"), rs.getBytes("capa_livro"));
                 books.add(book);

@@ -5,6 +5,6 @@ public class teste {
     //private static byte[] msgDecifrada;
 
     public static void main(String[] args) {
-        System.out.println( " "+ HashPass.generateHash("4"));
+        System.out.println(HashPass.generateHash(""));
     }
 }
