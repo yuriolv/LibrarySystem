@@ -3,6 +3,7 @@ package Controllers;
 import java.io.IOException;
 
 import DB.DataBase;
+import Utils.HashPass;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -66,7 +67,7 @@ public class loginAdminController{
     public void verifyLoginAdmin(ActionEvent event) throws IOException{
         String passwordInput = password.getText().toString();
 
-        if(passwordInput.equals("uece2023")){
+        if(HashPass.verifyPass("$2a$12$fpfUaB3RMywfWUtHTwSEFOTRuY2QNXlUKeHAcd56neNvGN/8bhKXu", passwordInput)){
              changePageAdmin(event);
         }else {
             responseLabel.setText("SENHA INCORRETA! TENTE NOVAMENTE");
@@ -79,7 +80,7 @@ public class loginAdminController{
         if(event.getCode() == KeyCode.ENTER){
             String passwordInput = password.getText().toString();
     
-            if(passwordInput.equals("uece2023")){
+            if(HashPass.verifyPass("$2a$12$fpfUaB3RMywfWUtHTwSEFOTRuY2QNXlUKeHAcd56neNvGN/8bhKXu", passwordInput)){
                 changePageAdmin(event);
 
             }else {
