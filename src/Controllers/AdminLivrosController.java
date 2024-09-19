@@ -15,7 +15,8 @@ import Classes.Book;
 import Classes.Publisher;
 import DB.DataBase;
 import Models.Books;
-
+import Models.Publishers;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -41,6 +42,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.FileChooser;
 import javafx.stage.Screen;
+import javax.swing.ComboBoxEditor;
 
 
 public class AdminLivrosController  {
@@ -57,7 +59,7 @@ public class AdminLivrosController  {
     @FXML
     private TableColumn<Book, String> assuntoColumn;
     @FXML
-    private TableColumn<Publisher, String> editoraColumn;
+    private TableColumn<Book, String> editoraColumn;
     @FXML
     private TableColumn<Book, String> coleçãoColumn;
     @FXML
@@ -95,7 +97,7 @@ public class AdminLivrosController  {
     
     public void init() {
         Books crud_Books = new Books();
-
+        
         livros = crud_Books.read(db, Optional.empty(), Optional.empty());
 
         livrosObs = FXCollections.observableArrayList(livros);
@@ -104,10 +106,16 @@ public class AdminLivrosController  {
         autorColumn.setCellValueFactory(new PropertyValueFactory<>("Autor"));
         assuntoColumn.setCellValueFactory(new PropertyValueFactory<>("Assunto"));
         coleçãoColumn.setCellValueFactory(new PropertyValueFactory<>("Coleção"));
-        coleçãoColumn.setCellValueFactory(new PropertyValueFactory<>("Editora"));
         estoqueColumn.setCellValueFactory(new PropertyValueFactory<>("QtdEstoque"));
+        editoraColumn.setCellValueFactory(cellData ->{
+            Book livro = cellData.getValue();  
+            String editoraNome = livro.getEditoraNome(db);
+
+            return new SimpleStringProperty(editoraNome);
+        });
 
         tableLivros.setItems(livrosObs);
+        setComboData();
     }
 
     @FXML
@@ -157,7 +165,7 @@ public class AdminLivrosController  {
 
 
     @FXML
-    void adicionarLivro(MouseEvent event) {
+    public void adicionarLivro(MouseEvent event) {
         Alert alert = new Alert(AlertType.WARNING);
         alert.setTitle("Erro");
         alert.setHeaderText("Erro");
@@ -168,9 +176,14 @@ public class AdminLivrosController  {
         int qtd_estoque;
 
         RadioButton radio = (RadioButton) coleção.getSelectedToggle();
-        
+        Publisher editora = editoraComboBox.getSelectionModel().getSelectedItem();
         if(radio==null){
             alert.setContentText("Selecione um radio Button");
+            alert.showAndWait();
+            return;
+        }
+        if(editora==null){
+            alert.setContentText("Selecione uma editora");
             alert.showAndWait();
             return;
         }
@@ -204,7 +217,7 @@ public class AdminLivrosController  {
 
 
             
-            livro = new Book(autor, titulo, assunto, qtd_estoque, colecao_selecionada, image);
+            livro = new Book(autor, titulo, assunto, qtd_estoque, colecao_selecionada, image, editora.getId());
             livrosObs.add(livro);
             crud_Books.create(livro, db);
 
@@ -229,11 +242,11 @@ public class AdminLivrosController  {
         String titulo, autor, assunto;
         int estoque;
         RadioButton radio = (RadioButton) coleção.getSelectedToggle();
-        
+        Publisher editora = editoraComboBox.getSelectionModel().getSelectedItem();
         tableLivros.setItems(livrosObs);
 
 
-        if(radio!=null){
+        if(radio!=null && editora!=null){
             try{ 
                 
                 String selected = radio.getText();
@@ -273,6 +286,7 @@ public class AdminLivrosController  {
                 livro_update.setQtdEstoque(estoque);
                 livro_update.setImage(image);
                 livro_update.setColeção(selected);
+                livro_update.setEditora(editora.getId());
 
                 conditions.clear();
                 conditions.add("\"id_livro\" = " +livro_update.getID());
@@ -354,7 +368,7 @@ public class AdminLivrosController  {
 
 
     @FXML
-    void removerLivro(MouseEvent event) {
+    public void removerLivro(MouseEvent event) {
         Books crud = new Books();
         
         int i = tableLivros.getSelectionModel().getSelectedIndex();
@@ -377,7 +391,7 @@ public class AdminLivrosController  {
 
 
     @FXML
-    void getRowData(MouseEvent event) {
+    public void getRowData(MouseEvent event) {
 
         int i = tableLivros.getSelectionModel().getSelectedIndex();
         if(i>-1){
@@ -388,6 +402,13 @@ public class AdminLivrosController  {
             autorTextField.setText(livro.getAutor());
             tituloTextField.setText(livro.getTitulo());
             assuntoTextField.setText(livro.getAssunto());
+            for (Publisher editora: editoraComboBox.getItems()){
+                if(livro.getEditora()==editora.getId()){
+                    editoraComboBox.setValue(editora);
+                    break;
+                }
+            }
+
 
            if(livro.getColeção().equals("Coleção Comum"))
                 radioComum.setSelected(true);
@@ -400,7 +421,12 @@ public class AdminLivrosController  {
         }
 
     }
-
+    public void setComboData(){
+        Publishers pcrud = new Publishers();
+        ArrayList<Publisher> editoras = pcrud.read(db, Optional.empty(), Optional.empty());
+        ObservableList<Publisher> editorasObs = FXCollections.observableArrayList(editoras);
+        editoraComboBox.setItems(editorasObs);
+    }
     
     public byte[] chooseImage(){
         try {
@@ -439,13 +465,14 @@ public class AdminLivrosController  {
             return null;
         }
     }
-
+   
     public void resetTextFields(){
         tituloTextField.setText("");
         autorTextField.setText("");
         assuntoTextField.setText("");
         estoqueTextField.setText("");
         filtroTextField.setText("");
+        editoraComboBox.valueProperty().set(null);
 
         if(coleção.getSelectedToggle() == null)
             return;

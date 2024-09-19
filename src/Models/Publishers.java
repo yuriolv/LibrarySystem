@@ -35,18 +35,16 @@ public class Publishers {
         try {
             if(conditions.isEmpty()){
                 select.add("SELECT * FROM editora");
-                result = String.join(" ", select);
             }else{
                 select.add("SELECT * FROM editora WHERE");
                 String command = String.join(comando_logico.get(),conditions.get());
                 select.add(command);
-                result = String.join(" ", select);
             }
-            System.out.println(result);
+            result = String.join(" ", select);
             ResultSet rs = db.requestSQL(result);
 
             while (rs.next()) {
-                Publisher editora = new Publisher(rs.getString("nome"), rs.getString("cnpj"), rs.getString("telefone"));
+                Publisher editora = new Publisher(rs.getInt("id_editora"),rs.getString("nome"), rs.getString("cnpj"), rs.getString("telefone"));
                 editoras.add(editora);
             }
 

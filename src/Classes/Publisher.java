@@ -1,6 +1,7 @@
 package Classes;
 
 public class Publisher {
+    private int id;
     private String cnpj;
     private String nome;
     private String telefone;
@@ -12,12 +13,24 @@ public class Publisher {
         this.cnpj = cnpj;
         this.telefone = telefone;
     }
+    public Publisher(int id, String nome, String cnpj, String telefone) {
+        this.id = id;
+        this.nome = nome;
+        this.cnpj = cnpj;
+        this.telefone = telefone;
+    }
 
     @Override
     public String toString() {
-        return nome + "\t" + cnpj + "\t" + telefone;
+        return getNome();
     }
     
+    public int getId() {
+        return id;
+    }
+    public void setNome(int id) {
+        this.id = id;
+    }
     public String getNome() {
         return nome;
     }

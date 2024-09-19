@@ -1,5 +1,10 @@
 package Classes;
 
+import DB.DataBase;
+import Models.Publishers;
+import java.util.ArrayList;
+import java.util.Optional;
+
 public class Book {
     private int ID;
     private String titulo;
@@ -7,18 +12,19 @@ public class Book {
     private String assunto;
     private Integer qtdEstoque;
     private byte[] image;
-    
     private String coleção;
-    
-    public Book(String autor, String titulo, String assunto, int qtdEstoque ,String coleção , byte[] image){
+    private int editora;
+
+    public Book(String autor, String titulo, String assunto, int qtdEstoque ,String coleção , byte[] image, int editora){
         this.autor = autor;
         this.titulo = titulo;
         this.assunto = assunto;
         this.qtdEstoque = qtdEstoque;
         this.image = image;
         this.coleção = coleção;
+        this.editora = editora;
     }
-    public Book(int ID, String autor, String titulo, String assunto, int qtdEstoque ,String coleção , byte[] image){
+    public Book(int ID, String autor, String titulo, String assunto, int qtdEstoque ,String coleção , byte[] image, int editora){
         this.ID = ID;
         this.autor = autor;
         this.titulo = titulo;
@@ -26,6 +32,7 @@ public class Book {
         this.qtdEstoque = qtdEstoque;
         this.image = image;
         this.coleção = coleção;
+        this.editora = editora;
     }
     
     public void setImage(byte[] image) {
@@ -83,12 +90,25 @@ public class Book {
         this.coleção = coleção;
     }
 
-    public String getEditora() {        
-        return coleção;
+    public int getEditora() {        
+        return editora;
     }
+    
+    public void setEditora(int editora) {
+        this.editora = editora;
+    }
+    public String getEditoraNome(DataBase db) {        
+        Publishers crud = new Publishers();
+        ArrayList<String> conditions = new ArrayList<>();
+         
+        conditions.add(String.format("id_editora = "+ editora));
 
-    public void setEditora(String coleção) {
-        this.coleção = coleção;
+        ArrayList<Publisher> editoras = crud.read(db, Optional.of(conditions), Optional.of(""));
+        
+        if(editoras != null)
+        return editoras.get(0).getNome();
+        else
+        return "Vazio";
     }
 }
 

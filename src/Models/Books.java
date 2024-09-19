@@ -15,10 +15,12 @@ public class Books {
         int qtd_estoque = livro.getQtdEstoque();
         String colecao = livro.getColeção();
         byte[] capa_livro = livro.getImage();
+        int editora = livro.getEditora();
         
         
+
         try {
-            String insert = "Insert into livro(autor, titulo, assunto, qtd_estoque,capa_livro, colecao) values (?,?,?,?,?,?)";
+            String insert = "Insert into livro(autor, titulo, assunto, qtd_estoque,capa_livro, colecao, id_editora) values (?,?,?,?,?,?,?)";
             ArrayList<Object> values = new ArrayList<>();
             Optional<ArrayList<Object>> arrValues = Optional.of(values);
             values.add(autor);
@@ -27,6 +29,7 @@ public class Books {
             values.add(qtd_estoque);
             values.add(capa_livro);
             values.add(colecao);
+            values.add(editora);
 
             Boolean result = db.modifySQL(insert, arrValues);
             return result;
@@ -42,20 +45,20 @@ public class Books {
         try {
             if(conditions.isEmpty()){
                 select.add("SELECT * FROM livro");
-                result = String.join(" ", select);
+                //select.add("select autor, titulo, assunto, qtd_estoque, capa_livro, colecao, editora.nome as editora from livro join editora on livro.id_editora=editora.id_editora");
             }else{
                 select.add("SELECT * FROM livro WHERE");
                 String command = String.join(comando_logico.get(),conditions.get());
                 select.add(command);
-                result = String.join(" ", select);
             }
+            result = String.join(" ", select);
             System.out.println(result);
             ResultSet rs = db.requestSQL(result);
 
             while (rs.next()) {
                 Book book = new Book(rs.getInt("id_livro"),rs.getString("autor"), 
                  rs.getString("titulo"), rs.getString("assunto"), rs.getInt("qtd_estoque"),
-                 rs.getString("colecao"), rs.getBytes("capa_livro"));
+                 rs.getString("colecao"), rs.getBytes("capa_livro"), rs.getInt("id_editora"));
                 books.add(book);
             }
 
@@ -77,13 +80,14 @@ public class Books {
             values.add(livro.getQtdEstoque());
             values.add(livro.getImage());
             values.add(livro.getColeção());
+            values.add(livro.getEditora());
         try {
             if(!conditions.isEmpty()){
-                select.add("UPDATE livro SET autor = ?,titulo = ?,assunto = ?,qtd_estoque = ?,capa_livro = ?,colecao = ? WHERE");
+                select.add("UPDATE livro SET autor = ?,titulo = ?,assunto = ?,qtd_estoque = ?,capa_livro = ?,colecao = ?, id_editora = ? WHERE");
                 String condition = String.join(" AND ", conditions.get());
                 select.add(condition);
             }else{
-                select.add("UPDATE livro SET autor = ?,titulo = ?,assunto = ?,qtd_estoque = ?,capa_livro = ?,colecao = ?");
+                select.add("UPDATE livro SET autor = ?,titulo = ?,assunto = ?,qtd_estoque = ?,capa_livro = ?,colecao = ?, id_editora = ?");
             }
 
 
