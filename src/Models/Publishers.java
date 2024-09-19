@@ -44,7 +44,7 @@ public class Publishers {
             ResultSet rs = db.requestSQL(result);
 
             while (rs.next()) {
-                Publisher editora = new Publisher(rs.getInt("id_editora"),rs.getString("nome"), rs.getString("cnpj"), rs.getString("telefone"));
+                Publisher editora = new Publisher(rs.getInt("ID"),rs.getString("nome"), rs.getString("cnpj"), rs.getString("telefone"));
                 editoras.add(editora);
             }
 

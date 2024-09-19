@@ -101,14 +101,14 @@ public class Book {
         Publishers crud = new Publishers();
         ArrayList<String> conditions = new ArrayList<>();
          
-        conditions.add(String.format("id_editora = "+ editora));
+        conditions.add(String.format("\"ID\" = "+ editora));
 
         ArrayList<Publisher> editoras = crud.read(db, Optional.of(conditions), Optional.of(""));
         
-        if(editoras != null)
-        return editoras.get(0).getNome();
+        if(!editoras.isEmpty())
+            return editoras.get(0).getNome();
         else
-        return "Vazio";
+            return "Vazio";
     }
 }
 
