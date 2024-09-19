@@ -313,10 +313,10 @@ public class AdminLivrosController  {
             tableLivros.setItems(livrosObs);
         }
         else{
-            like.add("autor LIKE "+"'%"+filtro+ "%'");
-            like.add("titulo LIKE "+"'%"+filtro+ "%'");
-            like.add("assunto LIKE "+"'%"+filtro+ "%'");
-            like.add("colecao LIKE "+"'%"+filtro+ "%'");
+            like.add("UPPER(autor) LIKE "+"UPPER('%"+filtro+ "%')");
+            like.add("UPPER(titulo) LIKE "+"UPPER('%"+filtro+ "%')");
+            like.add("UPPER(assunto) LIKE "+"UPPER('%"+filtro+ "%')");
+            like.add("UPPER(colecao) LIKE "+"UPPER('%"+filtro+ "%')");
     
             livros = crud.read(db, Optional.of(like), Optional.of(" OR "));
 
@@ -343,10 +343,10 @@ public class AdminLivrosController  {
                 String filtro = filtroTextField.getText();
                 ArrayList<String> like = new ArrayList<>();
     
-                like.add("autor LIKE "+"'%"+filtro+ "%'");
-                like.add("titulo LIKE "+"'%"+filtro+ "%'");
-                like.add("assunto LIKE "+"'%"+filtro+ "%'");
-                like.add("colecao LIKE "+"'%"+filtro+ "%'");
+                like.add("UPPER(autor) LIKE "+"UPPER('%"+filtro+ "%')");
+                like.add("UPPER(titulo) LIKE "+"UPPER('%"+filtro+ "%')");
+                like.add("UPPER(assunto) LIKE "+"UPPER('%"+filtro+ "%')");
+                like.add("UPPER(colecao) LIKE "+"UPPER('%"+filtro+ "%')");
     
                 livros = crud.read(db, Optional.of(like), Optional.of(" OR "));
 

@@ -49,7 +49,7 @@ public class HomeController{
 
     @FXML
     public void changeLoginUser(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/LoginUser.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/loginUser.fxml"));
         root = loader.load();
 
         loginUserController loginUserController = loader.getController();

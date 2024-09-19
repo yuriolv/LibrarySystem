@@ -179,51 +179,67 @@ public class AdminUsersController{
 
     @FXML
     public void pesquisarUser(MouseEvent event){
+        String filtro = filtroTextField.getText();
+        if (filtro.equals("")){
+            return;
+        }
+
+        usersObs.clear();
+
         Users crud = new Users();
-        ObservableList<User> filteredList = FXCollections.observableArrayList();
+
+        ArrayList<String> like = new ArrayList<String>();
         
-        
-        users = crud.read(db, Optional.empty()); 
-        if(filtroTextField.getText().equals("")) {
-            tableUsers.setItems(usersObs);
+        like.add("matricula LIKE '%" + filtro + "%'");
+        like.add("UPPER(nome) LIKE UPPER('%" + filtro + "%')");
+        like.add("UPPER(tipo) LIKE UPPER('%" + filtro + "%')");
+
+        Optional<ArrayList<String>> conditions = Optional.of(like);
+        users = crud.read(db, conditions);
+
+        if (users == null) {
+            return;
+        }
+     
+        for(User user: users) {
+            usersObs.add(user);
         }
 
-        else {
-            String filtro = filtroTextField.getText();
-            for(User user: users) {
-                if(user.getMatricula().equals(filtro) || user.getNome().equals(filtro) || user.getTipo().equals(filtro)) {
-                    filteredList.add(user);
-                }
-            }
-
-            tableUsers.setItems(filteredList);
-        }
-        resetTextFields();
+        tableUsers.setItems(usersObs);
     }
+
     @FXML
     void pesquisarUser2(KeyEvent event) {
         if(event.getCode() == KeyCode.ENTER){
+
+            String filtro = filtroTextField.getText();
+            if (filtro.equals("")){
+                return;
+            }
+
+            usersObs.clear();
+
             Users crud = new Users();
-            ObservableList<User> filteredList = FXCollections.observableArrayList();
+
+            ArrayList<String> like = new ArrayList<String>();
             
+            like.add("matricula LIKE '%" + filtro + "%'");
+            like.add("UPPER(nome) LIKE UPPER('%" + filtro + "%')");
+            like.add("UPPER(tipo) LIKE UPPER('%" + filtro + "%')");
+
+            Optional<ArrayList<String>> conditions = Optional.of(like);
+            users = crud.read(db, conditions);
+
+            if (users == null) {
+                return;
+            }
+         
+            for(User user: users) {
+                usersObs.add(user);
+            }
+
+            tableUsers.setItems(usersObs);
             
-            users = crud.read(db, Optional.empty()); 
-            if(filtroTextField.getText().equals("")) {
-                tableUsers.setItems(usersObs);
-            }
-    
-            else {
-                String filtro = filtroTextField.getText();
-                for(User user: users) {
-                    if(user.getMatricula().equals(filtro) || user.getNome().equals(filtro) || user.getTipo().equals(filtro)) {
-                        filteredList.add(user);
-                    }
-                }
-    
-                tableUsers.setItems(filteredList);
-            }
-            resetTextFields();
-        
         }
 
     }

@@ -2,6 +2,7 @@
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
         "src/Utils/Jars Files/*",
-        "src/Utils/Jars Files/lib/*"
+        "src/Utils/Jars Files/lib/*",
+        "src/Utils/Jars Files Linux/lib/*.jar"
     ],
 }

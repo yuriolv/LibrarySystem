@@ -195,7 +195,7 @@ public class AdminEditoraController{
             tableEditora.setItems(editorasObs);
         }
         else{
-            like.add("nome LIKE "+"'%"+filtro+ "%'");
+            like.add("UPPER(nome) LIKE "+"UPPER('%"+filtro+ "%')");
             like.add("cnpj LIKE "+"'%"+filtro+ "%'");
             like.add("telefone LIKE "+"'%"+filtro+ "%'");
     
@@ -224,7 +224,7 @@ public class AdminEditoraController{
                 String filtro = filtroTextField.getText();
                 ArrayList<String> like = new ArrayList<>();
     
-                like.add("nome LIKE "+"'%"+filtro+ "%'");
+                like.add("UPPER(nome) LIKE "+"UPPER('%"+filtro+ "%')");
                 like.add("cnpj LIKE "+"'%"+filtro+ "%'");
                 like.add("telefone LIKE "+"'%"+filtro+ "%'");
     

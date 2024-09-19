@@ -27,11 +27,14 @@ import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Screen;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
+import javafx.scene.control.TextField;
 
 public class BooksController {
     private Stage stage;
@@ -49,6 +52,8 @@ public class BooksController {
     private Label matriculaLabel;
     @FXML
     private FlowPane flowPane;
+    @FXML
+    private TextField filtroTextField;
 
     
     BlurType threePassBox = BlurType.THREE_PASS_BOX;
@@ -197,8 +202,8 @@ public class BooksController {
         return anchorPane;
     }
 
-    
-    public void init() {
+
+    public void loadBooks() {
         Books crud_Books = new Books();
         livros = crud_Books.read(db, Optional.empty(), Optional.empty());
         
@@ -207,6 +212,76 @@ public class BooksController {
             flowPane.getChildren().add(bookCard);
         }
        
+    }
+
+    @FXML
+    public void pesquisarLivros(KeyEvent event) {
+        if(event.getCode() == KeyCode.ENTER){
+            String filtro = filtroTextField.getText();
+
+            if (filtro.equals("")){
+                return;
+            }
+                
+            flowPane.getChildren().clear();
+            ArrayList<String> like = new ArrayList<String>();
+            like.add("UPPER(autor) LIKE UPPER('%" + filtro + "%')");
+            like.add("UPPER(titulo) LIKE UPPER('%" + filtro + "%')");
+            like.add("UPPER(assunto) LIKE UPPER('%" + filtro + "%')");
+            like.add("UPPER(colecao) LIKE UPPER('%" + filtro + "%')");
+    
+            Books crud_Books = new Books();
+            Optional<ArrayList<String>> conditions = Optional.of(like);
+    
+    
+            livros = crud_Books.read(db, conditions, Optional.of(" OR "));
+            
+            if (livros == null) {
+                return;
+            }
+
+            for (Book livro : livros) {
+                AnchorPane bookCard = createAnchorPane(livro);
+                flowPane.getChildren().add(bookCard);
+            }
+        }
+
+       
+    }
+    
+    @FXML
+    public void pesquisarLivros2(MouseEvent event) {
+        String filtro = filtroTextField.getText();
+
+        if (filtro.equals("")){
+            return;
+        }
+            
+        flowPane.getChildren().clear();
+        ArrayList<String> like = new ArrayList<String>();
+        like.add("UPPER(autor) LIKE UPPER('%" + filtro + "%')");
+        like.add("UPPER(titulo) LIKE UPPER('%" + filtro + "%')");
+        like.add("UPPER(assunto) LIKE UPPER('%" + filtro + "%')");
+        like.add("UPPER(colecao) LIKE UPPER('%" + filtro + "%')");
+
+        Books crud_Books = new Books();
+        Optional<ArrayList<String>> conditions = Optional.of(like);
+
+
+        livros = crud_Books.read(db, conditions, Optional.of(" OR "));
+
+        if (livros == null) {
+            return;
+        }
+        
+        for (Book livro : livros) {
+            AnchorPane bookCard = createAnchorPane(livro);
+            flowPane.getChildren().add(bookCard);
+        }
+    }
+
+    public void init() {
+        loadBooks();
     }
 
 }
