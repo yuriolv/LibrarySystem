@@ -245,12 +245,37 @@ public class AdminUsersController{
     }
 
     @FXML
-    public void changePageAdmin(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/Admin.fxml"));
+    public void changePageBooks(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/AdminLivros.fxml"));
+        root = loader.load();
+        
+        AdminLivrosController adminLivrosController = loader.getController();
+        adminLivrosController.initializeDB(db);
+
+        adminLivrosController.init();
+
+        stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+
+        if(stage.isMaximized() == true){
+            Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
+            scene = new Scene(root, screenSize.getMaxX(), screenSize.getMaxY());
+            stage.setMaximized(true);
+        } else {
+            scene = new Scene(root);
+        }
+
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    @FXML
+    public void changePageEditora(MouseEvent event)  throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/AdminEditora.fxml"));
         root = loader.load();
 
-        AdminController adminController = loader.getController();
-        adminController.initializeDB(db);
+        AdminEditoraController adminEditoraController = loader.getController();
+        adminEditoraController.initializeDB(db);
+        adminEditoraController.init();
 
         stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         

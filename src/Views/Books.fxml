@@ -127,7 +127,7 @@
             </HBox>
          </children>
       </VBox>
-      <AnchorPane layoutX="244.0" prefHeight="112.0" prefWidth="656.0" style="-fx-border-color: #9d9d9d; -fx-background-color: f4f4ff; -fx-border-width: 0 0 0.2 0; -fx-border-radius: 10;">
+      <AnchorPane layoutX="244.0" prefHeight="112.0" prefWidth="656.0" style="-fx-border-color: #9d9d9d; -fx-background-color: f4f4ff; -fx-border-width: 0 0 0.2 0;">
          <children>
             <Label fx:id="nomeLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="371.0" layoutY="38.0" prefHeight="20.0" prefWidth="202.0" text="Diego Dias Fernandes" textFill="#152259">
                <font>

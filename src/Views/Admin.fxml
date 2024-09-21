@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -10,112 +10,111 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: E5E5E5;" stylesheets="@Stylesheets/Admin.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdminController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: f4f4ff;" stylesheets="@Stylesheets/Admin.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdminController">
    <children>
-      <AnchorPane prefHeight="123.0" prefWidth="700.0" style="-fx-background-color: #008B45;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="600.0" prefWidth="244.0" spacing="10.0" style="-fx-background-color: #152259;">
          <children>
-            <Label alignment="CENTER" layoutX="79.0" layoutY="40.0" text="Biblioteca" textAlignment="RIGHT" textFill="WHITE" AnchorPane.leftAnchor="79.0">
-               <font>
-                  <Font name="Cambria" size="36.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" layoutX="437.0" layoutY="23.0" text="Bibliotecário@2024" textAlignment="RIGHT" textFill="WHITE" AnchorPane.rightAnchor="27.0">
-               <font>
-                  <Font name="Cambria" size="26.0" />
-               </font>
-            </Label>
-            <Label id="exit" layoutX="645.0" layoutY="69.0" onMouseClicked="#changePageHome" text="Sair" textAlignment="RIGHT" textFill="WHITE" AnchorPane.rightAnchor="27.0">
-               <font>
-                  <Font size="20.0" />
-               </font>
+            <AnchorPane prefHeight="182.0" prefWidth="244.0" style="-fx-border-color: #e2dddf; -fx-border-width: 0 0 0.2 0;">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+               <children>
+                  <ImageView fitHeight="54.0" fitWidth="185.0" layoutX="31.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Assets/lateral.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="48.0" prefWidth="201.0" spacing="10.0" style="-fx-background-color: #111c4a; -fx-background-radius: 50;">
+               <children>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Assets/livro%20(1).png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Dados do acervo" textFill="WHITE" />
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="35.0" />
+               </padding>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
-            </Label>
-         </children>
-      </AnchorPane>
-      <VBox alignment="CENTER" layoutY="163.0" prefHeight="101.0" prefWidth="700.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <children>
-            <Label text="Selecione uma das opçoes abaixo">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" fillHeight="false" onMouseClicked="#changePageUsers" prefHeight="48.0" prefWidth="201.0" spacing="10.0">
+               <children>
+                  <ImageView fitHeight="18.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Assets/devolver.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Dados dos usuários" textFill="WHITE" />
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="35.0" />
+               </padding>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" onMouseClicked="#changePageEditora" prefHeight="48.0" prefWidth="201.0" spacing="10.0">
+               <children>
+                  <ImageView fitHeight="23.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Assets/biblioteca%20(1).png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Dados das editoras" textFill="WHITE" />
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="35.0" />
+               </padding>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </HBox>
          </children>
       </VBox>
-      <HBox alignment="CENTER" fillHeight="false" layoutX="3.0" layoutY="294.0" prefHeight="168.0" prefWidth="694.0" spacing="25.0" AnchorPane.bottomAnchor="138.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="294.0">
+      <AnchorPane layoutX="244.0" prefHeight="112.0" prefWidth="656.0" style="-fx-border-color: #9d9d9d; -fx-background-color: f4f4ff; -fx-border-width: 0 0 0.2 0;">
          <children>
-            <AnchorPane id="books" onMouseClicked="#changePageBooks" prefHeight="142.0" prefWidth="206.0" style="-fx-background-radius: 10; -fx-background-color: #dfdedf; -fx-border-radius: 20;">
+            <Label fx:id="nomeLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="371.0" layoutY="38.0" prefHeight="20.0" prefWidth="202.0" text="Bibliotecário@2024" textFill="#152259">
+               <font>
+                  <Font name="SansSerif Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="tipoLabel" alignment="CENTER_RIGHT" layoutX="478.0" layoutY="52.0" prefHeight="20.0" prefWidth="95.0" text="Adm" textAlignment="RIGHT" textFill="#152259">
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="48.0" fitWidth="52.0" layoutX="574.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/userIcon.png" />
+               </image>
+            </ImageView>
+            <AnchorPane layoutX="24.0" layoutY="35.0" onMouseClicked="#changePageHome" prefHeight="42.0" prefWidth="42.0" style="-fx-background-color: ffffff; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e2dddf;" styleClass="user-btns">
                <children>
-                  <ImageView fitHeight="123.0" fitWidth="123.0" layoutX="40.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="19.0" fitWidth="20.0" layoutX="12.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Assets/livro_aberto.png" />
+                        <Image url="@Assets/botao-de-inicio2.png" />
                      </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-                  <Label layoutX="42.0" layoutY="113.0" prefHeight="20.0" prefWidth="123.0" text="Dados do acervo" textAlignment="CENTER">
-                     <font>
-                        <Font name="Cambria Bold" size="15.0" />
-                     </font>
-                  </Label>
-               </children>
-               <effect>
-                  <DropShadow />
-               </effect>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </AnchorPane>
-            <AnchorPane id="users" onMouseClicked="#changePageEditora" prefHeight="142.0" prefWidth="206.0" style="-fx-background-radius: 10; -fx-background-color: #dfdedf; -fx-border-radius: 20;">
-               <children>
-                  <Label layoutX="35.0" layoutY="113.0" prefHeight="20.0" prefWidth="141.0" text="Dados das editoras" textAlignment="CENTER">
-                     <font>
-                        <Font name="Cambria Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="123.0" fitWidth="123.0" layoutX="42.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Assets/usuarios.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
                   </ImageView>
                </children>
-               <effect>
-                  <DropShadow />
-               </effect>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </AnchorPane>
-            <AnchorPane id="users" onMouseClicked="#changePageUsers" prefHeight="142.0" prefWidth="206.0" style="-fx-background-radius: 10; -fx-background-color: #dfdedf; -fx-border-radius: 20;">
-               <children>
-                  <Label layoutX="35.0" layoutY="113.0" prefHeight="20.0" prefWidth="141.0" text="Dados dos usuários" textAlignment="CENTER">
-                     <font>
-                        <Font name="Cambria Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="123.0" fitWidth="123.0" layoutX="42.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Assets/usuarios.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-               </children>
-               <effect>
-                  <DropShadow />
-               </effect>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </AnchorPane>
          </children>
-      </HBox>
-      <AnchorPane layoutY="547.0" prefHeight="53.0" prefWidth="700.0" style="-fx-background-color: #008B45;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      </AnchorPane>
    </children>
 </AnchorPane>

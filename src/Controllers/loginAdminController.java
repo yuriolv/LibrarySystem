@@ -68,7 +68,7 @@ public class loginAdminController{
         String passwordInput = password.getText().toString();
 
         if(HashPass.verifyPass("$2a$12$fpfUaB3RMywfWUtHTwSEFOTRuY2QNXlUKeHAcd56neNvGN/8bhKXu", passwordInput)){
-             changePageAdmin(event);
+            changePageBooks(event);
         }else {
             responseLabel.setText("SENHA INCORRETA! TENTE NOVAMENTE");
             password.setText("");
@@ -81,7 +81,7 @@ public class loginAdminController{
             String passwordInput = password.getText().toString();
     
             if(HashPass.verifyPass("$2a$12$fpfUaB3RMywfWUtHTwSEFOTRuY2QNXlUKeHAcd56neNvGN/8bhKXu", passwordInput)){
-                changePageAdmin(event);
+                changePageBooks(event);
 
             }else {
                 responseLabel.setText("SENHA INCORRETA! TENTE NOVAMENTE");
@@ -94,19 +94,18 @@ public class loginAdminController{
         responseLabel.setText("");
     }
 
-    public void changePageAdmin(Event event) throws IOException{
-        responseLabel.setText("");
-        password.setText("");
-        
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/Admin.fxml"));
+    
+    public void changePageBooks(Event event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/AdminLivros.fxml"));
         root = loader.load();
+        
+        AdminLivrosController adminLivrosController = loader.getController();
+        adminLivrosController.initializeDB(db);
 
-        AdminController adminController = loader.getController();
-        adminController.initializeDB(db);
-
+        adminLivrosController.init();
 
         stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-        
+
         if(stage.isMaximized() == true){
             Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
             scene = new Scene(root, screenSize.getMaxX(), screenSize.getMaxY());

@@ -40,7 +40,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.FileChooser;
 import javafx.stage.Screen;
-import javax.swing.ComboBoxEditor;
 
 
 public class AdminLivrosController  {
@@ -117,12 +116,13 @@ public class AdminLivrosController  {
     }
 
     @FXML
-    public void changePageAdmin(MouseEvent event) throws IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/Admin.fxml"));
+    public void changePageUsers(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/AdminUsers.fxml"));
         root = loader.load();
 
-        AdminController adminController = loader.getController();
-        adminController.initializeDB(db);
+        AdminUsersController adminUsersController = loader.getController();
+        adminUsersController.initializeDB(db);
+        adminUsersController.init();
 
         stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         
@@ -159,6 +159,29 @@ public class AdminLivrosController  {
         stage.setScene(scene);
         stage.show();
         
+    }
+
+    @FXML
+    public void changePageEditora(MouseEvent event)  throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/AdminEditora.fxml"));
+        root = loader.load();
+
+        AdminEditoraController adminEditoraController = loader.getController();
+        adminEditoraController.initializeDB(db);
+        adminEditoraController.init();
+
+        stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        
+        if(stage.isMaximized() == true){
+            Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
+            scene = new Scene(root, screenSize.getMaxX(), screenSize.getMaxY());
+            stage.setMaximized(true);
+        } else {
+            scene = new Scene(root);
+        }
+
+        stage.setScene(scene);
+        stage.show();
     }
 
 
