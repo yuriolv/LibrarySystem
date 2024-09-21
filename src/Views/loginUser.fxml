@@ -7,98 +7,111 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#verifyLoginUser2" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: E5E5E5;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.loginUserController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#verifyLoginUser2" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: f4f4ff;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.loginUserController">
    <children>
-      <AnchorPane layoutY="548.0" minHeight="53.0" prefHeight="53.0" prefWidth="700.0" style="-fx-background-color: #008B45;" AnchorPane.bottomAnchor="-1.0149238639113065" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-0.6566964716926122" />
-      <HBox alignment="CENTER" fillHeight="false" layoutY="70.0" prefHeight="460.0" prefWidth="700.0" AnchorPane.bottomAnchor="69.34329669601391" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.373114361745479" AnchorPane.topAnchor="70.0">
+      <AnchorPane layoutX="490.0" layoutY="69.0" prefHeight="450.0" prefWidth="344.0">
          <children>
-            <AnchorPane prefHeight="366.0" prefWidth="384.0" style="-fx-background-color: #dfdedf; -fx-background-radius: 10;">
-               <children>
-                  <Label layoutX="13.0" layoutY="167.0" text="Matrícula" AnchorPane.leftAnchor="13.0">
-                     <font>
-                        <Font name="Dubai Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="userTextField" focusTraversable="false" layoutX="89.0" layoutY="169.0" onKeyPressed="#clearLabelIncorrect" prefHeight="27.0" prefWidth="206.0" promptText="Ex. 9999999">
-                     <font>
-                        <Font name="Segoe UI Symbol" size="14.0" />
-                     </font></TextField>
-                  <Label layoutX="23.0" layoutY="215.0" text="Senha" AnchorPane.leftAnchor="23.0">
-                     <font>
-                        <Font name="Dubai Bold" size="16.0" />
-                     </font>
-                  </Label>
-                  <Button layoutX="227.0" layoutY="296.0" mnemonicParsing="false" onMouseClicked="#verifyLoginUser" prefHeight="30.0" prefWidth="87.0" style="-fx-background-color: #008B45; -fx-text-fill: #ffffff; -fx-background-radius: 10;" styleClass="user-btns" stylesheets="@Stylesheets/User.css" text="Entrar">
-                     <font>
-                        <Font name="Arial Bold Italic" size="12.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button layoutX="74.0" layoutY="296.0" mnemonicParsing="false" onMouseClicked="#changePageHome" prefHeight="30.0" prefWidth="87.0" style="-fx-background-color: #008B45; -fx-text-fill: #ffffff; -fx-background-radius: 10;" styleClass="user-btns" stylesheets="@Stylesheets/User.css" text="Voltar">
-                     <font>
-                        <Font name="Arial Bold Italic" size="12.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <PasswordField fx:id="passPasswordField" layoutX="89.0" layoutY="216.0" onKeyPressed="#clearLabelIncorrect" prefHeight="27.0" prefWidth="206.0" promptText="Sua senha">
-                     <font>
-                        <Font name="Segoe UI Symbol" size="14.0" />
-                     </font></PasswordField>
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="118.0" layoutY="13.0" prefHeight="35.0" prefWidth="81.0" text="Login">
-                     <font>
-                        <Font name="Dubai Regular" size="33.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="51.0" fitWidth="42.0" layoutX="214.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Assets/iconePessoa.png" />
-                     </image>
-                  </ImageView>
-                  <RadioButton id="#radio-button" layoutX="77.0" layoutY="96.0" mnemonicParsing="false" onMouseClicked="#clearLabelIncomplete" prefHeight="25.0" prefWidth="101.0" style="-fx-cursor: HAND;" text="Discente">
-                     <font>
-                        <Font name="Dubai Regular" size="16.0" />
-                     </font>
-                     <toggleGroup>
-                        <ToggleGroup fx:id="typeGroup" />
-                     </toggleGroup>
-                  </RadioButton>
-                  <Label fx:id="responseLabel" layoutX="178.0" layoutY="249.0" text="Erro" textAlignment="CENTER" textFill="RED" visible="false">
-                     <font>
-                        <Font name="Cambria" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="responseLabel" alignment="CENTER" layoutX="88.0" layoutY="260.0" prefHeight="17.0" prefWidth="206.0" textFill="#d02424">
-                     <font>
-                        <Font name="Arial Bold" size="10.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="responseLabel2" alignment="CENTER" layoutX="88.0" layoutY="260.0" prefHeight="17.0" prefWidth="206.0" textFill="#1a1a1a">
-                     <font>
-                        <Font name="Arial Bold" size="10.0" />
-                     </font>
-                  </Label>
-                  <RadioButton id="#radio-button" layoutX="212.0" layoutY="96.0" mnemonicParsing="false" onMouseClicked="#clearLabelIncomplete" style="-fx-cursor: HAND;" text="Docente" toggleGroup="$typeGroup">
-                     <font>
-                        <Font name="Dubai Regular" size="16.0" />
-                     </font>
-                  </RadioButton>
-               </children>
-               <effect>
-                  <DropShadow />
-               </effect>
-            </AnchorPane>
+            <Label layoutX="42.6" layoutY="254.0" text="Matrícula" textFill="#000000b5" AnchorPane.leftAnchor="42.6">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="userTextField" focusTraversable="false" layoutX="43.0" layoutY="269.0" onKeyPressed="#clearLabelIncorrect" prefHeight="30.0" prefWidth="264.0" promptText="9999999" style="-fx-background-color: f4f4ff;">
+               <font>
+                  <Font name="Segoe UI Symbol" size="14.0" />
+               </font>
+            </TextField>
+            <Label layoutX="42.6" layoutY="320.0" text="Senha" textFill="#000000bf" AnchorPane.leftAnchor="42.6">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Button layoutX="134.0" layoutY="413.0" mnemonicParsing="false" onMouseClicked="#verifyLoginUser" prefHeight="30.0" prefWidth="87.0" style="-fx-background-color: #152259; -fx-text-fill: #ffffff; -fx-background-radius: 20;" styleClass="user-btns" stylesheets="@Stylesheets/User.css" text="Entrar">
+               <font>
+                  <Font name="Arial Bold Italic" size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <PasswordField fx:id="passPasswordField" layoutX="43.0" layoutY="335.0" onKeyPressed="#clearLabelIncorrect" prefHeight="30.0" prefWidth="257.0" promptText="Sua senha" style="-fx-background-color: f4f4ff;">
+               <font>
+                  <Font name="Segoe UI Symbol" size="14.0" />
+               </font>
+            </PasswordField>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="62.0" layoutY="67.0" prefHeight="34.0" prefWidth="234.0" text="Como é bom tê-lo de volta!">
+               <font>
+                  <Font name="Marlett" size="20.0" />
+               </font>
+            </Label>
+            <RadioButton id="#radio-button" layoutX="62.0" layoutY="197.0" mnemonicParsing="false" onMouseClicked="#clearLabelIncomplete" prefHeight="25.0" prefWidth="101.0" style="-fx-cursor: HAND;" text="Discente" textFill="#000000bc">
+               <font>
+                  <Font name="Dubai Regular" size="16.0" />
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="typeGroup" />
+               </toggleGroup>
+            </RadioButton>
+            <Label fx:id="responseLabel" alignment="CENTER" layoutX="74.0" layoutY="379.0" prefHeight="17.0" prefWidth="206.0" textFill="#cf2525bf">
+               <font>
+                  <Font name="Arial Bold" size="10.0" />
+               </font>
+            </Label>
+            <Label fx:id="responseLabel2" alignment="CENTER" layoutX="74.0" layoutY="379.0" prefHeight="17.0" prefWidth="206.0" textFill="#1a1a1ac3">
+               <font>
+                  <Font name="Arial Bold" size="10.0" />
+               </font>
+            </Label>
+            <RadioButton id="#radio-button" layoutX="195.0" layoutY="197.0" mnemonicParsing="false" onMouseClicked="#clearLabelIncomplete" style="-fx-cursor: HAND;" text="Docente" textFill="#000000bd" toggleGroup="$typeGroup">
+               <font>
+                  <Font name="Dubai Regular" size="16.0" />
+               </font>
+            </RadioButton>
+            <Line endX="156.4000244140625" layoutX="146.0" layoutY="297.0" startX="-100.0" stroke="#00000042" />
+            <Line endX="156.4000244140625" layoutX="146.0" layoutY="362.0" startX="-100.0" stroke="#00000042" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="17.0" layoutY="102.0" prefHeight="45.0" prefWidth="330.0" text="Insira suas credenciais">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
          </children>
-      </HBox>
+      </AnchorPane>
+      <AnchorPane prefHeight="600.0" prefWidth="415.0" style="-fx-background-image: url(&quot;/Views/Assets/Frame3.png&quot;); -fx-background-size: cover; -fx-background-color: Blue;">
+         <children>
+            <ImageView fitHeight="135.0" fitWidth="330.0" layoutX="43.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/lateral.png" />
+               </image>
+            </ImageView>
+            <Label ellipsisString="kasdhfsd" layoutX="90.0" layoutY="403.0" prefHeight="34.0" prefWidth="234.0" text="Biblioteca online para discentes e docentes da Universidade Estadual do Ceará" textAlignment="CENTER" textFill="#ffffff99" wrapText="true">
+               <font>
+                  <Font name="Arial" size="10.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" ellipsisString="kasdhfsd" graphicTextGap="0.0" layoutX="94.0" layoutY="376.0" prefHeight="26.0" prefWidth="226.0" text="ACERVO DIGITAL" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Serif Bold Italic" size="22.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="838.0" layoutY="551.0" onMouseClicked="#changePageHome" prefHeight="34.0" prefWidth="35.0" style="-fx-opacity: 1; -fx-background-color: ffffff; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e2dddf;" styleClass="user-btns">
+         <children>
+            <ImageView fitHeight="19.0" fitWidth="20.0" layoutX="8.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/botao-de-inicio2.png" />
+               </image>
+            </ImageView>
+         </children>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </AnchorPane>
    </children>
 </AnchorPane>

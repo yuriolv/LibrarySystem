@@ -125,11 +125,16 @@ public class UserController{
         invoice.setData(user);
         invoice.setLabels();
 
-        scene = new Scene(root);
-        stage=new Stage();
+        stage = (Stage)((Node) event.getSource()).getScene().getWindow();
 
-        stage.initStyle(StageStyle.UTILITY);
-        stage.setTitle("recibo");
+        if(stage.isMaximized() == true){
+            Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
+            scene = new Scene(root, screenSize.getMaxX(), screenSize.getMaxY());
+            stage.setMaximized(true);
+        } else {
+            scene = new Scene(root);
+        }
+
         stage.setScene(scene);
         stage.show();
         

@@ -1,101 +1,189 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="407.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.InvoiceUserController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="900.0" style="-fx-background-color: f4f4ff;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.InvoiceUserController">
    <children>
-      <Label layoutX="21.0" layoutY="21.0" text="Comprovantes de Aluguéis ">
-         <font>
-            <Font name="System Bold Italic" size="19.0" />
-         </font>
-      </Label>
-      <Label layoutX="21.0" layoutY="60.0" text="Aluno - ">
-         <font>
-            <Font name="System Bold" size="19.0" />
-         </font>
-      </Label>
-      <Label fx:id="nomeLabel" layoutX="93.0" layoutY="61.0" prefHeight="27.0" prefWidth="202.0">
-         <font>
-            <Font name="Nirmala UI" size="17.0" />
-         </font>
-      </Label>
-      <Line endX="236.19400024414062" layoutX="135.0" layoutY="155.0" startX="-100.0" />
-      <Label layoutX="36.0" layoutY="126.0" prefHeight="29.0" prefWidth="106.0" text="Livros">
-         <font>
-            <Font name="Segoe UI Light" size="19.0" />
-         </font>
-         <effect>
-            <InnerShadow />
-         </effect>
-      </Label>
-      <Label layoutX="304.0" layoutY="126.0" prefHeight="29.0" prefWidth="67.0" text="Devolução">
-         <font>
-            <Font name="Segoe UI Light" size="14.0" />
-         </font>
-         <effect>
-            <InnerShadow />
-         </effect>
-      </Label>
-      <Label layoutX="204.0" layoutY="126.0" prefHeight="29.0" prefWidth="79.0" text="Empréstimo">
-         <font>
-            <Font name="Segoe UI Light" size="14.0" />
-         </font>
-         <effect>
-            <InnerShadow />
-         </effect>
-      </Label>
-      <Label layoutX="21.0" layoutY="89.0" prefHeight="20.0" prefWidth="72.0" text="Mátricula - ">
-         <font>
-            <Font name="Nirmala UI" size="14.0" />
-         </font>
-      </Label>
-      <Label fx:id="matriculaLabel" layoutX="93.0" layoutY="89.0" prefHeight="20.0" prefWidth="158.0">
-         <font>
-            <Font name="Nirmala UI" size="14.0" />
-         </font>
-      </Label>
-      <AnchorPane layoutX="-1.0" layoutY="351.0" prefHeight="131.0" prefWidth="408.0" style="-fx-background-color: #72CA97;">
-         <children>
-            <Label layoutX="43.0" layoutY="90.0" text="Dias em atraso:" />
-            <Line endX="236.19400024414062" layoutX="136.0" layoutY="33.0" startX="-100.0" />
-            <Label layoutX="43.0" layoutY="14.0" text="Informações adicionais">
-               <font>
-                  <Font name="Nirmala UI" size="12.179104804992676" />
-               </font>
-            </Label>
-            <Label layoutX="337.0" layoutY="14.0" text="Total :">
-               <font>
-                  <Font name="System Bold" size="12.179104804992676" />
-               </font>
-            </Label>
-            <Label fx:id="multaLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="270.0" layoutY="39.0" prefHeight="29.0" prefWidth="106.0">
-               <font>
-                  <Font name="Times New Roman" size="24.0" />
-               </font>
-               <effect>
-                  <InnerShadow />
-               </effect>
-            </Label>
-            <Line endX="236.19400024414062" layoutX="136.0" layoutY="114.0" startX="-100.0" />
-            <Label fx:id="atrasoLabel" layoutX="137.0" layoutY="91.0" prefHeight="17.0" prefWidth="17.0">
-               <font>
-                  <Font name="Times New Roman" size="12.179104804992676" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-      <VBox layoutX="35.0" layoutY="155.0" prefHeight="194.0" prefWidth="337.0" spacing="10.0">
+      <VBox layoutX="277.0" layoutY="166.0" prefHeight="303.0" prefWidth="590.0" spacing="25.0" style="-fx-background-color: ffffff; -fx-background-radius: 0 0 10 10;">
          <children>
             <HBox fx:id="livro1" alignment="CENTER_LEFT" prefHeight="33.0" prefWidth="337.0" />
             <HBox fx:id="livro2" alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="33.0" prefWidth="337.0" />
             <HBox fx:id="livro3" alignment="CENTER_LEFT" layoutX="10.0" layoutY="44.0" prefHeight="33.0" prefWidth="337.0" />
          </children>
+         <padding>
+            <Insets top="20.0" />
+         </padding>
       </VBox>
+      <AnchorPane layoutX="276.0" layoutY="133.0" prefHeight="34.0" prefWidth="590.0" style="-fx-background-color: #0b2186; -fx-background-radius: 10 10 0 0;">
+         <children>
+            <Label layoutX="43.0" layoutY="2.0" prefHeight="29.0" prefWidth="106.0" text="Livros" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label layoutX="771.0" layoutY="136.0" prefHeight="29.0" prefWidth="67.0" text="Devolução" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Light" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="633.0" layoutY="136.0" prefHeight="29.0" prefWidth="79.0" text="Empréstimo" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Light" size="14.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="244.0" layoutY="468.0" prefHeight="131.0" prefWidth="656.0" style="-fx-background-color: f4f4ff;">
+         <children>
+            <Label layoutX="19.0" layoutY="48.0" text="Dias em atraso :" textFill="#152259" />
+            <Label layoutX="43.0" layoutY="14.0" text="Informações adicionais" textFill="#152259">
+               <font>
+                  <Font name="System Bold" size="12.179104804992676" />
+               </font>
+            </Label>
+            <Label layoutX="19.0" layoutY="77.0" prefHeight="18.0" prefWidth="48.0" text="Total :" textFill="#152259">
+               <font>
+                  <Font size="12.179104804992676" />
+               </font>
+            </Label>
+            <Label fx:id="multaLabel" layoutX="61.0" layoutY="71.0" prefHeight="30.0" prefWidth="132.0">
+               <font>
+                  <Font name="Segoe UI" size="17.0" />
+               </font>
+            </Label>
+            <Line endX="447.2000732421875" layoutX="136.0" layoutY="114.0" startX="-100.0" stroke="#ffffff24" />
+            <Label fx:id="atrasoLabel" layoutX="115.0" layoutY="41.0" prefHeight="30.0" prefWidth="67.0">
+               <font>
+                  <Font name="Segoe UI" size="17.0" />
+               </font>
+            </Label>
+            <Line endX="280.2000732421875" layoutX="347.0" layoutY="31.0" startX="-319.7999572753906" stroke="#e0dcde" />
+         </children>
+      </AnchorPane>
+      <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="600.0" prefWidth="244.0" spacing="10.0" style="-fx-background-color: #152259;">
+         <children>
+            <AnchorPane prefHeight="182.0" prefWidth="244.0" style="-fx-border-color: #e2dddf; -fx-border-width: 0 0 0.2 0;">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+               <children>
+                  <ImageView fitHeight="54.0" fitWidth="185.0" layoutX="31.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Assets/lateral.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <HBox alignment="CENTER_LEFT" fillHeight="false" onMouseClicked="#changePageRentBook" prefHeight="48.0" prefWidth="201.0" spacing="10.0">
+               <children>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Assets/livro%20(1).png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Fazer emprestimo" textFill="WHITE" />
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="35.0" />
+               </padding>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" fillHeight="false" onMouseClicked="#changePageDevolution" prefHeight="48.0" prefWidth="201.0" spacing="10.0">
+               <children>
+                  <ImageView fitHeight="18.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Assets/devolver.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Devolver Livros" textFill="WHITE" />
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="35.0" />
+               </padding>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="201.0" spacing="10.0" style="-fx-background-color: #111c4a; -fx-background-radius: 50;">
+               <children>
+                  <ImageView fitHeight="23.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Assets/biblioteca%20(1).png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Meus alugueis" textFill="WHITE" />
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="35.0" />
+               </padding>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </HBox>
+         </children>
+      </VBox>
+      <AnchorPane layoutX="244.0" prefHeight="112.0" prefWidth="656.0" style="-fx-border-color: #9d9d9d; -fx-background-color: f4f4ff; -fx-border-width: 0 0 0.2 0;">
+         <children>
+            <Label fx:id="nomeLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="371.0" layoutY="38.0" prefHeight="20.0" prefWidth="202.0" text="Diego Dias Fernandes" textFill="#152259">
+               <font>
+                  <Font name="SansSerif Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="tipoLabel" alignment="CENTER_RIGHT" layoutX="478.0" layoutY="52.0" prefHeight="20.0" prefWidth="95.0" text="Discente" textAlignment="RIGHT" textFill="#152259">
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="48.0" fitWidth="52.0" layoutX="574.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/userIcon.png" />
+               </image>
+            </ImageView>
+            <AnchorPane layoutX="24.0" layoutY="35.0" onMouseClicked="#changePageHome" prefHeight="42.0" prefWidth="42.0" style="-fx-background-color: ffffff; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e2dddf;" styleClass="user-btns">
+               <children>
+                  <ImageView fitHeight="19.0" fitWidth="20.0" layoutX="12.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Assets/botao-de-inicio2.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </AnchorPane>
+            <AnchorPane layoutX="74.0" layoutY="35.0" onMouseClicked="#changePageEdit" prefHeight="42.0" prefWidth="42.0" style="-fx-background-color: ffffff; -fx-background-radius: 60; -fx-border-radius: 20; -fx-border-color: #e2dddf;">
+               <children>
+                  <ImageView fitHeight="20.0" fitWidth="29.0" layoutX="11.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Assets/config.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

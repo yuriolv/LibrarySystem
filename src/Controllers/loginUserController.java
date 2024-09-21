@@ -75,8 +75,8 @@ public class loginUserController {
                     if(usuario.getMatricula().equals(user)
                         && HashPass.verifyPass(usuario.getSenha(), pass) 
                         && usuario.getTipo().equals(typeSelected)){                
-                    
-                           changePageUser(event, usuario);
+                        
+                           changePageBooks(event, usuario);
 
                     } else {
                         responseLabel.setText("MATRICULA OU SENHA INVÁLIDAS!");
@@ -123,7 +123,7 @@ public class loginUserController {
                             && usuario.getSenha().equals(pass)
                             && usuario.getTipo().equals(typeSelected)){                
                         
-                                changePageUser(event, usuario);
+                                changePageBooks(event, usuario);
 
                         } else {
                             responseLabel.setText("MATRICULA OU SENHA INVÁLIDAS!");
@@ -161,17 +161,18 @@ public class loginUserController {
         stage.show();
     }
 
-    public void changePageUser(Event event, User user) throws IOException{
+    public void changePageBooks(Event event, User user) throws IOException{
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/User.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/Books.fxml"));
 
         root = loader.load();
 
-        UserController userController = loader.getController();
+        BooksController booksController = loader.getController();
 
-        userController.initializeDB(db);
-        userController.setData(user);
-        userController.setLabels(user);
+        booksController.initializeDB(db);
+        booksController.init();
+        booksController.setData(user);
+        booksController.setLabels(user);
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         

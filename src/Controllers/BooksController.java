@@ -34,6 +34,7 @@ import javafx.stage.Screen;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.scene.control.TextField;
 
 public class BooksController {
@@ -47,9 +48,9 @@ public class BooksController {
     }
 
     @FXML
-    private Label labelSair;
+    private Label nomeLabel;
     @FXML
-    private Label matriculaLabel;
+    private Label tipoLabel;
     @FXML
     private FlowPane flowPane;
     @FXML
@@ -65,19 +66,39 @@ public class BooksController {
     private ArrayList<Book> livros;
 
     @FXML
-    void changePageUser(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/User.fxml"));
+    public void changePageEdit(MouseEvent event) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/EditarUser.fxml"));
 
         root = loader.load();
 
-        UserController userController = loader.getController();
+        EditarUserController editar = loader.getController();
 
-        userController.initializeDB(db);
-        userController.setData(user);
-        userController.setLabels(user);
+        editar.initializeDB(db);
+        editar.setData(user);
+        editar.setLabels(user);
 
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        
+        scene = new Scene(root);
+        stage = new Stage();
+
+        stage.initStyle(StageStyle.UTILITY);
+        stage.setTitle("Editar Usuário");
+        stage.setScene(scene);
+        stage.show();
+    }
+    @FXML
+    public void changeGenerateReport(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/invoiceUser.fxml"));
+
+        root = loader.load();
+
+        InvoiceUserController invoice = loader.getController();
+
+        invoice.initializeDB(db);
+        invoice.setData(user);
+        invoice.setLabels();
+
+        stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+
         if(stage.isMaximized() == true){
             Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
             scene = new Scene(root, screenSize.getMaxX(), screenSize.getMaxY());
@@ -85,9 +106,10 @@ public class BooksController {
         } else {
             scene = new Scene(root);
         }
-        
+
         stage.setScene(scene);
-        stage.show(); 
+        stage.show();
+        
     }
 
     @FXML
@@ -142,15 +164,21 @@ public class BooksController {
     }
 
     public void setLabels(User user){
-        matriculaLabel.setText(user.getMatricula());    
+        nomeLabel.setText(user.getNome()); 
+        tipoLabel.setText(user.getTipo());   
     }
 
     public AnchorPane createAnchorPane(Book livro) {
         AnchorPane anchorPane = new AnchorPane();
         anchorPane.setPrefWidth(179);
         anchorPane.setPrefHeight(241);
-        anchorPane.setStyle("-fx-background-color: white;"+"-fx-background-radius: 10;"+"-fx-cursor:HAND;");
-        anchorPane.setEffect(dropShadow);
+        anchorPane.setStyle(
+            "-fx-background-color: white;"
+            + "-fx-background-radius: 10;"
+            + "-fx-border-radius: 10;"
+            +"-fx-cursor:HAND;"
+            + "-fx-border-color:  #e2dddf;"
+            );
         
         try {
             InputStream is = new ByteArrayInputStream(livro.getImage());
@@ -200,6 +228,34 @@ public class BooksController {
             
         });
         return anchorPane;
+    }
+    @FXML
+    public void changePageDevolution(MouseEvent event) throws IOException {
+
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/Devolucao.fxml"));
+
+        root = loader.load();
+
+        DevolucaoController devolucaoController = loader.getController();
+
+        devolucaoController.initializeDB(db);
+        devolucaoController.init();
+        devolucaoController.setData(user);
+        devolucaoController.setLabels(user);
+
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+        if(stage.isMaximized() == true){
+            Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
+            scene = new Scene(root, screenSize.getMaxX(), screenSize.getMaxY());
+            stage.setMaximized(true);
+        } else {
+            scene = new Scene(root);
+        }
+
+        stage.setScene(scene);
+        stage.show(); 
     }
 
 

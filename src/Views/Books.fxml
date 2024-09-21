@@ -13,83 +13,38 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.BooksController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.BooksController">
    <children>
-      <AnchorPane prefHeight="112.0" prefWidth="705.0" style="-fx-background-color: #008B45;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-5.67162170206268" AnchorPane.topAnchor="0.0">
-         <children>
-            <Label alignment="CENTER" layoutX="42.0" layoutY="33.0" text="Biblioteca" textAlignment="RIGHT" textFill="WHITE" AnchorPane.leftAnchor="42.0">
-               <font>
-                  <Font name="Cambria" size="36.0" />
-               </font>
-            </Label>
-            <Label fx:id="matriculaLabel" alignment="CENTER" layoutX="552.0" layoutY="24.0" prefHeight="44.0" prefWidth="154.0" text="#matrícula" textAlignment="RIGHT" textFill="WHITE" AnchorPane.rightAnchor="14.0">
-               <font>
-                  <Font name="Cambria" size="28.0" />
-               </font>
-            </Label>
-            <Label fx:id="labelSair" layoutX="646.0" layoutY="68.0" onMouseClicked="#changePageHome" text="Sair" textAlignment="RIGHT" textFill="WHITE" AnchorPane.rightAnchor="26.67162170206268">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Label>
-            <Label layoutX="564.0" layoutY="68.0" onMouseClicked="#changePageUser" text="Voltar" textFill="WHITE" AnchorPane.rightAnchor="88.67162170206268">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Label>
-         </children>
-      </AnchorPane>
-      <ScrollPane fitToHeight="true" fitToWidth="true" layoutY="112.0" prefHeight="488.0" prefWidth="701.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="-0.597001016047443" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.373114361745479" AnchorPane.topAnchor="112.0">
+      <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="243.2" layoutY="112.0" prefHeight="489.0" prefWidth="656.0" style="-fx-background-color: f4f4ff;" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="243.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="112.0">
          <content>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0">
+            <VBox alignment="CENTER" prefHeight="474.0" prefWidth="565.0" spacing="15.0">
                <children>
-                  <VBox minHeight="144.0" prefHeight="144.0" prefWidth="686.0">
+                  <HBox alignment="CENTER" style="-fx-background-color: f4f4ff;">
                      <children>
-                        <HBox alignment="CENTER" fillHeight="false" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                        <AnchorPane prefHeight="62.0" prefWidth="700.0">
                            <children>
-                              <Label alignment="CENTER" contentDisplay="CENTER" text="ÁREA DE EMPRÉSTIMOS">
-                                 <font>
-                                    <Font name="Arial Bold Italic" size="24.0" />
-                                 </font>
-                              </Label>
-                              <ImageView fitHeight="61.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true">
+                              <TextField fx:id="filtroTextField" focusTraversable="false" layoutX="21.0" layoutY="1.0" onKeyPressed="#pesquisarLivros" prefHeight="32.0" prefWidth="603.0" promptText="Busque por 'Autor', 'Título' ou 'Assunto'" style="-fx-background-color: ffffff; -fx-border-color: #e2dddf; -fx-border-radius: 10; -fx-background-radius: 10;" />
+                              <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="591.0" layoutY="7.0" onMouseClicked="#pesquisarLivros2" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@Assets/book.png" />
+                                    <Image url="@Assets/lupa.png" />
                                  </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </ImageView>
                            </children>
-                           <padding>
-                              <Insets bottom="20.0" top="40.0" />
-                           </padding>
-                        </HBox>
-                        <HBox alignment="CENTER">
-                           <children>
-                              <AnchorPane prefHeight="62.0" prefWidth="700.0">
-                                 <children>
-                                    <TextField fx:id="filtroTextField" layoutX="42.0" layoutY="1.0" prefHeight="32.0" prefWidth="603.0" onKeyPressed="#pesquisarLivros" promptText="Busque por 'Autor', 'Título' ou 'Assunto'" style="-fx-background-radius: 10;" />
-                                    <ImageView fitHeight="19.0" fitWidth="20.0" layoutX="615.0" layoutY="7.0" onMouseClicked="#pesquisarLivros2" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@Assets/icons8-search-50.png" />
-                                       </image>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </ImageView>
-                                 </children>
-                              </AnchorPane>
-                           </children>
-                        </HBox>
+                           <HBox.margin>
+                              <Insets top="10.0" />
+                           </HBox.margin>
+                        </AnchorPane>
                      </children>
-                  </VBox>
-                  <FlowPane id="flowPane" fx:id="flowPane" alignment="CENTER" columnHalignment="CENTER" hgap="60.0" maxHeight="500.0" prefHeight="943.0" prefWidth="687.0" vgap="60.0">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <FlowPane id="flowPane" fx:id="flowPane" alignment="CENTER" columnHalignment="CENTER" hgap="60.0" maxHeight="500.0" prefHeight="943.0" prefWidth="687.0" style="-fx-background-color: f4f4ff;" vgap="60.0">
                      <padding>
-                        <Insets top="80.0" />
+                        <Insets top="30.0" />
                      </padding>
                      <VBox.margin>
                         <Insets bottom="10.0" />
@@ -99,5 +54,121 @@
             </VBox>
          </content>
       </ScrollPane>
+      <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="600.0" prefWidth="244.0" spacing="10.0" style="-fx-background-color: #152259;">
+         <children>
+            <AnchorPane prefHeight="182.0" prefWidth="244.0" style="-fx-border-color: #e2dddf; -fx-border-width: 0 0 0.2 0;">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+               <children>
+                  <ImageView fitHeight="54.0" fitWidth="185.0" layoutX="31.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Assets/lateral.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="48.0" prefWidth="201.0" spacing="10.0" style="-fx-background-color: #111c4a; -fx-background-radius: 50;">
+               <children>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Assets/livro%20(1).png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Fazer emprestimo" textFill="WHITE" />
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="35.0" />
+               </padding>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" fillHeight="false" onMouseClicked="#changePageDevolution" prefHeight="48.0" prefWidth="201.0" spacing="10.0">
+               <children>
+                  <ImageView fitHeight="18.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Assets/devolver.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Devolver Livros" textFill="WHITE" />
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="35.0" />
+               </padding>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" onMouseClicked="#changeGenerateReport" prefHeight="48.0" prefWidth="201.0" spacing="10.0">
+               <children>
+                  <ImageView fitHeight="23.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Assets/biblioteca%20(1).png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Meus alugueis" textFill="WHITE" />
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="35.0" />
+               </padding>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </HBox>
+         </children>
+      </VBox>
+      <AnchorPane layoutX="244.0" prefHeight="112.0" prefWidth="656.0" style="-fx-border-color: #9d9d9d; -fx-background-color: f4f4ff; -fx-border-width: 0 0 0.2 0; -fx-border-radius: 10;">
+         <children>
+            <Label fx:id="nomeLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="371.0" layoutY="38.0" prefHeight="20.0" prefWidth="202.0" text="Diego Dias Fernandes" textFill="#152259">
+               <font>
+                  <Font name="SansSerif Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="tipoLabel" alignment="CENTER_RIGHT" layoutX="478.0" layoutY="52.0" prefHeight="20.0" prefWidth="95.0" text="Discente" textAlignment="RIGHT" textFill="#152259">
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="48.0" fitWidth="52.0" layoutX="574.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/userIcon.png" />
+               </image>
+            </ImageView>
+            <AnchorPane layoutX="24.0" layoutY="35.0" onMouseClicked="#changePageHome" prefHeight="42.0" prefWidth="42.0" style="-fx-background-color: ffffff; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e2dddf;" styleClass="user-btns">
+               <children>
+                  <ImageView fitHeight="19.0" fitWidth="20.0" layoutX="12.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Assets/botao-de-inicio2.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </AnchorPane>
+            <AnchorPane layoutX="74.0" layoutY="35.0" onMouseClicked="#changePageEdit" prefHeight="42.0" prefWidth="42.0" style="-fx-background-color: ffffff; -fx-background-radius: 60; -fx-border-radius: 20; -fx-border-color: #e2dddf;">
+               <children>
+                  <ImageView fitHeight="20.0" fitWidth="29.0" layoutX="11.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Assets/config.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

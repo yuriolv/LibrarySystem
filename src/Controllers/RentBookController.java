@@ -47,7 +47,7 @@ public class RentBookController{
     @FXML
     private Label labelSair;
     @FXML
-    private Label matriculaLabel;
+    private Label tipoLabel;
     @FXML
     private VBox vbox;
     @FXML
@@ -207,8 +207,7 @@ public class RentBookController{
 
         scene = new Scene(root);
         stage = new Stage();
-
-        stage.initStyle(StageStyle.UTILITY);
+        
         stage.setTitle("Editar Usuário");
         stage.setScene(scene);
         stage.show();
@@ -236,7 +235,7 @@ public class RentBookController{
     }
 
     public void setLabels(User user, Book livro) throws FileNotFoundException{
-        matriculaLabel.setText(user.getMatricula());  
+        tipoLabel.setText(user.getTipo());  
         nomeLabel.setText(user.getNome());
         bookNameLabel.setText(livro.getTitulo());
         autorLabel.setText(livro.getAutor());
@@ -286,7 +285,7 @@ public class RentBookController{
                 text.setWrappingWidth(541);
     
                 vBox.setPrefWidth(700);
-                vBox.setMargin(text, new Insets(5, 0, 0, 70));
+                VBox.setMargin(text, new Insets(5, 0, 0, 70));
                 
                 hbox.setAlignment(Pos.CENTER_LEFT);
                 hbox.setPrefHeight(38);

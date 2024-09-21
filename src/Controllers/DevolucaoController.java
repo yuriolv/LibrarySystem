@@ -58,6 +58,8 @@ public class DevolucaoController{
     @FXML
     private Label nomeLabel;
     @FXML
+    private Label tipoLabel;
+    @FXML
     private Label matriculaLabel;
 
     private User user;
@@ -68,19 +70,20 @@ public class DevolucaoController{
 
 
     @FXML
-    void changePageUser(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/User.fxml"));
+    public void changePageRentBook(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/Books.fxml"));
 
         root = loader.load();
 
-        UserController userController = loader.getController();
+        BooksController rentController = loader.getController();
 
-        userController.initializeDB(db);
-        userController.setData(user);
-        userController.setLabels(user);
+        rentController.initializeDB(db);
+        rentController.setData(user);
+        rentController.setLabels(user);
+        rentController.init();
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        
+
         if(stage.isMaximized() == true){
             Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
             scene = new Scene(root, screenSize.getMaxX(), screenSize.getMaxY());
@@ -88,7 +91,7 @@ public class DevolucaoController{
         } else {
             scene = new Scene(root);
         }
-        
+
         stage.setScene(scene);
         stage.show(); 
     }
@@ -113,6 +116,32 @@ public class DevolucaoController{
 
         stage.setScene(scene);
         stage.show();
+    }
+    @FXML
+    public void changeGenerateReport(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/invoiceUser.fxml"));
+
+        root = loader.load();
+
+        InvoiceUserController invoice = loader.getController();
+
+        invoice.initializeDB(db);
+        invoice.setData(user);
+        invoice.setLabels();
+
+        stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+
+        if(stage.isMaximized() == true){
+            Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
+            scene = new Scene(root, screenSize.getMaxX(), screenSize.getMaxY());
+            stage.setMaximized(true);
+        } else {
+            scene = new Scene(root);
+        }
+
+        stage.setScene(scene);
+        stage.show();
+        
     }
 
     @FXML
@@ -180,6 +209,26 @@ public class DevolucaoController{
 
 
     }
+    @FXML
+    public void changePageEdit(MouseEvent event) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Views/EditarUser.fxml"));
+
+        root = loader.load();
+
+        EditarUserController editar = loader.getController();
+
+        editar.initializeDB(db);
+        editar.setData(user);
+        editar.setLabels(user);
+
+        scene = new Scene(root);
+        stage = new Stage();
+
+        stage.initStyle(StageStyle.UTILITY);
+        stage.setTitle("Editar Usuário");
+        stage.setScene(scene);
+        stage.show();
+    }
     public void init() {
         Rents crud = new Rents();
         rents = crud.read(db, Optional.empty()); 
@@ -195,8 +244,8 @@ public class DevolucaoController{
     public void setData(User user) {
         this.user = user;
     }
-     public void setLabels(User user){
-        matriculaLabel.setText(user.getMatricula());
+    public void setLabels(User user){
         nomeLabel.setText(user.getNome()); 
-   }
+        tipoLabel.setText(user.getTipo());   
+    }
 }
