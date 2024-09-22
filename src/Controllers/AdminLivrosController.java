@@ -313,6 +313,7 @@ public class AdminLivrosController  {
                 conditions.add("\"ID\" = " +livro_update.getID());
 
                 crud.update(db, livro_update, Optional.of(conditions));
+                System.out.println(i+" "+livro_update.getEditora()+" "+ livro_update.getEditoraNome(db));
                 livrosObs.set(i, livro_update);
             
         

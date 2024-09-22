@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdminEditoraController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdminEditoraController">
    <children>
       <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="244.0" layoutY="110.4" prefHeight="491.0" prefWidth="656.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="244.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="110.0">
          <content>
@@ -91,12 +91,12 @@
                                        <children>
                                           <AnchorPane onMouseClicked="#adicionarEditora" prefHeight="27.0" prefWidth="31.0">
                                              <children>
-                                                <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="32.0" style="-fx-background-color: #152259; -fx-background-radius: 10;" textFill="WHITE">
+                                                <Button mnemonicParsing="false" mouseTransparent="true" prefHeight="27.0" prefWidth="32.0" style="-fx-background-color: #152259; -fx-background-radius: 10;" textFill="WHITE">
                                                    <cursor>
-                                                      <Cursor fx:constant="HAND" />
+                                                      <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
                                                 </Button>
-                                                <ImageView fitHeight="20.0" fitWidth="10.0" layoutX="11.0" layoutY="9.0" onMouseClicked="#adicionarEditora" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="20.0" fitWidth="10.0" layoutX="11.0" layoutY="9.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@Assets/sinal-de-adicao.png" />
                                                    </image>
@@ -105,15 +105,18 @@
                                                    </cursor>
                                                 </ImageView>
                                              </children>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </AnchorPane>
                                           <AnchorPane onMouseClicked="#editarEditora" prefHeight="27.0" prefWidth="33.0">
                                              <children>
-                                                <Button mnemonicParsing="false" onMouseClicked="#editarEditora" prefHeight="27.0" prefWidth="32.0" style="-fx-background-color: #152259; -fx-background-radius: 10;">
+                                                <Button mnemonicParsing="false" mouseTransparent="true" prefHeight="27.0" prefWidth="32.0" style="-fx-background-color: #152259; -fx-background-radius: 10;">
                                                    <cursor>
-                                                      <Cursor fx:constant="HAND" />
+                                                      <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
                                                 </Button>
-                                                <ImageView fitHeight="18.0" fitWidth="12.0" layoutX="11.0" layoutY="8.0" onMouseClicked="#editarEditora" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="18.0" fitWidth="12.0" layoutX="11.0" layoutY="8.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@Assets/editar.png" />
                                                    </image>
@@ -122,15 +125,18 @@
                                                    </cursor>
                                                 </ImageView>
                                              </children>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </AnchorPane>
                                           <AnchorPane onMouseClicked="#removerEditora" prefHeight="27.0" prefWidth="31.0">
                                              <children>
-                                                <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="32.0" style="-fx-background-color: #152259; -fx-background-radius: 10;">
+                                                <Button mnemonicParsing="false" mouseTransparent="true" prefHeight="27.0" prefWidth="32.0" style="-fx-background-color: #152259; -fx-background-radius: 10;">
                                                    <cursor>
-                                                      <Cursor fx:constant="HAND" />
+                                                      <Cursor fx:constant="DEFAULT" />
                                                    </cursor>
                                                 </Button>
-                                                <ImageView fitHeight="14.0" fitWidth="16.0" layoutX="9.0" layoutY="7.0" onMouseClicked="#removerEditora" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="14.0" fitWidth="16.0" layoutX="9.0" layoutY="7.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@Assets/excluir.png" />
                                                    </image>
@@ -139,6 +145,9 @@
                                                    </cursor>
                                                 </ImageView>
                                              </children>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </AnchorPane>
                                        </children>
                                     </HBox>
