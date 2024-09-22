@@ -158,6 +158,8 @@ public class UserController{
         stage.initStyle(StageStyle.UTILITY);
         stage.setTitle("Editar Usuário");
         stage.setScene(scene);
+
+        stage.setResizable(false);
         stage.show();
     }
 

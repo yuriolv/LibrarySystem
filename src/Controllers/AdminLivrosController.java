@@ -333,22 +333,17 @@ public class AdminLivrosController  {
         ArrayList<String> like = new ArrayList<>();
 
         
-        if(filtroTextField.getText().equals("")){
-            tableLivros.setItems(livrosObs);
-        }
-        else{
-            like.add("UPPER(autor) LIKE "+"UPPER('%"+filtro+ "%')");
-            like.add("UPPER(titulo) LIKE "+"UPPER('%"+filtro+ "%')");
-            like.add("UPPER(assunto) LIKE "+"UPPER('%"+filtro+ "%')");
-            like.add("UPPER(colecao) LIKE "+"UPPER('%"+filtro+ "%')");
-    
-            livros = crud.read(db, Optional.of(like), Optional.of(" OR "));
+        like.add("UPPER(autor) LIKE "+"UPPER('%"+filtro+ "%')");
+        like.add("UPPER(titulo) LIKE "+"UPPER('%"+filtro+ "%')");
+        like.add("UPPER(assunto) LIKE "+"UPPER('%"+filtro+ "%')");
+        like.add("UPPER(colecao) LIKE "+"UPPER('%"+filtro+ "%')");
 
-            for (Book livro : livros) {
-                    filter.add(livro);
-            }
-            tableLivros.setItems(filter);
+        livros = crud.read(db, Optional.of(like), Optional.of(" OR "));
+
+        for (Book livro : livros) {
+                filter.add(livro);
         }
+        tableLivros.setItems(filter);
 
         resetTextFields();
     
@@ -357,28 +352,23 @@ public class AdminLivrosController  {
     public void pesquisarLivro2(KeyEvent event) {
         if(event.getCode() == KeyCode.ENTER){
             
-            if(filtroTextField.getText().equals("")){
-                tableLivros.setItems(livrosObs);
-            }
-            else{
-                Books crud = new Books();
-                ObservableList<Book> filter = FXCollections.observableArrayList();
-        
-                String filtro = filtroTextField.getText();
-                ArrayList<String> like = new ArrayList<>();
+            Books crud = new Books();
+            ObservableList<Book> filter = FXCollections.observableArrayList();
     
-                like.add("UPPER(autor) LIKE "+"UPPER('%"+filtro+ "%')");
-                like.add("UPPER(titulo) LIKE "+"UPPER('%"+filtro+ "%')");
-                like.add("UPPER(assunto) LIKE "+"UPPER('%"+filtro+ "%')");
-                like.add("UPPER(colecao) LIKE "+"UPPER('%"+filtro+ "%')");
-    
-                livros = crud.read(db, Optional.of(like), Optional.of(" OR "));
+            String filtro = filtroTextField.getText();
+            ArrayList<String> like = new ArrayList<>();
 
-                for (Book livro : livros) {
-                        filter.add(livro);
-                }
-                tableLivros.setItems(filter);
+            like.add("UPPER(autor) LIKE "+"UPPER('%"+filtro+ "%')");
+            like.add("UPPER(titulo) LIKE "+"UPPER('%"+filtro+ "%')");
+            like.add("UPPER(assunto) LIKE "+"UPPER('%"+filtro+ "%')");
+            like.add("UPPER(colecao) LIKE "+"UPPER('%"+filtro+ "%')");
+
+            livros = crud.read(db, Optional.of(like), Optional.of(" OR "));
+
+            for (Book livro : livros) {
+                    filter.add(livro);
             }
+            tableLivros.setItems(filter);
 
             resetTextFields();
 
@@ -432,7 +422,7 @@ public class AdminLivrosController  {
             }
 
 
-           if(livro.getColeção().equals("Coleção Comum"))
+           if(livro.getColeção().equals("Comum"))
                 radioComum.setSelected(true);
             else
                 radioEspecial.setSelected(true);

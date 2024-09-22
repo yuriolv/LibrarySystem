@@ -120,7 +120,7 @@ public class loginUserController {
 
                     for (User usuario : users) {
                         if(usuario.getMatricula().equals(user)
-                            && usuario.getSenha().equals(pass)
+                            && HashPass.verifyPass(usuario.getSenha(), pass)
                             && usuario.getTipo().equals(typeSelected)){                
                         
                                 changePageBooks(event, usuario);

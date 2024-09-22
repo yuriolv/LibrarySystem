@@ -20,6 +20,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -80,6 +81,10 @@ public class AdminUsersController{
 
     @FXML 
     public void editarUser(MouseEvent event){
+        Alert alert = new Alert(AlertType.WARNING);
+        alert.setTitle("Erro");
+        alert.setHeaderText("Erro");
+
         ArrayList<String> condition_str = new ArrayList<>();
         Optional<ArrayList<String>> conditions = Optional.of(condition_str);
         ArrayList<Object> valuesToUpdate= new ArrayList<>();
@@ -92,10 +97,28 @@ public class AdminUsersController{
 
         
         users = crud.read(db, Optional.empty());
+
         try {
             matricula = matriculaTextField.getText();
             tipo = tipoTextField.getText();
             nome = nomeTextField.getText();
+
+            if (matricula.equals("") || tipo .equals("") || nome.equals("")){
+                alert.setContentText("Preencha todos os campos!");
+                alert.showAndWait();
+                return; 
+            }
+
+            String mat_antes = user_antes.getMatricula();
+            for ( User user: usersObs){
+                if (user.getMatricula().equals(matricula) && !mat_antes.equals(matricula)) {
+                    alert.setContentText("Matricula já existente");
+                    alert.showAndWait();
+                    return; 
+                }
+            }
+                
+
             valuesToUpdate.add(matricula);
             valuesToUpdate.add(nome);
             valuesToUpdate.add(tipo);
@@ -114,7 +137,9 @@ public class AdminUsersController{
             resetTextFields();
 
         } catch (Exception e) {
-            System.out.println(e);
+            alert.setContentText("Ocorreu um erro");
+            alert.showAndWait();
+            return;
         }
     }
 
@@ -132,6 +157,24 @@ public class AdminUsersController{
             matricula = matriculaTextField.getText();
             tipo = tipoTextField.getText();
             nome = nomeTextField.getText();
+
+
+            if (matricula.equals("") || tipo .equals("") || nome.equals("")){
+                alert.setContentText("Preencha todos os campos!");
+                alert.showAndWait();
+                return; 
+            }
+
+            for ( User user: usersObs){
+                if (user.getMatricula().equals(matricula)) {
+                    alert.setContentText("Matricula já existente");
+                    alert.showAndWait();
+                    return; 
+                }
+            }
+
+                
+
             String firstname = nomeTextField.getText().split(" ")[0];
             senha = HashPass.generateHash(firstname+"@"+tipo);
             User user = new User(matricula, nome, tipo, senha);
@@ -180,9 +223,6 @@ public class AdminUsersController{
     @FXML
     public void pesquisarUser(MouseEvent event){
         String filtro = filtroTextField.getText();
-        if (filtro.equals("")){
-            return;
-        }
 
         usersObs.clear();
 
@@ -213,9 +253,6 @@ public class AdminUsersController{
         if(event.getCode() == KeyCode.ENTER){
 
             String filtro = filtroTextField.getText();
-            if (filtro.equals("")){
-                return;
-            }
 
             usersObs.clear();
 

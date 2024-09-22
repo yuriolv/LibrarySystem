@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 import Classes.Publisher;
+import Classes.User;
 import DB.DataBase;
 import Models.Publishers;
 
@@ -94,33 +95,49 @@ public class AdminEditoraController{
         
         tableEditora.setItems(editorasObs);
    
-        nome = nomeTextField.getText();
-        cnpj =  cnpjTextField.getText();
-        telefone = telefoneTextField.getText();
-        
-        if(nome.equals("") || cnpj.equals("") || telefone.equals("")){
-            alert.setContentText("Preencha todos os campos!");
-            alert.showAndWait();
-            return; 
-        }
-        resetTextFields();
-        ArrayList<String> conditions = new ArrayList<>();
-
-        conditions.add(String.format("cnpj = '%s'", editora_antes.getCnpj()));
-        ArrayList<Publisher> editoras = crud.read(db, Optional.of(conditions), Optional.of(" AND "));
-        Publisher editora_update = editoras.get(0); 
-        
-        editora_update.setNome(nome);
-        editora_update.setCnpj(cnpj);
-        editora_update.setTelefone(telefone);
-
-        conditions.clear();
-        conditions.add(String.format("cnpj = '%s'", editora_antes.getCnpj()));
-
-        crud.update(db, editora_update, Optional.of(conditions));
-        editorasObs.set(i, editora_update);
+        try {
+            nome = nomeTextField.getText();
+            cnpj =  cnpjTextField.getText();
+            telefone = telefoneTextField.getText();
             
-        
+            if(nome.equals("") || cnpj.equals("") || telefone.equals("")){
+                alert.setContentText("Preencha todos os campos!");
+                alert.showAndWait();
+                return; 
+            }
+
+            String cnpj_antes = editora_antes.getCnpj();
+
+            for ( Publisher edit: editorasObs){
+                if (edit.getCnpj().equals(cnpj) && !cnpj_antes.equals(cnpj)) {
+                    alert.setContentText("Cnpj já existente");
+                    alert.showAndWait();
+                    return; 
+                }
+            }
+
+            resetTextFields();
+            ArrayList<String> conditions = new ArrayList<>();
+
+            conditions.add(String.format("cnpj = '%s'", editora_antes.getCnpj()));
+            ArrayList<Publisher> editoras = crud.read(db, Optional.of(conditions), Optional.of(" AND "));
+            Publisher editora_update = editoras.get(0); 
+            
+            editora_update.setNome(nome);
+            editora_update.setCnpj(cnpj);
+            editora_update.setTelefone(telefone);
+
+            conditions.clear();
+            conditions.add(String.format("cnpj = '%s'", editora_antes.getCnpj()));
+
+            crud.update(db, editora_update, Optional.of(conditions));
+            editorasObs.set(i, editora_update);            
+        } catch (Exception e) {
+            alert.setContentText("Ocorreu um erro");
+            alert.showAndWait();
+            return;
+        }
+                    
     }
 
     
@@ -139,11 +156,25 @@ public class AdminEditoraController{
             nome = nomeTextField.getText();
             cnpj = cnpjTextField.getText();
             telefone = telefoneTextField.getText();
+
+            if(nome.equals("") || cnpj.equals("") || telefone.equals("")) {
+                alert.setContentText("Preencha todos os campos");
+                alert.showAndWait();
+                return;
+            }
+            for ( Publisher edit: editorasObs){
+                if (edit.getCnpj().equals(cnpj)) {
+                    alert.setContentText("Cnpj já existente");
+                    alert.showAndWait();
+                    return; 
+                }
+            }
+            
             Publisher editora = new Publisher(nome, cnpj, telefone);
+
 
             editoras.add(editora);
             editorasObs.add(editora);
-            crud.create(editora, db);
 
 
             resetTextFields();
@@ -191,21 +222,17 @@ public class AdminEditoraController{
         ArrayList<String> like = new ArrayList<>();
 
         
-        if(filtroTextField.getText().equals("")){
-            tableEditora.setItems(editorasObs);
-        }
-        else{
-            like.add("UPPER(nome) LIKE "+"UPPER('%"+filtro+ "%')");
-            like.add("cnpj LIKE "+"'%"+filtro+ "%'");
-            like.add("telefone LIKE "+"'%"+filtro+ "%'");
-    
-            editoras = crud.read(db, Optional.of(like), Optional.of(" OR "));
+        like.add("UPPER(nome) LIKE "+"UPPER('%"+filtro+ "%')");
+        like.add("cnpj LIKE "+"'%"+filtro+ "%'");
+        like.add("telefone LIKE "+"'%"+filtro+ "%'");
 
-            for (Publisher editora : editoras) {
-                    filter.add(editora);
-            }
-            tableEditora.setItems(filter);
+        editoras = crud.read(db, Optional.of(like), Optional.of(" OR "));
+
+        for (Publisher editora : editoras) {
+                filter.add(editora);
         }
+        tableEditora.setItems(filter);
+
 
         resetTextFields();
     
@@ -214,27 +241,22 @@ public class AdminEditoraController{
     void pesquisarEditora2(KeyEvent event) {
         if(event.getCode() == KeyCode.ENTER){
             
-            if(filtroTextField.getText().equals("")){
-                tableEditora.setItems(editorasObs);
-            }
-            else{
-                Publishers crud = new Publishers();
-                ObservableList<Publisher> filter = FXCollections.observableArrayList();
-        
-                String filtro = filtroTextField.getText();
-                ArrayList<String> like = new ArrayList<>();
+            Publishers crud = new Publishers();
+            ObservableList<Publisher> filter = FXCollections.observableArrayList();
     
-                like.add("UPPER(nome) LIKE "+"UPPER('%"+filtro+ "%')");
-                like.add("cnpj LIKE "+"'%"+filtro+ "%'");
-                like.add("telefone LIKE "+"'%"+filtro+ "%'");
-    
-                editoras = crud.read(db, Optional.of(like), Optional.of(" OR "));
+            String filtro = filtroTextField.getText();
+            ArrayList<String> like = new ArrayList<>();
 
-                for (Publisher editora : editoras) {
-                        filter.add(editora);
-                }
-                tableEditora.setItems(filter);
+            like.add("UPPER(nome) LIKE "+"UPPER('%"+filtro+ "%')");
+            like.add("cnpj LIKE "+"'%"+filtro+ "%'");
+            like.add("telefone LIKE "+"'%"+filtro+ "%'");
+
+            editoras = crud.read(db, Optional.of(like), Optional.of(" OR "));
+
+            for (Publisher editora : editoras) {
+                    filter.add(editora);
             }
+            tableEditora.setItems(filter);
 
             resetTextFields();
 

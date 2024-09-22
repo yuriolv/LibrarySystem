@@ -34,7 +34,8 @@ public class App extends Application {
         
         stage = primaryStage;
         stage.setTitle("SISTEMA BIBLIOTECA");
-        stage.setScene(pageHome); 
+        stage.setScene(pageHome);
+        stage.setResizable(false);
         stage.show();
         
     }

@@ -79,10 +79,12 @@ public class BooksController {
 
         scene = new Scene(root);
         stage = new Stage();
-
+        
         stage.initStyle(StageStyle.UTILITY);
         stage.setTitle("Editar Usuário");
         stage.setScene(scene);
+        
+        stage.setResizable(false);
         stage.show();
     }
     @FXML
@@ -274,10 +276,6 @@ public class BooksController {
     public void pesquisarLivros(KeyEvent event) {
         if(event.getCode() == KeyCode.ENTER){
             String filtro = filtroTextField.getText();
-
-            if (filtro.equals("")){
-                return;
-            }
                 
             flowPane.getChildren().clear();
             ArrayList<String> like = new ArrayList<String>();
@@ -308,10 +306,6 @@ public class BooksController {
     @FXML
     public void pesquisarLivros2(MouseEvent event) {
         String filtro = filtroTextField.getText();
-
-        if (filtro.equals("")){
-            return;
-        }
             
         flowPane.getChildren().clear();
         ArrayList<String> like = new ArrayList<String>();
