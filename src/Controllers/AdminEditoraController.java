@@ -233,13 +233,11 @@ public class AdminEditoraController{
         }
         tableEditora.setItems(filter);
 
-
-        resetTextFields();
     
     }
     @FXML
     void pesquisarEditora2(KeyEvent event) {
-        if(event.getCode() == KeyCode.ENTER){
+
             
             Publishers crud = new Publishers();
             ObservableList<Publisher> filter = FXCollections.observableArrayList();
@@ -258,9 +256,7 @@ public class AdminEditoraController{
             }
             tableEditora.setItems(filter);
 
-            resetTextFields();
 
-        }
     }
 
     @FXML

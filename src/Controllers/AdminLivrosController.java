@@ -345,12 +345,10 @@ public class AdminLivrosController  {
         }
         tableLivros.setItems(filter);
 
-        resetTextFields();
     
     }
     @FXML
     public void pesquisarLivro2(KeyEvent event) {
-        if(event.getCode() == KeyCode.ENTER){
             
             Books crud = new Books();
             ObservableList<Book> filter = FXCollections.observableArrayList();
@@ -370,12 +368,7 @@ public class AdminLivrosController  {
             }
             tableLivros.setItems(filter);
 
-            resetTextFields();
 
-
-
-            
-        }
     }
 
 

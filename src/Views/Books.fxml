@@ -23,7 +23,7 @@
                      <children>
                         <AnchorPane prefHeight="62.0" prefWidth="700.0">
                            <children>
-                              <TextField fx:id="filtroTextField" focusTraversable="false" layoutX="21.0" layoutY="1.0" onKeyPressed="#pesquisarLivros" prefHeight="32.0" prefWidth="603.0" promptText="Busque por 'Autor', 'Título' ou 'Assunto'" style="-fx-background-color: ffffff; -fx-border-color: #e2dddf; -fx-border-radius: 10; -fx-background-radius: 10;" />
+                              <TextField fx:id="filtroTextField" focusTraversable="false" layoutX="21.0" layoutY="1.0" onKeyReleased="#pesquisarLivros" prefHeight="32.0" prefWidth="603.0" promptText="Busque por 'Autor', 'Título' ou 'Assunto'" style="-fx-background-color: ffffff; -fx-border-color: #e2dddf; -fx-border-radius: 10; -fx-background-radius: 10;" />
                               <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="591.0" layoutY="7.0" onMouseClicked="#pesquisarLivros2" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@Assets/lupa.png" />

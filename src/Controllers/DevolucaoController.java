@@ -159,12 +159,13 @@ public class DevolucaoController{
                 int id = rent.getId();
                 int id_livro = rent.getId_livro();
                 if(rentsObs.get(i).getId() == id){
+                    System.out.println(i);
                     conditions.add(String.format("\"ID\" = %s", id));
 
                     lc_data_aluguel = LocalDate.parse(data_aluguel, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
                     data_aluguel = lc_data_aluguel.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
 
-                    crud.delete(db, conditions);//consertar delete
+                    crud.delete(db, conditions);
 
                     conditions.clear();
                     conditions.add("\"ID\" =" + id_livro);
@@ -176,6 +177,7 @@ public class DevolucaoController{
 
                     changePageComentarios(event, rent);
                     rentsObs.remove(i);
+                    break;
                 }
             }
         }catch(Exception e){

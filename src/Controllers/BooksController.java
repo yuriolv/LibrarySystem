@@ -4,9 +4,10 @@ import java.io.ByteArrayInputStream;
 
 import java.io.IOException;
 import java.io.InputStream;
-
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 import javafx.scene.paint.Color;
 
@@ -17,7 +18,7 @@ import Models.Books;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-
+import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -27,6 +28,8 @@ import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.InputEvent;
+import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -274,9 +277,10 @@ public class BooksController {
 
     @FXML
     public void pesquisarLivros(KeyEvent event) {
-        if(event.getCode() == KeyCode.ENTER){
+
             String filtro = filtroTextField.getText();
-                
+            System.out.println(filtro);
+
             flowPane.getChildren().clear();
             ArrayList<String> like = new ArrayList<String>();
             like.add("UPPER(autor) LIKE UPPER('%" + filtro + "%')");
@@ -298,14 +302,14 @@ public class BooksController {
                 AnchorPane bookCard = createAnchorPane(livro);
                 flowPane.getChildren().add(bookCard);
             }
-        }
 
        
     }
     
     @FXML
-    public void pesquisarLivros2(MouseEvent event) {
+    public void pesquisarLivros2() {
         String filtro = filtroTextField.getText();
+        
             
         flowPane.getChildren().clear();
         ArrayList<String> like = new ArrayList<String>();

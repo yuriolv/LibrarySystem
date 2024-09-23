@@ -251,7 +251,7 @@ public class AdminUsersController{
 
     @FXML
     void pesquisarUser2(KeyEvent event) {
-        if(event.getCode() == KeyCode.ENTER){
+
 
             String filtro = filtroTextField.getText();
 
@@ -277,8 +277,7 @@ public class AdminUsersController{
             }
 
             tableUsers.setItems(usersObs);
-            
-        }
+
 
     }
 
