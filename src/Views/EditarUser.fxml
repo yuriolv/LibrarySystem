@@ -44,22 +44,12 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="14.0" layoutY="182.0" text="Senha:">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
       <Label fx:id="tipoLabel" layoutX="99.0" layoutY="126.0" prefHeight="25.0" prefWidth="64.0">
          <font>
             <Font name="Segoe UI Light" size="16.0" />
          </font>
       </Label>
       <Label fx:id="matriculaLabel" layoutX="99.0" layoutY="156.0" prefHeight="25.0" prefWidth="85.0">
-         <font>
-            <Font name="Segoe UI Light" size="16.0" />
-         </font>
-      </Label>
-      <Label fx:id="senhaLabel" layoutX="99.0" layoutY="183.0" prefHeight="25.0" prefWidth="69.0">
          <font>
             <Font name="Segoe UI Light" size="16.0" />
          </font>

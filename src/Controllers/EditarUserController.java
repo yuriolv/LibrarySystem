@@ -27,9 +27,6 @@ public class EditarUserController {
     private Label tipoLabel;
 
     @FXML
-    private Label senhaLabel;
-
-    @FXML
     private PasswordField passwordTField;
 
     @FXML
@@ -53,7 +50,6 @@ public class EditarUserController {
         nomeLabel.setText(user.getNome());
         matriculaLabel.setText(user.getMatricula());
         tipoLabel.setText(user.getTipo());
-        senhaLabel.setText(user.getSenha());
     }
 
     @FXML
