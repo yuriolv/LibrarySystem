@@ -129,11 +129,12 @@ public class AdminUsersController{
             user.setNome(nome);
             user.setTipo(tipo);
 
+            condition_str.add(String.format("matricula = '%s'", user_antes.getMatricula()));
+            crud.update(db, valuesToUpdate, conditions);
+
             users.set(i, user);
             usersObs.set(i, user);
             
-            condition_str.add(String.format("matricula = '%s'", user_antes.getMatricula()));
-            crud.update(db, valuesToUpdate, conditions);
             resetTextFields();
 
         } catch (Exception e) {
@@ -179,9 +180,9 @@ public class AdminUsersController{
             senha = HashPass.generateHash(firstname+"@"+tipo);
             User user = new User(matricula, nome, tipo, senha);
 
+            crud.create(user, db);
             users.add(user);
             usersObs.add(user);
-            crud.create(user, db);
 
 
             resetTextFields();
@@ -211,12 +212,12 @@ public class AdminUsersController{
             return;
         }
 
-        usersObs.remove(i);
-
+        
         matricula = "\'" + users.get(i).getMatricula() + "\'";
         conditions.add(String.format("matricula = %s", matricula));
         crud.delete(db, conditions); 
         
+        usersObs.remove(i);
         resetTextFields();
     }
 

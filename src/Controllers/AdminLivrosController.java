@@ -239,8 +239,8 @@ public class AdminLivrosController  {
 
             
             livro = new Book(autor, titulo, assunto, qtd_estoque, colecao_selecionada, image, editora.getId());
-            livrosObs.add(livro);
             crud_Books.create(livro, db);
+            livrosObs.add(livro);
 
         }catch(NumberFormatException e){
             alert.setContentText("O campo estoque deve conter somente numeros");
@@ -393,12 +393,12 @@ public class AdminLivrosController  {
             return;
         }
         String titulo =  tituloTextField.getText();
-        livrosObs.remove(i);
         ArrayList<String> conditions = new ArrayList<>();
         conditions.add("titulo = " + "'"+titulo+"'");
-
+        
         crud.delete(db, conditions);
-
+        
+        livrosObs.remove(i);
     }
 
 

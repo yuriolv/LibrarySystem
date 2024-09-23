@@ -172,7 +172,7 @@ public class AdminEditoraController{
             
             Publisher editora = new Publisher(nome, cnpj, telefone);
 
-
+            crud.create(editora, db);
             editoras.add(editora);
             editorasObs.add(editora);
 
@@ -204,12 +204,12 @@ public class AdminEditoraController{
             return;
         }
 
-        editorasObs.remove(i);
-
+        
         cnpj = "\'" + editoras.get(i).getCnpj() + "\'";
         conditions.add(String.format("cnpj = %s", cnpj));
         crud.delete(db, conditions); 
         
+        editorasObs.remove(i);
         resetTextFields();
     }
 
