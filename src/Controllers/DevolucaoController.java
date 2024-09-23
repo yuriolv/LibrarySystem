@@ -15,7 +15,7 @@ import Classes.Book;
 import DB.DataBase;
 import Models.Books;
 import Models.Rents;
-
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -240,7 +240,10 @@ public class DevolucaoController{
         rentsObs = FXCollections.observableArrayList(rents);
 
         dataColumn.setCellValueFactory(new PropertyValueFactory<>("DateRent"));
-        nomeColumn.setCellValueFactory(new PropertyValueFactory<>("Matricula"));
+        nomeColumn.setCellValueFactory(cellData -> {
+            RentBook obj = cellData.getValue();
+            return new SimpleStringProperty(obj.getTitulo(db));
+        });
 
         tableRent.setItems(rentsObs);
     }

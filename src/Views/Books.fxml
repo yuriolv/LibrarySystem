@@ -17,7 +17,7 @@
    <children>
       <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="243.2" layoutY="112.0" prefHeight="489.0" prefWidth="656.0" style="-fx-background-color: f4f4ff;" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="243.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="112.0">
          <content>
-            <VBox alignment="CENTER" prefHeight="474.0" prefWidth="565.0" spacing="15.0">
+            <VBox alignment="CENTER" prefHeight="474.0" prefWidth="565.0" spacing="15.0" style="-fx-background-color: f4f4ff;">
                <children>
                   <HBox alignment="CENTER" style="-fx-background-color: f4f4ff;">
                      <children>

@@ -44,7 +44,7 @@ public class RentReportController {
 
         String data;
 
-        dateForDevolution = dateForDevolution.plusDays(7);
+        dateForDevolution = dateForDevolution.plusDays(15);
 
         data = dateForDevolution.format(dateTimeFormatter);
 
